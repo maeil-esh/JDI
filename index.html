@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ESH-MASTER · ESH디지털 플랫폼</title>
+  <title>ESH-MASTER · 서비스 준비중</title>
   <meta name="description" content="안전·보건·환경 디지털 플랫폼 ESH-MASTER가 곧 찾아옵니다. Safety Do It, JSA 위험성평가, AI 안전보건 뉴스레터, 안전보건정보.">
 
   <meta property="og:title" content="ESH-MASTER · 안전보건환경 디지털 플랫폼">
@@ -373,6 +373,47 @@
     }
     .svc-status .dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
 
+    /* BETA 상태 뱃지 (진행 중 = 기대감) */
+    .svc-status.beta {
+      background: var(--mint-100);
+      color: #0E7A6E;
+      position: relative;
+      padding-left: 9px;
+      padding-right: 9px;
+    }
+    .svc-status.beta .dot {
+      animation: beta-pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes beta-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    /* BETA 카드 강조 (살짝 다른 배경 + 우측 상단 NEW 리본) */
+    .svc-item.beta-card {
+      background: linear-gradient(160deg, #F0FDF8 0%, var(--white) 60%);
+      border-color: var(--mint-100);
+      position: relative;
+    }
+    .svc-item.beta-card::before {
+      content: 'NEW';
+      position: absolute;
+      top: 14px; right: 14px;
+      padding: 3px 8px;
+      background: var(--mint-500);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(20, 184, 166, 0.35);
+    }
+    .svc-item.beta-card:hover {
+      border-color: var(--mint-500);
+      box-shadow: 0 12px 32px rgba(20, 184, 166, 0.15);
+    }
+
     /* ============ CONTACT ============ */
     .contact-card {
       background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
@@ -605,8 +646,8 @@
         <p class="lead">
           ESH-MASTER는 <strong>제조·통신업 현장</strong>의 안전보건을 수행해온
           산업안전기획·안전보건전산화 전문가가 직접 설계합니다.
-          <strong>산안법·중처법</strong> 의무 이행과 현장 언어를 결합한
-            4가지 서비스를 준비하고 있습니다.
+          <strong>산안법·중처법</strong> 의무 이행과 현장 언어를 결합한<br>
+          4가지 서비스를 준비하고 있습니다.
         </p>
 
         <!-- 신뢰 지표 스트립 -->
@@ -665,7 +706,7 @@
             <div class="svc-status"><span class="dot"></span>준비중</div>
           </div>
 
-          <div class="svc-item svc-3">
+          <div class="svc-item svc-3 beta-card">
             <div class="svc-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -677,7 +718,7 @@
               <h3>AI 안전보건 뉴스레터</h3>
               <p>업종별 특성을 반영한<br>AI 안전보건 주간 큐레이션</p>
             </div>
-            <div class="svc-status"><span class="dot"></span>준비중</div>
+            <div class="svc-status beta"><span class="dot"></span>BETA 오픈</div>
           </div>
 
           <div class="svc-item svc-4">
@@ -706,7 +747,7 @@
             </div>
             <h2>서비스 출시 · 파트너십 · 문의는<br>아래 이메일로 연락 주세요.</h2>
 
-            <a href="mailto:esh-master@gmail.com?subject=ESH-MASTER%20%EB%AC%B8%EC%9D%98" class="mail-button">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=esh-master@gmail.com&su=ESH-MASTER%20%EB%AC%B8%EC%9D%98" target="_blank" rel="noopener" class="mail-button">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                 <path d="M22 6l-10 7L2 6"/>
