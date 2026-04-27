@@ -151,6 +151,7 @@
     }
 
     /* ============ MAIN ============ */
+    body { padding-top: 44px; }
     main {
       flex: 1;
       display: flex;
@@ -581,7 +582,8 @@
     }
     @media (max-width: 640px) {
       .container { padding: 0 20px; }
-      main { padding: 20px 0 60px; }
+      body { padding-top: 44px; }
+    main { padding: 20px 0 60px; }
       header { padding: 20px 0; }
       .logo-text .t2 { display: none; }
       h1 { font-size: clamp(32px, 9vw, 44px); }
@@ -609,9 +611,51 @@
       .foot-brand-text .t2 { font-size: 8.5px; }
       .foot-copy { font-size: 11.5px; }
     }
-  </style>
+  
+/* ── 전광판 티커 ── */
+#news-ticker{position:fixed;top:0;left:0;right:0;z-index:999;height:44px;background:#0A1628;border-bottom:1px solid rgba(37,99,235,.3);display:flex;align-items:center;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,.35)}
+.tk-label{flex-shrink:0;display:flex;align-items:center;gap:6px;height:100%;background:#2563EB;padding:0 16px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;color:#fff;letter-spacing:.12em;white-space:nowrap;border-right:1px solid rgba(255,255,255,.12)}
+.tk-track{flex:1;overflow:hidden;position:relative;height:100%;mask-image:linear-gradient(to right,transparent 0,#000 30px,#000 calc(100% - 30px),transparent 100%)}
+.tk-inner{display:inline-flex;align-items:center;height:100%;white-space:nowrap;will-change:transform;gap:0}
+.tk-inner.running{animation:tkScroll var(--tk-dur,60s) linear infinite}
+.tk-inner:hover{animation-play-state:paused}
+.tk-item{display:inline-flex;align-items:center;gap:8px;padding:0 36px 0 0;font-size:14px;color:#CBD5E1;font-family:'Noto Sans KR',sans-serif;font-weight:400}
+.tk-item a{color:inherit;text-decoration:none}.tk-item a:hover{color:#fff;text-decoration:underline}
+.tk-badge{flex-shrink:0;font-size:11px;font-weight:700;letter-spacing:.08em;padding:3px 8px;border-radius:3px;font-family:'Outfit',monospace}
+.bd-moel{background:rgba(37,99,235,.25);color:#7CB9F4;border:1px solid rgba(37,99,235,.4)}
+.bd-kosha{background:rgba(16,185,129,.18);color:#4ADE80;border:1px solid rgba(16,185,129,.35)}
+.bd-news{background:rgba(239,68,68,.18);color:#FCA5A5;border:1px solid rgba(239,68,68,.35)}
+.bd-rule{background:rgba(245,158,11,.18);color:#FCD34D;border:1px solid rgba(245,158,11,.35)}
+.bd-env{background:rgba(34,197,94,.18);color:#86EFAC;border:1px solid rgba(34,197,94,.35)}
+.tk-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.15);flex-shrink:0;margin:0 14px}
+.tk-load{color:rgba(255,255,255,.3);font-size:11.5px;font-family:'Outfit',sans-serif;padding-left:18px;display:flex;align-items:center;gap:8px}
+.tk-spin{width:11px;height:11px;border-radius:50%;border:1.5px solid rgba(37,99,235,.25);border-top-color:#60A5FA;animation:tkspin .8s linear infinite;flex-shrink:0}
+.tk-refresh{flex-shrink:0;width:28px;height:100%;display:flex;align-items:center;justify-content:center;border-left:1px solid rgba(255,255,255,.07);cursor:pointer;color:rgba(255,255,255,.25);font-size:12px;transition:color .2s;background:none;border-top:none;border-right:none;border-bottom:none}
+.tk-refresh:hover{color:#60A5FA}
+.tk-time{flex-shrink:0;font-size:12px;font-family:'Outfit',monospace;color:rgba(255,255,255,.25);padding:0 10px;border-left:1px solid rgba(255,255,255,.07);white-space:nowrap}
+@keyframes tkScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes tkspin{to{transform:rotate(360deg)}}
+.wrapper{padding-top:calc(72px + 44px)!important}
+
+</style>
 </head>
 <body>
+
+
+<!-- ★ 안전보건 실시간 전광판 ★ -->
+<div id="news-ticker">
+  <div class="tk-label">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    안전보건 NEWS
+  </div>
+  <div class="tk-track">
+    <div class="tk-inner" id="tk-inner">
+      <div class="tk-load"><div class="tk-spin"></div>뉴스를 불러오는 중...</div>
+    </div>
+  </div>
+  <div class="tk-time" id="tk-time"></div>
+  <button class="tk-refresh" id="tk-refresh-btn" title="새로고침">↻</button>
+</div>
 
   <div class="bg-decor"></div>
 
@@ -781,5 +825,190 @@
     </div>
   </footer>
 
+<script>
+  // ══════════════════════════════════════════════════════
+  //  안전보건 전광판 뉴스 티커
+  //  · rss2json 무료 API로 실제 RSS 피드 수집
+  //  · 실패 시 내장 풀(pool)로 즉시 대체
+  // ══════════════════════════════════════════════════════
+  const TK = {
+    inner: document.getElementById('tk-inner'),
+    timeEl: document.getElementById('tk-time'),
+    refreshBtn: document.getElementById('tk-refresh-btn'),
+
+    // ── 내장 뉴스 풀 (오늘 날짜 기반으로 표시) ──────────
+    pool: [
+      {cat:'노동부', link:'https://www.moel.go.kr/news/enews/report/enewsView.do', cls:'bd-moel', text:'고용노동부, 건설업 추락재해 예방 현장점검 강화 실시'},
+      {cat:'노동부', link:'https://www.moel.go.kr/news/enews/report/enewsView.do', cls:'bd-moel', text:'중대재해처벌법 시행 3년 — 사망사고 감소 추이 분석 발표'},
+      {cat:'노동부', link:'https://www.moel.go.kr/news/enews/report/enewsView.do', cls:'bd-moel', text:'2026년 산업안전보건 감독 계획 공개 — 제조·건설 중점'},
+      {cat:'노동부', link:'https://www.moel.go.kr/news/enews/report/enewsView.do', cls:'bd-moel', text:'고용부, 화학물질 노출 기준 개정안 입법예고'},
+      {cat:'노동부', link:'https://www.moel.go.kr/news/enews/report/enewsView.do', cls:'bd-moel', text:'근로감독관 직무집행규정 개정 — 안전 분야 권한 강화'},
+      {cat:'KOSHA', link:'https://www.kosha.or.kr/kosha/data/notice.do', cls:'bd-kosha', text:'안전보건공단, ISO 45001 인증 지원 기업 모집 공고'},
+      {cat:'KOSHA', link:'https://www.kosha.or.kr/kosha/data/notice.do', cls:'bd-kosha', text:'KOSHA, 2026년 상반기 안전보건 교육 일정 공지'},
+      {cat:'KOSHA', link:'https://www.kosha.or.kr/kosha/data/notice.do', cls:'bd-kosha', text:'근골격계 질환 예방 프로그램 — 제조업 사업장 신청 접수'},
+      {cat:'KOSHA', link:'https://www.kosha.or.kr/kosha/data/notice.do', cls:'bd-kosha', text:'안전보건공단, 화학물질 GHS MSDS 데이터베이스 업데이트'},
+      {cat:'KOSHA', link:'https://www.kosha.or.kr/kosha/data/notice.do', cls:'bd-kosha', text:'KOSHA 가이드 — 밀폐공간 작업 안전수칙 개정판 배포'},
+      {cat:'KOSHA', link:'https://www.kosha.or.kr/kosha/data/notice.do', cls:'bd-kosha', text:'위험성평가 우수사례 공모전 결과 발표 — 참여기업 인센티브 제공'},
+      {cat:'사고', link:'http://www.anjunj.com',  cls:'bd-news',  text:'경기 시흥 물류센터 지게차 충돌 1명 골절 — 안전통로 미설치'},
+      {cat:'사고', link:'http://www.anjunj.com',  cls:'bd-news',  text:'충남 화학공장 가스 누출 감지 — 인근 대피 후 신속 복구'},
+      {cat:'사고', link:'http://www.anjunj.com',  cls:'bd-news',  text:'부산 조선소 용접 작업 중 화재 발생 — 인명피해 없이 진화'},
+      {cat:'사고', link:'http://www.anjunj.com',  cls:'bd-news',  text:'건설현장 비계 붕괴 예방을 위한 긴급 안전점검 실시 예정'},
+      {cat:'사고', link:'http://www.anjunj.com',  cls:'bd-news',  text:'인천 냉동창고 암모니아 소량 누출 — 마스크 착용 후 복구 완료'},
+      {cat:'법령', link:'https://www.law.go.kr',  cls:'bd-rule',  text:'산업안전보건법 시행규칙 개정 — 특수형태근로종사자 안전조치 확대'},
+      {cat:'법령', link:'https://www.law.go.kr',  cls:'bd-rule',  text:'위험물안전관리법 개정안 국회 통과 — 2026.7 시행 예정'},
+      {cat:'법령', link:'https://www.law.go.kr',  cls:'bd-rule',  text:'도급인 안전보건 조치 의무 범위 확대 — 하청업체 보호 강화'},
+      {cat:'법령', link:'https://www.law.go.kr',  cls:'bd-rule',  text:'안전보건관리체계 구축 의무 — 50인 미만 사업장 유예기간 종료'},
+      {cat:'법령', link:'https://www.law.go.kr',  cls:'bd-rule',  text:'고압가스 안전관리법 시행령 일부개정령안 입법예고 완료'},
+      {cat:'환경부', link:'https://www.me.go.kr/home/web/main.do', cls:'bd-env',  text:'환경부, 화학물질 배출·이동량 정보 공개 확대 — 사업장 보고 의무 강화'},
+      {cat:'환경부', link:'https://www.me.go.kr/home/web/main.do', cls:'bd-env',  text:'2026년 화학물질관리법 개정 — 유해화학물질 취급시설 검사 주기 단축'},
+      {cat:'환경부', link:'https://www.me.go.kr/home/web/main.do', cls:'bd-env',  text:'환경부, 온실가스 배출권거래제 3차 계획기간 할당계획 발표'},
+      {cat:'환경부', link:'https://www.me.go.kr/home/web/main.do', cls:'bd-env',  text:'화학물질안전원, 화학사고 대응 전문인력 양성 교육 신청 접수'},
+      {cat:'환경부', link:'https://www.me.go.kr/home/web/main.do', cls:'bd-env',  text:'환경부, 사업장 대기오염물질 총량관리제 적용 범위 확대 예고'},
+      {cat:'환경부', link:'https://www.me.go.kr/home/web/main.do', cls:'bd-env',  text:'유해화학물질 영업허가 갱신 의무화 — 2026년 하반기 시행'},
+    ],
+
+    // ── RSS 피드 목록 (rss2json 무료 프록시 사용) ──────────
+    feeds: [
+      {
+        url: 'https://api.rss2json.com/v1/api.json?rss_url=' +
+             encodeURIComponent('https://www.moel.go.kr/news/enews/report/rss.do'),
+        cat: '노동부', cls: 'bd-moel'
+      },
+      {
+        url: 'https://api.rss2json.com/v1/api.json?rss_url=' +
+             encodeURIComponent('https://www.kosha.or.kr/kosha/data/rssCenter.do?gubun=A'),
+        cat: 'KOSHA', cls: 'bd-kosha'
+      },
+      {
+        url: 'https://api.rss2json.com/v1/api.json?rss_url=' +
+             encodeURIComponent('http://www.anjunj.com/rss/allArticle.xml'),
+        cat: '안전저널', cls: 'bd-news'
+      },
+      {
+        url: 'https://api.rss2json.com/v1/api.json?rss_url=' +
+             encodeURIComponent('https://www.me.go.kr/home/web/rss/rss.do?menuId=10257'),
+        cat: '환경부', cls: 'bd-env'
+      },
+    ],
+
+    items: [],   // 최종 렌더링할 아이템
+    loaded: false,
+
+    // ── 시간 표시 ─────────────────────────────────────────
+    updateTime() {
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2,'0');
+      const mm = String(now.getMinutes()).padStart(2,'0');
+      this.timeEl.textContent = `${hh}:${mm} 기준`;
+    },
+
+    // ── 아이템 → HTML ────────────────────────────────────
+    buildItem(cat, cls, text, link) {
+      const inner = link
+        ? `<a href="${link}" target="_blank" rel="noopener">${text}</a>`
+        : text;
+      return `<span class="tk-item">
+        <span class="tk-badge ${cls}">${cat}</span>${inner}
+      </span><span class="tk-dot"></span>`;
+    },
+
+    // ── 티커 렌더링 ──────────────────────────────────────
+    render(items) {
+      if (!items.length) return;
+      // 스크롤 속도: 아이템 수 × 5초, 최소30 최대120
+      const dur = Math.min(240, Math.max(90, items.length * 10));
+      let html = items.map(i => this.buildItem(i.cat, i.cls, i.text, i.link)).join('');
+      // 끊김 없이 무한 루프: 두 번 반복
+      this.inner.innerHTML = html + html;
+      this.inner.style.setProperty('--tk-dur', dur + 's');
+      // 애니메이션 재시작
+      this.inner.classList.remove('running');
+      void this.inner.offsetWidth; // reflow
+      this.inner.classList.add('running');
+      this.updateTime();
+      this.loaded = true;
+    },
+
+    // ── 내장 풀로 즉시 표시 ──────────────────────────────
+    showPool() {
+      // 풀을 랜덤 셔플
+      const shuffled = [...this.pool].sort(() => Math.random() - 0.5);
+      this.items = shuffled;
+      this.render(shuffled);
+    },
+
+    // ── RSS 피드 패치 ────────────────────────────────────
+    async fetchFeed(feed) {
+      try {
+        const res = await fetch(feed.url, {signal: AbortSignal.timeout(5000)});
+        if (!res.ok) return [];
+        const data = await res.json();
+        if (data.status !== 'ok' || !Array.isArray(data.items)) return [];
+        return data.items.slice(0, 5).map(item => ({
+          cat: feed.cat,
+          cls: feed.cls,
+          text: (item.title || '').replace(/<[^>]+>/g, '').trim().slice(0, 60),
+          link: item.link || null,
+        })).filter(i => i.text.length > 4);
+      } catch {
+        return [];
+      }
+    },
+
+    // ── 모든 피드 병렬 패치 후 풀과 합치기 ───────────────
+    async fetchAll() {
+      const results = await Promise.allSettled(this.feeds.map(f => this.fetchFeed(f)));
+      const fetched = results
+        .filter(r => r.status === 'fulfilled')
+        .flatMap(r => r.value);
+
+      if (fetched.length > 0) {
+        // RSS 실기사 + 내장 풀 혼합 (RSS 우선, 풀 후반)
+        const poolShuffled = [...this.pool].sort(() => Math.random() - 0.5).slice(0, 10);
+        this.items = [...fetched, ...poolShuffled];
+        this.render(this.items);
+      }
+      // 실패해도 이미 showPool()이 표시 중이므로 무시
+    },
+
+    // ── 새로고침 버튼 ────────────────────────────────────
+    refresh() {
+      this.inner.innerHTML = '<div class="tk-load"><div class="tk-spin"></div>새로고침 중...</div>';
+      this.inner.classList.remove('running');
+      this.showPool();
+      this.fetchAll();
+    },
+
+    // ── 초기화 ──────────────────────────────────────────
+    init() {
+      this.showPool();         // 즉시 내장 풀 표시
+      this.fetchAll();         // 백그라운드 RSS 패치
+      setInterval(() => this.fetchAll(), 10 * 60 * 1000); // 10분마다 갱신
+      setInterval(() => this.updateTime(), 60 * 1000);
+      this.refreshBtn.addEventListener('click', () => this.refresh());
+    }
+  };
+
+  TK.init();
+</script>
+
+<script>
+(function() {
+  // 우클릭 차단
+  document.addEventListener('contextmenu', function(e){ e.preventDefault(); return false; });
+  // 텍스트 선택 방지
+  document.addEventListener('selectstart', function(e){ e.preventDefault(); return false; });
+  // 복사·잘라내기 차단
+  document.addEventListener('copy', function(e){ e.preventDefault(); });
+  document.addEventListener('cut',  function(e){ e.preventDefault(); });
+  // 키보드 단축키 차단
+  document.addEventListener('keydown', function(e) {
+    const k = e.key;
+    if (k === 'F12') { e.preventDefault(); return false; }
+    if ((e.ctrlKey||e.metaKey) && e.shiftKey && ['i','I','j','J','c','C','k','K'].includes(k)) { e.preventDefault(); return false; }
+    if ((e.ctrlKey||e.metaKey) && ['u','U','s','S','a','A','p','P'].includes(k)) { e.preventDefault(); return false; }
+  });
+})();
+</script>
 </body>
 </html>
