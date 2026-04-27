@@ -121,26 +121,31 @@
 
     @media(max-width:900px){.services{grid-template-columns:repeat(2,1fr)}.credentials{max-width:540px;padding:20px 4px}.cred-item{min-width:120px;padding:8px 10px}.cred-n{font-size:24px}}
     /* 구독 현황 섹션 */
-    .stats-section{margin-bottom:56px;animation:fade-up .9s .45s ease-out both}
-    .stats-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px}
-    .stats-title{font-size:17px;font-weight:800;color:var(--navy-900);letter-spacing:-.02em}
-    .stats-badge{font-size:12px;color:var(--gray-500);background:var(--gray-100);padding:5px 12px;border-radius:20px;font-weight:500}
+    .stats-section{margin-bottom:56px;animation:fade-up .9s .45s ease-out both;position:relative}
+    .stats-section::before{content:'';position:absolute;top:-28px;left:50%;transform:translateX(-50%);width:26%;height:28px;border-left:1px dashed rgba(20,184,166,.25);border-right:1px dashed rgba(20,184,166,.25);pointer-events:none}
+    .stats-wrap{border:1px solid rgba(20,184,166,.22);border-radius:20px;padding:24px 28px;background:linear-gradient(160deg,rgba(240,253,248,.45) 0%,rgba(255,255,255,.3) 100%)}
+    .stats-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+    .stats-title{font-size:15px;font-weight:800;color:var(--navy-900);letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+    .stats-title-dot{width:8px;height:8px;background:var(--mint-500);border-radius:50%;animation:beta-pulse 1.5s ease-in-out infinite}
+    .stats-badge{font-size:12px;color:var(--gray-500);background:rgba(255,255,255,.8);padding:4px 12px;border-radius:20px;font-weight:500;border:1px solid var(--mint-100)}
     .stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
-    .stat-row{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+    .stat-row{background:rgba(255,255,255,.85);border:1px solid rgba(20,184,166,.15);border-radius:12px;padding:14px 16px}
     .stat-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
     .stat-label{font-size:13px;color:var(--gray-700);font-weight:500}
     .stat-count{font-size:13px;font-weight:700;color:var(--navy-900)}
-    .stat-bar-wrap{position:relative;height:6px;background:var(--gray-100);border-radius:3px}
-    .stat-bar{height:100%;border-radius:3px;transition:width .6s ease}
-    .stat-bar.ready{background:var(--mint-500)}
-    .stat-bar.pending{background:var(--gray-300)}
-    .stat-marker{position:absolute;top:-3px;height:12px;width:1.5px;background:var(--gray-400)}
+    .stat-bar-wrap{position:relative;height:7px;background:var(--gray-100);border-radius:4px;overflow:visible}
+    .stat-bar{height:100%;border-radius:4px;width:0;transition:width 1s cubic-bezier(.2,.8,.2,1)}
+    .stat-bar.ready{background:linear-gradient(90deg,#0E9488,var(--mint-500))}
+    .stat-bar.pending{background:var(--gray-200)}
+    .stat-bar.ready.animate{box-shadow:0 0 8px rgba(20,184,166,.4)}
+    .stat-marker{position:absolute;top:-4px;height:15px;width:1.5px;background:rgba(100,116,139,.4)}
     .stat-tag{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:20px;margin-left:6px}
     .stat-tag.ready{background:var(--mint-100);color:#0E7A6E}
     .stat-tag.soon{color:var(--gray-400)}
     .stats-loading{text-align:center;padding:32px 0;color:var(--gray-400);font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px}
-    .stats-spin{width:14px;height:14px;border-radius:50%;border:2px solid var(--gray-200);border-top-color:var(--blue-600);animation:nl-spin .8s linear infinite;flex-shrink:0}
-    @media(max-width:640px){.stats-grid{grid-template-columns:1fr}}
+    .stats-spin{width:14px;height:14px;border-radius:50%;border:2px solid var(--gray-200);border-top-color:var(--mint-500);animation:nl-spin .8s linear infinite;flex-shrink:0}
+    @keyframes bar-fill{from{width:0}to{width:var(--bar-w)}}
+    @media(max-width:640px){.stats-grid{grid-template-columns:1fr}.stats-section::before{width:90%}.stats-wrap{padding:18px 16px}}
 
     @media(max-width:640px){.container{padding:0 20px}main{padding:20px 0 60px}header{padding:20px 0}.logo-text .t2{display:none}h1{font-size:clamp(32px,9vw,44px)}.lead{margin-bottom:40px}.credentials{padding:16px 8px;margin-bottom:40px}.cred-item{flex:1 1 50%;min-width:0;padding:12px 8px}.cred-n{font-size:22px}.cred-l{font-size:11.5px}.cred-divider{display:none}.services{grid-template-columns:1fr;gap:12px;margin-bottom:40px}.svc-item{flex-direction:row;align-items:center;padding:20px}.svc-icon{flex-shrink:0}.svc-body{flex:1}.svc-status{display:none}.contact-card{padding:36px 28px;border-radius:16px}.mail-button{width:100%;justify-content:center;font-size:15px}footer{padding:36px 0 28px}.foot-inner{gap:14px}}
 
@@ -224,26 +229,7 @@
     .nl-agree-table th{background:var(--gray-100);font-weight:700;color:var(--gray-700);white-space:nowrap}
     @keyframes nl-spin{to{transform:rotate(360deg)}}
     /* 구독 현황 섹션 */
-    .stats-section{margin-bottom:56px;animation:fade-up .9s .45s ease-out both}
-    .stats-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px}
-    .stats-title{font-size:17px;font-weight:800;color:var(--navy-900);letter-spacing:-.02em}
-    .stats-badge{font-size:12px;color:var(--gray-500);background:var(--gray-100);padding:5px 12px;border-radius:20px;font-weight:500}
-    .stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
-    .stat-row{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-    .stat-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-    .stat-label{font-size:13px;color:var(--gray-700);font-weight:500}
-    .stat-count{font-size:13px;font-weight:700;color:var(--navy-900)}
-    .stat-bar-wrap{position:relative;height:6px;background:var(--gray-100);border-radius:3px}
-    .stat-bar{height:100%;border-radius:3px;transition:width .6s ease}
-    .stat-bar.ready{background:var(--mint-500)}
-    .stat-bar.pending{background:var(--gray-300)}
-    .stat-marker{position:absolute;top:-3px;height:12px;width:1.5px;background:var(--gray-400)}
-    .stat-tag{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:20px;margin-left:6px}
-    .stat-tag.ready{background:var(--mint-100);color:#0E7A6E}
-    .stat-tag.soon{color:var(--gray-400)}
-    .stats-loading{text-align:center;padding:32px 0;color:var(--gray-400);font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px}
-    .stats-spin{width:14px;height:14px;border-radius:50%;border:2px solid var(--gray-200);border-top-color:var(--blue-600);animation:nl-spin .8s linear infinite;flex-shrink:0}
-    @media(max-width:640px){.stats-grid{grid-template-columns:1fr}}
+
 
     @media(max-width:640px){.nl-header{padding:24px 24px 0}.nl-body{padding:24px 24px 28px}.nl-card{border-radius:20px}}
 
@@ -405,16 +391,16 @@
 
       <!-- 구독 현황 -->
       <div class="stats-section">
-        <div class="stats-header">
-          <div>
-            <div class="stats-title">업종별 구독 현황</div>
+        <div class="stats-wrap">
+          <div class="stats-header">
+            <div class="stats-title"><span class="stats-title-dot"></span>AI 안전보건 뉴스레터 업종별 구독현황</div>
+            <span class="stats-badge" id="stats-update-time">불러오는 중...</span>
           </div>
-          <span class="stats-badge" id="stats-update-time">불러오는 중...</span>
+          <div id="stats-container">
+            <div class="stats-loading"><div class="stats-spin"></div>현황을 불러오는 중...</div>
+          </div>
+          <p style="font-size:12px;color:var(--gray-500);margin-top:14px;text-align:center">업종별 10명 이상 구독 시 해당 업종 뉴스레터 발송을 시작합니다</p>
         </div>
-        <div id="stats-container">
-          <div class="stats-loading"><div class="stats-spin"></div>현황을 불러오는 중...</div>
-        </div>
-        <p style="font-size:12px;color:var(--gray-400);margin-top:12px;text-align:center">업종별 10명 이상 구독 시 해당 업종 뉴스레터 발송을 시작합니다</p>
       </div>
 
       <!-- CONTACT -->
@@ -1241,9 +1227,9 @@
     const markerPct = Math.round((THRESHOLD / max) * 100);
 
     container.innerHTML = '<div class="stats-grid">' + sorted.map(s => {
-      const pct    = Math.round((s.count / max) * 100);
-      const ready  = s.count >= THRESHOLD;
-      const need   = THRESHOLD - s.count;
+      const pct   = Math.round((s.count / max) * 100);
+      const ready = s.count >= THRESHOLD;
+      const need  = THRESHOLD - s.count;
       return `<div class="stat-row">
         <div class="stat-top">
           <span class="stat-label">${s.industry}</span>
@@ -1255,11 +1241,25 @@
           </span>
         </div>
         <div class="stat-bar-wrap">
-          <div class="stat-bar ${ready ? 'ready' : 'pending'}" style="width:${pct}%"></div>
+          <div class="stat-bar ${ready ? 'ready' : 'pending'}" data-pct="${pct}" style="width:0%"></div>
           <div class="stat-marker" style="left:${markerPct}%"></div>
         </div>
       </div>`;
     }).join('') + '</div>';
+
+    // IntersectionObserver로 뷰포트 진입 시 막대 채우기
+    const bars = container.querySelectorAll('.stat-bar');
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        bars.forEach((bar, i) => {
+          setTimeout(() => {
+            bar.style.width = bar.dataset.pct + '%';
+          }, i * 80);
+        });
+        observer.disconnect();
+      }
+    }, { threshold: 0.2 });
+    observer.observe(container);
   }
 
   function showError() {
@@ -1276,35 +1276,6 @@
 <script>
 const TK={
   inner:document.getElementById('tk-inner'),timeEl:document.getElementById('tk-time'),refreshBtn:document.getElementById('tk-refresh-btn'),
-  pool:[
-    {cat:'노동부',link:'https://www.moel.go.kr/news/enews/report/enewsView.do',cls:'bd-moel',text:'고용노동부, 건설업 추락재해 예방 현장점검 강화 실시'},
-    {cat:'노동부',link:'https://www.moel.go.kr/news/enews/report/enewsView.do',cls:'bd-moel',text:'중대재해처벌법 시행 3년 — 사망사고 감소 추이 분석 발표'},
-    {cat:'노동부',link:'https://www.moel.go.kr/news/enews/report/enewsView.do',cls:'bd-moel',text:'2026년 산업안전보건 감독 계획 공개 — 제조·건설 중점'},
-    {cat:'노동부',link:'https://www.moel.go.kr/news/enews/report/enewsView.do',cls:'bd-moel',text:'고용부, 화학물질 노출 기준 개정안 입법예고'},
-    {cat:'노동부',link:'https://www.moel.go.kr/news/enews/report/enewsView.do',cls:'bd-moel',text:'근로감독관 직무집행규정 개정 — 안전 분야 권한 강화'},
-    {cat:'KOSHA',link:'https://www.kosha.or.kr/kosha/data/notice.do',cls:'bd-kosha',text:'안전보건공단, ISO 45001 인증 지원 기업 모집 공고'},
-    {cat:'KOSHA',link:'https://www.kosha.or.kr/kosha/data/notice.do',cls:'bd-kosha',text:'KOSHA, 2026년 상반기 안전보건 교육 일정 공지'},
-    {cat:'KOSHA',link:'https://www.kosha.or.kr/kosha/data/notice.do',cls:'bd-kosha',text:'근골격계 질환 예방 프로그램 — 제조업 사업장 신청 접수'},
-    {cat:'KOSHA',link:'https://www.kosha.or.kr/kosha/data/notice.do',cls:'bd-kosha',text:'안전보건공단, 화학물질 GHS MSDS 데이터베이스 업데이트'},
-    {cat:'KOSHA',link:'https://www.kosha.or.kr/kosha/data/notice.do',cls:'bd-kosha',text:'KOSHA 가이드 — 밀폐공간 작업 안전수칙 개정판 배포'},
-    {cat:'KOSHA',link:'https://www.kosha.or.kr/kosha/data/notice.do',cls:'bd-kosha',text:'위험성평가 우수사례 공모전 결과 발표 — 참여기업 인센티브 제공'},
-    {cat:'사고',link:'http://www.anjunj.com',cls:'bd-news',text:'경기 시흥 물류센터 지게차 충돌 1명 골절 — 안전통로 미설치'},
-    {cat:'사고',link:'http://www.anjunj.com',cls:'bd-news',text:'충남 화학공장 가스 누출 감지 — 인근 대피 후 신속 복구'},
-    {cat:'사고',link:'http://www.anjunj.com',cls:'bd-news',text:'부산 조선소 용접 작업 중 화재 발생 — 인명피해 없이 진화'},
-    {cat:'사고',link:'http://www.anjunj.com',cls:'bd-news',text:'건설현장 비계 붕괴 예방을 위한 긴급 안전점검 실시 예정'},
-    {cat:'사고',link:'http://www.anjunj.com',cls:'bd-news',text:'인천 냉동창고 암모니아 소량 누출 — 마스크 착용 후 복구 완료'},
-    {cat:'법령',link:'https://www.law.go.kr',cls:'bd-rule',text:'산업안전보건법 시행규칙 개정 — 특수형태근로종사자 안전조치 확대'},
-    {cat:'법령',link:'https://www.law.go.kr',cls:'bd-rule',text:'위험물안전관리법 개정안 국회 통과 — 2026.7 시행 예정'},
-    {cat:'법령',link:'https://www.law.go.kr',cls:'bd-rule',text:'도급인 안전보건 조치 의무 범위 확대 — 하청업체 보호 강화'},
-    {cat:'법령',link:'https://www.law.go.kr',cls:'bd-rule',text:'안전보건관리체계 구축 의무 — 50인 미만 사업장 유예기간 종료'},
-    {cat:'법령',link:'https://www.law.go.kr',cls:'bd-rule',text:'고압가스 안전관리법 시행령 일부개정령안 입법예고 완료'},
-    {cat:'환경부',link:'https://www.me.go.kr/home/web/main.do',cls:'bd-env',text:'환경부, 화학물질 배출·이동량 정보 공개 확대 — 사업장 보고 의무 강화'},
-    {cat:'환경부',link:'https://www.me.go.kr/home/web/main.do',cls:'bd-env',text:'2026년 화학물질관리법 개정 — 유해화학물질 취급시설 검사 주기 단축'},
-    {cat:'환경부',link:'https://www.me.go.kr/home/web/main.do',cls:'bd-env',text:'환경부, 온실가스 배출권거래제 3차 계획기간 할당계획 발표'},
-    {cat:'환경부',link:'https://www.me.go.kr/home/web/main.do',cls:'bd-env',text:'화학물질안전원, 화학사고 대응 전문인력 양성 교육 신청 접수'},
-    {cat:'환경부',link:'https://www.me.go.kr/home/web/main.do',cls:'bd-env',text:'환경부, 사업장 대기오염물질 총량관리제 적용 범위 확대 예고'},
-    {cat:'환경부',link:'https://www.me.go.kr/home/web/main.do',cls:'bd-env',text:'유해화학물질 영업허가 갱신 의무화 — 2026년 하반기 시행'},
-  ],
   feeds:[
     {url:'https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent('https://www.moel.go.kr/news/enews/report/rss.do'),cat:'노동부',cls:'bd-moel'},
     {url:'https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent('https://www.kosha.or.kr/kosha/data/rssCenter.do?gubun=A'),cat:'KOSHA',cls:'bd-kosha'},
@@ -1314,11 +1285,10 @@ const TK={
   updateTime(){const n=new Date();this.timeEl.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+' 기준'},
   buildItem(cat,cls,text,link){const inner=link?`<a href="${link}" target="_blank" rel="noopener">${text}</a>`:text;return`<span class="tk-item"><span class="tk-badge ${cls}">${cat}</span>${inner}</span><span class="tk-dot"></span>`},
   render(items){if(!items.length)return;const dur=Math.min(240,Math.max(90,items.length*10));this.inner.innerHTML=items.map(i=>this.buildItem(i.cat,i.cls,i.text,i.link)).join('')+items.map(i=>this.buildItem(i.cat,i.cls,i.text,i.link)).join('');this.inner.style.setProperty('--tk-dur',dur+'s');this.inner.classList.remove('running');void this.inner.offsetWidth;this.inner.classList.add('running');this.updateTime()},
-  showPool(){this.render([...this.pool].sort(()=>Math.random()-.5))},
   async fetchFeed(f){try{const r=await fetch(f.url,{signal:AbortSignal.timeout(5000)});if(!r.ok)return[];const d=await r.json();if(d.status!=='ok'||!Array.isArray(d.items))return[];return d.items.slice(0,5).map(i=>({cat:f.cat,cls:f.cls,text:(i.title||'').replace(/<[^>]+>/g,'').trim().slice(0,60),link:i.link||null})).filter(i=>i.text.length>4)}catch{return[]}},
-  async fetchAll(){const r=await Promise.allSettled(this.feeds.map(f=>this.fetchFeed(f)));const fetched=r.filter(x=>x.status==='fulfilled').flatMap(x=>x.value);if(fetched.length>0)this.render([...fetched,...[...this.pool].sort(()=>Math.random()-.5).slice(0,10)])},
-  refresh(){this.inner.innerHTML='<div class="tk-load"><div class="tk-spin"></div>새로고침 중...</div>';this.inner.classList.remove('running');this.showPool();this.fetchAll()},
-  init(){this.showPool();this.fetchAll();setInterval(()=>this.fetchAll(),10*60*1000);setInterval(()=>this.updateTime(),60*1000);this.refreshBtn.addEventListener('click',()=>this.refresh())}
+  async fetchAll(){const r=await Promise.allSettled(this.feeds.map(f=>this.fetchFeed(f)));const items=r.filter(x=>x.status==='fulfilled').flatMap(x=>x.value);if(items.length)this.render(items);else this.inner.innerHTML='<div class="tk-load">뉴스를 불러올 수 없습니다.</div>'},
+  refresh(){this.inner.innerHTML='<div class="tk-load"><div class="tk-spin"></div>새로고침 중...</div>';this.inner.classList.remove('running');this.fetchAll()},
+  init(){this.fetchAll();setInterval(()=>this.fetchAll(),10*60*1000);setInterval(()=>this.updateTime(),60*1000);this.refreshBtn.addEventListener('click',()=>this.refresh())}
 };
 TK.init();
 
