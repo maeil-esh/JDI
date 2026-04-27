@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -6,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ESH-MASTER · 서비스 준비중</title>
   <meta name="description" content="안전·보건·환경 디지털 플랫폼 ESH-MASTER가 곧 찾아옵니다. Safety Do It, JSA 위험성평가, AI 안전보건 뉴스레터, 안전보건정보">
-
   <meta property="og:title" content="ESH-MASTER · 안전보건환경 디지털 플랫폼">
   <meta property="og:description" content="Safety Do It · JSA 위험성평가 · AI 안전보건 뉴스레터 · 안전보건정보 — 곧 만나보실 수 있습니다.">
   <meta property="og:type" content="website">
@@ -18,632 +16,245 @@
 
   <style>
     :root {
-      --navy-900: #0A2540;
-      --navy-800: #102B4C;
-      --navy-700: #1A3A66;
-      --blue-600: #1E6BD8;
-      --blue-500: #2E7CE4;
-      --blue-100: #E8F0FC;
-      --blue-50: #F4F8FD;
-      --mint-500: #14B8A6;
-      --mint-100: #D1FAF2;
-      --amber: #F59E0B;
+      --navy-900:#0A2540; --navy-800:#102B4C; --navy-700:#1A3A66;
+      --blue-600:#1E6BD8; --blue-500:#2E7CE4; --blue-100:#E8F0FC; --blue-50:#F4F8FD;
+      --mint-500:#14B8A6; --mint-100:#D1FAF2; --amber:#F59E0B;
+      --ink:#0F172A; --gray-700:#334155; --gray-600:#475569; --gray-500:#64748B;
+      --gray-400:#94A3B8; --gray-300:#CBD5E1; --gray-200:#E2E8F0;
+      --gray-100:#F1F5F9; --gray-50:#F8FAFC; --white:#FFFFFF;
+      --line:#E5E9EF;
+      --shadow-sm:0 1px 2px rgba(10,37,64,.04);
+      --shadow-md:0 4px 16px rgba(10,37,64,.06);
+      --shadow-lg:0 12px 32px rgba(10,37,64,.1);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:var(--white);color:var(--ink);font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;letter-spacing:-.01em;min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;padding-top:44px}
+    .en{font-family:'Inter','Pretendard Variable',sans-serif;letter-spacing:-.02em}
+    a{color:inherit;text-decoration:none}
 
-      --ink: #0F172A;
-      --gray-700: #334155;
-      --gray-600: #475569;
-      --gray-500: #64748B;
-      --gray-400: #94A3B8;
-      --gray-300: #CBD5E1;
-      --gray-200: #E2E8F0;
-      --gray-100: #F1F5F9;
-      --gray-50: #F8FAFC;
-      --white: #FFFFFF;
+    .bg-decor{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:linear-gradient(180deg,var(--blue-50) 0%,var(--white) 45%,var(--gray-50) 100%)}
+    .bg-decor::before,.bg-decor::after{content:'';position:absolute;border-radius:50%;filter:blur(80px)}
+    .bg-decor::before{top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(30,107,216,.12),transparent 70%)}
+    .bg-decor::after{bottom:-200px;left:-200px;width:500px;height:500px;background:radial-gradient(circle,rgba(20,184,166,.1),transparent 70%)}
 
-      --line: #E5E9EF;
-      --shadow-sm: 0 1px 2px rgba(10, 37, 64, 0.04);
-      --shadow-md: 0 4px 16px rgba(10, 37, 64, 0.06);
-      --shadow-lg: 0 12px 32px rgba(10, 37, 64, 0.1);
-    }
+    header{padding:28px 0;position:relative;z-index:2}
+    .container{max-width:1100px;margin:0 auto;padding:0 32px}
+    .logo{display:inline-flex;align-items:center;gap:10px}
+    .logo-mark{width:38px;height:38px;background:var(--navy-900);color:var(--white);display:grid;place-items:center;border-radius:9px;font-weight:800;font-size:13px;letter-spacing:-.02em;position:relative}
+    .logo-mark::after{content:'';position:absolute;bottom:5px;right:5px;width:5px;height:5px;background:var(--mint-500);border-radius:50%}
+    .logo-text{display:flex;flex-direction:column;line-height:1.1}
+    .logo-text .t1{font-weight:800;font-size:19px;color:var(--navy-900);letter-spacing:-.03em}
+    .logo-text .t2{font-size:10.5px;color:var(--gray-500);font-weight:500;letter-spacing:.1em;margin-top:3px}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    main{flex:1;display:flex;align-items:center;padding:40px 0 80px;position:relative;z-index:1}
+    .hero{text-align:center;max-width:800px;margin:0 auto}
 
-    body {
-      background: var(--white);
-      color: var(--ink);
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      letter-spacing: -0.01em;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
-    }
+    .status-badge{display:inline-flex;align-items:center;gap:9px;padding:8px 18px;background:var(--white);border:1px solid var(--blue-100);border-radius:100px;font-size:13px;font-weight:600;color:var(--blue-600);margin-bottom:32px;box-shadow:var(--shadow-sm);animation:fade-up .7s ease-out}
+    .status-badge .pulse{width:8px;height:8px;background:var(--amber);border-radius:50%;position:relative;flex-shrink:0}
+    .status-badge .pulse::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--amber);opacity:.5;animation:pulse 2s ease-out infinite}
+    @keyframes pulse{0%{transform:scale(.8);opacity:.8}100%{transform:scale(2);opacity:0}}
+    @keyframes fade-up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
-    .en { font-family: 'Inter', 'Pretendard Variable', sans-serif; letter-spacing: -0.02em; }
-    a { color: inherit; text-decoration: none; }
+    h1{font-size:clamp(40px,6vw,68px);font-weight:800;line-height:1.1;letter-spacing:-.04em;color:var(--navy-900);margin-bottom:24px;animation:fade-up .9s .1s ease-out both}
+    h1 .accent{color:var(--blue-600);position:relative}
+    h1 .accent::after{content:'';position:absolute;left:0;right:0;bottom:6%;height:14%;background:rgba(20,184,166,.22);z-index:-1;border-radius:4px}
+    h1 .br{display:block}
 
-    /* 배경 장식 */
-    .bg-decor {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      overflow: hidden;
-      pointer-events: none;
-      background: linear-gradient(180deg, var(--blue-50) 0%, var(--white) 45%, var(--gray-50) 100%);
-    }
-    .bg-decor::before,
-    .bg-decor::after {
-      content: '';
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-    }
-    .bg-decor::before {
-      top: -200px;
-      right: -200px;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(30, 107, 216, 0.12), transparent 70%);
-    }
-    .bg-decor::after {
-      bottom: -200px;
-      left: -200px;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(20, 184, 166, 0.1), transparent 70%);
-    }
+    .lead{font-size:clamp(16px,1.8vw,19px);line-height:1.7;color:var(--gray-600);margin-bottom:56px;max-width:620px;margin-left:auto;margin-right:auto;animation:fade-up .9s .2s ease-out both}
+    .lead strong{color:var(--navy-900);font-weight:700}
 
-    /* ============ HEADER ============ */
-    header {
-      padding: 28px 0;
-      position: relative;
-      z-index: 2;
-    }
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
-    .logo {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .logo-mark {
-      width: 38px; height: 38px;
-      background: var(--navy-900);
-      color: var(--white);
-      display: grid;
-      place-items: center;
-      border-radius: 9px;
-      font-weight: 800;
-      font-size: 13px;
-      letter-spacing: -0.02em;
-      position: relative;
-    }
-    .logo-mark::after {
-      content: '';
-      position: absolute;
-      bottom: 5px; right: 5px;
-      width: 5px; height: 5px;
-      background: var(--mint-500);
-      border-radius: 50%;
-    }
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
-    .logo-text .t1 {
-      font-weight: 800;
-      font-size: 19px;
-      color: var(--navy-900);
-      letter-spacing: -0.03em;
-    }
-    .logo-text .t2 {
-      font-size: 10.5px;
-      color: var(--gray-500);
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      margin-top: 3px;
-    }
+    .credentials{display:flex;justify-content:center;align-items:stretch;gap:0;margin:0 auto 56px;padding:24px 8px;max-width:780px;background:var(--white);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);animation:fade-up .9s .3s ease-out both;flex-wrap:wrap}
+    .cred-item{flex:1;min-width:140px;padding:4px 16px;text-align:center}
+    .cred-n{font-size:28px;font-weight:800;color:var(--navy-900);letter-spacing:-.03em;line-height:1;font-family:'Inter','Pretendard Variable',sans-serif}
+    .cred-n sub{font-size:13px;color:var(--blue-600);font-weight:700;margin-left:2px;vertical-align:baseline;font-family:'Pretendard Variable',sans-serif}
+    .cred-l{font-size:12.5px;color:var(--gray-500);margin-top:8px;font-weight:500;letter-spacing:-.005em}
+    .cred-divider{width:1px;background:var(--line);margin:4px 0;flex-shrink:0}
 
-    /* ============ MAIN ============ */
-    body { padding-top: 44px; }
-    main {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      padding: 40px 0 80px;
-      position: relative;
-      z-index: 1;
-    }
-    .hero {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto;
-    }
+    .services{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:60px;animation:fade-up .9s .35s ease-out both}
+    .svc-item{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:28px 20px 24px;text-align:left;transition:all .3s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;gap:16px}
+    .svc-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--navy-900)}
+    .svc-icon{width:44px;height:44px;border-radius:11px;display:grid;place-items:center;color:var(--white);transition:transform .3s}
+    .svc-item:hover .svc-icon{transform:scale(1.08) rotate(-4deg)}
+    .svc-icon svg{width:22px;height:22px}
+    .svc-1 .svc-icon{background:linear-gradient(135deg,var(--navy-900),var(--navy-700))}
+    .svc-2 .svc-icon{background:linear-gradient(135deg,var(--blue-600),var(--blue-500))}
+    .svc-3 .svc-icon{background:linear-gradient(135deg,var(--amber),#D97706)}
+    .svc-4 .svc-icon{background:linear-gradient(135deg,var(--mint-500),#0E9488)}
+    .svc-body .eng{font-size:11px;font-weight:600;color:var(--gray-400);letter-spacing:.05em;margin-bottom:6px;font-family:'Inter',sans-serif}
+    .svc-body h3{font-size:16.5px;font-weight:800;color:var(--navy-900);letter-spacing:-.02em;line-height:1.35;margin-bottom:8px}
+    .svc-body p{font-size:13px;color:var(--gray-500);line-height:1.55}
+    .svc-status{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;background:#FEF3C7;color:#B45309;border-radius:100px;font-size:10.5px;font-weight:700;letter-spacing:.02em;align-self:flex-start;margin-top:auto}
+    .svc-status .dot{width:5px;height:5px;border-radius:50%;background:currentColor}
+    .svc-status.beta{background:var(--mint-100);color:#0E7A6E}
+    .svc-status.beta .dot{animation:beta-pulse 1.5s ease-in-out infinite}
+    @keyframes beta-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+    .svc-item.beta-card{background:linear-gradient(160deg,#F0FDF8 0%,var(--white) 60%);border-color:var(--mint-100);position:relative;cursor:pointer}
+    .svc-item.beta-card::before{content:'NEW';position:absolute;top:14px;right:14px;padding:3px 8px;background:var(--mint-500);color:var(--white);font-family:'Inter',sans-serif;font-size:9px;font-weight:800;letter-spacing:.08em;border-radius:4px;box-shadow:0 2px 8px rgba(20,184,166,.35)}
+    .svc-item.beta-card:hover{border-color:var(--mint-500);box-shadow:0 12px 32px rgba(20,184,166,.15)}
 
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 8px 18px;
-      background: var(--white);
-      border: 1px solid var(--blue-100);
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--blue-600);
-      margin-bottom: 32px;
-      box-shadow: var(--shadow-sm);
-      animation: fade-up 0.7s ease-out;
-    }
-    .status-badge .pulse {
-      width: 8px; height: 8px;
-      background: var(--amber);
-      border-radius: 50%;
-      position: relative;
-      flex-shrink: 0;
-    }
-    .status-badge .pulse::after {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      border-radius: 50%;
-      border: 2px solid var(--amber);
-      opacity: 0.5;
-      animation: pulse 2s ease-out infinite;
-    }
-    @keyframes pulse {
-      0%   { transform: scale(0.8); opacity: 0.8; }
-      100% { transform: scale(2);   opacity: 0; }
-    }
-    @keyframes fade-up {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    .contact-card{background:linear-gradient(135deg,var(--navy-900) 0%,var(--navy-700) 100%);color:var(--white);border-radius:20px;padding:48px 40px;max-width:720px;margin:0 auto;position:relative;overflow:hidden;animation:fade-up .9s .5s ease-out both}
+    .contact-card::before{content:'';position:absolute;top:-100px;right:-100px;width:280px;height:280px;background:radial-gradient(circle,rgba(30,107,216,.3),transparent 60%);border-radius:50%}
+    .contact-card::after{content:'';position:absolute;bottom:-100px;left:-100px;width:220px;height:220px;background:radial-gradient(circle,rgba(20,184,166,.15),transparent 60%);border-radius:50%}
+    .contact-inner{position:relative;z-index:1}
+    .contact-label{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;color:var(--mint-500);letter-spacing:.14em;margin-bottom:16px;font-family:'Inter',sans-serif}
+    .contact-label svg{width:13px;height:13px}
+    .contact-card h2{font-size:clamp(22px,2.6vw,28px);font-weight:700;line-height:1.4;letter-spacing:-.02em;margin-bottom:28px}
+    .mail-button{display:inline-flex;align-items:center;gap:12px;padding:16px 28px;background:var(--white);color:var(--navy-900);border-radius:12px;font-size:17px;font-weight:700;letter-spacing:-.015em;transition:all .2s;box-shadow:0 8px 20px rgba(0,0,0,.15)}
+    .mail-button:hover{background:var(--amber);transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.2)}
+    .mail-button svg{width:18px;height:18px}
+    .mail-button .mail{font-family:'Inter',sans-serif}
+    .contact-note{font-size:13px;color:var(--gray-400);margin-top:20px;line-height:1.6}
 
-    h1 {
-      font-size: clamp(40px, 6vw, 68px);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-      color: var(--navy-900);
-      margin-bottom: 24px;
-      animation: fade-up 0.9s 0.1s ease-out both;
-    }
-    h1 .accent {
-      color: var(--blue-600);
-      position: relative;
-    }
-    h1 .accent::after {
-      content: '';
-      position: absolute;
-      left: 0; right: 0;
-      bottom: 6%;
-      height: 14%;
-      background: rgba(20, 184, 166, 0.22);
-      z-index: -1;
-      border-radius: 4px;
-    }
-    h1 .br { display: block; }
+    footer{padding:44px 0 32px;border-top:1px solid var(--line);background:var(--gray-50);position:relative;z-index:1}
+    .foot-inner{display:flex;flex-direction:column;gap:16px}
+    .foot-brand{display:inline-flex;align-items:center;gap:10px;align-self:flex-start}
+    .foot-brand-mark{width:32px;height:32px;background:var(--navy-900);color:var(--white);display:grid;place-items:center;border-radius:8px;font-weight:800;font-size:11px;letter-spacing:-.02em;position:relative}
+    .foot-brand-mark::after{content:'';position:absolute;bottom:4px;right:4px;width:4px;height:4px;background:var(--mint-500);border-radius:50%}
+    .foot-brand-text{display:flex;flex-direction:column;line-height:1.1}
+    .foot-brand-text .t1{font-weight:800;font-size:15px;color:var(--navy-900);letter-spacing:-.03em}
+    .foot-brand-text .t2{font-size:9px;color:var(--gray-500);font-weight:500;letter-spacing:.1em;margin-top:3px}
+    .foot-copy{font-size:12.5px;color:var(--gray-500);line-height:1.7}
+    .foot-copy strong{color:var(--gray-700);font-weight:600}
 
-    .lead {
-      font-size: clamp(16px, 1.8vw, 19px);
-      line-height: 1.7;
-      color: var(--gray-600);
-      margin-bottom: 56px;
-      max-width: 620px;
-      margin-left: auto;
-      margin-right: auto;
-      animation: fade-up 0.9s 0.2s ease-out both;
-    }
-    .lead strong { color: var(--navy-900); font-weight: 700; }
+    @media(max-width:900px){.services{grid-template-columns:repeat(2,1fr)}.credentials{max-width:540px;padding:20px 4px}.cred-item{min-width:120px;padding:8px 10px}.cred-n{font-size:24px}}
+    @media(max-width:640px){.container{padding:0 20px}main{padding:20px 0 60px}header{padding:20px 0}.logo-text .t2{display:none}h1{font-size:clamp(32px,9vw,44px)}.lead{margin-bottom:40px}.credentials{padding:16px 8px;margin-bottom:40px}.cred-item{flex:1 1 50%;min-width:0;padding:12px 8px}.cred-n{font-size:22px}.cred-l{font-size:11.5px}.cred-divider{display:none}.services{grid-template-columns:1fr;gap:12px;margin-bottom:40px}.svc-item{flex-direction:row;align-items:center;padding:20px}.svc-icon{flex-shrink:0}.svc-body{flex:1}.svc-status{display:none}.contact-card{padding:36px 28px;border-radius:16px}.mail-button{width:100%;justify-content:center;font-size:15px}footer{padding:36px 0 28px}.foot-inner{gap:14px}}
 
-    /* ============ CREDENTIALS STRIP ============ */
-    .credentials {
-      display: flex;
-      justify-content: center;
-      align-items: stretch;
-      gap: 0;
-      margin: 0 auto 56px;
-      padding: 24px 8px;
-      max-width: 780px;
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      box-shadow: var(--shadow-sm);
-      animation: fade-up 0.9s 0.3s ease-out both;
-      flex-wrap: wrap;
-    }
-    .cred-item {
-      flex: 1;
-      min-width: 140px;
-      padding: 4px 16px;
-      text-align: center;
-    }
-    .cred-n {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--navy-900);
-      letter-spacing: -0.03em;
-      line-height: 1;
-      font-family: 'Inter', 'Pretendard Variable', sans-serif;
-    }
-    .cred-n sub {
-      font-size: 13px;
-      color: var(--blue-600);
-      font-weight: 700;
-      margin-left: 2px;
-      vertical-align: baseline;
-      font-family: 'Pretendard Variable', sans-serif;
-    }
-    .cred-l {
-      font-size: 12.5px;
-      color: var(--gray-500);
-      margin-top: 8px;
-      font-weight: 500;
-      letter-spacing: -0.005em;
-    }
-    .cred-divider {
-      width: 1px;
-      background: var(--line);
-      margin: 4px 0;
-      flex-shrink: 0;
-    }
+    /* 티커 */
+    #news-ticker{position:fixed;top:0;left:0;right:0;z-index:999;height:44px;background:#0A1628;border-bottom:1px solid rgba(37,99,235,.3);display:flex;align-items:center;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,.35)}
+    .tk-label{flex-shrink:0;display:flex;align-items:center;gap:6px;height:100%;background:#2563EB;padding:0 16px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;color:#fff;letter-spacing:.12em;white-space:nowrap;border-right:1px solid rgba(255,255,255,.12)}
+    .tk-track{flex:1;overflow:hidden;position:relative;height:100%;mask-image:linear-gradient(to right,transparent 0,#000 30px,#000 calc(100% - 30px),transparent 100%)}
+    .tk-inner{display:inline-flex;align-items:center;height:100%;white-space:nowrap;will-change:transform;gap:0}
+    .tk-inner.running{animation:tkScroll var(--tk-dur,60s) linear infinite}
+    .tk-inner:hover{animation-play-state:paused}
+    .tk-item{display:inline-flex;align-items:center;gap:8px;padding:0 36px 0 0;font-size:14px;color:#CBD5E1;font-family:'Noto Sans KR',sans-serif;font-weight:400}
+    .tk-item a{color:inherit;text-decoration:none}.tk-item a:hover{color:#fff;text-decoration:underline}
+    .tk-badge{flex-shrink:0;font-size:11px;font-weight:700;letter-spacing:.08em;padding:3px 8px;border-radius:3px;font-family:'Outfit',monospace}
+    .bd-moel{background:rgba(37,99,235,.25);color:#7CB9F4;border:1px solid rgba(37,99,235,.4)}
+    .bd-kosha{background:rgba(16,185,129,.18);color:#4ADE80;border:1px solid rgba(16,185,129,.35)}
+    .bd-news{background:rgba(239,68,68,.18);color:#FCA5A5;border:1px solid rgba(239,68,68,.35)}
+    .bd-rule{background:rgba(245,158,11,.18);color:#FCD34D;border:1px solid rgba(245,158,11,.35)}
+    .bd-env{background:rgba(34,197,94,.18);color:#86EFAC;border:1px solid rgba(34,197,94,.35)}
+    .tk-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.15);flex-shrink:0;margin:0 14px}
+    .tk-load{color:rgba(255,255,255,.3);font-size:11.5px;font-family:'Outfit',sans-serif;padding-left:18px;display:flex;align-items:center;gap:8px}
+    .tk-spin{width:11px;height:11px;border-radius:50%;border:1.5px solid rgba(37,99,235,.25);border-top-color:#60A5FA;animation:tkspin .8s linear infinite;flex-shrink:0}
+    .tk-refresh{flex-shrink:0;width:28px;height:100%;display:flex;align-items:center;justify-content:center;border-left:1px solid rgba(255,255,255,.07);cursor:pointer;color:rgba(255,255,255,.25);font-size:12px;transition:color .2s;background:none;border-top:none;border-right:none;border-bottom:none}
+    .tk-refresh:hover{color:#60A5FA}
+    .tk-time{flex-shrink:0;font-size:12px;font-family:'Outfit',monospace;color:rgba(255,255,255,.25);padding:0 10px;border-left:1px solid rgba(255,255,255,.07);white-space:nowrap}
+    @keyframes tkScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    @keyframes tkspin{to{transform:rotate(360deg)}}
 
-    /* ============ SERVICES ============ */
-    .services {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-bottom: 60px;
-      animation: fade-up 0.9s 0.35s ease-out both;
-    }
-    .svc-item {
-      background: var(--white);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 28px 20px 24px;
-      text-align: left;
-      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .svc-item:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: var(--navy-900);
-    }
+    /* ============ 뉴스레터 모달 ============ */
+    .nl-overlay{position:fixed;inset:0;z-index:9000;background:rgba(10,37,64,.55);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s ease}
+    .nl-overlay.open{opacity:1;pointer-events:auto}
+    .nl-card{background:var(--white);border-radius:24px;width:100%;max-width:480px;box-shadow:0 24px 64px rgba(10,37,64,.18);overflow:hidden;transform:translateY(20px) scale(.97);transition:transform .3s cubic-bezier(.2,.8,.2,1);max-height:90vh;overflow-y:auto}
+    .nl-overlay.open .nl-card{transform:translateY(0) scale(1)}
+    .nl-header{background:linear-gradient(135deg,var(--navy-900) 0%,var(--navy-700) 100%);padding:28px 32px 0;position:relative}
+    .nl-close{position:absolute;top:18px;right:20px;width:32px;height:32px;background:rgba(255,255,255,.12);border:none;border-radius:50%;cursor:pointer;color:rgba(255,255,255,.7);font-size:16px;display:grid;place-items:center;transition:background .2s}
+    .nl-close:hover{background:rgba(255,255,255,.22);color:#fff}
+    .nl-brand{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+    .nl-brand-icon{width:40px;height:40px;background:linear-gradient(135deg,#F59E0B,#D97706);border-radius:10px;display:grid;place-items:center;flex-shrink:0}
+    .nl-brand-icon svg{width:20px;height:20px}
+    .nl-brand-text .t1{font-size:15px;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.2}
+    .nl-brand-text .t2{font-size:11px;color:rgba(255,255,255,.5);font-weight:500;letter-spacing:.06em;margin-top:2px;font-family:'Inter',sans-serif}
+    .nl-tabs{display:flex}
+    .nl-tab{flex:1;padding:12px 0;background:none;border:none;cursor:pointer;color:rgba(255,255,255,.45);font-size:14px;font-weight:700;letter-spacing:-.01em;border-bottom:3px solid transparent;transition:all .2s;font-family:'Pretendard Variable',Pretendard,sans-serif}
+    .nl-tab:hover{color:rgba(255,255,255,.75)}
+    .nl-tab.active{color:var(--mint-500);border-bottom-color:var(--mint-500)}
+    .nl-body{padding:28px 32px 32px}
+    .nl-panel{display:none}.nl-panel.active{display:block}
+    .nl-desc{font-size:13.5px;color:var(--gray-600);line-height:1.65;margin-bottom:22px}
+    .nl-desc strong{color:var(--navy-900)}
+    .nl-field{margin-bottom:16px}
+    .nl-field label{display:block;font-size:12.5px;font-weight:700;color:var(--gray-700);margin-bottom:7px}
+    .nl-field label .req{color:var(--blue-600);margin-left:2px}
+    .nl-field input,.nl-field select{width:100%;padding:11px 14px;border:1.5px solid var(--gray-200);border-radius:10px;font-size:14px;color:var(--ink);background:var(--gray-50);font-family:'Pretendard Variable',Pretendard,sans-serif;transition:border-color .2s,background .2s;outline:none;-webkit-appearance:none;appearance:none}
+    .nl-field input:focus,.nl-field select:focus{border-color:var(--blue-600);background:var(--white);box-shadow:0 0 0 3px rgba(30,107,216,.1)}
+    .nl-field input::placeholder{color:var(--gray-400)}
+    .nl-field .select-wrap{position:relative}
+    .nl-field .select-wrap::after{content:'';position:absolute;right:13px;top:50%;transform:translateY(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid var(--gray-400);pointer-events:none}
+    .nl-btn{width:100%;padding:14px;border:none;border-radius:12px;font-size:15px;font-weight:800;letter-spacing:-.01em;cursor:pointer;transition:all .25s;font-family:'Pretendard Variable',Pretendard,sans-serif;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px}
+    .nl-btn-sub{background:linear-gradient(135deg,var(--navy-900),var(--navy-700));color:var(--white)}
+    .nl-btn-sub:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(10,37,64,.3)}
+    .nl-btn-unsub{background:var(--gray-100);color:var(--gray-700)}
+    .nl-btn-unsub:hover{background:#fee2e2;color:#b91c1c}
+    .nl-btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
+    .nl-btn .spinner{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;animation:nl-spin .7s linear infinite;display:none;flex-shrink:0}
+    .nl-btn-unsub .spinner{border-color:rgba(100,116,139,.3);border-top-color:var(--gray-700)}
+    .nl-btn.loading .spinner{display:block}
+    .nl-btn.loading .btn-text{opacity:.7}
+    .nl-result{display:none;padding:14px 16px;border-radius:10px;font-size:13.5px;font-weight:600;margin-top:12px;text-align:center;line-height:1.5}
+    .nl-result.success{display:block;background:var(--mint-100);color:#0E7A6E}
+    .nl-result.error{display:block;background:#fee2e2;color:#b91c1c}
+    .nl-small{font-size:11.5px;color:var(--gray-400);text-align:center;margin-top:14px;line-height:1.6}
+    @keyframes nl-spin{to{transform:rotate(360deg)}}
+    @media(max-width:640px){.nl-header{padding:24px 24px 0}.nl-body{padding:24px 24px 28px}.nl-card{border-radius:20px}}
 
-    .svc-icon {
-      width: 44px; height: 44px;
-      border-radius: 11px;
-      display: grid;
-      place-items: center;
-      color: var(--white);
-      transition: transform 0.3s;
-    }
-    .svc-item:hover .svc-icon { transform: scale(1.08) rotate(-4deg); }
-    .svc-icon svg { width: 22px; height: 22px; }
+    /* ============ 관리자 패널 ============ */
+    #adm-overlay{position:fixed;inset:0;z-index:99000;background:#0A0F1A;display:none;flex-direction:column;overflow:hidden}
+    #adm-overlay.open{display:flex}
 
-    .svc-1 .svc-icon { background: linear-gradient(135deg, var(--navy-900), var(--navy-700)); }
-    .svc-2 .svc-icon { background: linear-gradient(135deg, var(--blue-600), var(--blue-500)); }
-    .svc-3 .svc-icon { background: linear-gradient(135deg, var(--amber), #D97706); }
-    .svc-4 .svc-icon { background: linear-gradient(135deg, var(--mint-500), #0E9488); }
+    .adm-topbar{height:52px;background:#0D1829;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;padding:0 24px;flex-shrink:0}
+    .adm-topbar-left{display:flex;align-items:center;gap:12px}
+    .adm-logo{font-size:13px;font-weight:800;color:#fff;letter-spacing:-.02em;font-family:'Inter',sans-serif}
+    .adm-badge-pill{font-size:10px;padding:3px 8px;background:rgba(245,158,11,.2);color:#F59E0B;border:1px solid rgba(245,158,11,.3);border-radius:4px;font-weight:700;font-family:'Inter',sans-serif;letter-spacing:.06em}
+    .adm-topbar-right{display:flex;align-items:center;gap:10px}
+    .adm-btn-save{padding:8px 18px;background:#1E6BD8;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;transition:background .2s;display:flex;align-items:center;gap:6px}
+    .adm-btn-save:hover{background:#2E7CE4}
+    .adm-btn-save:disabled{opacity:.5;cursor:not-allowed}
+    .adm-btn-close{padding:8px 14px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.1);border-radius:8px;font-size:13px;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;transition:all .2s}
+    .adm-btn-close:hover{background:rgba(255,255,255,.1);color:#fff}
+    .adm-save-msg{font-size:12px;color:#4ADE80;opacity:0;transition:opacity .3s;font-family:'Inter',sans-serif}
+    .adm-save-msg.show{opacity:1}
 
-    .svc-body .eng {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--gray-400);
-      letter-spacing: 0.05em;
-      margin-bottom: 6px;
-      font-family: 'Inter', sans-serif;
-    }
-    .svc-body h3 {
-      font-size: 16.5px;
-      font-weight: 800;
-      color: var(--navy-900);
-      letter-spacing: -0.02em;
-      line-height: 1.35;
-      margin-bottom: 8px;
-    }
-    .svc-body p {
-      font-size: 13px;
-      color: var(--gray-500);
-      line-height: 1.55;
-    }
+    .adm-layout{display:flex;flex:1;overflow:hidden}
+    .adm-sidebar{width:196px;background:#0D1829;border-right:1px solid rgba(255,255,255,.07);padding:20px 0;flex-shrink:0;overflow-y:auto}
+    .adm-nav-item{display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:13px;font-weight:600;color:rgba(255,255,255,.4);cursor:pointer;transition:all .15s;border-left:3px solid transparent;font-family:'Pretendard Variable',Pretendard,sans-serif}
+    .adm-nav-item:hover{color:rgba(255,255,255,.75);background:rgba(255,255,255,.04)}
+    .adm-nav-item.active{color:#60A5FA;border-left-color:#1E6BD8;background:rgba(30,107,216,.1)}
+    .adm-nav-item .ni{font-size:15px;width:20px;text-align:center;flex-shrink:0}
+    .adm-content{flex:1;overflow-y:auto;padding:32px}
 
-    .svc-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 9px;
-      background: #FEF3C7;
-      color: #B45309;
-      border-radius: 100px;
-      font-size: 10.5px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      align-self: flex-start;
-      margin-top: auto;
-    }
-    .svc-status .dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+    .adm-section{display:none}.adm-section.active{display:block}
+    .adm-section-title{font-size:18px;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:6px}
+    .adm-section-sub{font-size:13px;color:rgba(255,255,255,.35);margin-bottom:28px}
+    .adm-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .adm-grid-1{grid-template-columns:1fr}
+    .adm-field{display:flex;flex-direction:column;gap:7px}
+    .adm-field label{font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.04em;text-transform:uppercase;font-family:'Inter',sans-serif}
+    .adm-field input,.adm-field textarea{background:#131F30;border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 13px;font-size:13.5px;color:#E2E8F0;font-family:'Pretendard Variable',Pretendard,sans-serif;outline:none;transition:border-color .2s;width:100%}
+    .adm-field textarea{resize:vertical;min-height:80px;line-height:1.6}
+    .adm-field input:focus,.adm-field textarea:focus{border-color:#1E6BD8;background:#0F1A2E}
+    .adm-field input::placeholder,.adm-field textarea::placeholder{color:rgba(255,255,255,.18)}
+    .adm-hint{font-size:11px;color:rgba(255,255,255,.25);line-height:1.5}
+    .adm-divider{height:1px;background:rgba(255,255,255,.07);margin:28px 0}
+    .adm-card{background:#0D1829;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:20px;margin-bottom:14px}
+    .adm-card-label{font-size:11px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:14px}
 
-    /* BETA 상태 뱃지 (진행 중 = 기대감) */
-    .svc-status.beta {
-      background: var(--mint-100);
-      color: #0E7A6E;
-      position: relative;
-      padding-left: 9px;
-      padding-right: 9px;
-    }
-    .svc-status.beta .dot {
-      animation: beta-pulse 1.5s ease-in-out infinite;
-    }
-    @keyframes beta-pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.7); }
-    }
+    .adm-industry-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+    .adm-industry-item{display:flex;align-items:center;gap:8px;background:#0D1829;border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px 12px}
+    .adm-industry-item input{flex:1;background:transparent;border:none;color:#E2E8F0;font-size:13.5px;font-family:'Pretendard Variable',Pretendard,sans-serif;outline:none;padding:0}
+    .adm-industry-item .drag-handle{color:rgba(255,255,255,.2);font-size:14px;flex-shrink:0;user-select:none}
+    .adm-industry-item .del-btn{width:24px;height:24px;background:rgba(239,68,68,.15);border:none;border-radius:6px;color:#FCA5A5;cursor:pointer;font-size:13px;display:grid;place-items:center;flex-shrink:0;transition:background .2s}
+    .adm-industry-item .del-btn:hover{background:rgba(239,68,68,.3)}
+    .adm-add-btn{display:flex;align-items:center;gap:7px;padding:9px 14px;background:rgba(30,107,216,.15);border:1px dashed rgba(30,107,216,.4);border-radius:8px;color:#60A5FA;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Pretendard Variable',Pretendard,sans-serif;width:100%}
+    .adm-add-btn:hover{background:rgba(30,107,216,.25);border-color:#60A5FA}
 
-    /* BETA 카드 강조 (살짝 다른 배경 + 우측 상단 NEW 리본) */
-    .svc-item.beta-card {
-      background: linear-gradient(160deg, #F0FDF8 0%, var(--white) 60%);
-      border-color: var(--mint-100);
-      position: relative;
-    }
-    .svc-item.beta-card::before {
-      content: 'NEW';
-      position: absolute;
-      top: 14px; right: 14px;
-      padding: 3px 8px;
-      background: var(--mint-500);
-      color: var(--white);
-      font-family: 'Inter', sans-serif;
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      border-radius: 4px;
-      box-shadow: 0 2px 8px rgba(20, 184, 166, 0.35);
-    }
-    .svc-item.beta-card:hover {
-      border-color: var(--mint-500);
-      box-shadow: 0 12px 32px rgba(20, 184, 166, 0.15);
-    }
-
-    /* ============ CONTACT ============ */
-    .contact-card {
-      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
-      color: var(--white);
-      border-radius: 20px;
-      padding: 48px 40px;
-      max-width: 720px;
-      margin: 0 auto;
-      position: relative;
-      overflow: hidden;
-      animation: fade-up 0.9s 0.5s ease-out both;
-    }
-    .contact-card::before {
-      content: '';
-      position: absolute;
-      top: -100px; right: -100px;
-      width: 280px; height: 280px;
-      background: radial-gradient(circle, rgba(30, 107, 216, 0.3), transparent 60%);
-      border-radius: 50%;
-    }
-    .contact-card::after {
-      content: '';
-      position: absolute;
-      bottom: -100px; left: -100px;
-      width: 220px; height: 220px;
-      background: radial-gradient(circle, rgba(20, 184, 166, 0.15), transparent 60%);
-      border-radius: 50%;
-    }
-    .contact-inner { position: relative; z-index: 1; }
-
-    .contact-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 11.5px;
-      font-weight: 700;
-      color: var(--mint-500);
-      letter-spacing: 0.14em;
-      margin-bottom: 16px;
-      font-family: 'Inter', sans-serif;
-    }
-    .contact-label svg { width: 13px; height: 13px; }
-
-    .contact-card h2 {
-      font-size: clamp(22px, 2.6vw, 28px);
-      font-weight: 700;
-      line-height: 1.4;
-      letter-spacing: -0.02em;
-      margin-bottom: 28px;
-    }
-
-    .mail-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 16px 28px;
-      background: var(--white);
-      color: var(--navy-900);
-      border-radius: 12px;
-      font-size: 17px;
-      font-weight: 700;
-      letter-spacing: -0.015em;
-      transition: all 0.2s;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    }
-    .mail-button:hover {
-      background: var(--amber);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
-    }
-    .mail-button svg {
-      width: 18px; height: 18px;
-    }
-    .mail-button .mail { font-family: 'Inter', sans-serif; }
-
-    .contact-note {
-      font-size: 13px;
-      color: var(--gray-400);
-      margin-top: 20px;
-      line-height: 1.6;
-    }
-    .contact-note kbd {
-      display: inline-block;
-      padding: 2px 7px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 4px;
-      font-family: 'Inter', sans-serif;
-      font-size: 12px;
-      color: var(--gray-300);
-    }
-
-    /* ============ FOOTER ============ */
-    footer {
-      padding: 44px 0 32px;
-      border-top: 1px solid var(--line);
-      background: var(--gray-50);
-      position: relative;
-      z-index: 1;
-    }
-    .foot-inner {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .foot-brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      align-self: flex-start;
-    }
-    .foot-brand-mark {
-      width: 32px; height: 32px;
-      background: var(--navy-900);
-      color: var(--white);
-      display: grid;
-      place-items: center;
-      border-radius: 8px;
-      font-weight: 800;
-      font-size: 11px;
-      letter-spacing: -0.02em;
-      position: relative;
-    }
-    .foot-brand-mark::after {
-      content: '';
-      position: absolute;
-      bottom: 4px; right: 4px;
-      width: 4px; height: 4px;
-      background: var(--mint-500);
-      border-radius: 50%;
-    }
-    .foot-brand-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
-    .foot-brand-text .t1 {
-      font-weight: 800;
-      font-size: 15px;
-      color: var(--navy-900);
-      letter-spacing: -0.03em;
-    }
-    .foot-brand-text .t2 {
-      font-size: 9px;
-      color: var(--gray-500);
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      margin-top: 3px;
-    }
-    .foot-copy {
-      font-size: 12.5px;
-      color: var(--gray-500);
-      line-height: 1.7;
-    }
-    .foot-copy strong { color: var(--gray-700); font-weight: 600; }
-    .foot-copy a { color: var(--gray-700); text-decoration: underline; }
-    .foot-copy a:hover { color: var(--blue-600); }
-
-    /* ============ RESPONSIVE ============ */
-    @media (max-width: 900px) {
-      .services { grid-template-columns: repeat(2, 1fr); }
-      .credentials { max-width: 540px; padding: 20px 4px; }
-      .cred-item { min-width: 120px; padding: 8px 10px; }
-      .cred-n { font-size: 24px; }
-    }
-    @media (max-width: 640px) {
-      .container { padding: 0 20px; }
-      body { padding-top: 44px; }
-    main { padding: 20px 0 60px; }
-      header { padding: 20px 0; }
-      .logo-text .t2 { display: none; }
-      h1 { font-size: clamp(32px, 9vw, 44px); }
-      .lead { margin-bottom: 40px; }
-      .credentials {
-        padding: 16px 8px;
-        margin-bottom: 40px;
-        gap: 0;
-      }
-      .cred-item { flex: 1 1 50%; min-width: 0; padding: 12px 8px; }
-      .cred-n { font-size: 22px; }
-      .cred-l { font-size: 11.5px; }
-      .cred-divider { display: none; }
-      .services { grid-template-columns: 1fr; gap: 12px; margin-bottom: 40px; }
-      .svc-item { flex-direction: row; align-items: center; padding: 20px; }
-      .svc-icon { flex-shrink: 0; }
-      .svc-body { flex: 1; }
-      .svc-status { display: none; }
-      .contact-card { padding: 36px 28px; border-radius: 16px; }
-      .mail-button { width: 100%; justify-content: center; font-size: 15px; }
-      footer { padding: 36px 0 28px; }
-      .foot-inner { gap: 14px; }
-      .foot-brand-mark { width: 28px; height: 28px; font-size: 10px; border-radius: 7px; }
-      .foot-brand-text .t1 { font-size: 13.5px; }
-      .foot-brand-text .t2 { font-size: 8.5px; }
-      .foot-copy { font-size: 11.5px; }
-    }
-  
-/* ── 전광판 티커 ── */
-#news-ticker{position:fixed;top:0;left:0;right:0;z-index:999;height:44px;background:#0A1628;border-bottom:1px solid rgba(37,99,235,.3);display:flex;align-items:center;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,.35)}
-.tk-label{flex-shrink:0;display:flex;align-items:center;gap:6px;height:100%;background:#2563EB;padding:0 16px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;color:#fff;letter-spacing:.12em;white-space:nowrap;border-right:1px solid rgba(255,255,255,.12)}
-.tk-track{flex:1;overflow:hidden;position:relative;height:100%;mask-image:linear-gradient(to right,transparent 0,#000 30px,#000 calc(100% - 30px),transparent 100%)}
-.tk-inner{display:inline-flex;align-items:center;height:100%;white-space:nowrap;will-change:transform;gap:0}
-.tk-inner.running{animation:tkScroll var(--tk-dur,60s) linear infinite}
-.tk-inner:hover{animation-play-state:paused}
-.tk-item{display:inline-flex;align-items:center;gap:8px;padding:0 36px 0 0;font-size:14px;color:#CBD5E1;font-family:'Noto Sans KR',sans-serif;font-weight:400}
-.tk-item a{color:inherit;text-decoration:none}.tk-item a:hover{color:#fff;text-decoration:underline}
-.tk-badge{flex-shrink:0;font-size:11px;font-weight:700;letter-spacing:.08em;padding:3px 8px;border-radius:3px;font-family:'Outfit',monospace}
-.bd-moel{background:rgba(37,99,235,.25);color:#7CB9F4;border:1px solid rgba(37,99,235,.4)}
-.bd-kosha{background:rgba(16,185,129,.18);color:#4ADE80;border:1px solid rgba(16,185,129,.35)}
-.bd-news{background:rgba(239,68,68,.18);color:#FCA5A5;border:1px solid rgba(239,68,68,.35)}
-.bd-rule{background:rgba(245,158,11,.18);color:#FCD34D;border:1px solid rgba(245,158,11,.35)}
-.bd-env{background:rgba(34,197,94,.18);color:#86EFAC;border:1px solid rgba(34,197,94,.35)}
-.tk-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.15);flex-shrink:0;margin:0 14px}
-.tk-load{color:rgba(255,255,255,.3);font-size:11.5px;font-family:'Outfit',sans-serif;padding-left:18px;display:flex;align-items:center;gap:8px}
-.tk-spin{width:11px;height:11px;border-radius:50%;border:1.5px solid rgba(37,99,235,.25);border-top-color:#60A5FA;animation:tkspin .8s linear infinite;flex-shrink:0}
-.tk-refresh{flex-shrink:0;width:28px;height:100%;display:flex;align-items:center;justify-content:center;border-left:1px solid rgba(255,255,255,.07);cursor:pointer;color:rgba(255,255,255,.25);font-size:12px;transition:color .2s;background:none;border-top:none;border-right:none;border-bottom:none}
-.tk-refresh:hover{color:#60A5FA}
-.tk-time{flex-shrink:0;font-size:12px;font-family:'Outfit',monospace;color:rgba(255,255,255,.25);padding:0 10px;border-left:1px solid rgba(255,255,255,.07);white-space:nowrap}
-@keyframes tkScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-@keyframes tkspin{to{transform:rotate(360deg)}}
-.wrapper{padding-top:calc(72px + 44px)!important}
-
-</style>
+    #adm-login{position:absolute;inset:0;background:#0A0F1A;display:flex;align-items:center;justify-content:center;z-index:10}
+    .adm-login-card{background:#0D1829;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:40px 36px;width:100%;max-width:360px;text-align:center}
+    .adm-login-icon{width:52px;height:52px;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);border-radius:14px;display:grid;place-items:center;margin:0 auto 20px;font-size:24px}
+    .adm-login-title{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:6px}
+    .adm-login-sub{font-size:13px;color:rgba(255,255,255,.35);margin-bottom:28px}
+    .adm-login-input{width:100%;background:#131F30;border:1.5px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;font-size:14px;color:#E2E8F0;font-family:'Pretendard Variable',Pretendard,sans-serif;outline:none;text-align:center;letter-spacing:.1em;margin-bottom:14px;transition:border-color .2s}
+    .adm-login-input:focus{border-color:#1E6BD8}
+    .adm-login-btn{width:100%;padding:13px;background:#1E6BD8;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:800;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;transition:background .2s}
+    .adm-login-btn:hover{background:#2E7CE4}
+    .adm-login-err{font-size:12.5px;color:#FCA5A5;margin-top:10px;min-height:18px}
+    .adm-success-msg{font-size:12.5px;color:#4ADE80;margin-top:10px;min-height:18px}
+  </style>
 </head>
 <body>
 
-
-<!-- ★ 안전보건 실시간 전광판 ★ -->
+<!-- 전광판 -->
 <div id="news-ticker">
   <div class="tk-label">
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -658,356 +269,662 @@
   <button class="tk-refresh" id="tk-refresh-btn" title="새로고침">↻</button>
 </div>
 
-  <div class="bg-decor"></div>
+<div class="bg-decor"></div>
 
-  <!-- HEADER -->
-  <header>
-    <div class="container">
-      <a href="#" class="logo">
-        <span class="logo-mark">EM</span>
-        <span class="logo-text">
-          <span class="t1">ESH-MASTER</span>
-          <span class="t2 en">ENVIRONMENT · SAFETY · HEALTH</span>
-        </span>
-      </a>
-    </div>
-  </header>
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <a href="#" class="logo">
+      <span class="logo-mark">EM</span>
+      <span class="logo-text">
+        <span class="t1">ESH-MASTER</span>
+        <span class="t2 en">ENVIRONMENT · SAFETY · HEALTH</span>
+      </span>
+    </a>
+  </div>
+</header>
 
-  <!-- MAIN -->
-  <main>
-    <div class="container">
-      <div class="hero">
+<!-- MAIN -->
+<main>
+  <div class="container">
+    <div class="hero">
 
-        <div class="status-badge">
-          <span class="pulse"></span>
-          <span>COMING SOON · 2026</span>
+      <div class="status-badge">
+        <span class="pulse"></span>
+        <span id="cfg-badge">COMING SOON · 2026</span>
+      </div>
+
+      <h1>
+        <span class="br" id="cfg-h1-1">현장에서 검증된</span>
+        <span class="br"><span class="accent" id="cfg-h1-2">안전보건환경 디지털 설계</span></span>
+      </h1>
+
+      <p class="lead" id="cfg-lead">
+        ESH-MASTER는 <strong>제조·통신업 현장</strong>의 안전보건을 수행해온
+        산업안전기획·안전보건전산화 전문가가 직접 설계합니다.
+        <strong>산안법·중처법</strong> 의무 이행과 현장 언어를 결합한<br>
+        4가지 서비스를 준비하고 있습니다.
+      </p>
+
+      <!-- 신뢰 지표 -->
+      <div class="credentials">
+        <div class="cred-item" data-cred="0"><div class="cred-n">15<sub>년+</sub></div><div class="cred-l">제조·통신업 안전관리</div></div>
+        <div class="cred-divider"></div>
+        <div class="cred-item" data-cred="1"><div class="cred-n">산안법</div><div class="cred-l">법정 의무 완전 준수</div></div>
+        <div class="cred-divider"></div>
+        <div class="cred-item" data-cred="2"><div class="cred-n">중처법</div><div class="cred-l">경영책임자 이행 증거</div></div>
+        <div class="cred-divider"></div>
+        <div class="cred-item" data-cred="3"><div class="cred-n">다수 사업장</div><div class="cred-l">통합 안전보건 체계</div></div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="services">
+        <div class="svc-item svc-1">
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9.4-8 10-4.5-.6-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div class="svc-body"><div class="eng en">01 · FLAGSHIP</div><h3 data-svc-title="0">Safety Do It</h3><p data-svc-desc="0">계층별 누구나 쉽게 따라하고<br>안전을 즐겁게 만드는 통합 솔루션</p></div>
+          <div class="svc-status"><span class="dot"></span>준비중</div>
         </div>
-
-        <h1>
-          <span class="br">현장에서 검증된</span>
-          <span class="br"><span class="accent">안전보건환경 디지털 설계</span></span>
-        </h1>
-
-        <p class="lead">
-          ESH-MASTER는 <strong>제조·통신업 현장</strong>의 안전보건을 수행해온
-          산업안전기획·안전보건전산화 전문가가 직접 설계합니다.
-          <strong>산안법·중처법</strong> 의무 이행과 현장 언어를 결합한<br>
-          4가지 서비스를 준비하고 있습니다.
-        </p>
-
-        <!-- 신뢰 지표 스트립 -->
-        <div class="credentials">
-          <div class="cred-item">
-            <div class="cred-n">15<sub>년+</sub></div>
-            <div class="cred-l">제조·통신업 안전관리</div>
-          </div>
-          <div class="cred-divider"></div>
-          <div class="cred-item">
-            <div class="cred-n">산안법</div>
-            <div class="cred-l">법정 의무 완전 준수</div>
-          </div>
-          <div class="cred-divider"></div>
-          <div class="cred-item">
-            <div class="cred-n">중처법</div>
-            <div class="cred-l">경영책임자 이행 증거</div>
-          </div>
-          <div class="cred-divider"></div>
-          <div class="cred-item">
-            <div class="cred-n">다수 사업장</div>
-            <div class="cred-l">통합 안전보건 체계</div>
-          </div>
+        <div class="svc-item svc-2">
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></div>
+          <div class="svc-body"><div class="eng en">02 · ASSESSMENT</div><h3 data-svc-title="1">JSA 위험성평가</h3><p data-svc-desc="1">업종별 작업표준화를 통해<br>AI를 활용한 JSA 위험성평가</p></div>
+          <div class="svc-status"><span class="dot"></span>준비중</div>
         </div>
-
-        <!-- SERVICES -->
-        <div class="services">
-
-          <div class="svc-item svc-1">
-            <div class="svc-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2l8 4v6c0 5-3.5 9.4-8 10-4.5-.6-8-5-8-10V6l8-4z"/>
-                <path d="M9 12l2 2 4-4"/>
-              </svg>
-            </div>
-            <div class="svc-body">
-              <div class="eng en">01 · FLAGSHIP</div>
-              <h3>Safety Do It</h3>
-              <p>계층별 누구나 쉽게 따라하고<br>안전을 즐겁게 만드는 통합 솔루션</p>
-            </div>
-            <div class="svc-status"><span class="dot"></span>준비중</div>
-          </div>
-
-          <div class="svc-item svc-2">
-            <div class="svc-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2"/>
-                <path d="M9 9h6M9 13h6M9 17h3"/>
-              </svg>
-            </div>
-            <div class="svc-body">
-              <div class="eng en">02 · ASSESSMENT</div>
-              <h3>JSA 위험성평가</h3>
-              <p>업종별 작업표준화를 통해<br>AI를 활용한 JSA 위험성평가</p>
-            </div>
-            <div class="svc-status"><span class="dot"></span>준비중</div>
-          </div>
-
-          <div class="svc-item svc-3 beta-card">
-            <div class="svc-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <path d="M22 6l-10 7L2 6"/>
-              </svg>
-            </div>
-            <div class="svc-body">
-              <div class="eng en">03 · WEEKLY</div>
-              <h3>AI 안전보건 뉴스레터</h3>
-              <p>업종별 특성을 반영한<br>AI 안전보건 주간 큐레이션</p>
-            </div>
-            <div class="svc-status beta"><span class="dot"></span>BETA 오픈</div>
-          </div>
-
-          <div class="svc-item svc-4">
-            <div class="svc-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-              </svg>
-            </div>
-            <div class="svc-body">
-              <div class="eng en">04 · RESOURCES</div>
-              <h3>안전보건정보</h3>
-              <p>업종별 특성을 반영한<br>법령·사례·서식 자료실</p>
-            </div>
-            <div class="svc-status"><span class="dot"></span>준비중</div>
-          </div>
-
+        <div class="svc-item svc-3 beta-card" id="nl-trigger" role="button" tabindex="0" aria-label="AI 안전보건 뉴스레터 구독 신청">
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
+          <div class="svc-body"><div class="eng en">03 · WEEKLY</div><h3 data-svc-title="2">AI 안전보건 뉴스레터</h3><p data-svc-desc="2">업종별 특성을 반영한<br>AI 안전보건 주간 큐레이션</p></div>
+          <div class="svc-status beta"><span class="dot"></span>BETA 오픈</div>
         </div>
-
-        <!-- CONTACT -->
-        <div class="contact-card">
-          <div class="contact-inner">
-            <div class="contact-label">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="10"/></svg>
-              CONTACT
-            </div>
-            <h2>서비스 출시 · 파트너십 · 문의는<br>아래 이메일로 연락 주세요.</h2>
-
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=eshmaster.kr@gmail.com&su=ESH-MASTER%20%EB%AC%B8%EC%9D%98" target="_blank" rel="noopener" class="mail-button">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <path d="M22 6l-10 7L2 6"/>
-              </svg>
-              <span class="mail">esh-master@gmail.com</span>
-            </a>
-
-            <p class="contact-note">
-              문의 전 간단한 소속·용건을 메일에 적어주시면 빠르게 회신드립니다.
-            </p>
-          </div>
+        <div class="svc-item svc-4">
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+          <div class="svc-body"><div class="eng en">04 · RESOURCES</div><h3 data-svc-title="3">안전보건정보</h3><p data-svc-desc="3">업종별 특성을 반영한<br>법령·사례·서식 자료실</p></div>
+          <div class="svc-status"><span class="dot"></span>준비중</div>
         </div>
+      </div>
 
+      <!-- CONTACT -->
+      <div class="contact-card">
+        <div class="contact-inner">
+          <div class="contact-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="10"/></svg>
+            CONTACT
+          </div>
+          <h2 id="cfg-contact-h2">서비스 출시 · 파트너십 · 문의는<br>아래 이메일로 연락 주세요.</h2>
+          <a id="cfg-contact-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=esh-master@gmail.com&su=ESH-MASTER%20%EB%AC%B8%EC%9D%98" target="_blank" rel="noopener" class="mail-button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            <span class="mail" id="cfg-contact-email">esh-master@gmail.com</span>
+          </a>
+          <p class="contact-note" id="cfg-contact-note">문의 전 간단한 소속·용건을 메일에 적어주시면 빠르게 회신드립니다.</p>
+        </div>
       </div>
     </div>
-  </main>
+  </div>
+</main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container foot-inner">
-      <div class="foot-brand">
-        <span class="foot-brand-mark">EM</span>
-        <span class="foot-brand-text">
-          <span class="t1">ESH-MASTER</span>
-          <span class="t2 en">ENVIRONMENT · SAFETY · HEALTH</span>
-        </span>
+<!-- FOOTER -->
+<footer>
+  <div class="container foot-inner">
+    <div class="foot-brand">
+      <span class="foot-brand-mark">EM</span>
+      <span class="foot-brand-text">
+        <span class="t1">ESH-MASTER</span>
+        <span class="t2 en">ENVIRONMENT · SAFETY · HEALTH</span>
+      </span>
+    </div>
+    <div class="foot-copy">© 2026 <strong>ESH-MASTER</strong> 산업안전기획 · 안전보건전산화</div>
+  </div>
+</footer>
+
+<!-- ============ 뉴스레터 모달 ============ -->
+<div class="nl-overlay" id="nl-overlay" role="dialog" aria-modal="true">
+  <div class="nl-card">
+    <div class="nl-header">
+      <button class="nl-close" id="nl-close" aria-label="닫기">✕</button>
+      <div class="nl-brand">
+        <div class="nl-brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
+        <div class="nl-brand-text"><div class="t1">AI 안전보건 뉴스레터</div><div class="t2 en">03 · WEEKLY · BETA</div></div>
       </div>
-      <div class="foot-copy">
-        © 2026 <strong>ESH-MASTER</strong> 산업안전기획 · 안전보건전산화
+      <div class="nl-tabs">
+        <button class="nl-tab active" data-tab="subscribe">구독 신청</button>
+        <button class="nl-tab" data-tab="unsubscribe">구독 취소</button>
       </div>
     </div>
-  </footer>
+    <div class="nl-body">
+      <div class="nl-panel active" id="panel-subscribe">
+        <p class="nl-desc"><strong>업종별 특성을 반영한 AI 안전보건 주간 큐레이션</strong>을<br>매주 월요일 이메일로 받아보세요.</p>
+        <div class="nl-field"><label>이름 <span class="req">*</span></label><input type="text" id="sub-name" placeholder="홍길동" maxlength="30" autocomplete="name"></div>
+        <div class="nl-field"><label>이메일 <span class="req">*</span></label><input type="email" id="sub-email" placeholder="example@company.com" autocomplete="email"></div>
+        <div class="nl-field"><label>소속</label><input type="text" id="sub-affiliation" placeholder="XX 전자 / 안전보건팀" maxlength="60"></div>
+        <div class="nl-field">
+          <label>업종 분야</label>
+          <div class="select-wrap">
+            <select id="sub-industry">
+              <option value="">-- 선택해주세요 --</option>
+              <option>식품·음료 제조업</option><option>일반 제조업</option>
+              <option>화학·석유·고무업</option><option>건설업</option>
+              <option>물류·운수업</option><option>서비스업</option>
+              <option>통신·IT업</option><option>기타</option>
+            </select>
+          </div>
+        </div>
+        <button class="nl-btn nl-btn-sub" id="btn-subscribe"><div class="spinner"></div><span class="btn-text">구독 신청하기</span></button>
+        <div class="nl-result" id="sub-result"></div>
+        <p class="nl-small">수집된 정보는 뉴스레터 발송 목적으로만 사용됩니다.</p>
+      </div>
+      <div class="nl-panel" id="panel-unsubscribe">
+        <p class="nl-desc">구독 신청 시 입력하신 <strong>이름과 이메일</strong>을 입력하시면 즉시 수신이 중단됩니다.</p>
+        <div class="nl-field"><label>이름 <span class="req">*</span></label><input type="text" id="unsub-name" placeholder="홍길동" maxlength="30"></div>
+        <div class="nl-field"><label>이메일 <span class="req">*</span></label><input type="email" id="unsub-email" placeholder="example@company.com"></div>
+        <button class="nl-btn nl-btn-unsub" id="btn-unsubscribe"><div class="spinner"></div><span class="btn-text">구독 취소하기</span></button>
+        <div class="nl-result" id="unsub-result"></div>
+        <p class="nl-small">취소 후에도 재구독은 언제든지 가능합니다.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- ============ 관리자 패널 ============ -->
+<div id="adm-overlay">
+
+  <!-- 로그인 게이트 -->
+  <div id="adm-login">
+    <div class="adm-login-card">
+      <div class="adm-login-icon">🔐</div>
+      <div class="adm-login-title">관리자 페이지</div>
+      <div class="adm-login-sub">ESH-MASTER 사이트 설정 관리</div>
+      <input type="password" class="adm-login-input" id="adm-pw-input" placeholder="비밀번호 입력" autocomplete="off">
+      <button class="adm-login-btn" id="adm-pw-btn">로그인</button>
+      <div class="adm-login-err" id="adm-login-err"></div>
+    </div>
+  </div>
+
+  <!-- 상단바 -->
+  <div class="adm-topbar">
+    <div class="adm-topbar-left">
+      <span class="adm-logo">ESH-MASTER</span>
+      <span class="adm-badge-pill">ADMIN</span>
+    </div>
+    <div class="adm-topbar-right">
+      <span class="adm-save-msg" id="adm-save-msg">✓ 저장 완료</span>
+      <button class="adm-btn-save" id="adm-save-btn">💾 저장</button>
+      <button class="adm-btn-close" id="adm-close-btn">✕ 닫기</button>
+    </div>
+  </div>
+
+  <!-- 레이아웃 -->
+  <div class="adm-layout">
+    <nav class="adm-sidebar">
+      <div class="adm-nav-item active" data-section="text"><span class="ni">📝</span> 메인 텍스트</div>
+      <div class="adm-nav-item" data-section="creds"><span class="ni">📊</span> 신뢰 지표</div>
+      <div class="adm-nav-item" data-section="services"><span class="ni">🗂️</span> 서비스 카드</div>
+      <div class="adm-nav-item" data-section="industry"><span class="ni">🏭</span> 업종 목록</div>
+      <div class="adm-nav-item" data-section="contact"><span class="ni">📧</span> 연락처</div>
+      <div class="adm-nav-item" data-section="setting"><span class="ni">⚙️</span> 설정</div>
+    </nav>
+
+    <div class="adm-content">
+
+      <!-- 메인 텍스트 -->
+      <div class="adm-section active" id="adm-sec-text">
+        <div class="adm-section-title">메인 텍스트</div>
+        <div class="adm-section-sub">히어로 영역의 배지, 헤드라인, 소개 문구를 수정합니다.</div>
+        <div class="adm-grid adm-grid-1" style="gap:16px">
+          <div class="adm-field"><label>상단 배지</label><input type="text" id="adm-badge"></div>
+          <div class="adm-field"><label>헤드라인 1줄</label><input type="text" id="adm-h1-1"></div>
+          <div class="adm-field"><label>헤드라인 2줄 (강조 색상)</label><input type="text" id="adm-h1-2"></div>
+          <div class="adm-field">
+            <label>소개 문구 (HTML 가능)</label>
+            <textarea id="adm-lead" rows="5"></textarea>
+            <span class="adm-hint">※ &lt;strong&gt;굵게&lt;/strong&gt;, &lt;br&gt; 줄바꿈 사용 가능</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 신뢰 지표 -->
+      <div class="adm-section" id="adm-sec-creds">
+        <div class="adm-section-title">신뢰 지표</div>
+        <div class="adm-section-sub">하단 수치 스트립 4개 항목을 수정합니다.</div>
+        <div id="adm-creds-list"></div>
+      </div>
+
+      <!-- 서비스 카드 -->
+      <div class="adm-section" id="adm-sec-services">
+        <div class="adm-section-title">서비스 카드</div>
+        <div class="adm-section-sub">4개 서비스 카드의 제목과 설명을 수정합니다.</div>
+        <div id="adm-services-list"></div>
+      </div>
+
+      <!-- 업종 목록 -->
+      <div class="adm-section" id="adm-sec-industry">
+        <div class="adm-section-title">업종 목록</div>
+        <div class="adm-section-sub">구독 신청 폼의 업종 선택 항목을 관리합니다. 드래그로 순서 변경, ✕로 삭제합니다.</div>
+        <ul class="adm-industry-list" id="adm-industry-list"></ul>
+        <button class="adm-add-btn" id="adm-add-industry">＋ 업종 추가</button>
+      </div>
+
+      <!-- 연락처 -->
+      <div class="adm-section" id="adm-sec-contact">
+        <div class="adm-section-title">연락처</div>
+        <div class="adm-section-sub">Contact 섹션의 문구와 이메일 주소를 수정합니다.</div>
+        <div class="adm-grid adm-grid-1" style="gap:16px">
+          <div class="adm-field"><label>헤드라인 (\n으로 줄바꿈)</label><input type="text" id="adm-contact-h2"></div>
+          <div class="adm-field"><label>이메일 주소</label><input type="email" id="adm-contact-email"></div>
+          <div class="adm-field"><label>하단 안내 문구</label><input type="text" id="adm-contact-note"></div>
+        </div>
+      </div>
+
+      <!-- 설정 -->
+      <div class="adm-section" id="adm-sec-setting">
+        <div class="adm-section-title">설정</div>
+        <div class="adm-section-sub">관리자 비밀번호를 변경합니다. 변경 후 반드시 저장 버튼을 눌러주세요.</div>
+        <div class="adm-grid adm-grid-1" style="gap:14px;max-width:340px">
+          <div class="adm-field"><label>현재 비밀번호</label><input type="password" id="adm-pw-cur" autocomplete="off"></div>
+          <div class="adm-field"><label>새 비밀번호</label><input type="password" id="adm-pw-new" autocomplete="off"></div>
+          <div class="adm-field"><label>새 비밀번호 확인</label><input type="password" id="adm-pw-new2" autocomplete="off"></div>
+          <button class="adm-btn-save" id="adm-pw-change-btn" style="width:auto">비밀번호 변경</button>
+          <div id="adm-pw-msg" style="font-size:12.5px;min-height:18px"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ SCRIPTS ============ -->
+
+<!-- 1. 설정 + 관리자 -->
 <script>
-  // ══════════════════════════════════════════════════════
-  //  안전보건 전광판 뉴스 티커
-  //  · rss2json 무료 API로 실제 RSS 피드 수집
-  //  · 실패 시 내장 풀(pool)로 즉시 대체
-  // ══════════════════════════════════════════════════════
-  const TK = {
-    inner: document.getElementById('tk-inner'),
-    timeEl: document.getElementById('tk-time'),
-    refreshBtn: document.getElementById('tk-refresh-btn'),
+(function () {
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/여기에_웹앱_URL_입력/exec';
 
-    // ── 내장 뉴스 풀 (오늘 날짜 기반으로 표시) ──────────
-    pool: [
-      {cat:'노동부', link:'https://www.moel.go.kr/news/enews/report/enewsView.do', cls:'bd-moel', text:'고용노동부, 건설업 추락재해 예방 현장점검 강화 실시'},
-      {cat:'노동부', link:'https://www.moel.go.kr/news/enews/report/enewsView.do', cls:'bd-moel', text:'중대재해처벌법 시행 3년 — 사망사고 감소 추이 분석 발표'},
-      {cat:'노동부', link:'https://www.moel.go.kr/news/enews/report/enewsView.do', cls:'bd-moel', text:'2026년 산업안전보건 감독 계획 공개 — 제조·건설 중점'},
-      {cat:'노동부', link:'https://www.moel.go.kr/news/enews/report/enewsView.do', cls:'bd-moel', text:'고용부, 화학물질 노출 기준 개정안 입법예고'},
-      {cat:'노동부', link:'https://www.moel.go.kr/news/enews/report/enewsView.do', cls:'bd-moel', text:'근로감독관 직무집행규정 개정 — 안전 분야 권한 강화'},
-      {cat:'KOSHA', link:'https://www.kosha.or.kr/kosha/data/notice.do', cls:'bd-kosha', text:'안전보건공단, ISO 45001 인증 지원 기업 모집 공고'},
-      {cat:'KOSHA', link:'https://www.kosha.or.kr/kosha/data/notice.do', cls:'bd-kosha', text:'KOSHA, 2026년 상반기 안전보건 교육 일정 공지'},
-      {cat:'KOSHA', link:'https://www.kosha.or.kr/kosha/data/notice.do', cls:'bd-kosha', text:'근골격계 질환 예방 프로그램 — 제조업 사업장 신청 접수'},
-      {cat:'KOSHA', link:'https://www.kosha.or.kr/kosha/data/notice.do', cls:'bd-kosha', text:'안전보건공단, 화학물질 GHS MSDS 데이터베이스 업데이트'},
-      {cat:'KOSHA', link:'https://www.kosha.or.kr/kosha/data/notice.do', cls:'bd-kosha', text:'KOSHA 가이드 — 밀폐공간 작업 안전수칙 개정판 배포'},
-      {cat:'KOSHA', link:'https://www.kosha.or.kr/kosha/data/notice.do', cls:'bd-kosha', text:'위험성평가 우수사례 공모전 결과 발표 — 참여기업 인센티브 제공'},
-      {cat:'사고', link:'http://www.anjunj.com',  cls:'bd-news',  text:'경기 시흥 물류센터 지게차 충돌 1명 골절 — 안전통로 미설치'},
-      {cat:'사고', link:'http://www.anjunj.com',  cls:'bd-news',  text:'충남 화학공장 가스 누출 감지 — 인근 대피 후 신속 복구'},
-      {cat:'사고', link:'http://www.anjunj.com',  cls:'bd-news',  text:'부산 조선소 용접 작업 중 화재 발생 — 인명피해 없이 진화'},
-      {cat:'사고', link:'http://www.anjunj.com',  cls:'bd-news',  text:'건설현장 비계 붕괴 예방을 위한 긴급 안전점검 실시 예정'},
-      {cat:'사고', link:'http://www.anjunj.com',  cls:'bd-news',  text:'인천 냉동창고 암모니아 소량 누출 — 마스크 착용 후 복구 완료'},
-      {cat:'법령', link:'https://www.law.go.kr',  cls:'bd-rule',  text:'산업안전보건법 시행규칙 개정 — 특수형태근로종사자 안전조치 확대'},
-      {cat:'법령', link:'https://www.law.go.kr',  cls:'bd-rule',  text:'위험물안전관리법 개정안 국회 통과 — 2026.7 시행 예정'},
-      {cat:'법령', link:'https://www.law.go.kr',  cls:'bd-rule',  text:'도급인 안전보건 조치 의무 범위 확대 — 하청업체 보호 강화'},
-      {cat:'법령', link:'https://www.law.go.kr',  cls:'bd-rule',  text:'안전보건관리체계 구축 의무 — 50인 미만 사업장 유예기간 종료'},
-      {cat:'법령', link:'https://www.law.go.kr',  cls:'bd-rule',  text:'고압가스 안전관리법 시행령 일부개정령안 입법예고 완료'},
-      {cat:'환경부', link:'https://www.me.go.kr/home/web/main.do', cls:'bd-env',  text:'환경부, 화학물질 배출·이동량 정보 공개 확대 — 사업장 보고 의무 강화'},
-      {cat:'환경부', link:'https://www.me.go.kr/home/web/main.do', cls:'bd-env',  text:'2026년 화학물질관리법 개정 — 유해화학물질 취급시설 검사 주기 단축'},
-      {cat:'환경부', link:'https://www.me.go.kr/home/web/main.do', cls:'bd-env',  text:'환경부, 온실가스 배출권거래제 3차 계획기간 할당계획 발표'},
-      {cat:'환경부', link:'https://www.me.go.kr/home/web/main.do', cls:'bd-env',  text:'화학물질안전원, 화학사고 대응 전문인력 양성 교육 신청 접수'},
-      {cat:'환경부', link:'https://www.me.go.kr/home/web/main.do', cls:'bd-env',  text:'환경부, 사업장 대기오염물질 총량관리제 적용 범위 확대 예고'},
-      {cat:'환경부', link:'https://www.me.go.kr/home/web/main.do', cls:'bd-env',  text:'유해화학물질 영업허가 갱신 의무화 — 2026년 하반기 시행'},
+  const DEFAULTS = {
+    password: 'ESH!2026',
+    badge: 'COMING SOON · 2026',
+    h1_1: '현장에서 검증된',
+    h1_2: '안전보건환경 디지털 설계',
+    lead: 'ESH-MASTER는 <strong>제조·통신업 현장</strong>의 안전보건을 수행해온 산업안전기획·안전보건전산화 전문가가 직접 설계합니다. <strong>산안법·중처법</strong> 의무 이행과 현장 언어를 결합한<br>4가지 서비스를 준비하고 있습니다.',
+    creds: [
+      { n: '15<sub>년+</sub>', l: '제조·통신업 안전관리' },
+      { n: '산안법', l: '법정 의무 완전 준수' },
+      { n: '중처법', l: '경영책임자 이행 증거' },
+      { n: '다수 사업장', l: '통합 안전보건 체계' },
     ],
-
-    // ── RSS 피드 목록 (rss2json 무료 프록시 사용) ──────────
-    feeds: [
-      {
-        url: 'https://api.rss2json.com/v1/api.json?rss_url=' +
-             encodeURIComponent('https://www.moel.go.kr/news/enews/report/rss.do'),
-        cat: '노동부', cls: 'bd-moel'
-      },
-      {
-        url: 'https://api.rss2json.com/v1/api.json?rss_url=' +
-             encodeURIComponent('https://www.kosha.or.kr/kosha/data/rssCenter.do?gubun=A'),
-        cat: 'KOSHA', cls: 'bd-kosha'
-      },
-      {
-        url: 'https://api.rss2json.com/v1/api.json?rss_url=' +
-             encodeURIComponent('http://www.anjunj.com/rss/allArticle.xml'),
-        cat: '안전저널', cls: 'bd-news'
-      },
-      {
-        url: 'https://api.rss2json.com/v1/api.json?rss_url=' +
-             encodeURIComponent('https://www.me.go.kr/home/web/rss/rss.do?menuId=10257'),
-        cat: '환경부', cls: 'bd-env'
-      },
+    services: [
+      { title: 'Safety Do It',       desc: '계층별 누구나 쉽게 따라하고\n안전을 즐겁게 만드는 통합 솔루션' },
+      { title: 'JSA 위험성평가',      desc: '업종별 작업표준화를 통해\nAI를 활용한 JSA 위험성평가' },
+      { title: 'AI 안전보건 뉴스레터', desc: '업종별 특성을 반영한\nAI 안전보건 주간 큐레이션' },
+      { title: '안전보건정보',         desc: '업종별 특성을 반영한\n법령·사례·서식 자료실' },
     ],
-
-    items: [],   // 최종 렌더링할 아이템
-    loaded: false,
-
-    // ── 시간 표시 ─────────────────────────────────────────
-    updateTime() {
-      const now = new Date();
-      const hh = String(now.getHours()).padStart(2,'0');
-      const mm = String(now.getMinutes()).padStart(2,'0');
-      this.timeEl.textContent = `${hh}:${mm} 기준`;
-    },
-
-    // ── 아이템 → HTML ────────────────────────────────────
-    buildItem(cat, cls, text, link) {
-      const inner = link
-        ? `<a href="${link}" target="_blank" rel="noopener">${text}</a>`
-        : text;
-      return `<span class="tk-item">
-        <span class="tk-badge ${cls}">${cat}</span>${inner}
-      </span><span class="tk-dot"></span>`;
-    },
-
-    // ── 티커 렌더링 ──────────────────────────────────────
-    render(items) {
-      if (!items.length) return;
-      // 스크롤 속도: 아이템 수 × 5초, 최소30 최대120
-      const dur = Math.min(240, Math.max(90, items.length * 10));
-      let html = items.map(i => this.buildItem(i.cat, i.cls, i.text, i.link)).join('');
-      // 끊김 없이 무한 루프: 두 번 반복
-      this.inner.innerHTML = html + html;
-      this.inner.style.setProperty('--tk-dur', dur + 's');
-      // 애니메이션 재시작
-      this.inner.classList.remove('running');
-      void this.inner.offsetWidth; // reflow
-      this.inner.classList.add('running');
-      this.updateTime();
-      this.loaded = true;
-    },
-
-    // ── 내장 풀로 즉시 표시 ──────────────────────────────
-    showPool() {
-      // 풀을 랜덤 셔플
-      const shuffled = [...this.pool].sort(() => Math.random() - 0.5);
-      this.items = shuffled;
-      this.render(shuffled);
-    },
-
-    // ── RSS 피드 패치 ────────────────────────────────────
-    async fetchFeed(feed) {
-      try {
-        const res = await fetch(feed.url, {signal: AbortSignal.timeout(5000)});
-        if (!res.ok) return [];
-        const data = await res.json();
-        if (data.status !== 'ok' || !Array.isArray(data.items)) return [];
-        return data.items.slice(0, 5).map(item => ({
-          cat: feed.cat,
-          cls: feed.cls,
-          text: (item.title || '').replace(/<[^>]+>/g, '').trim().slice(0, 60),
-          link: item.link || null,
-        })).filter(i => i.text.length > 4);
-      } catch {
-        return [];
-      }
-    },
-
-    // ── 모든 피드 병렬 패치 후 풀과 합치기 ───────────────
-    async fetchAll() {
-      const results = await Promise.allSettled(this.feeds.map(f => this.fetchFeed(f)));
-      const fetched = results
-        .filter(r => r.status === 'fulfilled')
-        .flatMap(r => r.value);
-
-      if (fetched.length > 0) {
-        // RSS 실기사 + 내장 풀 혼합 (RSS 우선, 풀 후반)
-        const poolShuffled = [...this.pool].sort(() => Math.random() - 0.5).slice(0, 10);
-        this.items = [...fetched, ...poolShuffled];
-        this.render(this.items);
-      }
-      // 실패해도 이미 showPool()이 표시 중이므로 무시
-    },
-
-    // ── 새로고침 버튼 ────────────────────────────────────
-    refresh() {
-      this.inner.innerHTML = '<div class="tk-load"><div class="tk-spin"></div>새로고침 중...</div>';
-      this.inner.classList.remove('running');
-      this.showPool();
-      this.fetchAll();
-    },
-
-    // ── 초기화 ──────────────────────────────────────────
-    init() {
-      this.showPool();         // 즉시 내장 풀 표시
-      this.fetchAll();         // 백그라운드 RSS 패치
-      setInterval(() => this.fetchAll(), 10 * 60 * 1000); // 10분마다 갱신
-      setInterval(() => this.updateTime(), 60 * 1000);
-      this.refreshBtn.addEventListener('click', () => this.refresh());
-    }
+    contact_h2:    '서비스 출시 · 파트너십 · 문의는\n아래 이메일로 연락 주세요.',
+    contact_email: 'esh-master@gmail.com',
+    contact_note:  '문의 전 간단한 소속·용건을 메일에 적어주시면 빠르게 회신드립니다.',
+    industries: ['식품·음료 제조업','일반 제조업','화학·석유·고무업','건설업','물류·운수업','서비스업','통신·IT업','기타'],
   };
 
-  TK.init();
+  let CFG = JSON.parse(JSON.stringify(DEFAULTS));
+
+  /* ── 설정 로드 ───────────────────────────────────────── */
+  async function loadConfig() {
+    try {
+      const res  = await fetch(APPS_SCRIPT_URL + '?action=getConfig', { signal: AbortSignal.timeout(5000) });
+      const data = await res.json();
+      if (data.success && data.config) {
+        CFG = Object.assign({}, DEFAULTS, data.config);
+        if (data.config.creds)      CFG.creds      = data.config.creds;
+        if (data.config.services)   CFG.services   = data.config.services;
+        if (data.config.industries) CFG.industries = data.config.industries;
+      }
+    } catch (e) { /* 기본값 사용 */ }
+    applyConfig();
+  }
+
+  /* ── DOM 적용 ────────────────────────────────────────── */
+  function applyConfig() {
+    set('cfg-badge', CFG.badge);
+    set('cfg-h1-1',  CFG.h1_1);
+    set('cfg-h1-2',  CFG.h1_2);
+    setH('cfg-lead', CFG.lead);
+
+    CFG.creds.forEach((c, i) => {
+      const el = document.querySelector('[data-cred="' + i + '"]');
+      if (!el) return;
+      el.querySelector('.cred-n').innerHTML   = c.n;
+      el.querySelector('.cred-l').textContent = c.l;
+    });
+
+    CFG.services.forEach((s, i) => {
+      const t = document.querySelector('[data-svc-title="' + i + '"]');
+      const d = document.querySelector('[data-svc-desc="'  + i + '"]');
+      if (t) t.textContent = s.title;
+      if (d) d.innerHTML   = s.desc.replace(/\n/g, '<br>');
+    });
+
+    const h2El   = document.getElementById('cfg-contact-h2');
+    const emEl   = document.getElementById('cfg-contact-email');
+    const lnEl   = document.getElementById('cfg-contact-link');
+    const ntEl   = document.getElementById('cfg-contact-note');
+    if (h2El) h2El.innerHTML     = CFG.contact_h2.replace(/\n/g, '<br>');
+    if (emEl) emEl.textContent   = CFG.contact_email;
+    if (lnEl) lnEl.href          = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + CFG.contact_email + '&su=ESH-MASTER%20%EB%AC%B8%EC%9D%98';
+    if (ntEl) ntEl.textContent   = CFG.contact_note;
+
+    rebuildSelect();
+  }
+
+  function rebuildSelect() {
+    const sel = document.getElementById('sub-industry');
+    if (!sel) return;
+    sel.innerHTML = '<option value="">-- 선택해주세요 --</option>';
+    CFG.industries.forEach(ind => {
+      const opt = document.createElement('option');
+      opt.value = opt.textContent = ind;
+      sel.appendChild(opt);
+    });
+  }
+
+  function set(id, v)  { const e = document.getElementById(id); if (e) e.textContent = v; }
+  function setH(id, v) { const e = document.getElementById(id); if (e) e.innerHTML   = v; }
+
+  /* ── 관리자 패널 진입 (?_admin) ──────────────────────── */
+  const admOverlay = document.getElementById('adm-overlay');
+  const admLogin   = document.getElementById('adm-login');
+
+  if (new URLSearchParams(location.search).has('_admin')) {
+    admOverlay.classList.add('open');
+  }
+
+  /* 로그인 */
+  function doLogin() {
+    const pw = document.getElementById('adm-pw-input').value;
+    if (pw === CFG.password) {
+      admLogin.style.display = 'none';
+      fillAdminForm();
+    } else {
+      document.getElementById('adm-login-err').textContent = '비밀번호가 올바르지 않습니다.';
+      document.getElementById('adm-pw-input').value = '';
+      document.getElementById('adm-pw-input').focus();
+    }
+  }
+  document.getElementById('adm-pw-btn').addEventListener('click', doLogin);
+  document.getElementById('adm-pw-input').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+  /* 닫기 */
+  document.getElementById('adm-close-btn').addEventListener('click', () => {
+    admOverlay.classList.remove('open');
+    admLogin.style.display = 'flex';
+    history.replaceState({}, '', location.pathname);
+  });
+
+  /* 탭 */
+  document.querySelectorAll('.adm-nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.adm-nav-item').forEach(n => n.classList.remove('active'));
+      document.querySelectorAll('.adm-section').forEach(s => s.classList.remove('active'));
+      item.classList.add('active');
+      document.getElementById('adm-sec-' + item.dataset.section).classList.add('active');
+    });
+  });
+
+  /* ── 폼 채우기 ───────────────────────────────────────── */
+  function fillAdminForm() {
+    document.getElementById('adm-badge').value        = CFG.badge;
+    document.getElementById('adm-h1-1').value         = CFG.h1_1;
+    document.getElementById('adm-h1-2').value         = CFG.h1_2;
+    document.getElementById('adm-lead').value         = CFG.lead;
+    document.getElementById('adm-contact-h2').value   = CFG.contact_h2;
+    document.getElementById('adm-contact-email').value= CFG.contact_email;
+    document.getElementById('adm-contact-note').value = CFG.contact_note;
+
+    // 신뢰 지표
+    const credLabels = ['① 첫 번째 항목','② 두 번째 항목','③ 세 번째 항목','④ 네 번째 항목'];
+    const credsList  = document.getElementById('adm-creds-list');
+    credsList.innerHTML = '';
+    CFG.creds.forEach((c, i) => {
+      const card = document.createElement('div');
+      card.className = 'adm-card';
+      card.innerHTML = `<div class="adm-card-label">${credLabels[i]}</div>
+        <div class="adm-grid">
+          <div class="adm-field"><label>수치 (HTML 가능)</label><input type="text" data-cred-n="${i}" value="${esc(c.n)}"></div>
+          <div class="adm-field"><label>레이블</label><input type="text" data-cred-l="${i}" value="${esc(c.l)}"></div>
+        </div>`;
+      credsList.appendChild(card);
+    });
+
+    // 서비스 카드
+    const svcLabels = ['01 · Safety Do It','02 · JSA 위험성평가','03 · AI 뉴스레터','04 · 안전보건정보'];
+    const svcList   = document.getElementById('adm-services-list');
+    svcList.innerHTML = '';
+    CFG.services.forEach((s, i) => {
+      const card = document.createElement('div');
+      card.className = 'adm-card';
+      card.innerHTML = `<div class="adm-card-label">${svcLabels[i]}</div>
+        <div class="adm-grid adm-grid-1" style="gap:10px">
+          <div class="adm-field"><label>제목</label><input type="text" data-svc-t="${i}" value="${esc(s.title)}"></div>
+          <div class="adm-field"><label>설명 (\n으로 줄바꿈)</label><input type="text" data-svc-d="${i}" value="${esc(s.desc)}"></div>
+        </div>`;
+      svcList.appendChild(card);
+    });
+
+    renderIndustryList();
+  }
+
+  function esc(s) { return (s || '').replace(/"/g, '&quot;'); }
+
+  function renderIndustryList() {
+    const ul = document.getElementById('adm-industry-list');
+    ul.innerHTML = '';
+    CFG.industries.forEach((ind, i) => {
+      const li = document.createElement('li');
+      li.className = 'adm-industry-item';
+      li.innerHTML = `<span class="drag-handle">⠿</span>
+        <input type="text" value="${esc(ind)}" data-ind="${i}">
+        <button class="del-btn" data-del="${i}" title="삭제">✕</button>`;
+      ul.appendChild(li);
+    });
+    ul.querySelectorAll('.del-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        CFG.industries.splice(+btn.dataset.del, 1);
+        renderIndustryList();
+      });
+    });
+  }
+
+  document.getElementById('adm-add-industry').addEventListener('click', () => {
+    CFG.industries.push('새 업종');
+    renderIndustryList();
+    const inputs = document.querySelectorAll('#adm-industry-list input');
+    const last = inputs[inputs.length - 1];
+    if (last) { last.focus(); last.select(); }
+  });
+
+  /* ── 저장 ────────────────────────────────────────────── */
+  document.getElementById('adm-save-btn').addEventListener('click', async () => {
+    collectForm();
+    applyConfig();
+
+    const btn = document.getElementById('adm-save-btn');
+    btn.disabled = true; btn.textContent = '⏳ 저장 중...';
+
+    try {
+      const res  = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ action: 'saveConfig', config: CFG }),
+      });
+      const data = await res.json();
+      showSaveMsg(data.success ? '✓ 저장 완료' : '⚠ 저장 실패');
+    } catch { showSaveMsg('⚠ 연결 오류'); }
+    finally { btn.disabled = false; btn.textContent = '💾 저장'; }
+  });
+
+  function showSaveMsg(txt) {
+    const el = document.getElementById('adm-save-msg');
+    el.textContent = txt;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 3000);
+  }
+
+  function collectForm() {
+    const g = id => document.getElementById(id)?.value || '';
+    CFG.badge         = g('adm-badge')         || CFG.badge;
+    CFG.h1_1          = g('adm-h1-1')          || CFG.h1_1;
+    CFG.h1_2          = g('adm-h1-2')          || CFG.h1_2;
+    CFG.lead          = g('adm-lead')          || CFG.lead;
+    CFG.contact_h2    = g('adm-contact-h2')    || CFG.contact_h2;
+    CFG.contact_email = g('adm-contact-email') || CFG.contact_email;
+    CFG.contact_note  = g('adm-contact-note')  || CFG.contact_note;
+
+    document.querySelectorAll('[data-cred-n]').forEach(el => { CFG.creds[+el.dataset.credN].n = el.value; });
+    document.querySelectorAll('[data-cred-l]').forEach(el => { CFG.creds[+el.dataset.credL].l = el.value; });
+    document.querySelectorAll('[data-svc-t]').forEach(el => { CFG.services[+el.dataset.svcT].title = el.value; });
+    document.querySelectorAll('[data-svc-d]').forEach(el => { CFG.services[+el.dataset.svcD].desc  = el.value; });
+    CFG.industries = Array.from(document.querySelectorAll('#adm-industry-list input'))
+      .map(e => e.value.trim()).filter(Boolean);
+  }
+
+  /* ── 비밀번호 변경 ───────────────────────────────────── */
+  document.getElementById('adm-pw-change-btn').addEventListener('click', () => {
+    const cur  = document.getElementById('adm-pw-cur').value;
+    const nw   = document.getElementById('adm-pw-new').value;
+    const nw2  = document.getElementById('adm-pw-new2').value;
+    const msg  = document.getElementById('adm-pw-msg');
+    if (cur !== CFG.password) { msg.style.color='#FCA5A5'; msg.textContent='현재 비밀번호가 틀렸습니다.'; return; }
+    if (nw.length < 6)        { msg.style.color='#FCA5A5'; msg.textContent='새 비밀번호는 6자 이상이어야 합니다.'; return; }
+    if (nw !== nw2)           { msg.style.color='#FCA5A5'; msg.textContent='새 비밀번호가 일치하지 않습니다.'; return; }
+    CFG.password = nw;
+    msg.style.color='#4ADE80';
+    msg.textContent = '✓ 변경됐습니다. 저장 버튼을 눌러 적용하세요.';
+    ['adm-pw-cur','adm-pw-new','adm-pw-new2'].forEach(id => { document.getElementById(id).value=''; });
+  });
+
+  /* 초기 실행 */
+  loadConfig();
+})();
 </script>
 
+<!-- 2. 뉴스레터 모달 -->
 <script>
-(function() {
-  // 우클릭 차단
-  document.addEventListener('contextmenu', function(e){ e.preventDefault(); return false; });
-  // 텍스트 선택 방지
-  document.addEventListener('selectstart', function(e){ e.preventDefault(); return false; });
-  // 복사·잘라내기 차단
-  document.addEventListener('copy', function(e){ e.preventDefault(); });
-  document.addEventListener('cut',  function(e){ e.preventDefault(); });
-  // 키보드 단축키 차단
-  document.addEventListener('keydown', function(e) {
-    const k = e.key;
-    if (k === 'F12') { e.preventDefault(); return false; }
-    if ((e.ctrlKey||e.metaKey) && e.shiftKey && ['i','I','j','J','c','C','k','K'].includes(k)) { e.preventDefault(); return false; }
-    if ((e.ctrlKey||e.metaKey) && ['u','U','s','S','a','A','p','P'].includes(k)) { e.preventDefault(); return false; }
+(function () {
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/여기에_웹앱_URL_입력/exec';
+
+  const overlay = document.getElementById('nl-overlay');
+  const trigger = document.getElementById('nl-trigger');
+  const tabs    = document.querySelectorAll('.nl-tab');
+  const panels  = document.querySelectorAll('.nl-panel');
+
+  function openModal(tab) { overlay.classList.add('open'); document.body.style.overflow='hidden'; switchTab(tab); setTimeout(()=>{ const f=overlay.querySelector('.nl-panel.active input'); if(f)f.focus();},300); }
+  function closeModal()   { overlay.classList.remove('open'); document.body.style.overflow=''; }
+
+  trigger.addEventListener('click', () => openModal('subscribe'));
+  trigger.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openModal('subscribe'); } });
+  document.getElementById('nl-close').addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if(e.target===overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if(e.key==='Escape'&&overlay.classList.contains('open')) closeModal(); });
+
+  function switchTab(name) {
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab===name));
+    panels.forEach(p => p.classList.toggle('active', p.id==='panel-'+name));
+    document.querySelectorAll('.nl-result').forEach(r=>{ r.className='nl-result'; r.textContent=''; });
+  }
+  tabs.forEach(t => t.addEventListener('click', () => switchTab(t.dataset.tab)));
+
+  function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function showRes(id, type, msg) { const e=document.getElementById(id); e.className='nl-result '+type; e.textContent=msg; }
+
+  async function callApi(btn, payload, rid) {
+    btn.classList.add('loading'); btn.disabled=true;
+    try {
+      const r = await fetch(APPS_SCRIPT_URL, { method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(payload) });
+      const d = await r.json();
+      showRes(rid, d.success?'success':'error', d.message);
+    } catch { showRes(rid,'error','서버 연결에 실패했습니다. 잠시 후 다시 시도해 주세요.'); }
+    finally { btn.classList.remove('loading'); btn.disabled=false; }
+  }
+
+  document.getElementById('btn-subscribe').addEventListener('click', function() {
+    const name=document.getElementById('sub-name').value.trim();
+    const email=document.getElementById('sub-email').value.trim();
+    const affiliation=document.getElementById('sub-affiliation').value.trim();
+    const industry=document.getElementById('sub-industry').value;
+    if(!name)           return showRes('sub-result','error','이름을 입력해 주세요.');
+    if(!email)          return showRes('sub-result','error','이메일을 입력해 주세요.');
+    if(!isEmail(email)) return showRes('sub-result','error','이메일 형식이 올바르지 않습니다.');
+    callApi(this, {action:'subscribe',name,email,affiliation,industry}, 'sub-result');
+  });
+
+  document.getElementById('btn-unsubscribe').addEventListener('click', function() {
+    const name=document.getElementById('unsub-name').value.trim();
+    const email=document.getElementById('unsub-email').value.trim();
+    if(!name)           return showRes('unsub-result','error','이름을 입력해 주세요.');
+    if(!email)          return showRes('unsub-result','error','이메일을 입력해 주세요.');
+    if(!isEmail(email)) return showRes('unsub-result','error','이메일 형식이 올바르지 않습니다.');
+    if(!confirm(email+' 구독을 취소하시겠습니까?')) return;
+    callApi(this, {action:'unsubscribe',name,email}, 'unsub-result');
+  });
+})();
+</script>
+
+<!-- 3. 전광판 티커 -->
+<script>
+const TK={
+  inner:document.getElementById('tk-inner'),timeEl:document.getElementById('tk-time'),refreshBtn:document.getElementById('tk-refresh-btn'),
+  pool:[
+    {cat:'노동부',link:'https://www.moel.go.kr/news/enews/report/enewsView.do',cls:'bd-moel',text:'고용노동부, 건설업 추락재해 예방 현장점검 강화 실시'},
+    {cat:'노동부',link:'https://www.moel.go.kr/news/enews/report/enewsView.do',cls:'bd-moel',text:'중대재해처벌법 시행 3년 — 사망사고 감소 추이 분석 발표'},
+    {cat:'노동부',link:'https://www.moel.go.kr/news/enews/report/enewsView.do',cls:'bd-moel',text:'2026년 산업안전보건 감독 계획 공개 — 제조·건설 중점'},
+    {cat:'노동부',link:'https://www.moel.go.kr/news/enews/report/enewsView.do',cls:'bd-moel',text:'고용부, 화학물질 노출 기준 개정안 입법예고'},
+    {cat:'노동부',link:'https://www.moel.go.kr/news/enews/report/enewsView.do',cls:'bd-moel',text:'근로감독관 직무집행규정 개정 — 안전 분야 권한 강화'},
+    {cat:'KOSHA',link:'https://www.kosha.or.kr/kosha/data/notice.do',cls:'bd-kosha',text:'안전보건공단, ISO 45001 인증 지원 기업 모집 공고'},
+    {cat:'KOSHA',link:'https://www.kosha.or.kr/kosha/data/notice.do',cls:'bd-kosha',text:'KOSHA, 2026년 상반기 안전보건 교육 일정 공지'},
+    {cat:'KOSHA',link:'https://www.kosha.or.kr/kosha/data/notice.do',cls:'bd-kosha',text:'근골격계 질환 예방 프로그램 — 제조업 사업장 신청 접수'},
+    {cat:'KOSHA',link:'https://www.kosha.or.kr/kosha/data/notice.do',cls:'bd-kosha',text:'안전보건공단, 화학물질 GHS MSDS 데이터베이스 업데이트'},
+    {cat:'KOSHA',link:'https://www.kosha.or.kr/kosha/data/notice.do',cls:'bd-kosha',text:'KOSHA 가이드 — 밀폐공간 작업 안전수칙 개정판 배포'},
+    {cat:'KOSHA',link:'https://www.kosha.or.kr/kosha/data/notice.do',cls:'bd-kosha',text:'위험성평가 우수사례 공모전 결과 발표 — 참여기업 인센티브 제공'},
+    {cat:'사고',link:'http://www.anjunj.com',cls:'bd-news',text:'경기 시흥 물류센터 지게차 충돌 1명 골절 — 안전통로 미설치'},
+    {cat:'사고',link:'http://www.anjunj.com',cls:'bd-news',text:'충남 화학공장 가스 누출 감지 — 인근 대피 후 신속 복구'},
+    {cat:'사고',link:'http://www.anjunj.com',cls:'bd-news',text:'부산 조선소 용접 작업 중 화재 발생 — 인명피해 없이 진화'},
+    {cat:'사고',link:'http://www.anjunj.com',cls:'bd-news',text:'건설현장 비계 붕괴 예방을 위한 긴급 안전점검 실시 예정'},
+    {cat:'사고',link:'http://www.anjunj.com',cls:'bd-news',text:'인천 냉동창고 암모니아 소량 누출 — 마스크 착용 후 복구 완료'},
+    {cat:'법령',link:'https://www.law.go.kr',cls:'bd-rule',text:'산업안전보건법 시행규칙 개정 — 특수형태근로종사자 안전조치 확대'},
+    {cat:'법령',link:'https://www.law.go.kr',cls:'bd-rule',text:'위험물안전관리법 개정안 국회 통과 — 2026.7 시행 예정'},
+    {cat:'법령',link:'https://www.law.go.kr',cls:'bd-rule',text:'도급인 안전보건 조치 의무 범위 확대 — 하청업체 보호 강화'},
+    {cat:'법령',link:'https://www.law.go.kr',cls:'bd-rule',text:'안전보건관리체계 구축 의무 — 50인 미만 사업장 유예기간 종료'},
+    {cat:'법령',link:'https://www.law.go.kr',cls:'bd-rule',text:'고압가스 안전관리법 시행령 일부개정령안 입법예고 완료'},
+    {cat:'환경부',link:'https://www.me.go.kr/home/web/main.do',cls:'bd-env',text:'환경부, 화학물질 배출·이동량 정보 공개 확대 — 사업장 보고 의무 강화'},
+    {cat:'환경부',link:'https://www.me.go.kr/home/web/main.do',cls:'bd-env',text:'2026년 화학물질관리법 개정 — 유해화학물질 취급시설 검사 주기 단축'},
+    {cat:'환경부',link:'https://www.me.go.kr/home/web/main.do',cls:'bd-env',text:'환경부, 온실가스 배출권거래제 3차 계획기간 할당계획 발표'},
+    {cat:'환경부',link:'https://www.me.go.kr/home/web/main.do',cls:'bd-env',text:'화학물질안전원, 화학사고 대응 전문인력 양성 교육 신청 접수'},
+    {cat:'환경부',link:'https://www.me.go.kr/home/web/main.do',cls:'bd-env',text:'환경부, 사업장 대기오염물질 총량관리제 적용 범위 확대 예고'},
+    {cat:'환경부',link:'https://www.me.go.kr/home/web/main.do',cls:'bd-env',text:'유해화학물질 영업허가 갱신 의무화 — 2026년 하반기 시행'},
+  ],
+  feeds:[
+    {url:'https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent('https://www.moel.go.kr/news/enews/report/rss.do'),cat:'노동부',cls:'bd-moel'},
+    {url:'https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent('https://www.kosha.or.kr/kosha/data/rssCenter.do?gubun=A'),cat:'KOSHA',cls:'bd-kosha'},
+    {url:'https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent('http://www.anjunj.com/rss/allArticle.xml'),cat:'안전저널',cls:'bd-news'},
+    {url:'https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent('https://www.me.go.kr/home/web/rss/rss.do?menuId=10257'),cat:'환경부',cls:'bd-env'},
+  ],
+  updateTime(){const n=new Date();this.timeEl.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+' 기준'},
+  buildItem(cat,cls,text,link){const inner=link?`<a href="${link}" target="_blank" rel="noopener">${text}</a>`:text;return`<span class="tk-item"><span class="tk-badge ${cls}">${cat}</span>${inner}</span><span class="tk-dot"></span>`},
+  render(items){if(!items.length)return;const dur=Math.min(240,Math.max(90,items.length*10));this.inner.innerHTML=items.map(i=>this.buildItem(i.cat,i.cls,i.text,i.link)).join('')+items.map(i=>this.buildItem(i.cat,i.cls,i.text,i.link)).join('');this.inner.style.setProperty('--tk-dur',dur+'s');this.inner.classList.remove('running');void this.inner.offsetWidth;this.inner.classList.add('running');this.updateTime()},
+  showPool(){this.render([...this.pool].sort(()=>Math.random()-.5))},
+  async fetchFeed(f){try{const r=await fetch(f.url,{signal:AbortSignal.timeout(5000)});if(!r.ok)return[];const d=await r.json();if(d.status!=='ok'||!Array.isArray(d.items))return[];return d.items.slice(0,5).map(i=>({cat:f.cat,cls:f.cls,text:(i.title||'').replace(/<[^>]+>/g,'').trim().slice(0,60),link:i.link||null})).filter(i=>i.text.length>4)}catch{return[]}},
+  async fetchAll(){const r=await Promise.allSettled(this.feeds.map(f=>this.fetchFeed(f)));const fetched=r.filter(x=>x.status==='fulfilled').flatMap(x=>x.value);if(fetched.length>0)this.render([...fetched,...[...this.pool].sort(()=>Math.random()-.5).slice(0,10)])},
+  refresh(){this.inner.innerHTML='<div class="tk-load"><div class="tk-spin"></div>새로고침 중...</div>';this.inner.classList.remove('running');this.showPool();this.fetchAll()},
+  init(){this.showPool();this.fetchAll();setInterval(()=>this.fetchAll(),10*60*1000);setInterval(()=>this.updateTime(),60*1000);this.refreshBtn.addEventListener('click',()=>this.refresh())}
+};
+TK.init();
+</script>
+
+<!-- 4. 우클릭/키보드 보호 -->
+<script>
+(function(){
+  document.addEventListener('contextmenu',e=>e.preventDefault());
+  document.addEventListener('selectstart',e=>e.preventDefault());
+  document.addEventListener('copy',e=>e.preventDefault());
+  document.addEventListener('cut',e=>e.preventDefault());
+  document.addEventListener('keydown',e=>{
+    if(e.key==='F12'){e.preventDefault();return}
+    if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','I','j','J','c','C','k','K'].includes(e.key)){e.preventDefault();return}
+    if((e.ctrlKey||e.metaKey)&&['u','U','s','S','a','A','p','P'].includes(e.key))e.preventDefault()
   });
 })();
 </script>
@@ -1015,11 +932,9 @@
 <!-- 네이버 애널리틱스 -->
 <script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
 <script type="text/javascript">
-if(!wcs_add) var wcs_add = {};
-wcs_add["wa"] = "13a68914808cdb";
-if(window.wcs) {
-  wcs_do();
-}
+if(!wcs_add) var wcs_add={};
+wcs_add["wa"]="13a68914808cdb";
+if(window.wcs)wcs_do();
 </script>
 </body>
 </html>
