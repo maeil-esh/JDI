@@ -88,6 +88,9 @@
     .svc-status.beta{background:var(--mint-100);color:#0E7A6E}
     .svc-status.beta .dot{animation:beta-pulse 1.5s ease-in-out infinite}
     @keyframes beta-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+    .svc-action-btn{flex:1;padding:8px 0;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;transition:all .2s;letter-spacing:-.01em}
+    .svc-btn-preview{background:var(--gray-100);color:var(--gray-700)}.svc-btn-preview:hover{background:var(--gray-200)}
+    .svc-btn-sub{background:var(--mint-500);color:#fff}.svc-btn-sub:hover{background:#0E9488}
     .svc-item.beta-card{background:linear-gradient(160deg,#F0FDF8 0%,var(--white) 60%);border-color:var(--mint-100);position:relative;cursor:pointer}
     .svc-item.beta-card::before{content:'NEW';position:absolute;top:14px;right:14px;padding:3px 8px;background:var(--mint-500);color:var(--white);font-family:'Inter',sans-serif;font-size:9px;font-weight:800;letter-spacing:.08em;border-radius:4px;box-shadow:0 2px 8px rgba(20,184,166,.35)}
     .svc-item.beta-card:hover{border-color:var(--mint-500);box-shadow:0 12px 32px rgba(20,184,166,.15)}
@@ -186,6 +189,17 @@
     .nl-result.success{display:block;background:var(--mint-100);color:#0E7A6E}
     .nl-result.error{display:block;background:#fee2e2;color:#b91c1c}
     .nl-small{font-size:11.5px;color:var(--gray-400);text-align:center;margin-top:14px;line-height:1.6}
+    .nl-agree{display:flex;align-items:flex-start;gap:10px;padding:14px;background:var(--gray-50);border:1.5px solid var(--gray-200);border-radius:10px;margin-bottom:4px;margin-top:4px;cursor:pointer;transition:border-color .2s}
+    .nl-agree:has(input:checked){border-color:var(--blue-600);background:var(--blue-50)}
+    .nl-agree input[type=checkbox]{width:17px;height:17px;flex-shrink:0;margin-top:1px;accent-color:var(--blue-600);cursor:pointer}
+    .nl-agree-text{font-size:12.5px;color:var(--gray-600);line-height:1.6}
+    .nl-agree-text strong{color:var(--navy-900);font-weight:700}
+    .nl-agree-detail{font-size:11.5px;color:var(--gray-400);margin-top:4px;line-height:1.5}
+    .nl-agree-toggle{font-size:11px;color:var(--blue-600);font-weight:600;cursor:pointer;text-decoration:underline;white-space:nowrap;margin-top:4px;display:inline-block}
+    .nl-agree-table{display:none;width:100%;border-collapse:collapse;margin-top:10px;font-size:11.5px}
+    .nl-agree-table.open{display:table}
+    .nl-agree-table th,.nl-agree-table td{border:1px solid var(--gray-200);padding:7px 10px;text-align:left;color:var(--gray-600);line-height:1.5}
+    .nl-agree-table th{background:var(--gray-100);font-weight:700;color:var(--gray-700);white-space:nowrap}
     @keyframes nl-spin{to{transform:rotate(360deg)}}
     @media(max-width:640px){.nl-header{padding:24px 24px 0}.nl-body{padding:24px 24px 28px}.nl-card{border-radius:20px}}
 
@@ -329,10 +343,14 @@
           <div class="svc-body"><div class="eng en">02 · ASSESSMENT</div><h3 data-svc-title="1">JSA 위험성평가</h3><p data-svc-desc="1">업종별 작업표준화를 통해<br>AI를 활용한 JSA 위험성평가</p></div>
           <div class="svc-status"><span class="dot"></span>준비중</div>
         </div>
-        <div class="svc-item svc-3 beta-card" id="nl-trigger" role="button" tabindex="0" aria-label="AI 안전보건 뉴스레터 구독 신청">
+        <div class="svc-item svc-3 beta-card" style="cursor:default">
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
           <div class="svc-body"><div class="eng en">03 · WEEKLY</div><h3 data-svc-title="2">AI 안전보건 뉴스레터</h3><p data-svc-desc="2">업종별 특성을 반영한<br>AI 안전보건 주간 큐레이션</p></div>
           <div class="svc-status beta"><span class="dot"></span>BETA 오픈</div>
+          <div style="display:flex;gap:8px;margin-top:auto">
+            <button class="svc-action-btn svc-btn-preview" id="nl-preview-btn">예시 보기</button>
+            <button class="svc-action-btn svc-btn-sub" id="nl-trigger">구독 신청</button>
+          </div>
         </div>
         <div class="svc-item svc-4">
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
@@ -364,7 +382,7 @@
 <footer>
   <div class="container foot-inner">
     <div class="foot-brand">
-      <span class="foot-brand-mark">EM</span>
+      <span class="foot-brand-mark" id="adm-dot">EM</span>
       <span class="foot-brand-text">
         <span class="t1">ESH-MASTER</span>
         <span class="t2 en">ENVIRONMENT · SAFETY · HEALTH</span>
@@ -373,6 +391,44 @@
     <div class="foot-copy">© 2026 <strong>ESH-MASTER</strong> 산업안전기획 · 안전보건전산화</div>
   </div>
 </footer>
+
+<!-- ============ 뉴스레터 미리보기 모달 ============ -->
+<div class="nl-overlay" id="preview-overlay" role="dialog" aria-modal="true">
+  <div class="nl-card" style="max-width:600px;max-height:88vh;overflow-y:auto">
+    <div class="nl-header" style="padding-bottom:16px">
+      <button class="nl-close" id="preview-close" aria-label="닫기">✕</button>
+      <div class="nl-brand">
+        <div class="nl-brand-icon" style="background:linear-gradient(135deg,#1E6BD8,#2E7CE4)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+        </div>
+        <div class="nl-brand-text">
+          <div class="t1">뉴스레터 예시</div>
+          <div class="t2 en">SAMPLE · AI GENERATED</div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:24px 32px 32px">
+
+      <!-- 헤더 -->
+      <div style="background:#0A2540;border-radius:12px;padding:24px 28px;margin-bottom:14px">
+        <div style="display:inline-block;background:#C8F03C;color:#0A2540;font-size:10px;font-weight:900;padding:3px 10px;border-radius:20px;letter-spacing:1.5px;font-family:monospace;margin-bottom:10px">WEEKLY INSIGHT</div>
+        <div style="color:#fff;font-size:20px;font-weight:900;line-height:1.3">ESH-MASTER<br><span style="color:#C8F03C">AI 안전보건 인사이트</span></div>
+        <div style="color:#94A3B8;font-size:12px;margin-top:8px" id="pv-date">불러오는 중...</div>
+      </div>
+
+      <!-- 동적 콘텐츠 영역 -->
+      <div id="pv-loading" style="text-align:center;padding:40px 0;color:#94A3B8;font-size:13px">
+        <div style="width:28px;height:28px;border-radius:50%;border:3px solid rgba(30,107,216,.2);border-top-color:#1E6BD8;animation:nl-spin .8s linear infinite;margin:0 auto 14px"></div>
+        최신 안전보건 뉴스를 불러오는 중...
+      </div>
+      <div id="pv-content" style="display:none"></div>
+
+      <!-- CTA -->
+      <button id="preview-subscribe-btn" style="width:100%;padding:14px;background:linear-gradient(135deg,#0A2540,#1A3A66);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif">매주 월요일 무료로 받아보기 →</button>
+      <p style="font-size:11.5px;color:#94A3B8;text-align:center;margin-top:10px">AI가 매주 새롭게 생성하는 실제 발송본입니다</p>
+    </div>
+  </div>
+</div>
 
 <!-- ============ 뉴스레터 모달 ============ -->
 <div class="nl-overlay" id="nl-overlay" role="dialog" aria-modal="true">
@@ -406,9 +462,24 @@
             </select>
           </div>
         </div>
+        <!-- 개인정보 수집 동의 -->
+        <label class="nl-agree" for="sub-agree">
+          <input type="checkbox" id="sub-agree">
+          <div class="nl-agree-text">
+            <strong>개인정보 수집 및 이용에 동의합니다.</strong>&nbsp;<span style="color:var(--blue-600)">*</span>
+            <div class="nl-agree-detail">수집된 정보는 뉴스레터 발송 목적으로만 사용되며, 구독 취소 시 즉시 처리됩니다.</div>
+            <span class="nl-agree-toggle" id="agree-toggle-btn">수집 항목 상세보기 ▼</span>
+          </div>
+        </label>
+        <table class="nl-agree-table" id="agree-table">
+          <tr><th>수집 항목</th><td>이름, 이메일 주소, 소속, 업종</td></tr>
+          <tr><th>수집 목적</th><td>AI 안전보건 뉴스레터 발송</td></tr>
+          <tr><th>보유 기간</th><td>구독 취소 시까지 (취소 후 즉시 파기)</td></tr>
+          <tr><th>제3자 제공</th><td>없음</td></tr>
+        </table>
         <button class="nl-btn nl-btn-sub" id="btn-subscribe"><div class="spinner"></div><span class="btn-text">구독 신청하기</span></button>
         <div class="nl-result" id="sub-result"></div>
-        <p class="nl-small">수집된 정보는 뉴스레터 발송 목적으로만 사용됩니다.</p>
+        <p class="nl-small">동의를 거부할 권리가 있으며, 거부 시 뉴스레터 수신이 제한됩니다.</p>
       </div>
       <div class="nl-panel" id="panel-unsubscribe">
         <p class="nl-desc">구독 신청 시 입력하신 <strong>이름과 이메일</strong>을 입력하시면 즉시 수신이 중단됩니다.</p>
@@ -537,7 +608,6 @@
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbykCxcVBZki0-wrNpd5a63D_wttCJUs14_-OyvrEGcozwueS3BMnlRxNALz_KijeyTO/exec';
 
   const DEFAULTS = {
-    password: 'ESH!2026',
     badge: 'COMING SOON · 2026',
     h1_1: '현장에서 검증된',
     h1_2: '안전보건환경 디지털 설계',
@@ -628,29 +698,114 @@
   const admOverlay = document.getElementById('adm-overlay');
   const admLogin   = document.getElementById('adm-login');
 
-  if (new URLSearchParams(location.search).has('_admin')) {
-    admOverlay.classList.add('open');
+  // ── 푸터 EM 뱃지 7회 클릭으로 관리자 패널 열기 ──────────
+  (function() {
+    let clickCount = 0;
+    let clickTimer = null;
+    document.getElementById('adm-dot').addEventListener('click', () => {
+      clickCount++;
+      clearTimeout(clickTimer);
+      if (clickCount >= 10) {
+        clickCount = 0;
+        admOverlay.classList.add('open');
+        checkLockOnOpen();
+      } else {
+        // 2초 내에 7번 누르지 않으면 초기화
+        clickTimer = setTimeout(() => { clickCount = 0; }, 2000);
+      }
+    });
+  })();
+
+  // ── 잠금 유틸 ────────────────────────────────────────
+  const LOCK_KEY    = '_adm_lock';
+  const ATTEMPT_KEY = '_adm_try';
+  const MAX_TRY     = 2;
+  const LOCK_MS     = 30 * 60 * 1000;
+
+  function getLockRemain() {
+    const t = parseInt(localStorage.getItem(LOCK_KEY) || '0');
+    return Math.max(0, t - Date.now());
+  }
+  function setLocked()    { localStorage.setItem(LOCK_KEY, Date.now() + LOCK_MS); localStorage.setItem(ATTEMPT_KEY, '0'); }
+  function getAttempts()  { return parseInt(localStorage.getItem(ATTEMPT_KEY) || '0'); }
+  function addAttempt()   { const n = getAttempts() + 1; localStorage.setItem(ATTEMPT_KEY, String(n)); return n; }
+  function resetAttempts(){ localStorage.removeItem(LOCK_KEY); localStorage.removeItem(ATTEMPT_KEY); }
+  function fmtRemain(ms)  { return Math.ceil(ms / 60000) + '분 후 다시 시도하세요.'; }
+
+  function checkLockOnOpen() {
+    const errEl = document.getElementById('adm-login-err');
+    const btn   = document.getElementById('adm-pw-btn');
+    const input = document.getElementById('adm-pw-input');
+    const remain = getLockRemain();
+    if (remain > 0) {
+      errEl.textContent = '⛔ 잠금 중 — ' + fmtRemain(remain);
+      btn.disabled = input.disabled = true;
+      const timer = setInterval(() => {
+        const r = getLockRemain();
+        if (r <= 0) { clearInterval(timer); errEl.textContent = ''; btn.disabled = input.disabled = false; }
+        else errEl.textContent = '⛔ 잠금 중 — ' + fmtRemain(r);
+      }, 15000);
+    } else {
+      errEl.textContent = '';
+      btn.disabled = input.disabled = false;
+    }
   }
 
-  /* 로그인 */
-  function doLogin() {
-    const pw = document.getElementById('adm-pw-input').value;
-    if (pw === CFG.password) {
-      admLogin.style.display = 'none';
-      fillAdminForm();
-    } else {
-      document.getElementById('adm-login-err').textContent = '비밀번호가 올바르지 않습니다.';
-      document.getElementById('adm-pw-input').value = '';
-      document.getElementById('adm-pw-input').focus();
+  // ── 로그인 (GAS 검증) ────────────────────────────────
+  async function doLogin() {
+    if (getLockRemain() > 0) return;
+    const pw    = document.getElementById('adm-pw-input').value;
+    const errEl = document.getElementById('adm-login-err');
+    const btn   = document.getElementById('adm-pw-btn');
+    if (!pw) return;
+
+    btn.disabled = true;
+    btn.textContent = '확인 중...';
+    errEl.textContent = '';
+
+    try {
+      const res  = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ action: 'adminLogin', pw }),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        resetAttempts();
+        admLogin.style.display = 'none';
+        fillAdminForm();
+      } else {
+        const tries = addAttempt();
+        const left  = MAX_TRY - tries;
+        document.getElementById('adm-pw-input').value = '';
+        if (tries >= MAX_TRY) {
+          setLocked();
+          errEl.textContent = '⛔ ' + MAX_TRY + '회 실패 — 30분간 접근이 제한됩니다.';
+          document.getElementById('adm-pw-input').disabled = true;
+        } else {
+          errEl.textContent = '비밀번호가 올바르지 않습니다. (남은 시도: ' + left + '회)';
+          document.getElementById('adm-pw-input').focus();
+        }
+      }
+    } catch {
+      errEl.textContent = '서버 연결 오류. 잠시 후 다시 시도해 주세요.';
+    } finally {
+      if (!document.getElementById('adm-pw-input').disabled) {
+        btn.disabled = false;
+        btn.textContent = '로그인';
+      }
     }
   }
   document.getElementById('adm-pw-btn').addEventListener('click', doLogin);
   document.getElementById('adm-pw-input').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
 
-  /* 닫기 */
+  // ── 닫기 ─────────────────────────────────────────────
   document.getElementById('adm-close-btn').addEventListener('click', () => {
     admOverlay.classList.remove('open');
     admLogin.style.display = 'flex';
+    document.getElementById('adm-pw-input').value = '';
+    document.getElementById('adm-login-err').textContent = '';
     history.replaceState({}, '', location.pathname);
   });
 
@@ -781,19 +936,39 @@
       .map(e => e.value.trim()).filter(Boolean);
   }
 
-  /* ── 비밀번호 변경 ───────────────────────────────────── */
-  document.getElementById('adm-pw-change-btn').addEventListener('click', () => {
+  /* ── 비밀번호 변경 (GAS 처리) ────────────────────────── */
+  document.getElementById('adm-pw-change-btn').addEventListener('click', async () => {
     const cur  = document.getElementById('adm-pw-cur').value;
     const nw   = document.getElementById('adm-pw-new').value;
     const nw2  = document.getElementById('adm-pw-new2').value;
     const msg  = document.getElementById('adm-pw-msg');
-    if (cur !== CFG.password) { msg.style.color='#FCA5A5'; msg.textContent='현재 비밀번호가 틀렸습니다.'; return; }
+    const btn  = document.getElementById('adm-pw-change-btn');
+
+    if (!cur || !nw || !nw2)  { msg.style.color='#FCA5A5'; msg.textContent='모든 항목을 입력해 주세요.'; return; }
     if (nw.length < 6)        { msg.style.color='#FCA5A5'; msg.textContent='새 비밀번호는 6자 이상이어야 합니다.'; return; }
     if (nw !== nw2)           { msg.style.color='#FCA5A5'; msg.textContent='새 비밀번호가 일치하지 않습니다.'; return; }
-    CFG.password = nw;
-    msg.style.color='#4ADE80';
-    msg.textContent = '✓ 변경됐습니다. 저장 버튼을 눌러 적용하세요.';
-    ['adm-pw-cur','adm-pw-new','adm-pw-new2'].forEach(id => { document.getElementById(id).value=''; });
+
+    btn.disabled = true; btn.textContent = '변경 중...'; msg.textContent = '';
+    try {
+      const res  = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ action: 'changePassword', currentPw: cur, newPw: nw }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        msg.style.color = '#4ADE80';
+        msg.textContent = '✓ 비밀번호가 변경됐습니다.';
+        ['adm-pw-cur','adm-pw-new','adm-pw-new2'].forEach(id => { document.getElementById(id).value = ''; });
+      } else {
+        msg.style.color = '#FCA5A5';
+        msg.textContent = data.message || '변경에 실패했습니다.';
+      }
+    } catch {
+      msg.style.color = '#FCA5A5'; msg.textContent = '서버 연결 오류.';
+    } finally {
+      btn.disabled = false; btn.textContent = '비밀번호 변경';
+    }
   });
 
   /* 초기 실행 */
@@ -806,6 +981,7 @@
 (function () {
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbykCxcVBZki0-wrNpd5a63D_wttCJUs14_-OyvrEGcozwueS3BMnlRxNALz_KijeyTO/exec';
 
+  // ── 구독 모달 ────────────────────────────────────────
   const overlay = document.getElementById('nl-overlay');
   const trigger = document.getElementById('nl-trigger');
   const tabs    = document.querySelectorAll('.nl-tab');
@@ -818,7 +994,114 @@
   trigger.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openModal('subscribe'); } });
   document.getElementById('nl-close').addEventListener('click', closeModal);
   overlay.addEventListener('click', e => { if(e.target===overlay) closeModal(); });
-  document.addEventListener('keydown', e => { if(e.key==='Escape'&&overlay.classList.contains('open')) closeModal(); });
+  document.addEventListener('keydown', e => {
+    if(e.key==='Escape') {
+      if(overlay.classList.contains('open')) closeModal();
+      if(pvOverlay.classList.contains('open')) closePv();
+    }
+  });
+
+  // ── 미리보기 모달 ─────────────────────────────────────
+  // ── 미리보기 모달 ─────────────────────────────────────
+  const pvOverlay = document.getElementById('preview-overlay');
+  let pvLoaded = false;
+
+  function openPv() {
+    pvOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if (!pvLoaded) loadPreview();
+  }
+  function closePv() {
+    pvOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // RSS 피드 소스 (티커와 동일한 rss2json 무료 API)
+  const PV_FEEDS = [
+    { url: 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent('https://www.moel.go.kr/news/enews/report/rss.do'),        cat: '고용노동부 · 안전보건공단', color: '#1E6BD8', max: 3 },
+    { url: 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent('https://www.kosha.or.kr/kosha/data/rssCenter.do?gubun=A'), cat: '안전보건공단 공지',           color: '#1E6BD8', max: 2 },
+    { url: 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent('https://www.me.go.kr/home/web/rss/rss.do?menuId=10257'),  cat: '환경부 · 화학물질안전원',   color: '#14B8A6', max: 2 },
+    { url: 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent('http://www.anjunj.com/rss/allArticle.xml'),               cat: '안전저널',                   color: '#F59E0B', max: 3 },
+  ];
+
+  async function fetchFeed(feed) {
+    try {
+      const res  = await fetch(feed.url, { signal: AbortSignal.timeout(6000) });
+      const data = await res.json();
+      if (data.status !== 'ok' || !Array.isArray(data.items)) return [];
+      return data.items.slice(0, feed.max).map(item => ({
+        cat:   feed.cat,
+        color: feed.color,
+        title: (item.title || '').replace(/<[^>]+>/g, '').trim(),
+        desc:  (item.description || item.content || '').replace(/<[^>]+>/g, '').trim().slice(0, 120),
+        link:  item.link || '#',
+        date:  item.pubDate ? new Date(item.pubDate).toLocaleDateString('ko-KR', { month:'long', day:'numeric' }) : '',
+      })).filter(i => i.title.length > 2);
+    } catch { return []; }
+  }
+
+  function renderNewsBlock(items) {
+    if (!items.length) return '<p style="color:#94A3B8;font-size:12px;text-align:center;padding:16px 0">현재 뉴스를 불러올 수 없습니다.</p>';
+    return items.map(i => `
+      <a href="${i.link}" target="_blank" rel="noopener" style="display:block;text-decoration:none;background:rgba(255,255,255,.05);border-left:3px solid ${i.color};border-radius:0 8px 8px 0;padding:12px 14px;margin-bottom:8px;transition:background .2s" onmouseover="this.style.background='rgba(255,255,255,.09)'" onmouseout="this.style.background='rgba(255,255,255,.05)'">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+          <span style="font-size:10px;color:${i.color};font-weight:700;letter-spacing:.8px;font-family:monospace">${i.cat}</span>
+          <span style="font-size:10px;color:#64748B">${i.date}</span>
+        </div>
+        <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:5px;line-height:1.4">${i.title}</div>
+        ${i.desc ? `<div style="font-size:11.5px;color:#94A3B8;line-height:1.6">${i.desc}...</div>` : ''}
+      </a>`).join('');
+  }
+
+  async function loadPreview() {
+    const loading = document.getElementById('pv-loading');
+    const content = document.getElementById('pv-content');
+    const dateEl  = document.getElementById('pv-date');
+
+    // 날짜 표시
+    const now = new Date();
+    dateEl.textContent = now.toLocaleDateString('ko-KR', { month:'long', day:'numeric' }) + ' 기준 최신 뉴스';
+
+    // 병렬 fetch
+    const results = await Promise.allSettled(PV_FEEDS.map(f => fetchFeed(f)));
+    const allItems = results.filter(r => r.status === 'fulfilled').flatMap(r => r.value);
+
+    // 카테고리 분류
+    const govItems  = allItems.filter(i => i.cat.includes('노동') || i.cat.includes('안전보건'));
+    const envItems  = allItems.filter(i => i.cat.includes('환경'));
+    const newsItems = allItems.filter(i => i.cat.includes('안전저널'));
+
+    content.innerHTML = `
+      <!-- 정부 정책 -->
+      <div style="background:#0A2540;border-radius:12px;padding:20px 22px;margin-bottom:12px">
+        <div style="color:#14B8A6;font-size:10px;font-weight:800;letter-spacing:2px;margin-bottom:12px;font-family:monospace">01 · 정부 정책 · 공단 동향</div>
+        ${renderNewsBlock(govItems.slice(0, 4))}
+      </div>
+      <!-- 환경부 -->
+      <div style="background:#0A2540;border-radius:12px;padding:20px 22px;margin-bottom:12px">
+        <div style="color:#14B8A6;font-size:10px;font-weight:800;letter-spacing:2px;margin-bottom:12px;font-family:monospace">02 · 환경부 · 화학물질 동향</div>
+        ${renderNewsBlock(envItems.slice(0, 2))}
+      </div>
+      <!-- 사고·안전 뉴스 -->
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:20px 22px;margin-bottom:14px">
+        <div style="color:#1E6BD8;font-size:10px;font-weight:800;letter-spacing:2px;margin-bottom:12px;font-family:monospace">03 · 산업재해 · 안전 뉴스</div>
+        ${newsItems.slice(0, 3).map(i => `
+          <a href="${i.link}" target="_blank" rel="noopener" style="display:block;text-decoration:none;border-bottom:1px solid #F1F5F9;padding:10px 0" >
+            <div style="font-size:10px;color:#F59E0B;font-weight:700;margin-bottom:3px;font-family:monospace">${i.cat} · ${i.date}</div>
+            <div style="font-size:13px;font-weight:700;color:#0A2540;line-height:1.4">${i.title}</div>
+          </a>`).join('')}
+      </div>
+      <p style="font-size:11px;color:#94A3B8;text-align:center;margin-bottom:14px">각 항목을 클릭하면 원문 기사로 이동합니다</p>`;
+
+    loading.style.display = 'none';
+    content.style.display = 'block';
+    pvLoaded = true;
+  }
+
+  document.getElementById('nl-preview-btn').addEventListener('click', openPv);
+  document.getElementById('preview-close').addEventListener('click', closePv);
+  pvOverlay.addEventListener('click', e => { if(e.target===pvOverlay) closePv(); });
+  document.getElementById('preview-subscribe-btn').addEventListener('click', () => { closePv(); openModal('subscribe'); });
 
   function switchTab(name) {
     tabs.forEach(t => t.classList.toggle('active', t.dataset.tab===name));
@@ -846,6 +1129,7 @@
     const affiliation=document.getElementById('sub-affiliation').value.trim();
     const industry=document.getElementById('sub-industry').value;
     if(!name)           return showRes('sub-result','error','이름을 입력해 주세요.');
+    if(!document.getElementById('sub-agree').checked) return showRes('sub-result','error','개인정보 수집 및 이용에 동의해 주세요.');
     if(!email)          return showRes('sub-result','error','이메일을 입력해 주세요.');
     if(!isEmail(email)) return showRes('sub-result','error','이메일 형식이 올바르지 않습니다.');
     callApi(this, {action:'subscribe',name,email,affiliation,industry}, 'sub-result');
@@ -859,6 +1143,15 @@
     if(!isEmail(email)) return showRes('unsub-result','error','이메일 형식이 올바르지 않습니다.');
     if(!confirm(email+' 구독을 취소하시겠습니까?')) return;
     callApi(this, {action:'unsubscribe',name,email}, 'unsub-result');
+  });
+
+  // 개인정보 수집 항목 상세보기 토글
+  document.getElementById('agree-toggle-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const tbl  = document.getElementById('agree-table');
+    const open = tbl.classList.toggle('open');
+    this.textContent = open ? '수집 항목 닫기 ▲' : '수집 항목 상세보기 ▼';
   });
 })();
 </script>
@@ -912,6 +1205,7 @@ const TK={
   init(){this.showPool();this.fetchAll();setInterval(()=>this.fetchAll(),10*60*1000);setInterval(()=>this.updateTime(),60*1000);this.refreshBtn.addEventListener('click',()=>this.refresh())}
 };
 TK.init();
+
 </script>
 
 <!-- 4. 우클릭/키보드 보호 -->
