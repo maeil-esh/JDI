@@ -120,6 +120,28 @@
     .foot-copy strong{color:var(--gray-700);font-weight:600}
 
     @media(max-width:900px){.services{grid-template-columns:repeat(2,1fr)}.credentials{max-width:540px;padding:20px 4px}.cred-item{min-width:120px;padding:8px 10px}.cred-n{font-size:24px}}
+    /* 구독 현황 섹션 */
+    .stats-section{margin-bottom:56px;animation:fade-up .9s .45s ease-out both}
+    .stats-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+    .stats-title{font-size:17px;font-weight:800;color:var(--navy-900);letter-spacing:-.02em}
+    .stats-badge{font-size:12px;color:var(--gray-500);background:var(--gray-100);padding:5px 12px;border-radius:20px;font-weight:500}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+    .stat-row{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+    .stat-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .stat-label{font-size:13px;color:var(--gray-700);font-weight:500}
+    .stat-count{font-size:13px;font-weight:700;color:var(--navy-900)}
+    .stat-bar-wrap{position:relative;height:6px;background:var(--gray-100);border-radius:3px}
+    .stat-bar{height:100%;border-radius:3px;transition:width .6s ease}
+    .stat-bar.ready{background:var(--mint-500)}
+    .stat-bar.pending{background:var(--gray-300)}
+    .stat-marker{position:absolute;top:-3px;height:12px;width:1.5px;background:var(--gray-400)}
+    .stat-tag{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:20px;margin-left:6px}
+    .stat-tag.ready{background:var(--mint-100);color:#0E7A6E}
+    .stat-tag.soon{color:var(--gray-400)}
+    .stats-loading{text-align:center;padding:32px 0;color:var(--gray-400);font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px}
+    .stats-spin{width:14px;height:14px;border-radius:50%;border:2px solid var(--gray-200);border-top-color:var(--blue-600);animation:nl-spin .8s linear infinite;flex-shrink:0}
+    @media(max-width:640px){.stats-grid{grid-template-columns:1fr}}
+
     @media(max-width:640px){.container{padding:0 20px}main{padding:20px 0 60px}header{padding:20px 0}.logo-text .t2{display:none}h1{font-size:clamp(32px,9vw,44px)}.lead{margin-bottom:40px}.credentials{padding:16px 8px;margin-bottom:40px}.cred-item{flex:1 1 50%;min-width:0;padding:12px 8px}.cred-n{font-size:22px}.cred-l{font-size:11.5px}.cred-divider{display:none}.services{grid-template-columns:1fr;gap:12px;margin-bottom:40px}.svc-item{flex-direction:row;align-items:center;padding:20px}.svc-icon{flex-shrink:0}.svc-body{flex:1}.svc-status{display:none}.contact-card{padding:36px 28px;border-radius:16px}.mail-button{width:100%;justify-content:center;font-size:15px}footer{padding:36px 0 28px}.foot-inner{gap:14px}}
 
     /* 티커 */
@@ -201,6 +223,28 @@
     .nl-agree-table th,.nl-agree-table td{border:1px solid var(--gray-200);padding:7px 10px;text-align:left;color:var(--gray-600);line-height:1.5}
     .nl-agree-table th{background:var(--gray-100);font-weight:700;color:var(--gray-700);white-space:nowrap}
     @keyframes nl-spin{to{transform:rotate(360deg)}}
+    /* 구독 현황 섹션 */
+    .stats-section{margin-bottom:56px;animation:fade-up .9s .45s ease-out both}
+    .stats-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+    .stats-title{font-size:17px;font-weight:800;color:var(--navy-900);letter-spacing:-.02em}
+    .stats-badge{font-size:12px;color:var(--gray-500);background:var(--gray-100);padding:5px 12px;border-radius:20px;font-weight:500}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+    .stat-row{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+    .stat-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .stat-label{font-size:13px;color:var(--gray-700);font-weight:500}
+    .stat-count{font-size:13px;font-weight:700;color:var(--navy-900)}
+    .stat-bar-wrap{position:relative;height:6px;background:var(--gray-100);border-radius:3px}
+    .stat-bar{height:100%;border-radius:3px;transition:width .6s ease}
+    .stat-bar.ready{background:var(--mint-500)}
+    .stat-bar.pending{background:var(--gray-300)}
+    .stat-marker{position:absolute;top:-3px;height:12px;width:1.5px;background:var(--gray-400)}
+    .stat-tag{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:20px;margin-left:6px}
+    .stat-tag.ready{background:var(--mint-100);color:#0E7A6E}
+    .stat-tag.soon{color:var(--gray-400)}
+    .stats-loading{text-align:center;padding:32px 0;color:var(--gray-400);font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px}
+    .stats-spin{width:14px;height:14px;border-radius:50%;border:2px solid var(--gray-200);border-top-color:var(--blue-600);animation:nl-spin .8s linear infinite;flex-shrink:0}
+    @media(max-width:640px){.stats-grid{grid-template-columns:1fr}}
+
     @media(max-width:640px){.nl-header{padding:24px 24px 0}.nl-body{padding:24px 24px 28px}.nl-card{border-radius:20px}}
 
     /* ============ 관리자 패널 ============ */
@@ -357,6 +401,20 @@
           <div class="svc-body"><div class="eng en">04 · RESOURCES</div><h3 data-svc-title="3">안전보건정보</h3><p data-svc-desc="3">업종별 특성을 반영한<br>법령·사례·서식 자료실</p></div>
           <div class="svc-status"><span class="dot"></span>준비중</div>
         </div>
+      </div>
+
+      <!-- 구독 현황 -->
+      <div class="stats-section">
+        <div class="stats-header">
+          <div>
+            <div class="stats-title">업종별 구독 현황</div>
+          </div>
+          <span class="stats-badge" id="stats-update-time">불러오는 중...</span>
+        </div>
+        <div id="stats-container">
+          <div class="stats-loading"><div class="stats-spin"></div>현황을 불러오는 중...</div>
+        </div>
+        <p style="font-size:12px;color:var(--gray-400);margin-top:12px;text-align:center">업종별 10명 이상 구독 시 해당 업종 뉴스레터 발송을 시작합니다</p>
       </div>
 
       <!-- CONTACT -->
@@ -1153,6 +1211,64 @@
     const open = tbl.classList.toggle('open');
     this.textContent = open ? '수집 항목 닫기 ▲' : '수집 항목 상세보기 ▼';
   });
+})();
+</script>
+
+<!-- 5. 구독 현황 -->
+<script>
+(function() {
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbykCxcVBZki0-wrNpd5a63D_wttCJUs14_-OyvrEGcozwueS3BMnlRxNALz_KijeyTO/exec';
+  const THRESHOLD = 10;
+
+  async function loadStats() {
+    try {
+      const res  = await fetch(APPS_SCRIPT_URL + '?action=getStats', { signal: AbortSignal.timeout(6000) });
+      const data = await res.json();
+      if (!data.success || !data.stats) { showError(); return; }
+      renderStats(data.stats);
+      const now = new Date();
+      document.getElementById('stats-update-time').textContent =
+        now.getHours() + ':' + String(now.getMinutes()).padStart(2,'0') + ' 기준';
+    } catch { showError(); }
+  }
+
+  function renderStats(stats) {
+    const container = document.getElementById('stats-container');
+    if (!stats.length) { container.innerHTML = '<p style="text-align:center;color:var(--gray-400);font-size:13px;padding:24px 0">아직 구독자가 없습니다.</p>'; return; }
+
+    const max = Math.max(...stats.map(s => s.count), THRESHOLD);
+    const sorted = [...stats].sort((a, b) => b.count - a.count);
+    const markerPct = Math.round((THRESHOLD / max) * 100);
+
+    container.innerHTML = '<div class="stats-grid">' + sorted.map(s => {
+      const pct    = Math.round((s.count / max) * 100);
+      const ready  = s.count >= THRESHOLD;
+      const need   = THRESHOLD - s.count;
+      return `<div class="stat-row">
+        <div class="stat-top">
+          <span class="stat-label">${s.industry}</span>
+          <span style="display:flex;align-items:center">
+            ${ready
+              ? `<span class="stat-tag ready">발송 준비</span>`
+              : `<span class="stat-tag soon">${need}명 더</span>`}
+            <span class="stat-count" style="margin-left:6px">${s.count}명</span>
+          </span>
+        </div>
+        <div class="stat-bar-wrap">
+          <div class="stat-bar ${ready ? 'ready' : 'pending'}" style="width:${pct}%"></div>
+          <div class="stat-marker" style="left:${markerPct}%"></div>
+        </div>
+      </div>`;
+    }).join('') + '</div>';
+  }
+
+  function showError() {
+    document.getElementById('stats-container').innerHTML =
+      '<p style="text-align:center;color:var(--gray-400);font-size:13px;padding:24px 0">현황을 불러올 수 없습니다.</p>';
+    document.getElementById('stats-update-time').textContent = '';
+  }
+
+  loadStats();
 })();
 </script>
 
