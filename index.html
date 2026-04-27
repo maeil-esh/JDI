@@ -1286,7 +1286,14 @@ const TK={
   buildItem(cat,cls,text,link){const inner=link?`<a href="${link}" target="_blank" rel="noopener">${text}</a>`:text;return`<span class="tk-item"><span class="tk-badge ${cls}">${cat}</span>${inner}</span><span class="tk-dot"></span>`},
   render(items){if(!items.length)return;const dur=Math.min(240,Math.max(90,items.length*10));this.inner.innerHTML=items.map(i=>this.buildItem(i.cat,i.cls,i.text,i.link)).join('')+items.map(i=>this.buildItem(i.cat,i.cls,i.text,i.link)).join('');this.inner.style.setProperty('--tk-dur',dur+'s');this.inner.classList.remove('running');void this.inner.offsetWidth;this.inner.classList.add('running');this.updateTime()},
   async fetchFeed(f){try{const r=await fetch(f.url,{signal:AbortSignal.timeout(5000)});if(!r.ok)return[];const d=await r.json();if(d.status!=='ok'||!Array.isArray(d.items))return[];return d.items.slice(0,5).map(i=>({cat:f.cat,cls:f.cls,text:(i.title||'').replace(/<[^>]+>/g,'').trim().slice(0,60),link:i.link||null})).filter(i=>i.text.length>4)}catch{return[]}},
-  async fetchAll(){const r=await Promise.allSettled(this.feeds.map(f=>this.fetchFeed(f)));const items=r.filter(x=>x.status==='fulfilled').flatMap(x=>x.value);if(items.length)this.render(items);else this.inner.innerHTML='<div class="tk-load">뉴스를 불러올 수 없습니다.</div>'},
+  fallback:[
+    {cat:'노동부',  cls:'bd-moel',  text:'고용노동부 산업안전보건 정책 · 보도자료',          link:'https://www.moel.go.kr/news/enews/report/enewsView.do'},
+    {cat:'KOSHA',  cls:'bd-kosha', text:'안전보건공단 공지사항 · 안전보건 자료실',          link:'https://www.kosha.or.kr/kosha/data/notice.do'},
+    {cat:'안전저널',cls:'bd-news',  text:'안전저널 최신 산업재해 · 안전보건 뉴스',          link:'http://www.anjunj.com'},
+    {cat:'환경부',  cls:'bd-env',   text:'환경부 화학물질 · 환경안전 최신 공지',            link:'https://www.me.go.kr/home/web/main.do'},
+    {cat:'법령',    cls:'bd-rule',  text:'국가법령정보센터 산업안전보건법 · 중대재해처벌법', link:'https://www.law.go.kr'},
+  ],
+  async fetchAll(){const r=await Promise.allSettled(this.feeds.map(f=>this.fetchFeed(f)));const items=r.filter(x=>x.status==='fulfilled').flatMap(x=>x.value);this.render(items.length?items:this.fallback)},
   refresh(){this.inner.innerHTML='<div class="tk-load"><div class="tk-spin"></div>새로고침 중...</div>';this.inner.classList.remove('running');this.fetchAll()},
   init(){this.fetchAll();setInterval(()=>this.fetchAll(),10*60*1000);setInterval(()=>this.updateTime(),60*1000);this.refreshBtn.addEventListener('click',()=>this.refresh())}
 };
