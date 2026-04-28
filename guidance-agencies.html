@@ -1,582 +1,1356 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>고용노동부 지정 안전보건전문기관 찾기 · ESH-MASTER</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://dapi.kakao.com">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<!-- 카카오 지도 API -->
-<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=80bd082931c7cbc0b1972198728cda79&libraries=clusterer"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESH-MASTER.KR</title>
+  <meta name="description" content="안전·보건·환경 디지털 플랫폼 ESH-MASTER가 곧 찾아옵니다. Safety Do It, JSA 위험성평가, AI 안전보건 뉴스레터, 안전보건정보">
+  <meta property="og:title" content="ESH-MASTER · 안전보건환경 디지털 플랫폼">
+  <meta property="og:description" content="Safety Do It · JSA 위험성평가 · AI 안전보건 뉴스레터 · 안전보건정보 — 곧 만나보실 수 있습니다.">
+  <meta property="og:type" content="website">
 
-<style>
-:root{
-  --navy:#0A2540;--navy2:#1A3A66;
-  --blue:#1E6BD8;--blue-lt:#E8F0FC;
-  --mint:#14B8A6;--amber:#F59E0B;
-  --ink:#0F172A;--g7:#334155;--g6:#475569;--g5:#64748B;
-  --g4:#94A3B8;--g3:#CBD5E1;--g2:#E2E8F0;--g1:#F1F5F9;
-  --line:#E5E9EF;--white:#fff;
-  --sh-sm:0 1px 3px rgba(10,37,64,.06);
-  --sh-md:0 4px 16px rgba(10,37,64,.09);
-  --sh-lg:0 12px 32px rgba(10,37,64,.13);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%}
-body{font-family:'Pretendard Variable',Pretendard,sans-serif;color:var(--ink);background:#F4F6FB;-webkit-font-smoothing:antialiased;overflow:hidden}
-a{color:inherit;text-decoration:none}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 
-/* ─ 헤더 ─ */
-.hd{height:52px;background:var(--navy);display:flex;align-items:center;justify-content:space-between;padding:0 28px;flex-shrink:0;z-index:10}
-.hd-logo{display:flex;align-items:center;gap:9px;color:#fff}
-.hd-mark{width:30px;height:30px;background:#fff;color:var(--navy);display:grid;place-items:center;border-radius:7px;font-weight:800;font-size:11px;position:relative;flex-shrink:0}
-.hd-mark::after{content:'';position:absolute;bottom:3px;right:3px;width:4px;height:4px;background:var(--mint);border-radius:50%}
-.hd-name{font-size:13.5px;font-weight:800;letter-spacing:-.01em}
-.hd-sub{font-size:9.5px;color:rgba(255,255,255,.4);letter-spacing:.08em;margin-top:1px}
-.hd-title{font-size:15.5px;color:rgba(255,255,255,.85);font-weight:800;letter-spacing:-.02em}
-.hd-back{display:flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,.45);transition:color .2s}
-.hd-back:hover{color:#fff}
+  <style>
+    :root {
+      --navy-900:#0A2540; --navy-800:#102B4C; --navy-700:#1A3A66;
+      --blue-600:#1E6BD8; --blue-500:#2E7CE4; --blue-100:#E8F0FC; --blue-50:#F4F8FD;
+      --mint-500:#14B8A6; --mint-100:#D1FAF2; --amber:#F59E0B;
+      --ink:#0F172A; --gray-700:#334155; --gray-600:#475569; --gray-500:#64748B;
+      --gray-400:#94A3B8; --gray-300:#CBD5E1; --gray-200:#E2E8F0;
+      --gray-100:#F1F5F9; --gray-50:#F8FAFC; --white:#FFFFFF;
+      --line:#E5E9EF;
+      --shadow-sm:0 1px 2px rgba(10,37,64,.04);
+      --shadow-md:0 4px 16px rgba(10,37,64,.06);
+      --shadow-lg:0 12px 32px rgba(10,37,64,.1);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:var(--white);color:var(--ink);font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;letter-spacing:-.01em;min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;padding-top:44px}
+    .en{font-family:'Inter','Pretendard Variable',sans-serif;letter-spacing:-.02em}
+    a{color:inherit;text-decoration:none}
 
-/* ─ 전체 레이아웃 ─ */
-.layout{display:flex;height:calc(100vh - 52px)}
+    .bg-decor{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:linear-gradient(180deg,var(--blue-50) 0%,var(--white) 45%,var(--gray-50) 100%)}
+    .bg-decor::before,.bg-decor::after{content:'';position:absolute;border-radius:50%;filter:blur(80px)}
+    .bg-decor::before{top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(30,107,216,.12),transparent 70%)}
+    .bg-decor::after{bottom:-200px;left:-200px;width:500px;height:500px;background:radial-gradient(circle,rgba(20,184,166,.1),transparent 70%)}
 
-/* ─ 사이드바 (트리 필터) ─ */
-.sidebar{width:308px;flex-shrink:0;background:var(--white);border-right:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden}
-.sb-head{padding:18px 20px 14px;border-bottom:1px solid var(--g2)}
-.sb-head h2{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:4px}
-.sb-head p{font-size:11.5px;color:var(--g5)}
-.sb-body{flex:1;overflow-y:auto;padding:12px 0}
-.sb-body::-webkit-scrollbar{width:4px}
-.sb-body::-webkit-scrollbar-thumb{background:var(--g3);border-radius:4px}
+    header{padding:28px 0;position:relative;z-index:2}
+    .container{max-width:1320px;margin:0 auto;padding:0 40px}
+    .logo{display:inline-flex;align-items:center;gap:10px}
+    .logo-mark{width:38px;height:38px;background:var(--navy-900);color:var(--white);display:grid;place-items:center;border-radius:9px;font-weight:800;font-size:13px;letter-spacing:-.02em;position:relative}
+    .logo-mark::after{content:'';position:absolute;bottom:5px;right:5px;width:5px;height:5px;background:var(--mint-500);border-radius:50%}
+    .logo-text{display:flex;flex-direction:column;line-height:1.1}
+    .logo-text .t1{font-weight:800;font-size:19px;color:var(--navy-900);letter-spacing:-.03em}
+    .logo-text .t2{font-size:10.5px;color:var(--gray-500);font-weight:500;letter-spacing:.1em;margin-top:3px}
 
-/* 트리 아이템 */
-.tree-section{margin-bottom:4px}
-.tree-label{display:flex;align-items:center;gap:8px;padding:8px 20px;font-size:10.5px;font-weight:800;color:var(--g4);letter-spacing:.06em;text-transform:uppercase}
-.tree-label svg{flex-shrink:0}
+    main{flex:1;display:flex;align-items:center;padding:40px 0 80px;position:relative;z-index:1}
+    .hero{text-align:center;max-width:100%;margin:0 auto}
 
-.tree-item{display:flex;align-items:center;gap:9px;padding:9px 20px 9px 32px;font-size:13px;font-weight:600;color:var(--g7);cursor:pointer;transition:all .15s;border-left:3px solid transparent;position:relative}
-.tree-item:hover{background:var(--g1);color:var(--navy)}
-.tree-item.active{background:var(--blue-lt);color:var(--blue);border-left-color:var(--blue);font-weight:700}
-.tree-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;border:1.5px solid currentColor;transition:all .15s}
-.tree-item.active .tree-dot{background:var(--blue);border-color:var(--blue)}
-.tree-count{margin-left:auto;font-size:10px;font-weight:700;color:var(--g4);font-family:'Inter',sans-serif;background:var(--g1);padding:1px 6px;border-radius:10px}
-.tree-item.active .tree-count{background:var(--blue-lt);color:var(--blue)}
+    .status-badge{display:inline-flex;align-items:center;gap:9px;padding:8px 18px;background:var(--white);border:1px solid var(--blue-100);border-radius:100px;font-size:13px;font-weight:600;color:var(--blue-600);margin-bottom:32px;box-shadow:var(--shadow-sm);animation:fade-up .7s ease-out}
+    .status-badge .pulse{width:8px;height:8px;background:var(--amber);border-radius:50%;position:relative;flex-shrink:0}
+    .status-badge .pulse::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--amber);opacity:.5;animation:pulse 2s ease-out infinite}
+    @keyframes pulse{0%{transform:scale(.8);opacity:.8}100%{transform:scale(2);opacity:0}}
+    @keyframes fade-up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
-/* 지역 토글 */
-.region-toggle{display:flex;align-items:center;gap:9px;padding:9px 20px 9px 32px;font-size:13px;color:var(--g7);cursor:pointer;transition:all .15s;font-weight:600}
-.region-toggle:hover{background:var(--g1)}
-.region-toggle svg{transition:transform .2s;flex-shrink:0}
-.region-toggle.open svg{transform:rotate(90deg)}
-.region-sub{display:none;padding:4px 0}
-.region-sub.open{display:block}
-.region-sub-item{display:flex;align-items:center;gap:8px;padding:7px 20px 7px 48px;font-size:12.5px;font-weight:600;color:var(--g6);cursor:pointer;transition:all .15s;border-left:3px solid transparent}
-.region-sub-item:hover{background:var(--g1);color:var(--navy)}
-.region-sub-item.active{background:var(--blue-lt);color:var(--blue);border-left-color:var(--blue);font-weight:700}
+    h1{font-size:clamp(40px,6vw,68px);font-weight:800;line-height:1.1;letter-spacing:-.04em;color:var(--navy-900);margin-bottom:24px;animation:fade-up .9s .1s ease-out both}
+    h1 .accent{color:var(--blue-600);position:relative}
+    h1 .accent::after{content:'';position:absolute;left:0;right:0;bottom:6%;height:14%;background:rgba(20,184,166,.22);z-index:-1;border-radius:4px}
+    h1 .br{display:block}
 
-/* 검색 */
-.sb-search{padding:12px 16px;border-top:1px solid var(--g2)}
-.kw-row{display:flex;gap:6px}
-.kw-wrap{flex:1;position:relative}
-.kw-wrap svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--g4);pointer-events:none}
-.kw-input{width:100%;border:1.5px solid var(--g2);border-radius:8px;padding:9px 10px 9px 32px;font-size:13px;font-family:inherit;outline:none;background:var(--g1);color:var(--ink);transition:border-color .2s}
-.kw-input:focus{border-color:var(--blue);background:#fff}
-.kw-input::placeholder{color:var(--g4)}
-.go-btn{padding:9px 14px;background:var(--blue);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s;white-space:nowrap}
-.go-btn:hover{background:#2E7CE4}
+    .lead{font-size:clamp(16px,1.8vw,19px);line-height:1.7;color:var(--gray-600);margin-bottom:56px;max-width:720px;margin-left:auto;margin-right:auto;animation:fade-up .9s .2s ease-out both}
+    .lead strong{color:var(--navy-900);font-weight:700}
 
-/* ─ 결과 패널 ─ */
-.result-panel{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--g1);min-width:300px}
-.resizer{width:6px;background:var(--line);cursor:col-resize;flex-shrink:0;position:relative;transition:background .2s;z-index:10}
-.resizer:hover,.resizer.dragging{background:var(--blue)}
-.resizer::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:2px;height:40px;background:var(--g3);border-radius:2px;transition:background .2s}
-.resizer:hover::after,.resizer.dragging::after{background:#fff}
-.rp-head{padding:14px 20px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;flex-shrink:0}
-.rp-breadcrumb{display:flex;align-items:center;gap:6px;font-size:13.5px;color:var(--g5);flex:1;flex-wrap:wrap}
-.rp-breadcrumb .bc-item{font-weight:700;color:var(--navy);font-size:13px}
-.rp-breadcrumb .bc-sep{color:var(--g4)}
-.rp-count{font-size:16px;font-weight:900;color:var(--navy);white-space:nowrap}
-.sort-sel{font-size:12px;border:1px solid var(--line);border-radius:7px;padding:5px 10px;color:var(--g6);cursor:pointer;font-family:inherit;outline:none;background:#fff}
+    .credentials{display:flex;justify-content:center;align-items:stretch;gap:0;margin:0 auto 56px;padding:24px 8px;max-width:100%;background:var(--white);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);animation:fade-up .9s .3s ease-out both;flex-wrap:wrap}
+    .cred-item{flex:1;min-width:140px;padding:4px 16px;text-align:center}
+    .cred-n{font-size:28px;font-weight:800;color:var(--navy-900);letter-spacing:-.03em;line-height:1;font-family:'Inter','Pretendard Variable',sans-serif}
+    .cred-n sub{font-size:13px;color:var(--blue-600);font-weight:700;margin-left:2px;vertical-align:baseline;font-family:'Pretendard Variable',sans-serif}
+    .cred-l{font-size:12.5px;color:var(--gray-500);margin-top:8px;font-weight:500;letter-spacing:-.005em}
+    .cred-divider{width:1px;background:var(--line);margin:4px 0;flex-shrink:0}
 
-.rp-body{flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:8px}
-.rp-body::-webkit-scrollbar{width:4px}
-.rp-body::-webkit-scrollbar-thumb{background:var(--g3);border-radius:4px}
+    .services{display:grid;grid-template-columns:repeat(5,minmax(180px,1fr));gap:20px;margin-bottom:60px;animation:fade-up .9s .35s ease-out both}
+    .svc-5{position:relative;overflow:hidden}
+    .svc-5 .svc-icon{background:linear-gradient(135deg,#D97706,var(--amber))}
+    .svc-5-map{position:absolute;right:-8px;top:0;bottom:0;width:160px;height:100%;opacity:.35;pointer-events:none;z-index:0;background:url('data:image/png;base64,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') center/contain no-repeat;background-position:right center}
+    .svc-5 .svc-icon,.svc-5 .svc-body,.svc-5 .svc-status{position:relative;z-index:1}
+    .svc-item{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:28px 22px 24px;text-align:left;transition:all .3s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;gap:16px}
+    .svc-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--navy-900)}
+    .svc-icon{width:44px;height:44px;border-radius:11px;display:grid;place-items:center;color:var(--white);transition:transform .3s}
+    .svc-item:hover .svc-icon{transform:scale(1.08) rotate(-4deg)}
+    .svc-icon svg{width:22px;height:22px}
+    .svc-1 .svc-icon{background:linear-gradient(135deg,var(--navy-900),var(--navy-700))}
+    .svc-2 .svc-icon{background:linear-gradient(135deg,var(--blue-600),var(--blue-500))}
+    .svc-3 .svc-icon{background:linear-gradient(135deg,var(--amber),#D97706)}
+    .svc-4 .svc-icon{background:linear-gradient(135deg,var(--mint-500),#0E9488)}
+    .svc-body .eng{font-size:10.5px;font-weight:600;color:var(--gray-400);letter-spacing:.04em;margin-bottom:6px;font-family:'Inter',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .svc-body h3{font-size:14.5px;font-weight:800;color:var(--navy-900);letter-spacing:-.02em;line-height:1.4;margin-bottom:8px;word-break:keep-all}
+    .svc-body p{font-size:12.5px;color:var(--gray-500);line-height:1.6;word-break:keep-all}
+    .svc-status{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;background:#FEF3C7;color:#B45309;border-radius:100px;font-size:10.5px;font-weight:700;letter-spacing:.02em;align-self:flex-start;margin-top:auto}
+    .svc-status .dot{width:5px;height:5px;border-radius:50%;background:currentColor}
+    .svc-status.beta{background:var(--mint-100);color:#0E7A6E}
+    .svc-status.beta .dot{animation:beta-pulse 1.5s ease-in-out infinite}
+    @keyframes beta-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+    .svc-action-btn{flex:1;padding:8px 0;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;transition:all .2s;letter-spacing:-.01em}
+    .svc-btn-preview{background:var(--gray-100);color:var(--gray-700)}.svc-btn-preview:hover{background:var(--gray-200)}
+    .svc-btn-sub{background:var(--mint-500);color:#fff}.svc-btn-sub:hover{background:#0E9488}
+    .svc-item.beta-card{background:linear-gradient(160deg,#F0FDF8 0%,var(--white) 60%);border-color:var(--mint-100);position:relative;cursor:pointer}
+    .svc-item.beta-card::before{content:'NEW';position:absolute;top:14px;right:14px;padding:3px 8px;background:var(--mint-500);color:var(--white);font-family:'Inter',sans-serif;font-size:9px;font-weight:800;letter-spacing:.08em;border-radius:4px;box-shadow:0 2px 8px rgba(20,184,166,.35)}
+    .svc-item.beta-card:hover{border-color:var(--mint-500);box-shadow:0 12px 32px rgba(20,184,166,.15)}
 
-/* 기관 카드 */
-.agency-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;transition:all .18s}
-.agency-card:hover{border-color:var(--blue);box-shadow:var(--sh-md);transform:translateX(2px)}
-.agency-card.active{border-color:var(--blue);background:var(--blue-lt);box-shadow:var(--sh-md)}
-.ac-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px}
-.ac-name{font-size:15px;font-weight:900;color:var(--navy);line-height:1.3}
-.ac-grade{width:24px;height:24px;border-radius:6px;display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0}
-.ac-meta{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:5px}
-.ac-tag{font-size:10.5px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--g1);color:var(--g7)}
-.ac-addr{font-size:12px;font-weight:600;color:var(--g5);line-height:1.5}
-.ac-tel{font-size:13px;color:var(--blue);font-weight:800;margin-top:3px;font-family:'Inter',sans-serif;display:block;text-decoration:none}.ac-tel:hover{text-decoration:underline}
+    .contact-card{background:linear-gradient(135deg,var(--navy-900) 0%,var(--navy-700) 100%);color:var(--white);border-radius:20px;padding:48px 40px;max-width:100%;margin:0 auto;position:relative;overflow:hidden;animation:fade-up .9s .5s ease-out both}
+    .contact-card::before{content:'';position:absolute;top:-100px;right:-100px;width:280px;height:280px;background:radial-gradient(circle,rgba(30,107,216,.3),transparent 60%);border-radius:50%}
+    .contact-card::after{content:'';position:absolute;bottom:-100px;left:-100px;width:220px;height:220px;background:radial-gradient(circle,rgba(20,184,166,.15),transparent 60%);border-radius:50%}
+    .contact-inner{position:relative;z-index:1}
+    .contact-label{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;color:var(--mint-500);letter-spacing:.14em;margin-bottom:16px;font-family:'Inter',sans-serif}
+    .contact-label svg{width:13px;height:13px}
+    .contact-card h2{font-size:clamp(22px,2.6vw,28px);font-weight:700;line-height:1.4;letter-spacing:-.02em;margin-bottom:28px}
+    .mail-button{display:inline-flex;align-items:center;gap:12px;padding:16px 28px;background:var(--white);color:var(--navy-900);border-radius:12px;font-size:17px;font-weight:700;letter-spacing:-.015em;transition:all .2s;box-shadow:0 8px 20px rgba(0,0,0,.15)}
+    .mail-button:hover{background:var(--amber);transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.2)}
+    .mail-button svg{width:18px;height:18px}
+    .mail-button .mail{font-family:'Inter',sans-serif}
+    .contact-note{font-size:13px;color:var(--gray-400);margin-top:20px;line-height:1.6}
 
-.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;color:var(--g4)}
-.empty-icon{font-size:40px;opacity:.4}
-.loading-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;color:var(--g4);font-size:13px}
-.loading-spinner{width:28px;height:28px;border-radius:50%;border:3px solid var(--g2);border-top-color:var(--blue);animation:spin .8s linear infinite}
+    footer{padding:44px 0 32px;border-top:1px solid var(--line);background:var(--gray-50);position:relative;z-index:1}
+    .foot-inner{display:flex;flex-direction:row;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .foot-left{display:flex;flex-direction:column;gap:12px}
+    .foot-agencies{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+    .foot-agencies-label{font-size:10px;color:var(--gray-400);letter-spacing:.06em;font-weight:600;text-align:right}
+    .foot-agency-links{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .foot-agency{display:flex;align-items:center;gap:5px;padding:5px 10px;background:var(--white);border:1px solid var(--gray-200);border-radius:8px;font-size:11px;font-weight:600;color:var(--gray-600);text-decoration:none;transition:all .2s;white-space:nowrap}
+    .foot-agency:hover{border-color:var(--blue-600);color:var(--blue-600);box-shadow:0 2px 8px rgba(30,107,216,.1);transform:translateY(-1px)}
+    .foot-agency img{border-radius:3px;flex-shrink:0}
+    @media(max-width:640px){.foot-inner{flex-direction:column}.foot-agencies{align-items:flex-start}.foot-agency-links{justify-content:flex-start}}
+    .foot-brand{display:inline-flex;align-items:center;gap:10px;align-self:flex-start}
+    .foot-brand-mark{width:32px;height:32px;background:var(--navy-900);color:var(--white);display:grid;place-items:center;border-radius:8px;font-weight:800;font-size:11px;letter-spacing:-.02em;position:relative}
+    .foot-brand-mark::after{content:'';position:absolute;bottom:4px;right:4px;width:4px;height:4px;background:var(--mint-500);border-radius:50%}
+    .foot-brand-text{display:flex;flex-direction:column;line-height:1.1}
+    .foot-brand-text .t1{font-weight:800;font-size:15px;color:var(--navy-900);letter-spacing:-.03em}
+    .foot-brand-text .t2{font-size:9px;color:var(--gray-500);font-weight:500;letter-spacing:.1em;margin-top:3px}
+    .foot-copy{font-size:12.5px;color:var(--gray-500);line-height:1.7}
+    .foot-copy strong{color:var(--gray-700);font-weight:600}
 
-/* ─ 지도 패널 ─ */
-.map-panel{width:620px;flex-shrink:0;border-left:none;min-width:280px}
-#map{width:100%;height:100%}
+    @media(max-width:1200px){.services{grid-template-columns:repeat(3,1fr)}}@media(max-width:900px){.services{grid-template-columns:repeat(2,1fr)}.credentials{max-width:540px;padding:20px 4px}.cred-item{min-width:120px;padding:8px 10px}.cred-n{font-size:24px}}
+    /* 구독 현황 섹션 */
+    .stats-section{margin-bottom:56px;animation:fade-up .9s .45s ease-out both;position:relative}
+    .stats-section::before{content:'';position:absolute;top:-28px;left:50%;transform:translateX(-50%);width:22%;height:28px;border-left:1px dashed rgba(20,184,166,.25);border-right:1px dashed rgba(20,184,166,.25);pointer-events:none}
+    .stats-wrap{border:1px solid rgba(20,184,166,.22);border-radius:20px;padding:24px 28px;background:linear-gradient(160deg,rgba(240,253,248,.45) 0%,rgba(255,255,255,.3) 100%)}
+    .stats-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+    .stats-title{font-size:15px;font-weight:800;color:var(--navy-900);letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+    .stats-title-dot{width:8px;height:8px;background:var(--mint-500);border-radius:50%;animation:beta-pulse 1.5s ease-in-out infinite}
+    .stats-badge{font-size:12px;color:var(--gray-500);background:rgba(255,255,255,.8);padding:4px 12px;border-radius:20px;font-weight:500;border:1px solid var(--mint-100)}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+    .stat-row{background:rgba(255,255,255,.85);border:1px solid rgba(20,184,166,.15);border-radius:12px;padding:14px 16px}
+    .stat-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+    .stat-label{font-size:13px;color:var(--gray-700);font-weight:500}
+    .stat-count{font-size:13px;font-weight:700;color:var(--navy-900)}
+    .stat-bar-wrap{position:relative;height:7px;background:var(--gray-100);border-radius:4px;overflow:visible}
+    .stat-bar{height:100%;border-radius:4px;width:0;transition:width 1s cubic-bezier(.2,.8,.2,1)}
+    .stat-bar.sending{background:linear-gradient(90deg,#1A3A66,var(--blue-600));box-shadow:0 0 6px rgba(30,107,216,.35)}
+    .stat-bar.ready{background:linear-gradient(90deg,#0E9488,var(--mint-500))}
+    .stat-bar.pending{background:var(--gray-200)}
+    .stat-tag.sending{background:var(--blue-100);color:var(--blue-600)}
+    .stat-tag.sending-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--blue-600);animation:beta-pulse 1.2s ease-in-out infinite;margin-right:3px;vertical-align:middle}
+    .stat-bar.ready.animate{box-shadow:0 0 8px rgba(20,184,166,.4)}
+    .stat-marker{position:absolute;top:-4px;height:15px;width:1.5px;background:rgba(100,116,139,.4)}
+    .stat-tag{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:20px;margin-left:6px}
+    .stat-tag.ready{background:var(--mint-100);color:#0E7A6E}
+    .stat-tag.soon{color:var(--gray-400)}
+    .stats-loading{text-align:center;padding:32px 0;color:var(--gray-400);font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px}
+    .stats-spin{width:14px;height:14px;border-radius:50%;border:2px solid var(--gray-200);border-top-color:var(--mint-500);animation:nl-spin .8s linear infinite;flex-shrink:0}
+    @keyframes bar-fill{from{width:0}to{width:var(--bar-w)}}
+    @media(max-width:640px){.stats-grid{grid-template-columns:1fr}.stats-section::before{width:90%}.stats-wrap{padding:18px 16px}}
 
-/* 반응형 */
-@media(max-width:1400px){.map-panel{width:480px}}@media(max-width:1100px){.map-panel{width:360px}}
-@media(max-width:900px){.map-panel{display:none}}
-@media(max-width:680px){
-  .sidebar{width:220px}
-  body{overflow:auto}
-  .layout{flex-direction:column;height:auto}
-  .result-panel{min-height:60vh}
-  .map-panel{display:none}
-}
+    @media(max-width:640px){.container{padding:0 20px}main{padding:20px 0 60px}header{padding:20px 0}.logo-text .t2{display:none}h1{font-size:clamp(32px,9vw,44px)}.lead{margin-bottom:40px}.credentials{padding:16px 8px;margin-bottom:40px}.cred-item{flex:1 1 50%;min-width:0;padding:12px 8px}.cred-n{font-size:22px}.cred-l{font-size:11.5px}.cred-divider{display:none}.services{grid-template-columns:1fr;gap:12px;margin-bottom:40px}.svc-item{flex-direction:row;align-items:center;padding:20px}.svc-icon{flex-shrink:0}.svc-body{flex:1}.svc-status{display:none}.contact-card{padding:36px 28px;border-radius:16px}.mail-button{width:100%;justify-content:center;font-size:15px}footer{padding:36px 0 28px}.foot-inner{gap:14px}}
 
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.fade-up{animation:fadeUp .25s ease-out both}
-</style>
+    /* 티커 */
+    #news-ticker{position:fixed;top:0;left:0;right:0;z-index:999;height:44px;background:#0A1628;border-bottom:1px solid rgba(37,99,235,.3);display:flex;align-items:center;overflow:hidden;box-shadow:0 2px 14px rgba(0,0,0,.35)}
+    .tk-label{flex-shrink:0;display:flex;align-items:center;gap:6px;height:100%;background:#2563EB;padding:0 16px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;color:#fff;letter-spacing:.12em;white-space:nowrap;border-right:1px solid rgba(255,255,255,.12)}
+    .tk-track{flex:1;overflow:hidden;position:relative;height:100%;mask-image:linear-gradient(to right,transparent 0,#000 30px,#000 calc(100% - 30px),transparent 100%)}
+    .tk-inner{display:inline-flex;align-items:center;height:100%;white-space:nowrap;will-change:transform;gap:0}
+    .tk-inner.running{animation:tkScroll var(--tk-dur,60s) linear infinite}
+    .tk-inner:hover{animation-play-state:paused}
+    .tk-item{display:inline-flex;align-items:center;gap:8px;padding:0 36px 0 0;font-size:14px;color:#CBD5E1;font-family:'Noto Sans KR',sans-serif;font-weight:400}
+    .tk-item a{color:inherit;text-decoration:none}.tk-item a:hover{color:#fff;text-decoration:underline}
+    .tk-badge{flex-shrink:0;font-size:11px;font-weight:700;letter-spacing:.08em;padding:3px 8px;border-radius:3px;font-family:'Outfit',monospace}
+    .bd-moel{background:rgba(37,99,235,.25);color:#7CB9F4;border:1px solid rgba(37,99,235,.4)}
+    .bd-kosha{background:rgba(16,185,129,.18);color:#4ADE80;border:1px solid rgba(16,185,129,.35)}
+    .bd-news{background:rgba(239,68,68,.18);color:#FCA5A5;border:1px solid rgba(239,68,68,.35)}
+    .bd-rule{background:rgba(245,158,11,.18);color:#FCD34D;border:1px solid rgba(245,158,11,.35)}
+    .bd-env{background:rgba(34,197,94,.18);color:#86EFAC;border:1px solid rgba(34,197,94,.35)}
+    .tk-dot{width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.15);flex-shrink:0;margin:0 14px}
+    .tk-load{color:rgba(255,255,255,.3);font-size:11.5px;font-family:'Outfit',sans-serif;padding-left:18px;display:flex;align-items:center;gap:8px}
+    .tk-spin{width:11px;height:11px;border-radius:50%;border:1.5px solid rgba(37,99,235,.25);border-top-color:#60A5FA;animation:tkspin .8s linear infinite;flex-shrink:0}
+    .tk-refresh{flex-shrink:0;width:28px;height:100%;display:flex;align-items:center;justify-content:center;border-left:1px solid rgba(255,255,255,.07);cursor:pointer;color:rgba(255,255,255,.25);font-size:12px;transition:color .2s;background:none;border-top:none;border-right:none;border-bottom:none}
+    .tk-refresh:hover{color:#60A5FA}
+    .tk-time{flex-shrink:0;font-size:12px;font-family:'Outfit',monospace;color:rgba(255,255,255,.25);padding:0 10px;border-left:1px solid rgba(255,255,255,.07);white-space:nowrap}
+    @keyframes tkScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    @keyframes tkspin{to{transform:rotate(360deg)}}
+
+    /* ============ 뉴스레터 모달 ============ */
+    .nl-overlay{position:fixed;inset:0;z-index:9000;background:rgba(10,37,64,.55);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s ease}
+    .nl-overlay.open{opacity:1;pointer-events:auto}
+    .nl-card{background:var(--white);border-radius:24px;width:100%;max-width:480px;box-shadow:0 24px 64px rgba(10,37,64,.18);overflow:hidden;transform:translateY(20px) scale(.97);transition:transform .3s cubic-bezier(.2,.8,.2,1);max-height:90vh;overflow-y:auto}
+    .nl-overlay.open .nl-card{transform:translateY(0) scale(1)}
+    .nl-header{background:linear-gradient(135deg,var(--navy-900) 0%,var(--navy-700) 100%);padding:28px 32px 0;position:relative}
+    .nl-close{position:absolute;top:18px;right:20px;width:32px;height:32px;background:rgba(255,255,255,.12);border:none;border-radius:50%;cursor:pointer;color:rgba(255,255,255,.7);font-size:16px;display:grid;place-items:center;transition:background .2s}
+    .nl-close:hover{background:rgba(255,255,255,.22);color:#fff}
+    .nl-brand{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+    .nl-brand-icon{width:40px;height:40px;background:linear-gradient(135deg,#F59E0B,#D97706);border-radius:10px;display:grid;place-items:center;flex-shrink:0}
+    .nl-brand-icon svg{width:20px;height:20px}
+    .nl-brand-text .t1{font-size:15px;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.2}
+    .nl-brand-text .t2{font-size:11px;color:rgba(255,255,255,.5);font-weight:500;letter-spacing:.06em;margin-top:2px;font-family:'Inter',sans-serif}
+    .nl-tabs{display:flex}
+    .nl-tab{flex:1;padding:12px 0;background:none;border:none;cursor:pointer;color:rgba(255,255,255,.45);font-size:14px;font-weight:700;letter-spacing:-.01em;border-bottom:3px solid transparent;transition:all .2s;font-family:'Pretendard Variable',Pretendard,sans-serif}
+    .nl-tab:hover{color:rgba(255,255,255,.75)}
+    .nl-tab.active{color:var(--mint-500);border-bottom-color:var(--mint-500)}
+    .nl-body{padding:28px 32px 32px}
+    .nl-panel{display:none}.nl-panel.active{display:block}
+    .nl-desc{font-size:13.5px;color:var(--gray-600);line-height:1.65;margin-bottom:22px}
+    .nl-desc strong{color:var(--navy-900)}
+    .nl-field{margin-bottom:16px}
+    .nl-field label{display:block;font-size:12.5px;font-weight:700;color:var(--gray-700);margin-bottom:7px}
+    .nl-field label .req{color:var(--blue-600);margin-left:2px}
+    .nl-field input,.nl-field select{width:100%;padding:11px 14px;border:1.5px solid var(--gray-200);border-radius:10px;font-size:14px;color:var(--ink);background:var(--gray-50);font-family:'Pretendard Variable',Pretendard,sans-serif;transition:border-color .2s,background .2s;outline:none;-webkit-appearance:none;appearance:none}
+    .nl-field input:focus,.nl-field select:focus{border-color:var(--blue-600);background:var(--white);box-shadow:0 0 0 3px rgba(30,107,216,.1)}
+    .nl-field input::placeholder{color:var(--gray-400)}
+    .nl-field .select-wrap{position:relative}
+    .nl-field .select-wrap::after{content:'';position:absolute;right:13px;top:50%;transform:translateY(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid var(--gray-400);pointer-events:none}
+    .nl-btn{width:100%;padding:14px;border:none;border-radius:12px;font-size:15px;font-weight:800;letter-spacing:-.01em;cursor:pointer;transition:all .25s;font-family:'Pretendard Variable',Pretendard,sans-serif;margin-top:8px;display:flex;align-items:center;justify-content:center;gap:8px}
+    .nl-btn-sub{background:linear-gradient(135deg,var(--navy-900),var(--navy-700));color:var(--white)}
+    .nl-btn-sub:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(10,37,64,.3)}
+    .nl-btn-unsub{background:var(--gray-100);color:var(--gray-700)}
+    .nl-btn-unsub:hover{background:#fee2e2;color:#b91c1c}
+    .nl-btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
+    .nl-btn .spinner{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;animation:nl-spin .7s linear infinite;display:none;flex-shrink:0}
+    .nl-btn-unsub .spinner{border-color:rgba(100,116,139,.3);border-top-color:var(--gray-700)}
+    .nl-btn.loading .spinner{display:block}
+    .nl-btn.loading .btn-text{opacity:.7}
+    .nl-result{display:none;padding:14px 16px;border-radius:10px;font-size:13.5px;font-weight:600;margin-top:12px;text-align:center;line-height:1.5}
+    .nl-result.success{display:block;background:var(--mint-100);color:#0E7A6E}
+    .nl-result.error{display:block;background:#fee2e2;color:#b91c1c}
+    .nl-small{font-size:11.5px;color:var(--gray-400);text-align:center;margin-top:14px;line-height:1.6}
+    .nl-agree{display:flex;align-items:flex-start;gap:10px;padding:14px;background:var(--gray-50);border:1.5px solid var(--gray-200);border-radius:10px;margin-bottom:4px;margin-top:4px;cursor:pointer;transition:border-color .2s}
+    .nl-agree:has(input:checked){border-color:var(--blue-600);background:var(--blue-50)}
+    .nl-agree input[type=checkbox]{width:17px;height:17px;flex-shrink:0;margin-top:1px;accent-color:var(--blue-600);cursor:pointer}
+    .nl-agree-text{font-size:12.5px;color:var(--gray-600);line-height:1.6}
+    .nl-agree-text strong{color:var(--navy-900);font-weight:700}
+    .nl-agree-detail{font-size:11.5px;color:var(--gray-400);margin-top:4px;line-height:1.5}
+    .nl-agree-toggle{font-size:11px;color:var(--blue-600);font-weight:600;cursor:pointer;text-decoration:underline;white-space:nowrap;margin-top:4px;display:inline-block}
+    .nl-agree-table{display:none;width:100%;border-collapse:collapse;margin-top:10px;font-size:11.5px}
+    .nl-agree-table.open{display:table}
+    .nl-agree-table th,.nl-agree-table td{border:1px solid var(--gray-200);padding:7px 10px;text-align:left;color:var(--gray-600);line-height:1.5}
+    .nl-agree-table th{background:var(--gray-100);font-weight:700;color:var(--gray-700);white-space:nowrap}
+    @keyframes nl-spin{to{transform:rotate(360deg)}}
+
+    @media(max-width:640px){.nl-header{padding:24px 24px 0}.nl-body{padding:24px 24px 28px}.nl-card{border-radius:20px}}
+
+    /* ============ 관리자 패널 ============ */
+    #adm-overlay{position:fixed;inset:0;z-index:99000;background:#0A0F1A;display:none;flex-direction:column;overflow:hidden}
+    #adm-overlay.open{display:flex}
+
+    .adm-topbar{height:52px;background:#0D1829;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;padding:0 24px;flex-shrink:0}
+    .adm-topbar-left{display:flex;align-items:center;gap:12px}
+    .adm-logo{font-size:13px;font-weight:800;color:#fff;letter-spacing:-.02em;font-family:'Inter',sans-serif}
+    .adm-badge-pill{font-size:10px;padding:3px 8px;background:rgba(245,158,11,.2);color:#F59E0B;border:1px solid rgba(245,158,11,.3);border-radius:4px;font-weight:700;font-family:'Inter',sans-serif;letter-spacing:.06em}
+    .adm-topbar-right{display:flex;align-items:center;gap:10px}
+    .adm-btn-save{padding:8px 18px;background:#1E6BD8;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;transition:background .2s;display:flex;align-items:center;gap:6px}
+    .adm-btn-save:hover{background:#2E7CE4}
+    .adm-btn-save:disabled{opacity:.5;cursor:not-allowed}
+    .adm-btn-close{padding:8px 14px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.1);border-radius:8px;font-size:13px;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;transition:all .2s}
+    .adm-btn-close:hover{background:rgba(255,255,255,.1);color:#fff}
+    .adm-save-msg{font-size:12px;color:#4ADE80;opacity:0;transition:opacity .3s;font-family:'Inter',sans-serif}
+    .adm-save-msg.show{opacity:1}
+
+    .adm-layout{display:flex;flex:1;overflow:hidden}
+    .adm-sidebar{width:196px;background:#0D1829;border-right:1px solid rgba(255,255,255,.07);padding:20px 0;flex-shrink:0;overflow-y:auto}
+    .adm-nav-item{display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:13px;font-weight:600;color:rgba(255,255,255,.4);cursor:pointer;transition:all .15s;border-left:3px solid transparent;font-family:'Pretendard Variable',Pretendard,sans-serif}
+    .adm-nav-item:hover{color:rgba(255,255,255,.75);background:rgba(255,255,255,.04)}
+    .adm-nav-item.active{color:#60A5FA;border-left-color:#1E6BD8;background:rgba(30,107,216,.1)}
+    .adm-nav-item .ni{font-size:15px;width:20px;text-align:center;flex-shrink:0}
+    .adm-content{flex:1;overflow-y:auto;padding:32px}
+
+    .adm-section{display:none}.adm-section.active{display:block}
+    .adm-section-title{font-size:18px;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:6px}
+    .adm-section-sub{font-size:13px;color:rgba(255,255,255,.35);margin-bottom:28px}
+    .adm-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .adm-grid-1{grid-template-columns:1fr}
+    .adm-field{display:flex;flex-direction:column;gap:7px}
+    .adm-field label{font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.04em;text-transform:uppercase;font-family:'Inter',sans-serif}
+    .adm-field input,.adm-field textarea{background:#131F30;border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 13px;font-size:13.5px;color:#E2E8F0;font-family:'Pretendard Variable',Pretendard,sans-serif;outline:none;transition:border-color .2s;width:100%}
+    .adm-field textarea{resize:vertical;min-height:80px;line-height:1.6}
+    .adm-field input:focus,.adm-field textarea:focus{border-color:#1E6BD8;background:#0F1A2E}
+    .adm-field input::placeholder,.adm-field textarea::placeholder{color:rgba(255,255,255,.18)}
+    .adm-hint{font-size:11px;color:rgba(255,255,255,.25);line-height:1.5}
+    .adm-divider{height:1px;background:rgba(255,255,255,.07);margin:28px 0}
+    .adm-card{background:#0D1829;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:20px;margin-bottom:14px}
+    .adm-card-label{font-size:11px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:14px}
+
+    .adm-industry-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+    .adm-industry-item{display:flex;align-items:center;gap:8px;background:#0D1829;border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px 12px}
+    .adm-industry-item input{flex:1;background:transparent;border:none;color:#E2E8F0;font-size:13.5px;font-family:'Pretendard Variable',Pretendard,sans-serif;outline:none;padding:0}
+    .adm-industry-item .drag-handle{color:rgba(255,255,255,.2);font-size:14px;flex-shrink:0;user-select:none}
+    .adm-industry-item .del-btn{width:24px;height:24px;background:rgba(239,68,68,.15);border:none;border-radius:6px;color:#FCA5A5;cursor:pointer;font-size:13px;display:grid;place-items:center;flex-shrink:0;transition:background .2s}
+    .adm-industry-item .del-btn:hover{background:rgba(239,68,68,.3)}
+    .adm-add-btn{display:flex;align-items:center;gap:7px;padding:9px 14px;background:rgba(30,107,216,.15);border:1px dashed rgba(30,107,216,.4);border-radius:8px;color:#60A5FA;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Pretendard Variable',Pretendard,sans-serif;width:100%}
+    .adm-add-btn:hover{background:rgba(30,107,216,.25);border-color:#60A5FA}
+
+    #adm-login{position:absolute;inset:0;background:#0A0F1A;display:flex;align-items:center;justify-content:center;z-index:10}
+    .adm-login-card{background:#0D1829;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:40px 36px;width:100%;max-width:360px;text-align:center}
+    .adm-login-icon{width:52px;height:52px;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);border-radius:14px;display:grid;place-items:center;margin:0 auto 20px;font-size:24px}
+    .adm-login-title{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:6px}
+    .adm-login-sub{font-size:13px;color:rgba(255,255,255,.35);margin-bottom:28px}
+    .adm-login-input{width:100%;background:#131F30;border:1.5px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;font-size:14px;color:#E2E8F0;font-family:'Pretendard Variable',Pretendard,sans-serif;outline:none;text-align:center;letter-spacing:.1em;margin-bottom:14px;transition:border-color .2s}
+    .adm-login-input:focus{border-color:#1E6BD8}
+    .adm-login-btn{width:100%;padding:13px;background:#1E6BD8;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:800;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;transition:background .2s}
+    .adm-login-btn:hover{background:#2E7CE4}
+    .adm-login-err{font-size:12.5px;color:#FCA5A5;margin-top:10px;min-height:18px}
+    .adm-success-msg{font-size:12.5px;color:#4ADE80;margin-top:10px;min-height:18px}
+  </style>
+<script>
+(function(){
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('keydown', e => {
+    if(e.key === 'F12') { e.preventDefault(); return; }
+    if((e.ctrlKey||e.metaKey) && e.shiftKey && ['i','I','j','J','c','C','k','K'].includes(e.key)) { e.preventDefault(); return; }
+    if((e.ctrlKey||e.metaKey) && ['u','U','s','S'].includes(e.key)) e.preventDefault();
+  });
+})();
+</script>
 </head>
 <body>
 
-<!-- 헤더 -->
-<div class="hd">
-  <a href="index.html" class="hd-logo">
-    <div class="hd-mark">EM</div>
-    <div>
-      <div class="hd-name">ESH-MASTER.KR <span style="opacity:.4;font-weight:400">|</span> SDI</div>
-      <div class="hd-sub">ENVIRONMENT · SAFETY · HEALTH</div>
+<!-- 전광판 -->
+<div id="news-ticker">
+  <div class="tk-label">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    안전보건 NEWS
+  </div>
+  <div class="tk-track">
+    <div class="tk-inner" id="tk-inner">
+      <div class="tk-load"><div class="tk-spin"></div>뉴스를 불러오는 중...</div>
     </div>
-  </a>
-  <div class="hd-title">고용노동부 지정 안전보건전문기관 찾기</div>
-  <a href="index.html" class="hd-back">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-    메인으로
-  </a>
+  </div>
+  <div class="tk-time" id="tk-time"></div>
+  <button class="tk-refresh" id="tk-refresh-btn" title="새로고침">↻</button>
 </div>
 
-<!-- 레이아웃 -->
-<div class="layout">
+<div class="bg-decor"></div>
 
-  <!-- 사이드바 -->
-  <div class="sidebar">
-    <div class="sb-head">
-      <h2>🔎 기관 검색</h2>
-      <p>분야 · 지역 선택 후 결과를 확인하세요</p>
-    </div>
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <a href="#" class="logo">
+      <span class="logo-mark">EM</span>
+      <span class="logo-text">
+        <span class="t1" id="cfg-brand-name">ESH-MASTER.KR  l  SDI</span>
+        <span class="t2 en" id="cfg-brand-sub">ENVIRONMENT · SAFETY · HEALTH</span>
+      </span>
+    </a>
+  </div>
+</header>
 
-    <div class="sb-body">
-      <!-- 분야 -->
-      <div class="tree-section">
-        <div class="tree-label">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2l8 4v6c0 5-3.5 9.4-8 10-4.5-.6-8-5-8-10V6l8-4z"/></svg>
-          분야
-        </div>
-        <div id="type-list"></div>
+<!-- MAIN -->
+<main>
+  <div class="container">
+    <div class="hero">
+
+      <div class="status-badge">
+        <span class="pulse"></span>
+        <span id="cfg-badge">COMING SOON · 2026</span>
       </div>
 
-      <!-- 지역 -->
-      <div class="tree-section" id="region-section" style="display:none">
-        <div class="tree-label">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          지역
+      <h1>
+        <span class="br" id="cfg-h1-1">현장에서 검증된</span>
+        <span class="br"><span class="accent" id="cfg-h1-2">안전보건환경 디지털 설계</span></span>
+      </h1>
+
+      <p class="lead" id="cfg-lead">
+        ESH-MASTER는 <strong>제조·통신업 현장</strong>의 안전보건을 수행해온
+        산업안전기획·안전보건전산화 전문가가 직접 설계합니다.
+        <strong>산안법·중처법</strong> 의무 이행과 현장 언어를 결합한<br>
+        4가지 서비스를 준비하고 있습니다.
+      </p>
+
+      <!-- 신뢰 지표 -->
+      <div class="credentials">
+        <div class="cred-item" data-cred="0"><div class="cred-n">15<sub>년+</sub></div><div class="cred-l">제조·통신업 안전관리</div></div>
+        <div class="cred-divider"></div>
+        <div class="cred-item" data-cred="1"><div class="cred-n">산안법</div><div class="cred-l">법정 의무 완전 준수</div></div>
+        <div class="cred-divider"></div>
+        <div class="cred-item" data-cred="2"><div class="cred-n">중처법</div><div class="cred-l">경영책임자 이행 증거</div></div>
+        <div class="cred-divider"></div>
+        <div class="cred-item" data-cred="3"><div class="cred-n">다수 사업장</div><div class="cred-l">통합 안전보건 체계</div></div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="services">
+        <div class="svc-item svc-1" style="position:relative;overflow:hidden">
+          <svg id="svc-bg-0" style="position:absolute;right:-20px;bottom:-16px;width:130px;height:130px;opacity:.06;color:var(--navy-900);pointer-events:none;z-index:0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 4v6c0 5-3.5 9.4-8 10-4.5-.6-8-5-8-10V6l8-4z"/></svg>
+          <div class="svc-icon" style="position:relative;z-index:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9.4-8 10-4.5-.6-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div class="svc-body" style="position:relative;z-index:1"><div class="eng en">01 · FLAGSHIP</div><h3 data-svc-title="0">Safety Do It</h3><p data-svc-desc="0">계층별 누구나 쉽게 따라하고<br>안전을 즐겁게 만드는 통합 솔루션</p></div>
+          <div class="svc-status" style="position:relative;z-index:1"><span class="dot"></span>준비중</div>
         </div>
-        <div class="region-sub open" id="region-list">
-          <div class="region-sub-item active" data-region="" onclick="selectRegion(this)">
-            <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg>
-            전체 지역
+        <div class="svc-item svc-2" style="position:relative;overflow:hidden">
+          <svg id="svc-bg-1" style="position:absolute;right:-20px;bottom:-16px;width:130px;height:130px;opacity:.06;color:var(--navy-900);pointer-events:none;z-index:0" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h6M9 17h3" stroke="white" stroke-width="1.5" fill="none"/></svg>
+          <div class="svc-icon" style="position:relative;z-index:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></div>
+          <div class="svc-body" style="position:relative;z-index:1"><div class="eng en">02 · ASSESSMENT</div><h3 data-svc-title="1">JSA 위험성평가</h3><p data-svc-desc="1">업종별 작업표준화를 통해<br>AI를 활용한 JSA 위험성평가</p></div>
+          <div class="svc-status" style="position:relative;z-index:1"><span class="dot"></span>준비중</div>
+        </div>
+        <div class="svc-item svc-3 beta-card" style="cursor:default;position:relative;overflow:hidden">
+          <svg id="svc-bg-2" style="position:absolute;right:-20px;bottom:-16px;width:130px;height:130px;opacity:.07;color:var(--amber);pointer-events:none;z-index:0" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>
+          <div class="svc-icon" style="position:relative;z-index:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
+          <div class="svc-body" style="position:relative;z-index:1"><div class="eng en">03 · WEEKLY</div><h3 data-svc-title="2">AI 안전보건 뉴스레터</h3><p data-svc-desc="2">업종별 특성을 반영한<br>AI 안전보건 주간 큐레이션</p></div>
+          <div style="display:flex;gap:8px;margin-top:auto;position:relative;z-index:1">
+            <button class="svc-action-btn svc-btn-preview" id="nl-preview-btn">예시 보기</button>
+            <button class="svc-action-btn svc-btn-sub" id="nl-trigger">구독 신청</button>
           </div>
-          <div class="region-sub-item" data-region="서울" onclick="selectRegion(this)"><svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg>서울</div>
-          <div class="region-sub-item" data-region="경기" onclick="selectRegion(this)"><svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg>경기</div>
-          <div class="region-sub-item" data-region="인천" onclick="selectRegion(this)"><svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg>인천</div>
-          <div class="region-sub-item" data-region="강원" onclick="selectRegion(this)"><svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg>강원</div>
-          <div class="region-sub-item" data-region="충북" onclick="selectRegion(this)"><svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg>충북</div>
-          <div class="region-sub-item" data-region="충남" onclick="selectRegion(this)"><svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg>충남</div>
-          <div class="region-sub-item" data-region="대전" onclick="selectRegion(this)"><svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg>대전</div>
-          <div class="region-sub-item" data-region="세종" onclick="selectRegion(this)"><svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg>세종</div>
-          <div class="region-sub-item" data-region="부산" onclick="selectRegion(this)"><svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg>부산</div>
-          <div class="region-sub-item" data-region="울산" onclick="selectRegion(this)"><svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg>울산</div>
-          <div class="region-sub-item" data-region="경남" onclick="selectRegion(this)"><svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg>경남</div>
-          <div class="region-sub-item" data-region="대구" onclick="selectRegion(this)"><svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg>대구</div>
-          <div class="region-sub-item" data-region="경북" onclick="selectRegion(this)"><svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg>경북</div>
-          <div class="region-sub-item" data-region="광주" onclick="selectRegion(this)"><svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg>광주</div>
-          <div class="region-sub-item" data-region="전북" onclick="selectRegion(this)"><svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg>전북</div>
-          <div class="region-sub-item" data-region="전남" onclick="selectRegion(this)"><svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg>전남</div>
-          <div class="region-sub-item" data-region="제주" onclick="selectRegion(this)"><svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="12"/></svg>제주</div>
+          <div class="svc-status beta" style="position:relative;z-index:1;margin-top:8px"><span class="dot"></span>BETA 오픈</div>
+        </div>
+        <div class="svc-item svc-4" style="position:relative;overflow:hidden">
+          <svg id="svc-bg-3" style="position:absolute;right:-20px;bottom:-16px;width:130px;height:130px;opacity:.06;color:var(--mint-500);pointer-events:none;z-index:0" viewBox="0 0 24 24" fill="currentColor"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <div class="svc-icon" style="position:relative;z-index:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+          <div class="svc-body" style="position:relative;z-index:1"><div class="eng en">04 · RESOURCES</div><h3 data-svc-title="3">안전보건정보</h3><p data-svc-desc="3">업종별 특성을 반영한<br>법령·사례·서식 자료실</p></div>
+          <div class="svc-status" style="position:relative;z-index:1"><span class="dot"></span>준비중</div>
+        </div>
+
+        <!-- 05 안전보건전문기관 -->
+        <a class="svc-item svc-5" href="guidance-agencies.html" target="_blank" rel="noopener" style="text-decoration:none">
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="svc-body" style="position:relative;z-index:1"><div class="eng en">05 · DIRECTORY</div><h3 data-svc-title="4">고용노동부 지정 안전보건전문기관 찾기</h3><p data-svc-desc="4">안전·보건·건설재해예방<br>고용노동부 지정기관 검색 · 지도</p></div>
+          <div class="svc-status beta" style="position:relative;z-index:1"><span class="dot"></span>가동중</div>
+          <div class="svc-5-map" id="svc-bg-4"></div>
+        </a>
+      </div>
+
+      <!-- 구독 현황 -->
+      <div class="stats-section">
+        <div class="stats-wrap">
+          <div class="stats-header">
+            <div class="stats-title"><span class="stats-title-dot"></span>AI 안전보건 뉴스레터 업종별 구독현황</div>
+            <span class="stats-badge" id="stats-update-time">불러오는 중...</span>
+          </div>
+          <div id="stats-container">
+            <div class="stats-loading"><div class="stats-spin"></div>현황을 불러오는 중...</div>
+          </div>
+          <p style="font-size:12px;color:var(--gray-500);margin-top:14px;text-align:center">업종별 10명 이상 구독 시 해당 업종 뉴스레터 발송을 시작합니다</p>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="contact-card">
+        <div class="contact-inner">
+          <div class="contact-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="10"/></svg>
+            CONTACT
+          </div>
+          <h2 id="cfg-contact-h2">서비스 출시 · 파트너십 · 문의는<br>아래 이메일로 연락 주세요.</h2>
+          <a id="cfg-contact-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=esh-master@gmail.com&su=ESH-MASTER%20%EB%AC%B8%EC%9D%98" target="_blank" rel="noopener" class="mail-button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            <span class="mail" id="cfg-contact-email">esh-master@gmail.com</span>
+          </a>
+          <p class="contact-note" id="cfg-contact-note">문의 전 간단한 소속·용건을 메일에 적어주시면 빠르게 회신드립니다.</p>
         </div>
       </div>
     </div>
+  </div>
+</main>
 
-    <!-- 키워드 검색 -->
-    <div class="sb-search">
-      <div class="kw-row">
-        <div class="kw-wrap">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          <input class="kw-input" type="text" id="kw-input" placeholder="기관명 검색 (선택)" autocomplete="off">
+<!-- FOOTER -->
+<footer>
+  <div class="container foot-inner">
+    <div class="foot-left">
+      <div class="foot-brand">
+        <span class="foot-brand-mark" id="adm-dot">EM</span>
+        <span class="foot-brand-text">
+          <span class="t1">ESH-MASTER.KR | SDI</span>
+          <span class="t2 en">ENVIRONMENT · SAFETY · HEALTH</span>
+        </span>
+      </div>
+      <div class="foot-copy">© 2026 <strong>ESH-MASTER.KR</strong>&nbsp; 산업안전기획 · 안전보건전산화</div>
+    </div>
+
+    <!-- 관공서 신뢰 링크 -->
+    <div class="foot-agencies">
+      <div class="foot-agencies-label">OFFICIAL LINKS</div>
+      <div class="foot-agency-links" id="foot-agency-links">
+        <a class="foot-agency" href="https://www.moel.go.kr" target="_blank" rel="noopener" title="고용노동부">
+          <img src="https://www.google.com/s2/favicons?domain=moel.go.kr&sz=24" width="16" height="16" alt="고용노동부" onerror="this.style.display='none'">
+          고용노동부
+        </a>
+        <a class="foot-agency" href="https://www.kosha.or.kr" target="_blank" rel="noopener" title="안전보건공단">
+          <img src="https://www.google.com/s2/favicons?domain=kosha.or.kr&sz=24" width="16" height="16" alt="안전보건공단" onerror="this.style.display='none'">
+          안전보건공단
+        </a>
+        <a class="foot-agency" href="https://www.me.go.kr" target="_blank" rel="noopener" title="환경부">
+          <img src="https://www.google.com/s2/favicons?domain=me.go.kr&sz=24" width="16" height="16" alt="환경부" onerror="this.style.display='none'">
+          환경부
+        </a>
+        <a class="foot-agency" href="https://www.nfa.go.kr" target="_blank" rel="noopener" title="소방청">
+          <img src="https://www.google.com/s2/favicons?domain=nfa.go.kr&sz=24" width="16" height="16" alt="소방청" onerror="this.style.display='none'">
+          소방청
+        </a>
+        <a class="foot-agency" href="https://www.law.go.kr" target="_blank" rel="noopener" title="국가법령정보센터">
+          <img src="https://www.google.com/s2/favicons?domain=law.go.kr&sz=24" width="16" height="16" alt="법령" onerror="this.style.display='none'">
+          국가법령정보센터
+        </a>
+        <a class="foot-agency" href="https://www.meis.go.kr" target="_blank" rel="noopener" title="안전보건법령정보">
+          <img src="https://www.google.com/s2/favicons?domain=meis.go.kr&sz=24" width="16" height="16" alt="법령정보" onerror="this.style.display='none'">
+          안전보건법령정보
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ 뉴스레터 미리보기 모달 ============ -->
+<div class="nl-overlay" id="preview-overlay" role="dialog" aria-modal="true">
+  <div class="nl-card" style="max-width:600px;max-height:88vh;overflow-y:auto">
+    <div class="nl-header" style="padding-bottom:16px">
+      <button class="nl-close" id="preview-close" aria-label="닫기">✕</button>
+      <div class="nl-brand">
+        <div class="nl-brand-icon" style="background:linear-gradient(135deg,#1E6BD8,#2E7CE4)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
         </div>
-        <button class="go-btn" id="search-btn">검색</button>
+        <div class="nl-brand-text">
+          <div class="t1">뉴스레터 예시</div>
+          <div class="t2 en">SAMPLE · AI GENERATED</div>
+        </div>
       </div>
     </div>
-  </div>
-
-  <!-- 결과 패널 -->
-  <div class="result-panel">
-    <div class="rp-head">
-      <div class="rp-breadcrumb" id="breadcrumb">
-        <span>분야를 선택하면 결과가 표시됩니다</span>
+    <div style="padding:24px 32px 32px">
+      <div style="background:#0A2540;border-radius:12px;padding:24px 28px;margin-bottom:14px">
+        <div style="display:inline-block;background:#C8F03C;color:#0A2540;font-size:10px;font-weight:900;padding:3px 10px;border-radius:20px;letter-spacing:1.5px;font-family:monospace;margin-bottom:10px">WEEKLY INSIGHT</div>
+        <div style="color:#fff;font-size:20px;font-weight:900;line-height:1.3">ESH-MASTER<br><span style="color:#C8F03C">AI 안전보건 인사이트</span></div>
+        <div style="color:#94A3B8;font-size:12px;margin-top:8px">4월 28일 주간 브리핑 · AI 생성 샘플</div>
       </div>
-      <select class="sort-sel" id="sort-select" style="display:none">
-        <option value="region">지역순</option>
-        <option value="name">이름순</option>
-        <option value="grade">등급순</option>
-      </select>
-      <div class="rp-count" id="rp-count" style="display:none"></div>
-    </div>
-    <div class="rp-body" id="rp-body">
-      <div class="empty-state">
-        <div class="empty-icon">🏢</div>
-        <div style="font-size:14px;color:var(--g5)">좌측에서 분야를 선택해 주세요</div>
-        <div style="font-size:12px;color:var(--g4)">고용노동부 지정 8개 유형 · 전국 2,164개 기관</div>
+      <div style="background:#0A2540;border-radius:12px;padding:20px 22px;margin-bottom:12px">
+        <div style="color:#14B8A6;font-size:10px;font-weight:800;letter-spacing:2px;margin-bottom:12px;font-family:monospace">01 · GOVERNMENT POLICY</div>
+        <a href="https://www.moel.go.kr" target="_blank" rel="noopener" style="display:block;text-decoration:none;background:rgba(255,255,255,.05);border-left:3px solid #1E6BD8;border-radius:0 8px 8px 0;padding:12px 14px;margin-bottom:8px">
+          <div style="font-size:10px;color:#1E6BD8;font-weight:700;letter-spacing:.8px;margin-bottom:4px;font-family:monospace">고용노동부 · 안전보건공단</div>
+          <div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:5px">끼임·협착 재해 예방 기술지도 강화 — 제조업 중점 점검</div>
+          <div style="font-size:11.5px;color:#94A3B8;line-height:1.65;margin-bottom:6px">고용노동부는 2분기 기계·설비 방호장치 미설치 사업장을 대상으로 기술지도를 확대하고, 위반 시 즉시 작업중지 명령을 내리는 지침을 시행한다.</div>
+          <div style="font-size:11px;color:#1E6BD8;font-weight:600">실무 포인트: 기계 설비 방호장치 체결 상태 및 비상정지 스위치 작동 여부 즉시 점검</div>
+        </a>
+        <a href="https://www.me.go.kr" target="_blank" rel="noopener" style="display:block;text-decoration:none;background:rgba(255,255,255,.05);border-left:3px solid #14B8A6;border-radius:0 8px 8px 0;padding:12px 14px;margin-bottom:8px">
+          <div style="font-size:10px;color:#14B8A6;font-weight:700;letter-spacing:.8px;margin-bottom:4px;font-family:monospace">환경부 · 화학물질안전원</div>
+          <div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:5px">유해화학물질 취급시설 정기검사 주기 2년→1년 단축 예고</div>
+          <div style="font-size:11.5px;color:#94A3B8;line-height:1.65;margin-bottom:6px">화학물질관리법 시행규칙 개정안이 입법예고됐다. 취급시설 정기검사 주기가 기존 2년에서 1년으로 단축되며, 2027년 1월 시행 예정이다.</div>
+          <div style="font-size:11px;color:#14B8A6;font-weight:600">실무 포인트: 취급시설 현황 목록 최신화 및 차기 정기검사 일정 조기 수립 권장</div>
+        </a>
+        <a href="https://www.nfa.go.kr" target="_blank" rel="noopener" style="display:block;text-decoration:none;background:rgba(255,255,255,.05);border-left:3px solid #F59E0B;border-radius:0 8px 8px 0;padding:12px 14px">
+          <div style="font-size:10px;color:#F59E0B;font-weight:700;letter-spacing:.8px;margin-bottom:4px;font-family:monospace">소방청 · 소방 동향</div>
+          <div style="font-size:13px;font-weight:800;color:#fff;margin-bottom:5px">스프링클러 미설치 물류창고 화재 — 초동 대응 실패 교훈</div>
+          <div style="font-size:11.5px;color:#94A3B8;line-height:1.65;margin-bottom:6px">경기 소재 물류창고 화재가 스프링클러 미작동으로 확산됐다. 소방청은 연면적 1,500㎡ 이상 창고의 소방시설 전수 점검을 지시했다.</div>
+          <div style="font-size:11px;color:#F59E0B;font-weight:600">실무 포인트: 스프링클러 헤드 폐쇄 여부 및 감지기 연동 테스트 분기별 필수 확인</div>
+        </a>
       </div>
+      <div style="background:#fff;border:1px solid #E2E8F0;border-radius:12px;padding:20px 22px;margin-bottom:12px">
+        <div style="color:#1E6BD8;font-size:10px;font-weight:800;letter-spacing:2px;margin-bottom:12px;font-family:monospace">02 · RISK PREVENTION SOLUTION</div>
+        <div style="background:#F4F8FD;border-left:4px solid #1E6BD8;border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:12px">
+          <div style="font-size:10px;color:#1E6BD8;font-weight:700;letter-spacing:1px;margin-bottom:4px;font-family:monospace">끼임 · 협착</div>
+          <div style="font-size:15px;font-weight:800;color:#0A2540;margin-bottom:7px">컨베이어 청소 작업 중 끼임 — LOTO 절차 사각지대</div>
+          <div style="font-size:12px;color:#475569;line-height:1.7">제조업 끼임 사고의 38%는 설비 청소·점검 중 발생한다. LOTO 절차를 생략하거나 운전 중 설비에 접근하는 경우가 주요 원인이다.</div>
+        </div>
+        <ul style="padding-left:18px;margin:0 0 10px;font-size:12.5px;color:#334155;line-height:1.9">
+          <li>청소·점검 전 전원 차단 후 LOTO 장치 적용 — 1인 1자물쇠 원칙 준수</li>
+          <li>컨베이어 하부·측면 청소 시 전담 감시자 배치 및 작업 전 TBM 실시</li>
+          <li>고위험 설비 주변 접근 방지 울타리·인터록 설치 여부 분기별 자체점검</li>
+        </ul>
+        <div style="font-size:11px;color:#94A3B8;border-top:1px solid #E2E8F0;padding-top:8px">산업안전보건기준에 관한 규칙 제92조(운전 중 위험 방지), 제86조(정비 등의 작업 시 운전정지)</div>
+      </div>
+      <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:20px 22px;margin-bottom:16px">
+        <div style="color:#14B8A6;font-size:10px;font-weight:800;letter-spacing:2px;margin-bottom:12px;font-family:monospace">03 · GLOBAL ESH TRENDS</div>
+        <a href="https://www.hse.gov.uk" target="_blank" rel="noopener" style="display:block;text-decoration:none;background:#fff;border:1px solid #E2E8F0;border-radius:8px;padding:16px 18px">
+          <div style="font-size:10px;color:#94A3B8;font-weight:600;letter-spacing:1px;margin-bottom:5px;font-family:monospace">영국 HSE</div>
+          <div style="font-size:14px;font-weight:800;color:#0A2540;margin-bottom:7px">영국 HSE, AI 기반 위험성평가 가이드라인 최초 공식 발표</div>
+          <div style="font-size:12px;color:#475569;line-height:1.7;margin-bottom:9px">영국 보건안전청(HSE)이 AI 도구를 활용한 위험성평가 절차 공식 가이드라인을 발표했다. 최종 판단과 서명은 자격을 갖춘 담당자가 해야 한다고 명시했다.</div>
+          <div style="font-size:11.5px;color:#1E6BD8;font-weight:600;padding:8px 12px;background:#E8F0FC;border-radius:6px">시사점: AI 위험성평가 도구 도입 시 담당자 최종 검토 의무화 내규 선제적 마련 필요</div>
+        </a>
+      </div>
+      <button id="preview-subscribe-btn" style="width:100%;padding:14px;background:linear-gradient(135deg,#0A2540,#1A3A66);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif">매주 월요일 무료로 받아보기 →</button>
+      <p style="font-size:11.5px;color:#94A3B8;text-align:center;margin-top:10px">AI가 매주 새롭게 생성하는 실제 발송본입니다</p>
     </div>
-  </div>
-
-  <!-- 드래그 리사이저 -->
-  <div class="resizer" id="resizer" title="드래그하여 크기 조절"></div>
-
-  <!-- 카카오 지도 -->
-  <div class="map-panel" id="map-panel">
-    <div id="map"></div>
   </div>
 </div>
 
-<script>
-const API_URL = 'https://script.google.com/macros/s/AKfycbykCxcVBZki0-wrNpd5a63D_wttCJUs14_-OyvrEGcozwueS3BMnlRxNALz_KijeyTO/exec';
-
-const TYPES = [
-  { key:'건설재해예방', label:'건설재해예방전문지도기관', icon:'🏗️', color:'#1E6BD8', date:"2026년 3월 기준" },
-  { key:'안전관리',    label:'안전관리전문기관',          icon:'🛡️', color:'#0E7A6E', date:"2026년 3월 기준" },
-  { key:'보건관리',    label:'보건관리전문기관',          icon:'🩺', color:'#7C3AED', date:"2026년 4월 기준" },
-  { key:'특수건강진단', label:'특수건강진단실시기관',     icon:'🏥', color:'#D97706', date:"2026년 3월 기준" },
-  { key:'자율안전검사', label:'자율안전검사기관',         icon:'🔍', color:'#DC2626', date:"2025년 12월 기준" },
-  { key:'석면조사',    label:'석면조사기관',              icon:'🔬', color:'#475569', date:"2025년 11월 기준" },
-  { key:'작업환경측정', label:'작업환경측정기관',         icon:'📊', color:'#0891B2', date:"2025년 10월 기준" },
-  { key:'안전보건진단', label:'안전보건진단기관',         icon:'📋', color:'#6D28D9', date:"2026년 2월 기준" },
-];
-const GRADE_COLOR = {S:'#0E7A6E',A:'#1E6BD8',B:'#7C3AED',C:'#D97706',D:'#DC2626','-':'#94A3B8'};
-
-let currentType = '', currentRegion = '', allData = [], kakaoMap = null, markers = [];
-
-// ── 초기화
-window.addEventListener('DOMContentLoaded', () => {
-  loadAgencyOrder().then(() => buildTypeList());
-  document.getElementById('search-btn').addEventListener('click', doSearch);
-  document.getElementById('kw-input').addEventListener('keydown', e => { if(e.key==='Enter') doSearch(); });
-  document.getElementById('sort-select').addEventListener('change', renderList);
-  initKakaoMap();
-});
-
-// ── 분야 목록 생성
-async function loadAgencyOrder() {
-  try {
-    const d = await (await fetch(API_URL + '?action=getConfig', {cache:'force-cache', signal:AbortSignal.timeout(5000)})).json();
-    if (d.success && d.config?.agencyOrder) {
-      const order = d.config.agencyOrder;
-      TYPES.sort((a, b) => {
-        const ai = order.indexOf(a.key), bi = order.indexOf(b.key);
-        return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
-      });
-    }
-  } catch {}
-}
-
-function buildTypeList() {
-  const list = document.getElementById('type-list');
-  list.innerHTML = TYPES.map(t => `
-    <div class="tree-item" data-key="${t.key}" onclick="selectType('${t.key}')">
-      <span class="tree-dot" style="border-color:${t.color}"></span>
-      <span>${t.icon} ${t.label}</span>
-      <span class="tree-count" id="cnt-${t.key}">—</span>
+<!-- ============ 뉴스레터 모달 ============ -->
+<div class="nl-overlay" id="nl-overlay" role="dialog" aria-modal="true">
+  <div class="nl-card">
+    <div class="nl-header">
+      <button class="nl-close" id="nl-close" aria-label="닫기">✕</button>
+      <div class="nl-brand">
+        <div class="nl-brand-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
+        <div class="nl-brand-text"><div class="t1">AI 안전보건 뉴스레터</div><div class="t2 en">03 · WEEKLY · BETA</div></div>
+      </div>
+      <div class="nl-tabs">
+        <button class="nl-tab active" data-tab="subscribe">구독 신청</button>
+        <button class="nl-tab" data-tab="unsubscribe">구독 취소</button>
+      </div>
     </div>
-  `).join('');
-  loadCounts();
-}
+    <div class="nl-body">
+      <div class="nl-panel active" id="panel-subscribe">
+        <p class="nl-desc"><strong>업종별 특성을 반영한 AI 안전보건 주간 큐레이션</strong>을<br>매주 월요일 이메일로 받아보세요.</p>
+        <div class="nl-field"><label>이름 <span class="req">*</span></label><input type="text" id="sub-name" placeholder="홍길동" maxlength="30" autocomplete="name"></div>
+        <div class="nl-field"><label>이메일 <span class="req">*</span></label><input type="email" id="sub-email" placeholder="example@company.com" autocomplete="email"></div>
+        <div class="nl-field"><label>소속</label><input type="text" id="sub-affiliation" placeholder="XX 전자 / 안전보건팀" maxlength="60"></div>
+        <div class="nl-field">
+          <label>업종 분야</label>
+          <div class="select-wrap">
+            <select id="sub-industry">
+              <option value="">-- 선택해주세요 --</option>
+              <option>식품·음료 제조업</option><option>일반 제조업</option>
+              <option>화학·석유·고무업</option><option>건설업</option>
+              <option>물류·운수업</option><option>서비스업</option>
+              <option>통신·IT업</option><option>기타</option>
+            </select>
+          </div>
+        </div>
+        <label class="nl-agree" for="sub-agree">
+          <input type="checkbox" id="sub-agree">
+          <div class="nl-agree-text">
+            <strong>개인정보 수집 및 이용에 동의합니다.</strong>&nbsp;<span style="color:var(--blue-600)">*</span>
+            <div class="nl-agree-detail">수집된 정보는 뉴스레터 발송 목적으로만 사용되며, 구독 취소 시 즉시 처리됩니다.</div>
+            <span class="nl-agree-toggle" id="agree-toggle-btn">수집 항목 상세보기 ▼</span>
+          </div>
+        </label>
+        <table class="nl-agree-table" id="agree-table">
+          <tr><th>수집 항목</th><td>이름, 이메일 주소, 소속, 업종</td></tr>
+          <tr><th>수집 목적</th><td>AI 안전보건 뉴스레터 발송</td></tr>
+          <tr><th>보유 기간</th><td>구독 취소 시까지 (취소 후 즉시 파기)</td></tr>
+          <tr><th>제3자 제공</th><td>없음</td></tr>
+        </table>
+        <button class="nl-btn nl-btn-sub" id="btn-subscribe"><div class="spinner"></div><span class="btn-text">구독 신청하기</span></button>
+        <div class="nl-result" id="sub-result"></div>
+        <p class="nl-small">동의를 거부할 권리가 있으며, 거부 시 뉴스레터 수신이 제한됩니다.</p>
+      </div>
+      <div class="nl-panel" id="panel-unsubscribe">
+        <p class="nl-desc">구독 신청 시 입력하신 <strong>이름과 이메일</strong>을 입력하시면 즉시 수신이 중단됩니다.</p>
+        <div class="nl-field"><label>이름 <span class="req">*</span></label><input type="text" id="unsub-name" placeholder="홍길동" maxlength="30"></div>
+        <div class="nl-field"><label>이메일 <span class="req">*</span></label><input type="email" id="unsub-email" placeholder="example@company.com"></div>
+        <button class="nl-btn nl-btn-unsub" id="btn-unsubscribe"><div class="spinner"></div><span class="btn-text">구독 취소하기</span></button>
+        <div class="nl-result" id="unsub-result"></div>
+        <p class="nl-small">취소 후에도 재구독은 언제든지 가능합니다.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-async function loadCounts() {
-  try {
-    const d = await (await fetch(API_URL + '?action=types', {signal:AbortSignal.timeout(8000), cache:'force-cache'})).json();
-    if (!d.success) return;
-    d.types.forEach(t => {
-      const el = document.getElementById('cnt-'+t.key);
-      if (el) el.textContent = t.count;
+<!-- ============ 관리자 패널 ============ -->
+<div id="adm-overlay">
+  <div id="adm-login">
+    <div class="adm-login-card">
+      <div class="adm-login-icon">🔐</div>
+      <div class="adm-login-title">관리자 페이지</div>
+      <div class="adm-login-sub">ESH-MASTER 사이트 설정 관리</div>
+      <input type="password" class="adm-login-input" id="adm-pw-input" placeholder="비밀번호 입력" autocomplete="off">
+      <button class="adm-login-btn" id="adm-pw-btn">로그인</button>
+      <div class="adm-login-err" id="adm-login-err"></div>
+    </div>
+  </div>
+  <div class="adm-topbar">
+    <div class="adm-topbar-left">
+      <span class="adm-logo">ESH-MASTER</span>
+      <span class="adm-badge-pill">ADMIN</span>
+    </div>
+    <div class="adm-topbar-right">
+      <span class="adm-save-msg" id="adm-save-msg">✓ 저장 완료</span>
+      <button class="adm-btn-save" id="adm-save-btn">💾 저장</button>
+      <button class="adm-btn-close" id="adm-close-btn">✕ 닫기</button>
+    </div>
+  </div>
+  <div class="adm-layout">
+    <nav class="adm-sidebar">
+      <div class="adm-nav-item active" data-section="text"><span class="ni">📝</span> 메인 텍스트</div>
+      <div class="adm-nav-item" data-section="creds"><span class="ni">📊</span> 신뢰 지표</div>
+      <div class="adm-nav-item" data-section="services"><span class="ni">🗂️</span> 서비스 카드</div>
+      <div class="adm-nav-item" data-section="industry"><span class="ni">🏭</span> 업종 목록</div>
+      <div class="adm-nav-item" data-section="agencies"><span class="ni">🏛️</span> 관공서 링크</div>
+      <div class="adm-nav-item" data-section="agency-order"><span class="ni">🔢</span> 기관분야 순번</div>
+      <div class="adm-nav-item" data-section="contact"><span class="ni">📧</span> 연락처</div>
+      <div class="adm-nav-item" data-section="setting"><span class="ni">⚙️</span> 설정</div>
+    </nav>
+    <div class="adm-content">
+
+      <!-- 메인 텍스트 -->
+      <div class="adm-section active" id="adm-sec-text">
+        <div class="adm-section-title">메인 텍스트</div>
+        <div class="adm-section-sub">히어로 영역의 배지, 헤드라인, 소개 문구를 수정합니다.</div>
+        <div class="adm-grid adm-grid-1" style="gap:16px">
+          <div class="adm-card-label" style="margin-bottom:8px">헤더 로고</div>
+          <div class="adm-field"><label>브랜드명</label><input type="text" id="adm-brand-name" placeholder="ESH-MASTER"></div>
+          <div class="adm-field"><label>서브텍스트</label><input type="text" id="adm-brand-sub" placeholder="ENVIRONMENT · SAFETY · HEALTH"></div>
+          <div class="adm-field"><label>상단 배지</label><input type="text" id="adm-badge"></div>
+          <div class="adm-field"><label>헤드라인 1줄</label><input type="text" id="adm-h1-1"></div>
+          <div class="adm-field"><label>헤드라인 2줄 (강조 색상)</label><input type="text" id="adm-h1-2"></div>
+          <div class="adm-field">
+            <label>소개 문구 (HTML 가능)</label>
+            <textarea id="adm-lead" rows="5"></textarea>
+            <span class="adm-hint">※ &lt;strong&gt;굵게&lt;/strong&gt;, &lt;br&gt; 줄바꿈 사용 가능</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 신뢰 지표 -->
+      <div class="adm-section" id="adm-sec-creds">
+        <div class="adm-section-title">신뢰 지표</div>
+        <div class="adm-section-sub">하단 수치 스트립 4개 항목을 수정합니다.</div>
+        <div id="adm-creds-list"></div>
+      </div>
+
+      <!-- 서비스 카드 -->
+      <div class="adm-section" id="adm-sec-services">
+        <div class="adm-section-title">서비스 카드</div>
+        <div class="adm-section-sub">4개 서비스 카드의 제목과 설명을 수정합니다.</div>
+        <div id="adm-services-list"></div>
+      </div>
+
+      <!-- 업종 목록 -->
+      <div class="adm-section" id="adm-sec-industry">
+        <div class="adm-section-title">업종 목록</div>
+        <div class="adm-section-sub">구독 신청 폼의 업종 선택 항목을 관리합니다. 드래그로 순서 변경, ✕로 삭제합니다.</div>
+        <ul class="adm-industry-list" id="adm-industry-list"></ul>
+        <button class="adm-add-btn" id="adm-add-industry">＋ 업종 추가</button>
+      </div>
+
+      <!-- 관공서 링크 -->
+      <div class="adm-section" id="adm-sec-agencies">
+        <div class="adm-section-title">관공서 링크</div>
+        <div class="adm-section-sub">푸터 우측 관공서 링크를 관리합니다. 기관명과 URL을 수정하세요.</div>
+        <ul class="adm-industry-list" id="adm-agency-list"></ul>
+        <button class="adm-add-btn" id="adm-add-agency">＋ 기관 추가</button>
+      </div>
+
+      <!-- 기관분야 순번 -->
+      <div class="adm-section" id="adm-sec-agency-order">
+        <div class="adm-section-title">기관분야 순번</div>
+        <div class="adm-section-sub">안전보건전문기관 찾기 페이지의 분야 표시 순서를 드래그로 변경합니다.</div>
+        <ul class="adm-industry-list" id="adm-agency-order-list"></ul>
+      </div>
+
+      <!-- 연락처 -->
+      <div class="adm-section" id="adm-sec-contact">
+        <div class="adm-section-title">연락처</div>
+        <div class="adm-section-sub">Contact 섹션의 문구와 이메일 주소를 수정합니다.</div>
+        <div class="adm-grid adm-grid-1" style="gap:16px">
+          <div class="adm-field"><label>헤드라인 (\n으로 줄바꿈)</label><input type="text" id="adm-contact-h2"></div>
+          <div class="adm-field"><label>이메일 주소</label><input type="email" id="adm-contact-email"></div>
+          <div class="adm-field"><label>하단 안내 문구</label><input type="text" id="adm-contact-note"></div>
+        </div>
+      </div>
+
+      <!-- 설정 -->
+      <div class="adm-section" id="adm-sec-setting">
+        <div class="adm-section-title">설정</div>
+        <div class="adm-section-sub">관리자 비밀번호를 변경합니다. 변경 후 반드시 저장 버튼을 눌러주세요.</div>
+        <div class="adm-grid adm-grid-1" style="gap:14px;max-width:340px">
+          <div class="adm-field"><label>현재 비밀번호</label><input type="password" id="adm-pw-cur" autocomplete="off"></div>
+          <div class="adm-field"><label>새 비밀번호</label><input type="password" id="adm-pw-new" autocomplete="off"></div>
+          <div class="adm-field"><label>새 비밀번호 확인</label><input type="password" id="adm-pw-new2" autocomplete="off"></div>
+          <button class="adm-btn-save" id="adm-pw-change-btn" style="width:auto">비밀번호 변경</button>
+          <div id="adm-pw-msg" style="font-size:12.5px;min-height:18px"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ SCRIPTS ============ -->
+
+<!-- 1. 설정 + 관리자 -->
+<script>
+(function () {
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbykCxcVBZki0-wrNpd5a63D_wttCJUs14_-OyvrEGcozwueS3BMnlRxNALz_KijeyTO/exec';
+
+  const DEFAULTS = {
+    brand_name: 'ESH-MASTER',
+    brand_sub:  'ENVIRONMENT · SAFETY · HEALTH',
+    badge: 'COMING SOON · 2026',
+    h1_1: '현장에서 검증된',
+    h1_2: '안전보건환경 디지털 설계',
+    lead: 'ESH-MASTER는 <strong>제조·통신업 현장</strong>의 안전보건을 수행해온 산업안전기획·안전보건전산화 전문가가 직접 설계합니다. <strong>산안법·중처법</strong> 의무 이행과 현장 언어를 결합한<br>4가지 서비스를 준비하고 있습니다.',
+    creds: [
+      { n: '15<sub>년+</sub>', l: '제조·통신업 안전관리' },
+      { n: '산안법', l: '법정 의무 완전 준수' },
+      { n: '중처법', l: '경영책임자 이행 증거' },
+      { n: '다수 사업장', l: '통합 안전보건 체계' },
+    ],
+    services: [
+      { title: 'Safety Do It',       desc: '계층별 누구나 쉽게 따라하고\n안전을 즐겁게 만드는 통합 솔루션' },
+      { title: 'JSA 위험성평가',      desc: '업종별 작업표준화를 통해\nAI를 활용한 JSA 위험성평가' },
+      { title: 'AI 안전보건 뉴스레터', desc: '업종별 특성을 반영한\nAI 안전보건 주간 큐레이션' },
+      { title: '안전보건정보',         desc: '업종별 특성을 반영한\n법령·사례·서식 자료실' },
+    ],
+    contact_h2:    '서비스 출시 · 파트너십 · 문의는\n아래 이메일로 연락 주세요.',
+    contact_email: 'esh-master@gmail.com',
+    contact_note:  '문의 전 간단한 소속·용건을 메일에 적어주시면 빠르게 회신드립니다.',
+    industries: [
+      { name: '식품·음료 제조업', status: '신청중' },
+      { name: '일반 제조업',      status: '신청중' },
+      { name: '화학·석유·고무업', status: '신청중' },
+      { name: '건설업',           status: '신청중' },
+      { name: '물류·운수업',      status: '신청중' },
+      { name: '서비스업',         status: '신청중' },
+      { name: '통신·IT업',        status: '신청중' },
+      { name: '기타',             status: '신청중' },
+    ],
+    agencyOrder: ['건설재해예방','안전관리','보건관리','특수건강진단','자율안전검사','석면조사','작업환경측정','안전보건진단'],
+    agencies: [
+      { name: '고용노동부',       url: 'https://www.moel.go.kr',   favicon: 'moel.go.kr' },
+      { name: '안전보건공단',     url: 'https://www.kosha.or.kr',  favicon: 'kosha.or.kr' },
+      { name: '환경부',           url: 'https://www.me.go.kr',     favicon: 'me.go.kr' },
+      { name: '소방청',           url: 'https://www.nfa.go.kr',    favicon: 'nfa.go.kr' },
+      { name: '국가법령정보센터', url: 'https://www.law.go.kr',    favicon: 'law.go.kr' },
+      { name: '화학물질안전원',   url: 'https://nics.me.go.kr',   favicon: 'me.go.kr' },
+      { name: '안전보건법령정보', url: 'https://www.meis.go.kr',   favicon: 'meis.go.kr' },
+    ],
+  };
+
+  let CFG = JSON.parse(JSON.stringify(DEFAULTS));
+
+  /* ── 설정 로드 ───────────────────────────────────────── */
+  async function loadConfig() {
+    try {
+      const res  = await fetch(APPS_SCRIPT_URL + '?action=getConfig', { signal: AbortSignal.timeout(5000) });
+      const data = await res.json();
+      if (data.success && data.config) {
+        CFG = Object.assign({}, DEFAULTS, data.config);
+        if (data.config.creds)      CFG.creds      = data.config.creds;
+        if (data.config.services)   CFG.services   = data.config.services;
+        if (data.config.industries) CFG.industries = data.config.industries;
+        if (data.config.agencies)   CFG.agencies   = data.config.agencies;
+      }
+    } catch (e) { /* 기본값 사용 */ }
+    applyConfig();
+  }
+
+  /* ── DOM 적용 ────────────────────────────────────────── */
+  function applyConfig() {
+    set('cfg-badge', CFG.badge);
+    set('cfg-h1-1',  CFG.h1_1);
+    set('cfg-h1-2',  CFG.h1_2);
+    setH('cfg-lead', CFG.lead);
+
+    CFG.creds.forEach((c, i) => {
+      const el = document.querySelector('[data-cred="' + i + '"]');
+      if (!el) return;
+      el.querySelector('.cred-n').innerHTML   = c.n;
+      el.querySelector('.cred-l').textContent = c.l;
     });
-  } catch {}
-}
 
-// ── 분야 선택
-function selectType(key) {
-  currentType = key;
-  currentRegion = '';
+    CFG.services.forEach((s, i) => {
+      const t = document.querySelector('[data-svc-title="' + i + '"]');
+      const d = document.querySelector('[data-svc-desc="'  + i + '"]');
+      if (t) t.textContent = s.title;
+      if (d) d.innerHTML   = s.desc.replace(/\n/g, '<br>');
+    });
 
-  document.querySelectorAll('.tree-item').forEach(i => i.classList.remove('active'));
-  document.querySelector(`[data-key="${key}"]`).classList.add('active');
+    const bnEl = document.getElementById('cfg-brand-name');
+    const bsEl = document.getElementById('cfg-brand-sub');
+    if (bnEl) bnEl.textContent = CFG.brand_name || 'ESH-MASTER.KR l SDI';
+    if (bsEl) bsEl.textContent = CFG.brand_sub  || 'ENVIRONMENT · SAFETY · HEALTH';
 
-  document.getElementById('region-section').style.display = 'block';
-  document.querySelectorAll('.region-sub-item').forEach(i => i.classList.remove('active'));
-  document.querySelector('[data-region=""]').classList.add('active');
+    const h2El   = document.getElementById('cfg-contact-h2');
+    const emEl   = document.getElementById('cfg-contact-email');
+    const lnEl   = document.getElementById('cfg-contact-link');
+    const ntEl   = document.getElementById('cfg-contact-note');
+    if (h2El) h2El.innerHTML     = CFG.contact_h2.replace(/\n/g, '<br>');
+    if (emEl) emEl.textContent   = CFG.contact_email;
+    if (lnEl) lnEl.href          = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + CFG.contact_email + '&su=ESH-MASTER%20%EB%AC%B8%EC%9D%98';
+    if (ntEl) ntEl.textContent   = CFG.contact_note;
 
-  doSearch();
-}
+    rebuildSelect();
+    rebuildAgencies();
+    window._CFG_INDUSTRIES = CFG.industries;
+  }
 
-// ── 지역 선택
-function selectRegion(el) {
-  document.querySelectorAll('.region-sub-item').forEach(i => i.classList.remove('active'));
-  el.classList.add('active');
-  currentRegion = el.dataset.region;
-  doSearch();
-}
+  function rebuildAgencies() {
+    const wrap = document.getElementById('foot-agency-links');
+    if (!wrap || !CFG.agencies) return;
+    const CUSTOM_ICONS = {
+      'nics.me.go.kr': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0891B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M9 3v6l-4 9h14L15 9V3"/><path d="M9 12h6"/></svg>',
+    };
+    wrap.innerHTML = CFG.agencies.map(a => {
+      const domain = a.favicon || new URL(a.url).hostname.replace('www.','');
+      const icon = CUSTOM_ICONS[domain]
+        ? CUSTOM_ICONS[domain]
+        : `<img src="https://www.google.com/s2/favicons?domain=${domain}&sz=24" width="16" height="16" alt="${a.name}" onerror="this.style.display='none'">`;
+      return `<a class="foot-agency" href="${a.url}" target="_blank" rel="noopener" title="${a.name}">${icon}${a.name}</a>`;
+    }).join('');
+  }
 
-// ── 검색
-async function doSearch() {
-  if (!currentType) return;
-  showLoading();
+  function rebuildSelect() {
+    const sel = document.getElementById('sub-industry');
+    if (!sel) return;
+    sel.innerHTML = '<option value="">-- 선택해주세요 --</option>';
+    CFG.industries.forEach(ind => {
+      const opt = document.createElement('option');
+      opt.value = opt.textContent = ind.name || ind;
+      sel.appendChild(opt);
+    });
+  }
 
-  const keyword = document.getElementById('kw-input').value.trim();
-  const qs = new URLSearchParams({
-    action:'search', type:currentType,
-    region:currentRegion, keyword, limit:'1000',
-  });
+  function set(id, v)  { const e = document.getElementById(id); if (e) e.textContent = v; }
+  function setH(id, v) { const e = document.getElementById(id); if (e) e.innerHTML   = v; }
 
-  try {
-    const ctrl = new AbortController();
-    const tid  = setTimeout(() => ctrl.abort(), 12000);
-    const d    = await (await fetch(API_URL+'?'+qs, {signal:ctrl.signal, cache:'no-store'})).json();
-    clearTimeout(tid);
-    if (!d.success) throw new Error(d.message);
-    allData = d.data || [];
+  /* ── 관리자 패널 진입 ──────────────────────────────── */
+  const admOverlay  = document.getElementById('adm-overlay');
+  const admLogin    = document.getElementById('adm-login');
+  const LOCK_KEY    = '_adm_lock';
+  const ATTEMPT_KEY = '_adm_try';
+  const MAX_TRY     = 2;
+  const LOCK_MS     = 30 * 60 * 1000;
 
-    const full = allData;
-    allData = full.slice(0, 50);
-    renderAll();
-
-    if (full.length > 50) {
-      requestAnimationFrame(() => {
-        allData = full;
-        renderAll();
+  (function() {
+    if (location.search.includes('adm')) {
+      admOverlay.classList.add('open');
+      checkLockOnOpen();
+    }
+    let n = 0, t = null;
+    const dot = document.getElementById('adm-dot');
+    if (dot) {
+      dot.addEventListener('click', function() {
+        n++;
+        clearTimeout(t);
+        if (n >= 10) {
+          n = 0;
+          admOverlay.classList.add('open');
+          checkLockOnOpen();
+        } else {
+          t = setTimeout(function() { n = 0; }, 3000);
+        }
       });
     }
-  } catch {
-    document.getElementById('rp-body').innerHTML =
-      '<div class="empty-state"><div class="empty-icon">⚠️</div><div>데이터를 불러올 수 없습니다.</div></div>';
-  }
-}
-
-// ── 렌더링
-function renderAll() {
-  renderBreadcrumb();
-  renderList();
-  renderMarkers(window._sorted || allData);
-  document.getElementById('sort-select').style.display = '';
-  document.getElementById('rp-count').style.display = '';
-}
-
-function renderBreadcrumb() {
-  const type = TYPES.find(t => t.key === currentType);
-  const bc   = document.getElementById('breadcrumb');
-  let h = `<span class="bc-item">${type?.icon||''} ${type?.label||''}</span>`;
-  if (currentRegion) h += `<span class="bc-sep">›</span><span class="bc-item">📍 ${currentRegion}</span>`;
-  if (type?.date) h += `<span style="margin-left:auto;font-size:11px;color:var(--g4);font-weight:500">고용노동부 공표, ${type.date}</span>`;
-  bc.innerHTML = h;
-}
-
-function renderList() {
-  const sort = document.getElementById('sort-select').value;
-  const s = [...allData].sort((a,b) => {
-    if (sort==='grade'){const o={S:0,A:1,B:2,C:3,D:4,'-':5};return(o[a.등급]??5)-(o[b.등급]??5);}
-    if (sort==='region') return (a.지역||'').localeCompare(b.지역||'');
-    return (a.기관명||'').localeCompare(b.기관명||'');
-  });
-  window._sorted = s;
-
-  // 서버 limit에 걸렸을 가능성(300·500·1000 경계)이면 "N개 이상" 표시
-  const LIMIT_BOUNDARIES = [300, 500, 1000];
-  const countLabel = LIMIT_BOUNDARIES.includes(s.length) ? s.length + '개 이상' : s.length + '개';
-  document.getElementById('rp-count').textContent = countLabel;
-
-  if (!s.length) {
-    document.getElementById('rp-body').innerHTML =
-      '<div class="empty-state"><div class="empty-icon">🔍</div><div>검색 결과가 없습니다.</div></div>';
-    return;
-  }
-
-  document.getElementById('rp-body').innerHTML = s.map((a,i) => {
-    const gc = GRADE_COLOR[a.등급] || GRADE_COLOR['-'];
-    return `<div class="agency-card fade-up" id="card-${i}" onclick="onCard(${i})" style="animation-delay:${Math.min(i*15,400)}ms">
-      <div class="ac-top">
-        <div class="ac-name">${a.기관명}</div>
-        <div class="ac-grade" style="background:${gc}">${a.등급||'-'}</div>
-      </div>
-      <div class="ac-meta">
-        ${a.지역?`<span class="ac-tag">📍 ${a.지역}</span>`:''}
-        ${a.지정관서?`<span class="ac-tag">${a.지정관서}</span>`:''}
-        ${a.구분&&a.구분!==a.label?`<span class="ac-tag">${a.구분}</span>`:''}
-      </div>
-      <div class="ac-addr">${a.주소||''}</div>
-      ${a.전화번호?`<a class="ac-tel" href="tel:${a.전화번호.replace(/[^0-9]/g,'')}">📞 ${a.전화번호}</a>`:''}
-    </div>`;
-  }).join('');
-}
-
-function showLoading() {
-  document.getElementById('rp-body').innerHTML =
-    '<div class="loading-wrap"><div class="loading-spinner"></div>불러오는 중...</div>';
-  document.getElementById('rp-count').style.display = 'none';
-}
-
-// ── 카카오 지도
-function initKakaoMap() {
-  if (typeof kakao === 'undefined') {
-    setTimeout(initKakaoMap, 300);
-    return;
-  }
-  kakaoMap = new kakao.maps.Map(document.getElementById('map'), {
-    center: new kakao.maps.LatLng(36.5, 127.8),
-    level: 8,
-  });
-  kakaoMap.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.RIGHT);
-}
-
-function renderMarkers(agencies) {
-  if (!kakaoMap) return;
-  markers.forEach(m => { m.marker.setMap(null); m.info?.close(); });
-  markers = [];
-  const bounds = new kakao.maps.LatLngBounds();
-  let hasCoords = false;
-
-  agencies.forEach((a, i) => {
-    if (!a.lat || !a.lng) return;
-    const gc  = GRADE_COLOR[a.등급] || GRADE_COLOR['-'];
-    const pos = new kakao.maps.LatLng(a.lat, a.lng);
-    bounds.extend(pos);
-    hasCoords = true;
-
-    const svg = `<svg width="28" height="36" viewBox="0 0 28 36" xmlns="http://www.w3.org/2000/svg">
-      <path d="M14 0C6.3 0 0 6.3 0 14c0 9.6 14 22 14 22S28 23.6 28 14C28 6.3 21.7 0 14 0z" fill="${gc}"/>
-      <circle cx="14" cy="14" r="8" fill="white" opacity="0.9"/>
-      <text x="14" y="18" text-anchor="middle" fill="${gc}" font-size="10" font-weight="900" font-family="Arial,sans-serif">${(a.기관명||'?').replace(/^[\(\(\[（《【]/,'').charAt(0)}</text>
-    </svg>`;
-    const markerImg = new kakao.maps.MarkerImage(
-      'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg),
-      new kakao.maps.Size(28, 36),
-      { offset: new kakao.maps.Point(14, 36) }
-    );
-    const m = new kakao.maps.Marker({ position: pos, map: kakaoMap, image: markerImg });
-    const info = new kakao.maps.InfoWindow({
-      content: `<div style="padding:12px 14px;font-family:Pretendard,sans-serif;min-width:190px;max-width:240px;line-height:1.5">
-        <b style="font-size:13px;color:#0A2540;display:block;margin-bottom:4px">${a.기관명}</b>
-        <div style="font-size:11.5px;color:#64748B;margin-bottom:5px">${a.주소||''}</div>
-        ${a.전화번호?`<a href="tel:${a.전화번호.replace(/[^0-9]/g,'')}" style="font-size:12px;color:#1E6BD8;font-weight:700;display:block;margin-bottom:5px;text-decoration:none">📞 ${a.전화번호}</a>`:''}
-        <span style="background:${gc};color:#fff;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700">${a.등급||'-'}등급</span>
-        ${a.지역?`<span style="background:#F1F5F9;color:#475569;padding:2px 7px;border-radius:20px;font-size:10px;margin-left:4px">${a.지역}</span>`:''}
-      </div>`,
-      removable: true,
-    });
-
-    kakao.maps.event.addListener(m, 'click', () => {
-      markers.forEach(({info:inf}) => inf?.close());
-      info.open(kakaoMap, m);
-      const el = document.getElementById('card-'+i);
-      if (el) { el.scrollIntoView({behavior:'smooth',block:'nearest'}); highlightCard(i); }
-    });
-
-    markers.push({ marker: m, info });
-  });
-
-  if (hasCoords && agencies.length > 1) kakaoMap.setBounds(bounds);
-  else if (hasCoords) { kakaoMap.setCenter(new kakao.maps.LatLng(agencies[0].lat, agencies[0].lng)); kakaoMap.setLevel(5); }
-}
-
-function onCard(idx) {
-  const a = (window._sorted||[])[idx];
-  if (!a?.lat || !a?.lng || !kakaoMap) return;
-  highlightCard(idx);
-  kakaoMap.setCenter(new kakao.maps.LatLng(a.lat, a.lng));
-  kakaoMap.setLevel(5);
-  markers.forEach(({info}) => info?.close());
-  markers[idx]?.info?.open(kakaoMap, markers[idx]?.marker);
-}
-
-function highlightCard(idx) {
-  document.querySelectorAll('.agency-card').forEach(c => c.classList.remove('active'));
-  document.getElementById('card-'+idx)?.classList.add('active');
-}
-
-  // ── 패널 리사이저
-  (function() {
-    const resizer = document.getElementById('resizer');
-    const resultPanel = document.querySelector('.result-panel');
-    const mapPanel = document.getElementById('map-panel');
-    const layout = document.querySelector('.layout');
-    let isResizing = false, startX = 0, startMapW = 0;
-
-    resizer.addEventListener('mousedown', e => {
-      isResizing = true;
-      startX = e.clientX;
-      startMapW = mapPanel.offsetWidth;
-      resizer.classList.add('dragging');
-      document.body.style.cursor = 'col-resize';
-      document.body.style.userSelect = 'none';
-    });
-
-    document.addEventListener('mousemove', e => {
-      if (!isResizing) return;
-      const diff = startX - e.clientX;
-      const newW = Math.max(280, Math.min(startMapW + diff, layout.offsetWidth - 500));
-      mapPanel.style.width = newW + 'px';
-    });
-
-    document.addEventListener('mouseup', () => {
-      if (!isResizing) return;
-      isResizing = false;
-      resizer.classList.remove('dragging');
-      document.body.style.cursor = '';
-      document.body.style.userSelect = '';
-      if (window.kakaoMap) kakao.maps.event.trigger(kakaoMap, 'resize');
-    });
-
-    resizer.addEventListener('touchstart', e => {
-      startX = e.touches[0].clientX;
-      startMapW = mapPanel.offsetWidth;
-      isResizing = true;
-    }, { passive: true });
-    document.addEventListener('touchmove', e => {
-      if (!isResizing) return;
-      const diff = startX - e.touches[0].clientX;
-      const newW = Math.max(280, Math.min(startMapW + diff, layout.offsetWidth - 500));
-      mapPanel.style.width = newW + 'px';
-    }, { passive: true });
-    document.addEventListener('touchend', () => { isResizing = false; });
   })();
 
-  // ── 보안: 우클릭 / 개발자도구 제한
-  document.addEventListener('contextmenu', e => e.preventDefault());
-  document.addEventListener('keydown', e => {
-    if (e.key === 'F12') { e.preventDefault(); return false; }
-    if (e.ctrlKey && e.shiftKey && ['I','J','C','U'].includes(e.key.toUpperCase())) { e.preventDefault(); return false; }
-    if (e.ctrlKey && e.key.toUpperCase() === 'U') { e.preventDefault(); return false; }
-    if (e.ctrlKey && e.key.toUpperCase() === 'S') { e.preventDefault(); return false; }
+  function getLockRemain() {
+    const t = parseInt(localStorage.getItem(LOCK_KEY) || '0');
+    return Math.max(0, t - Date.now());
+  }
+  function setLocked()    { localStorage.setItem(LOCK_KEY, Date.now() + LOCK_MS); localStorage.setItem(ATTEMPT_KEY, '0'); }
+  function getAttempts()  { return parseInt(localStorage.getItem(ATTEMPT_KEY) || '0'); }
+  function addAttempt()   { const n = getAttempts() + 1; localStorage.setItem(ATTEMPT_KEY, String(n)); return n; }
+  function resetAttempts(){ localStorage.removeItem(LOCK_KEY); localStorage.removeItem(ATTEMPT_KEY); }
+  function fmtRemain(ms)  { return Math.ceil(ms / 60000) + '분 후 다시 시도하세요.'; }
+
+  function checkLockOnOpen() {
+    const errEl = document.getElementById('adm-login-err');
+    const btn   = document.getElementById('adm-pw-btn');
+    const input = document.getElementById('adm-pw-input');
+    const remain = getLockRemain();
+    if (remain > 0) {
+      errEl.textContent = '⛔ 잠금 중 — ' + fmtRemain(remain);
+      btn.disabled = input.disabled = true;
+      const timer = setInterval(() => {
+        const r = getLockRemain();
+        if (r <= 0) { clearInterval(timer); errEl.textContent = ''; btn.disabled = input.disabled = false; }
+        else errEl.textContent = '⛔ 잠금 중 — ' + fmtRemain(r);
+      }, 15000);
+    } else {
+      errEl.textContent = '';
+      btn.disabled = input.disabled = false;
+    }
+  }
+
+  async function doLogin() {
+    if (getLockRemain() > 0) return;
+    const pw    = document.getElementById('adm-pw-input').value;
+    const errEl = document.getElementById('adm-login-err');
+    const btn   = document.getElementById('adm-pw-btn');
+    if (!pw) return;
+    btn.disabled = true;
+    btn.textContent = '확인 중...';
+    errEl.textContent = '';
+    try {
+      const res  = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ action: 'adminLogin', pw }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        resetAttempts();
+        admLogin.style.display = 'none';
+        fillAdminForm();
+      } else {
+        const tries = addAttempt();
+        const left  = MAX_TRY - tries;
+        document.getElementById('adm-pw-input').value = '';
+        if (tries >= MAX_TRY) {
+          setLocked();
+          errEl.textContent = '⛔ ' + MAX_TRY + '회 실패 — 30분간 접근이 제한됩니다.';
+          document.getElementById('adm-pw-input').disabled = true;
+        } else {
+          errEl.textContent = '비밀번호가 올바르지 않습니다. (남은 시도: ' + left + '회)';
+          document.getElementById('adm-pw-input').focus();
+        }
+      }
+    } catch {
+      errEl.textContent = '서버 연결 오류. 잠시 후 다시 시도해 주세요.';
+    } finally {
+      if (!document.getElementById('adm-pw-input').disabled) {
+        btn.disabled = false;
+        btn.textContent = '로그인';
+      }
+    }
+  }
+  document.getElementById('adm-pw-btn').addEventListener('click', doLogin);
+  document.getElementById('adm-pw-input').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+  document.getElementById('adm-close-btn').addEventListener('click', () => {
+    admOverlay.classList.remove('open');
+    admLogin.style.display = 'flex';
+    document.getElementById('adm-pw-input').value = '';
+    document.getElementById('adm-login-err').textContent = '';
+    history.replaceState({}, '', location.pathname);
   });
-  (function devDetect() {
-    const t = new Image();
-    Object.defineProperty(t, 'id', { get: function() {
-      document.body.innerHTML = '<div style="display:grid;place-items:center;height:100vh;font-family:sans-serif;color:#64748B"><div style="text-align:center"><div style="font-size:48px;margin-bottom:16px">🔒</div><div style="font-size:18px;font-weight:700;color:#0A2540">접근이 제한되었습니다</div></div></div>';
-    }});
-    setInterval(() => { console.log('%c', t); console.clear(); }, 1000);
-  })();
+
+  document.querySelectorAll('.adm-nav-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.adm-nav-item').forEach(n => n.classList.remove('active'));
+      document.querySelectorAll('.adm-section').forEach(s => s.classList.remove('active'));
+      item.classList.add('active');
+      document.getElementById('adm-sec-' + item.dataset.section).classList.add('active');
+    });
+  });
+
+  /* ── 폼 채우기 ───────────────────────────────────────── */
+  function fillAdminForm() {
+    document.getElementById('adm-badge').value        = CFG.badge;
+    if (document.getElementById('adm-brand-name')) document.getElementById('adm-brand-name').value = CFG.brand_name || 'ESH-MASTER';
+    if (document.getElementById('adm-brand-sub'))  document.getElementById('adm-brand-sub').value  = CFG.brand_sub  || 'ENVIRONMENT · SAFETY · HEALTH';
+    document.getElementById('adm-h1-1').value         = CFG.h1_1;
+    document.getElementById('adm-h1-2').value         = CFG.h1_2;
+    document.getElementById('adm-lead').value         = CFG.lead;
+    document.getElementById('adm-contact-h2').value   = CFG.contact_h2;
+    document.getElementById('adm-contact-email').value= CFG.contact_email;
+    document.getElementById('adm-contact-note').value = CFG.contact_note;
+
+    const credLabels = ['① 첫 번째 항목','② 두 번째 항목','③ 세 번째 항목','④ 네 번째 항목'];
+    const credsList  = document.getElementById('adm-creds-list');
+    credsList.innerHTML = '';
+    CFG.creds.forEach((c, i) => {
+      const card = document.createElement('div');
+      card.className = 'adm-card';
+      card.innerHTML = `<div class="adm-card-label">${credLabels[i]}</div>
+        <div class="adm-grid">
+          <div class="adm-field"><label>수치 (HTML 가능)</label><input type="text" data-cred-n="${i}" value="${esc(c.n)}"></div>
+          <div class="adm-field"><label>레이블</label><input type="text" data-cred-l="${i}" value="${esc(c.l)}"></div>
+        </div>`;
+      credsList.appendChild(card);
+    });
+
+    const svcLabels = ['01 · Safety Do It','02 · JSA 위험성평가','03 · AI 뉴스레터','04 · 안전보건정보','05 · 전문기관 찾기'];
+    const svcList   = document.getElementById('adm-services-list');
+    svcList.innerHTML = '';
+    CFG.services.forEach((s, i) => {
+      const card = document.createElement('div');
+      card.className = 'adm-card';
+      card.innerHTML = `<div class="adm-card-label">${svcLabels[i]}</div>
+        <div class="adm-grid adm-grid-1" style="gap:10px">
+          <div class="adm-field"><label>제목</label><input type="text" data-svc-t="${i}" value="${esc(s.title)}"></div>
+          <div class="adm-field"><label>설명 (\n으로 줄바꿈)</label><input type="text" data-svc-d="${i}" value="${esc(s.desc)}"></div>
+        </div>`;
+      svcList.appendChild(card);
+    });
+
+    renderIndustryList();
+    renderAgencyList();
+    renderAgencyOrderList();
+  }
+
+  const AGENCY_LABELS = {
+    '건설재해예방': '🏗️ 건설재해예방전문지도기관',
+    '안전관리':     '🛡️ 안전관리전문기관',
+    '보건관리':     '🩺 보건관리전문기관',
+    '특수건강진단': '🏥 특수건강진단실시기관',
+    '자율안전검사': '🔍 자율안전검사기관',
+    '석면조사':     '🔬 석면조사기관',
+    '작업환경측정': '📊 작업환경측정기관',
+    '안전보건진단': '📋 안전보건진단기관',
+  };
+
+  function renderAgencyOrderList() {
+    const ul = document.getElementById('adm-agency-order-list');
+    const order = CFG.agencyOrder || ['건설재해예방','안전관리','보건관리','특수건강진단','자율안전검사','석면조사','작업환경측정','안전보건진단'];
+    ul.innerHTML = order.map((key, i) => `
+      <li class="adm-industry-item" data-key="${key}" style="display:flex;align-items:center;gap:8px;padding:8px 12px">
+        <span style="width:20px;text-align:center;font-size:12px;font-weight:700;color:var(--gray-400);font-family:'Inter',sans-serif">${i+1}</span>
+        <span style="flex:1;font-size:13px;font-weight:600;color:#fff">${AGENCY_LABELS[key] || key}</span>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <button onclick="moveAgencyOrder(${i},-1)" style="background:rgba(255,255,255,.1);border:none;border-radius:4px;width:24px;height:20px;cursor:pointer;color:#fff;font-size:11px;line-height:1" ${i===0?'disabled style="opacity:.3;cursor:not-allowed;background:rgba(255,255,255,.05)"':''}>▲</button>
+          <button onclick="moveAgencyOrder(${i},1)"  style="background:rgba(255,255,255,.1);border:none;border-radius:4px;width:24px;height:20px;cursor:pointer;color:#fff;font-size:11px;line-height:1" ${i===order.length-1?'disabled style="opacity:.3;cursor:not-allowed;background:rgba(255,255,255,.05)"':''}>▼</button>
+        </div>
+      </li>`).join('');
+  }
+
+  window.moveAgencyOrder = function(idx, dir) {
+    const order = CFG.agencyOrder || ['건설재해예방','안전관리','보건관리','특수건강진단','자율안전검사','석면조사','작업환경측정','안전보건진단'];
+    const newIdx = idx + dir;
+    if (newIdx < 0 || newIdx >= order.length) return;
+    [order[idx], order[newIdx]] = [order[newIdx], order[idx]];
+    CFG.agencyOrder = order;
+    renderAgencyOrderList();
+  };
+
+  function renderAgencyList() {
+    const ul = document.getElementById('adm-agency-list');
+    ul.innerHTML = '';
+    (CFG.agencies || []).forEach((ag, i) => {
+      const li = document.createElement('li');
+      li.className = 'adm-industry-item';
+      li.style.cssText = 'display:flex;align-items:center;gap:6px;padding:6px 8px';
+      const domain = ag.favicon || (ag.url ? ag.url.replace(/https?:\/\/www\./, '').split('/')[0] : '');
+      li.innerHTML = `
+        <img src="https://www.google.com/s2/favicons?domain=${domain}&sz=24" width="16" height="16" style="border-radius:3px;flex-shrink:0" onerror="this.style.display='none'">
+        <input type="text" value="${esc(ag.name)}" data-ag-name="${i}" style="flex:1;min-width:70px" placeholder="기관명">
+        <input type="text" value="${esc(ag.url)}" data-ag-url="${i}" style="flex:2" placeholder="https://...">
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <button onclick="moveAgency(${i},-1)" style="background:rgba(255,255,255,.1);border:none;border-radius:3px;width:22px;height:18px;cursor:pointer;color:#fff;font-size:10px" ${i===0?'disabled':''}>▲</button>
+          <button onclick="moveAgency(${i},1)"  style="background:rgba(255,255,255,.1);border:none;border-radius:3px;width:22px;height:18px;cursor:pointer;color:#fff;font-size:10px" ${i===(CFG.agencies||[]).length-1?'disabled':''}>▼</button>
+        </div>
+        <button class="del-btn" data-del-ag="${i}" title="삭제">✕</button>`;
+      ul.appendChild(li);
+    });
+    ul.querySelectorAll('[data-del-ag]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        CFG.agencies.splice(+btn.dataset.delAg, 1);
+        renderAgencyList();
+      });
+    });
+  }
+
+  window.moveAgency = function(idx, dir) {
+    const arr = CFG.agencies || [];
+    const newIdx = idx + dir;
+    if (newIdx < 0 || newIdx >= arr.length) return;
+    [arr[idx], arr[newIdx]] = [arr[newIdx], arr[idx]];
+    CFG.agencies = arr;
+    renderAgencyList();
+    rebuildAgencies();
+  };
+
+  function esc(s) { return (s || '').replace(/"/g, '&quot;'); }
+
+  const STATUS_OPTIONS = ['신청중', '발송준비', '발송중'];
+  const STATUS_COLORS  = { '신청중': '#94A3B8', '발송준비': '#14B8A6', '발송중': '#1E6BD8' };
+
+  function renderIndustryList() {
+    const ul = document.getElementById('adm-industry-list');
+    ul.innerHTML = '';
+    CFG.industries.forEach((ind, i) => {
+      const name   = ind.name   || ind;
+      const status = ind.status || '신청중';
+      const li = document.createElement('li');
+      li.className = 'adm-industry-item';
+      li.style.cssText = 'display:flex;align-items:center;gap:8px';
+      li.innerHTML = `<span class="drag-handle">⠿</span>
+        <input type="text" value="${esc(name)}" data-ind-name="${i}" style="flex:1">
+        <select data-ind-status="${i}" style="background:#131F30;border:1.5px solid rgba(255,255,255,.15);border-radius:7px;padding:6px 10px;font-size:12px;font-weight:700;color:${STATUS_COLORS[status]};cursor:pointer;outline:none">
+          ${STATUS_OPTIONS.map(s => `<option value="${s}" ${s===status?'selected':''}>${s}</option>`).join('')}
+        </select>
+        <button class="del-btn" data-del="${i}" title="삭제">✕</button>`;
+      ul.appendChild(li);
+    });
+    ul.querySelectorAll('.del-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        CFG.industries.splice(+btn.dataset.del, 1);
+        renderIndustryList();
+      });
+    });
+    ul.querySelectorAll('[data-ind-status]').forEach(sel => {
+      sel.addEventListener('change', () => {
+        sel.style.color = STATUS_COLORS[sel.value] || '#94A3B8';
+      });
+    });
+  }
+
+  document.getElementById('adm-sec-services').addEventListener('input', e => {
+    const el = e.target;
+    if (!el.dataset.svcOp) return;
+    const idx = +el.dataset.svcOp;
+    const val = parseFloat(el.value);
+    const bg = document.getElementById('svc-bg-' + idx);
+    if (bg) bg.style.opacity = val;
+    const span = document.querySelector('[data-svc-op-val="' + idx + '"]');
+    if (span) span.textContent = val.toFixed(2);
+  });
+
+  document.getElementById('adm-add-agency').addEventListener('click', () => {
+    if (!CFG.agencies) CFG.agencies = [];
+    CFG.agencies.push({ name: '새 기관', url: 'https://', favicon: '' });
+    renderAgencyList();
+    const inputs = document.querySelectorAll('#adm-agency-list [data-ag-name]');
+    const last = inputs[inputs.length - 1];
+    if (last) { last.focus(); last.select(); }
+  });
+
+  document.getElementById('adm-add-industry').addEventListener('click', () => {
+    CFG.industries.push({ name: '새 업종', status: '신청중' });
+    renderIndustryList();
+    const inputs = document.querySelectorAll('#adm-industry-list input');
+    const last = inputs[inputs.length - 1];
+    if (last) { last.focus(); last.select(); }
+  });
+
+  /* ── 저장 ────────────────────────────────────────────── */
+  document.getElementById('adm-save-btn').addEventListener('click', async () => {
+    collectForm();
+    applyConfig();
+    const btn = document.getElementById('adm-save-btn');
+    btn.disabled = true; btn.textContent = '⏳ 저장 중...';
+    try {
+      const res  = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ action: 'saveConfig', config: CFG }),
+      });
+      const data = await res.json();
+      showSaveMsg(data.success ? '✓ 저장 완료' : '⚠ 저장 실패');
+    } catch { showSaveMsg('⚠ 연결 오류'); }
+    finally { btn.disabled = false; btn.textContent = '💾 저장'; }
+  });
+
+  function showSaveMsg(txt) {
+    const el = document.getElementById('adm-save-msg');
+    el.textContent = txt;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 3000);
+  }
+
+  function collectForm() {
+    const g = id => document.getElementById(id)?.value || '';
+    CFG.brand_name  = g('adm-brand-name')   || CFG.brand_name;
+    CFG.brand_sub   = g('adm-brand-sub')    || CFG.brand_sub;
+    CFG.badge         = g('adm-badge')         || CFG.badge;
+    CFG.h1_1          = g('adm-h1-1')          || CFG.h1_1;
+    CFG.h1_2          = g('adm-h1-2')          || CFG.h1_2;
+    CFG.lead          = g('adm-lead')          || CFG.lead;
+    CFG.contact_h2    = g('adm-contact-h2')    || CFG.contact_h2;
+    CFG.contact_email = g('adm-contact-email') || CFG.contact_email;
+    CFG.contact_note  = g('adm-contact-note')  || CFG.contact_note;
+
+    document.querySelectorAll('[data-cred-n]').forEach(el => { CFG.creds[+el.dataset.credN].n = el.value; });
+    document.querySelectorAll('[data-cred-l]').forEach(el => { CFG.creds[+el.dataset.credL].l = el.value; });
+    document.querySelectorAll('[data-svc-t]').forEach(el => { CFG.services[+el.dataset.svcT].title = el.value; });
+    document.querySelectorAll('[data-svc-d]').forEach(el => { CFG.services[+el.dataset.svcD].desc  = el.value; });
+    document.querySelectorAll('[data-svc-op]').forEach(el => { CFG.services[+el.dataset.svcOp].bg_opacity = parseFloat(el.value); });
+
+    CFG.industries = Array.from(document.querySelectorAll('#adm-industry-list li')).map(li => ({
+      name:   (li.querySelector('[data-ind-name]')?.value   || '').trim(),
+      status: li.querySelector('[data-ind-status]')?.value || '신청중',
+    })).filter(i => i.name);
+
+    CFG.agencyOrder = Array.from(document.querySelectorAll('#adm-agency-order-list li')).map(li => li.dataset.key).filter(Boolean);
+
+    CFG.agencies = Array.from(document.querySelectorAll('#adm-agency-list li')).map(li => {
+      const name = (li.querySelector('[data-ag-name]')?.value || '').trim();
+      const url  = (li.querySelector('[data-ag-url]')?.value  || '').trim();
+      const domain = url.replace(/https?:\/\/www\./, '').split('/')[0];
+      return { name, url, favicon: domain };
+    }).filter(a => a.name && a.url);
+  }
+
+  /* ── 비밀번호 변경 ────────────────────────────────────── */
+  document.getElementById('adm-pw-change-btn').addEventListener('click', async () => {
+    const cur  = document.getElementById('adm-pw-cur').value;
+    const nw   = document.getElementById('adm-pw-new').value;
+    const nw2  = document.getElementById('adm-pw-new2').value;
+    const msg  = document.getElementById('adm-pw-msg');
+    const btn  = document.getElementById('adm-pw-change-btn');
+    if (!cur || !nw || !nw2)  { msg.style.color='#FCA5A5'; msg.textContent='모든 항목을 입력해 주세요.'; return; }
+    if (nw.length < 6)        { msg.style.color='#FCA5A5'; msg.textContent='새 비밀번호는 6자 이상이어야 합니다.'; return; }
+    if (nw !== nw2)           { msg.style.color='#FCA5A5'; msg.textContent='새 비밀번호가 일치하지 않습니다.'; return; }
+    btn.disabled = true; btn.textContent = '변경 중...'; msg.textContent = '';
+    try {
+      const res  = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ action: 'changePassword', currentPw: cur, newPw: nw }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        msg.style.color = '#4ADE80';
+        msg.textContent = '✓ 비밀번호가 변경됐습니다.';
+        ['adm-pw-cur','adm-pw-new','adm-pw-new2'].forEach(id => { document.getElementById(id).value = ''; });
+      } else {
+        msg.style.color = '#FCA5A5';
+        msg.textContent = data.message || '변경에 실패했습니다.';
+      }
+    } catch {
+      msg.style.color = '#FCA5A5'; msg.textContent = '서버 연결 오류.';
+    } finally {
+      btn.disabled = false; btn.textContent = '비밀번호 변경';
+    }
+  });
+
+  /* 초기 실행 */
+  loadConfig();
+})();
 </script>
+
+<!-- 3. 전광판 티커 -->
+<script>
+const TK={
+  inner:document.getElementById('tk-inner'),timeEl:document.getElementById('tk-time'),refreshBtn:document.getElementById('tk-refresh-btn'),
+  feeds:[
+    {url:'https://api.rss2json.com/v1/api.json?count=10&rss_url='+encodeURIComponent('https://www.moel.go.kr/news/enews/report/rss.do'),cat:'노동부',cls:'bd-moel'},
+    {url:'https://api.rss2json.com/v1/api.json?count=10&rss_url='+encodeURIComponent('https://www.kosha.or.kr/kosha/data/rssCenter.do?gubun=A'),cat:'KOSHA',cls:'bd-kosha'},
+    {url:'https://api.rss2json.com/v1/api.json?count=10&rss_url='+encodeURIComponent('http://www.anjunj.com/rss/allArticle.xml'),cat:'안전저널',cls:'bd-news'},
+    {url:'https://api.rss2json.com/v1/api.json?count=10&rss_url='+encodeURIComponent('https://www.me.go.kr/home/web/rss/rss.do?menuId=10257'),cat:'환경부',cls:'bd-env'},
+    {url:'https://api.rss2json.com/v1/api.json?count=10&rss_url='+encodeURIComponent('https://www.kosha.or.kr/kosha/data/rssCenter.do?gubun=B'),cat:'KOSHA',cls:'bd-kosha'},
+  ],
+  updateTime(){const n=new Date();this.timeEl.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+' 기준'},
+  buildItem(cat,cls,text,link){const inner=link?`<a href="${link}" target="_blank" rel="noopener">${text}</a>`:text;return`<span class="tk-item"><span class="tk-badge ${cls}">${cat}</span>${inner}</span><span class="tk-dot"></span>`},
+  render(items){if(!items.length)return;const dur=Math.min(240,Math.max(90,items.length*10));this.inner.innerHTML=items.map(i=>this.buildItem(i.cat,i.cls,i.text,i.link)).join('')+items.map(i=>this.buildItem(i.cat,i.cls,i.text,i.link)).join('');this.inner.style.setProperty('--tk-dur',dur+'s');this.inner.classList.remove('running');void this.inner.offsetWidth;this.inner.classList.add('running');this.updateTime()},
+  async fetchFeed(f){
+    try{
+      const ts=Math.floor(Date.now()/(5*60*1000));
+      const r=await fetch(f.url+'&_t='+ts,{signal:AbortSignal.timeout(6000),cache:'no-store'});
+      if(!r.ok)return[];
+      const d=await r.json();
+      if(d.status!=='ok'||!Array.isArray(d.items))return[];
+      return d.items.slice(0,6).map(i=>({
+        cat:f.cat,cls:f.cls,
+        text:(i.title||'').replace(/<[^>]+>/g,'').trim().slice(0,60),
+        link:i.link||null,
+        date:i.pubDate?new Date(i.pubDate):null,
+      })).filter(i=>i.text.length>4);
+    }catch{return[]}
+  },
+  fallback:[
+    {cat:'노동부',  cls:'bd-moel',  text:'고용노동부 산업안전보건 정책 · 보도자료',          link:'https://www.moel.go.kr/news/enews/report/enewsView.do'},
+    {cat:'KOSHA',  cls:'bd-kosha', text:'안전보건공단 공지사항 · 안전보건 자료실',          link:'https://www.kosha.or.kr/kosha/data/notice.do'},
+    {cat:'안전저널',cls:'bd-news',  text:'안전저널 최신 산업재해 · 안전보건 뉴스',          link:'http://www.anjunj.com'},
+    {cat:'환경부',  cls:'bd-env',   text:'환경부 화학물질 · 환경안전 최신 공지',            link:'https://www.me.go.kr/home/web/main.do'},
+    {cat:'법령',    cls:'bd-rule',  text:'국가법령정보센터 산업안전보건법 · 중대재해처벌법', link:'https://www.law.go.kr'},
+  ],
+  async fetchAll(){
+    const r=await Promise.allSettled(this.feeds.map(f=>this.fetchFeed(f)));
+    const items=r.filter(x=>x.status==='fulfilled').flatMap(x=>x.value);
+    items.sort((a,b)=>{
+      if(!a.date&&!b.date)return 0;
+      if(!a.date)return 1;
+      if(!b.date)return -1;
+      return b.date-a.date;
+    });
+    this.render(items.length?items:this.fallback);
+  },
+  refresh(){this.inner.innerHTML='<div class="tk-load"><div class="tk-spin"></div>새로고침 중...</div>';this.inner.classList.remove('running');this.fetchAll()},
+  init(){this.fetchAll();setInterval(()=>this.fetchAll(),5*60*1000);setInterval(()=>this.updateTime(),60*1000);this.refreshBtn.addEventListener('click',()=>this.refresh())}
+};
+TK.init();
+</script>
+
+<!-- 네이버 애널리틱스 -->
+<script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
+<script type="text/javascript">
+if(!wcs_add) var wcs_add={};
+wcs_add["wa"]="13a68914808cdb";
+if(window.wcs)wcs_do();
+</script>
+
 </body>
 </html>
