@@ -873,10 +873,16 @@
   function rebuildAgencies() {
     const wrap = document.getElementById('foot-agency-links');
     if (!wrap || !CFG.agencies) return;
+    const CUSTOM_ICONS = {
+      'nics.me.go.kr': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0891B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M9 3v6l-4 9h14L15 9V3"/><path d="M9 12h6"/></svg>',
+    };
     wrap.innerHTML = CFG.agencies.map(a => {
       const domain = a.favicon || new URL(a.url).hostname.replace('www.','');
+      const icon = CUSTOM_ICONS[domain]
+        ? CUSTOM_ICONS[domain]
+        : `<img src="https://www.google.com/s2/favicons?domain=${domain}&sz=24" width="16" height="16" alt="${a.name}" onerror="this.style.display='none'">`;
       return `<a class="foot-agency" href="${a.url}" target="_blank" rel="noopener" title="${a.name}">
-        <img src="https://www.google.com/s2/favicons?domain=${domain}&sz=24" width="16" height="16" alt="${a.name}" onerror="this.style.display='none'">
+        ${icon}
         ${a.name}
       </a>`;
     }).join('');
