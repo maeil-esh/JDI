@@ -704,9 +704,13 @@
         <div class="adm-section-title">메인 텍스트</div>
         <div class="adm-section-sub">히어로 영역의 배지, 헤드라인, 소개 문구를 수정합니다.</div>
         <div class="adm-grid adm-grid-1" style="gap:16px">
-          <div class="adm-field"><label>브랜드명 (헤더·푸터)</label><input type="text" id="adm-brand-name" placeholder="ESH-MASTER"></div>
-          <div class="adm-field"><label>브랜드 서브텍스트</label><input type="text" id="adm-brand-sub" placeholder="ENVIRONMENT · SAFETY · HEALTH"></div>
-          <div class="adm-field"><label>푸터 하단 문구</label><input type="text" id="adm-footer-copy" placeholder="산업안전기획 · 안전보건전산화"></div>
+          <div class="adm-card-label" style="margin-bottom:8px">헤더 로고</div>
+          <div class="adm-field"><label>브랜드명</label><input type="text" id="adm-brand-name" placeholder="ESH-MASTER"></div>
+          <div class="adm-field"><label>서브텍스트</label><input type="text" id="adm-brand-sub" placeholder="ENVIRONMENT · SAFETY · HEALTH"></div>
+          <div class="adm-card-label" style="margin:12px 0 8px">푸터 로고</div>
+          <div class="adm-field"><label>브랜드명</label><input type="text" id="adm-footer-brand-name" placeholder="ESH-MASTER.KR"></div>
+          <div class="adm-field"><label>서브텍스트</label><input type="text" id="adm-footer-brand-sub" placeholder="ENVIRONMENT · SAFETY · HEALTH"></div>
+          <div class="adm-field"><label>하단 문구 (© 옆)</label><input type="text" id="adm-footer-copy" placeholder="산업안전기획 · 안전보건전산화"></div>
           <div class="adm-field"><label>상단 배지</label><input type="text" id="adm-badge"></div>
           <div class="adm-field"><label>헤드라인 1줄</label><input type="text" id="adm-h1-1"></div>
           <div class="adm-field"><label>헤드라인 2줄 (강조 색상)</label><input type="text" id="adm-h1-2"></div>
@@ -793,6 +797,8 @@
   const DEFAULTS = {
     brand_name: 'ESH-MASTER',
     brand_sub:  'ENVIRONMENT · SAFETY · HEALTH',
+    footer_brand_name: 'ESH-MASTER.KR',
+    footer_brand_sub:  'ENVIRONMENT · SAFETY · HEALTH',
     footer_copy: '산업안전기획 · 안전보건전산화',
     badge: 'COMING SOON · 2026',
     h1_1: '현장에서 검증된',
@@ -876,16 +882,20 @@
 
     const bnEl = document.getElementById('cfg-brand-name');
     const bsEl = document.getElementById('cfg-brand-sub');
-    const bnEl2 = document.getElementById('cfg-brand-name2');
-    const bsEl2 = document.getElementById('cfg-brand-sub2');
+    const bnEl2 = document.getElementById('cfg-footer-brand-name');
+    const bsEl2 = document.getElementById('cfg-footer-brand-sub');
     if (bnEl) bnEl.textContent = CFG.brand_name || 'ESH-MASTER';
-    const bn3 = document.getElementById('cfg-brand-name3');
+    const bn3  = document.getElementById('cfg-brand-name3');
     const fcEl = document.getElementById('cfg-footer-copy');
-    if (bn3)  bn3.textContent  = CFG.brand_name  || 'ESH-MASTER';
-    if (fcEl) fcEl.textContent = CFG.footer_copy || '산업안전기획 · 안전보건전산화';
+    const fbn  = document.getElementById('cfg-footer-brand-name');
+    const fbs  = document.getElementById('cfg-footer-brand-sub');
+    if (bn3)  bn3.textContent  = CFG.brand_name        || 'ESH-MASTER';
+    if (fcEl) fcEl.textContent = CFG.footer_copy       || '산업안전기획 · 안전보건전산화';
+    if (fbn)  fbn.textContent  = CFG.footer_brand_name || 'ESH-MASTER.KR';
+    if (fbs)  fbs.textContent  = CFG.footer_brand_sub  || 'ENVIRONMENT · SAFETY · HEALTH';
     if (bsEl) bsEl.textContent = CFG.brand_sub  || 'ENVIRONMENT · SAFETY · HEALTH';
-    if (bnEl2) bnEl2.textContent = CFG.brand_name || 'ESH-MASTER';
-    if (bsEl2) bsEl2.textContent = CFG.brand_sub  || 'ENVIRONMENT · SAFETY · HEALTH';
+    if (bnEl2) bnEl2.textContent = CFG.footer_brand_name || 'ESH-MASTER.KR';
+    if (bsEl2) bsEl2.textContent = CFG.footer_brand_sub  || 'ENVIRONMENT · SAFETY · HEALTH';
 
 
     const h2El   = document.getElementById('cfg-contact-h2');
@@ -1280,7 +1290,9 @@
     const g = id => document.getElementById(id)?.value || '';
     CFG.brand_name  = g('adm-brand-name')   || CFG.brand_name;
     CFG.brand_sub   = g('adm-brand-sub')    || CFG.brand_sub;
-    CFG.footer_copy = g('adm-footer-copy') || CFG.footer_copy;
+    CFG.footer_copy       = g('adm-footer-copy')       || CFG.footer_copy;
+    CFG.footer_brand_name = g('adm-footer-brand-name') || CFG.footer_brand_name;
+    CFG.footer_brand_sub  = g('adm-footer-brand-sub')  || CFG.footer_brand_sub;
     CFG.badge         = g('adm-badge')         || CFG.badge;
     CFG.h1_1          = g('adm-h1-1')          || CFG.h1_1;
     CFG.h1_2          = g('adm-h1-2')          || CFG.h1_2;
