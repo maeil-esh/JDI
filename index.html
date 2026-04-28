@@ -864,6 +864,10 @@
     rebuildSelect();
     rebuildAgencies();
     window._CFG_INDUSTRIES = CFG.industries;
+
+    // 푸터 copyright 강제 고정 (GAS 저장값에 의해 변경되지 않도록)
+    const fcEl = document.querySelector('.foot-copy');
+    if (fcEl) fcEl.innerHTML = '© 2026 <strong>ESH-MASTER.KR</strong>&nbsp; 산업안전기획 · 안전보건전산화';
   }
 
   function rebuildAgencies() {
