@@ -34,7 +34,7 @@ a{color:inherit;text-decoration:none}
 .hd-logo{display:flex;align-items:center;gap:9px;color:#fff}
 .hd-mark{width:30px;height:30px;background:#fff;color:var(--navy);display:grid;place-items:center;border-radius:7px;font-weight:800;font-size:11px;position:relative;flex-shrink:0}
 .hd-mark::after{content:'';position:absolute;bottom:3px;right:3px;width:4px;height:4px;background:var(--mint);border-radius:50%}
-.hd-name{font-size:15px;font-weight:800;letter-spacing:-.02em}
+.hd-name{font-size:13.5px;font-weight:800;letter-spacing:-.01em}
 .hd-sub{font-size:9.5px;color:rgba(255,255,255,.4);letter-spacing:.08em;margin-top:1px}
 .hd-title{font-size:15.5px;color:rgba(255,255,255,.85);font-weight:800;letter-spacing:-.02em}
 .hd-back{display:flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,.45);transition:color .2s}
@@ -147,7 +147,10 @@ a{color:inherit;text-decoration:none}
 <div class="hd">
   <a href="index.html" class="hd-logo">
     <div class="hd-mark">EM</div>
-    <div><div class="hd-name">ESH-MASTER</div><div class="hd-sub">ENVIRONMENT · SAFETY · HEALTH</div></div>
+    <div>
+      <div class="hd-name">ESH-MASTER.KR <span style="opacity:.4;font-weight:400">|</span> SDI</div>
+      <div class="hd-sub">ENVIRONMENT · SAFETY · HEALTH</div>
+    </div>
   </a>
   <div class="hd-title">고용노동부 지정 안전보건전문기관 찾기</div>
   <a href="index.html" class="hd-back">
@@ -319,11 +322,9 @@ function selectType(key) {
   currentType = key;
   currentRegion = '';
 
-  // 사이드바 활성화
   document.querySelectorAll('.tree-item').forEach(i => i.classList.remove('active'));
   document.querySelector(`[data-key="${key}"]`).classList.add('active');
 
-  // 지역 섹션 표시 + 초기화
   document.getElementById('region-section').style.display = 'block';
   document.querySelectorAll('.region-sub-item').forEach(i => i.classList.remove('active'));
   document.querySelector('[data-region=""]').classList.add('active');
@@ -351,7 +352,6 @@ async function doSearch() {
   });
 
   try {
-    // AbortController로 타임아웃 관리
     const ctrl = new AbortController();
     const tid  = setTimeout(() => ctrl.abort(), 12000);
     const d    = await (await fetch(API_URL+'?'+qs, {signal:ctrl.signal, cache:'no-store'})).json();
@@ -359,12 +359,10 @@ async function doSearch() {
     if (!d.success) throw new Error(d.message);
     allData = d.data || [];
 
-    // 50건 먼저 즉시 렌더링
     const full = allData;
     allData = full.slice(0, 50);
     renderAll();
 
-    // 나머지 백그라운드 렌더링
     if (full.length > 50) {
       requestAnimationFrame(() => {
         allData = full;
@@ -509,12 +507,10 @@ function onCard(idx) {
   markers[idx]?.info?.open(kakaoMap, markers[idx]?.marker);
 }
 
-
 function highlightCard(idx) {
   document.querySelectorAll('.agency-card').forEach(c => c.classList.remove('active'));
   document.getElementById('card-'+idx)?.classList.add('active');
 }
-
 
   // ── 패널 리사이저
   (function() {
@@ -546,11 +542,9 @@ function highlightCard(idx) {
       resizer.classList.remove('dragging');
       document.body.style.cursor = '';
       document.body.style.userSelect = '';
-      // 카카오 지도 리사이즈
       if (window.kakaoMap) kakao.maps.event.trigger(kakaoMap, 'resize');
     });
 
-    // 터치 지원
     resizer.addEventListener('touchstart', e => {
       startX = e.touches[0].clientX;
       startMapW = mapPanel.offsetWidth;
@@ -573,7 +567,6 @@ function highlightCard(idx) {
     if (e.ctrlKey && e.key.toUpperCase() === 'U') { e.preventDefault(); return false; }
     if (e.ctrlKey && e.key.toUpperCase() === 'S') { e.preventDefault(); return false; }
   });
-  // 개발자도구 감지
   (function devDetect() {
     const t = new Image();
     Object.defineProperty(t, 'id', { get: function() {
