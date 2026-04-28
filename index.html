@@ -336,8 +336,8 @@
     <a href="#" class="logo">
       <span class="logo-mark">EM</span>
       <span class="logo-text">
-        <span class="t1">ESH-MASTER</span>
-        <span class="t2 en">ENVIRONMENT · SAFETY · HEALTH</span>
+        <span class="t1" id="cfg-brand-name">ESH-MASTER</span>
+        <span class="t2 en" id="cfg-brand-sub">ENVIRONMENT · SAFETY · HEALTH</span>
       </span>
     </a>
   </div>
@@ -410,8 +410,8 @@
         <!-- 05 안전보건전문기관 -->
         <a class="svc-item svc-5" href="guidance-agencies.html" target="_blank" rel="noopener" style="text-decoration:none">
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <div class="svc-body"><div class="eng en">05 · DIRECTORY</div><h3>고용노동부 지정 안전보건전문기관 찾기</h3><p>안전·보건·건설재해예방<br>고용노동부 지정기관 검색 · 지도</p></div>
-          <div class="svc-status beta" style="position:relative;z-index:1"><span class="dot"></span>운영중</div>
+          <div class="svc-body" style="position:relative;z-index:1"><div class="eng en">05 · DIRECTORY</div><h3 data-svc-title="4">고용노동부 지정 안전보건전문기관 찾기</h3><p data-svc-desc="4">안전·보건·건설재해예방<br>고용노동부 지정기관 검색 · 지도</p></div>
+          <div class="svc-status beta" style="position:relative;z-index:1"><span class="dot"></span>가동중</div>
           <!-- 한국 지도 배경 이미지 -->
           <div class="svc-5-map"></div>
         </a>
@@ -692,6 +692,8 @@
         <div class="adm-section-title">메인 텍스트</div>
         <div class="adm-section-sub">히어로 영역의 배지, 헤드라인, 소개 문구를 수정합니다.</div>
         <div class="adm-grid adm-grid-1" style="gap:16px">
+          <div class="adm-field"><label>브랜드명 (헤더·푸터)</label><input type="text" id="adm-brand-name" placeholder="ESH-MASTER"></div>
+          <div class="adm-field"><label>브랜드 서브텍스트</label><input type="text" id="adm-brand-sub" placeholder="ENVIRONMENT · SAFETY · HEALTH"></div>
           <div class="adm-field"><label>상단 배지</label><input type="text" id="adm-badge"></div>
           <div class="adm-field"><label>헤드라인 1줄</label><input type="text" id="adm-h1-1"></div>
           <div class="adm-field"><label>헤드라인 2줄 (강조 색상)</label><input type="text" id="adm-h1-2"></div>
@@ -776,6 +778,8 @@
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbykCxcVBZki0-wrNpd5a63D_wttCJUs14_-OyvrEGcozwueS3BMnlRxNALz_KijeyTO/exec';
 
   const DEFAULTS = {
+    brand_name: 'ESH-MASTER',
+    brand_sub:  'ENVIRONMENT · SAFETY · HEALTH',
     badge: 'COMING SOON · 2026',
     h1_1: '현장에서 검증된',
     h1_2: '안전보건환경 디지털 설계',
@@ -856,6 +860,23 @@
       if (d) d.innerHTML   = s.desc.replace(/\n/g, '<br>');
     });
 
+    const bnEl = document.getElementById('cfg-brand-name');
+    const bsEl = document.getElementById('cfg-brand-sub');
+    const bnEl2 = document.getElementById('cfg-brand-name2');
+    const bsEl2 = document.getElementById('cfg-brand-sub2');
+    if (bnEl) bnEl.textContent = CFG.brand_name || 'ESH-MASTER';
+    if (bsEl) bsEl.textContent = CFG.brand_sub  || 'ENVIRONMENT · SAFETY · HEALTH';
+    if (bnEl2) bnEl2.textContent = CFG.brand_name || 'ESH-MASTER';
+    if (bsEl2) bsEl2.textContent = CFG.brand_sub  || 'ENVIRONMENT · SAFETY · HEALTH';
+
+    const bnEl  = document.getElementById('cfg-brand-name');
+    const bsEl  = document.getElementById('cfg-brand-sub');
+    const bnEl2 = document.getElementById('cfg-brand-name2');
+    const bsEl2 = document.getElementById('cfg-brand-sub2');
+    if (bnEl)  bnEl.textContent  = CFG.brand_name || 'ESH-MASTER';
+    if (bsEl)  bsEl.textContent  = CFG.brand_sub  || 'ENVIRONMENT · SAFETY · HEALTH';
+    if (bnEl2) bnEl2.textContent = CFG.brand_name || 'ESH-MASTER';
+    if (bsEl2) bsEl2.textContent = CFG.brand_sub  || 'ENVIRONMENT · SAFETY · HEALTH';
     const h2El   = document.getElementById('cfg-contact-h2');
     const emEl   = document.getElementById('cfg-contact-email');
     const lnEl   = document.getElementById('cfg-contact-link');
@@ -1030,6 +1051,8 @@
   /* ── 폼 채우기 ───────────────────────────────────────── */
   function fillAdminForm() {
     document.getElementById('adm-badge').value        = CFG.badge;
+    if (document.getElementById('adm-brand-name')) document.getElementById('adm-brand-name').value = CFG.brand_name || 'ESH-MASTER';
+    if (document.getElementById('adm-brand-sub'))  document.getElementById('adm-brand-sub').value  = CFG.brand_sub  || 'ENVIRONMENT · SAFETY · HEALTH';
     document.getElementById('adm-h1-1').value         = CFG.h1_1;
     document.getElementById('adm-h1-2').value         = CFG.h1_2;
     document.getElementById('adm-lead').value         = CFG.lead;
@@ -1053,7 +1076,7 @@
     });
 
     // 서비스 카드
-    const svcLabels = ['01 · Safety Do It','02 · JSA 위험성평가','03 · AI 뉴스레터','04 · 안전보건정보'];
+    const svcLabels = ['01 · Safety Do It','02 · JSA 위험성평가','03 · AI 뉴스레터','04 · 안전보건정보','05 · 전문기관 찾기'];
     const svcList   = document.getElementById('adm-services-list');
     svcList.innerHTML = '';
     CFG.services.forEach((s, i) => {
@@ -1225,6 +1248,8 @@
 
   function collectForm() {
     const g = id => document.getElementById(id)?.value || '';
+    CFG.brand_name = g('adm-brand-name') || CFG.brand_name;
+    CFG.brand_sub  = g('adm-brand-sub')  || CFG.brand_sub;
     CFG.badge         = g('adm-badge')         || CFG.badge;
     CFG.h1_1          = g('adm-h1-1')          || CFG.h1_1;
     CFG.h1_2          = g('adm-h1-2')          || CFG.h1_2;
