@@ -345,15 +345,32 @@ async function doSearch() {
   showLoading();
 
   const keyword = document.getElementById('kw-input').value.trim();
+  const qs = new URLSearchParams({
+    action:'search', type:currentType,
+    region:currentRegion, keyword, limit:'300',
+  });
+
   try {
-    const qs = new URLSearchParams({
-      action:'search', type:currentType,
-      region:currentRegion, keyword, limit:'300',
-    });
-    const d = await (await fetch(API_URL+'?'+qs, {signal:AbortSignal.timeout(12000), cache:'no-store'})).json();
+    // AbortController로 타임아웃 관리
+    const ctrl = new AbortController();
+    const tid  = setTimeout(() => ctrl.abort(), 12000);
+    const d    = await (await fetch(API_URL+'?'+qs, {signal:ctrl.signal, cache:'no-store'})).json();
+    clearTimeout(tid);
     if (!d.success) throw new Error(d.message);
     allData = d.data || [];
+
+    // 50건 먼저 즉시 렌더링
+    const full = allData;
+    allData = full.slice(0, 50);
     renderAll();
+
+    // 나머지 백그라운드 렌더링
+    if (full.length > 50) {
+      requestAnimationFrame(() => {
+        allData = full;
+        renderAll();
+      });
+    }
   } catch {
     document.getElementById('rp-body').innerHTML =
       '<div class="empty-state"><div class="empty-icon">⚠️</div><div>데이터를 불러올 수 없습니다.</div></div>';
