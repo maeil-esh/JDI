@@ -310,6 +310,18 @@
     .adm-login-err{font-size:12.5px;color:#FCA5A5;margin-top:10px;min-height:18px}
     .adm-success-msg{font-size:12.5px;color:#4ADE80;margin-top:10px;min-height:18px}
   </style>
+<script>
+(function(){
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'F12') { e.preventDefault(); return; }
+    if((e.ctrlKey||e.metaKey) && e.shiftKey && ['i','I','j','J','c','C','k','K'].includes(e.key)) { e.preventDefault(); return; }
+    if((e.ctrlKey||e.metaKey) && ['u','U','s','S'].includes(e.key)) e.preventDefault();
+  });
+})();
+</script>
+
 </head>
 <body>
 
@@ -931,8 +943,7 @@
   (function() {
     let clickCount = 0;
     let clickTimer = null;
-    document.getElementById('adm-dot').addEventListener('click', e => { e.stopPropagation(); e.stopImmediatePropagation();
-      e.stopPropagation();
+    document.getElementById('adm-dot').addEventListener('click', e => {
       clickCount++;
       clearTimeout(clickTimer);
       if (clickCount >= 7) {
@@ -1332,183 +1343,10 @@
 </script>
 
 <!-- 2. 뉴스레터 모달 -->
-<script>
-(function () {
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbykCxcVBZki0-wrNpd5a63D_wttCJUs14_-OyvrEGcozwueS3BMnlRxNALz_KijeyTO/exec';
 
-  // ── 구독 모달 ────────────────────────────────────────
-  const overlay = document.getElementById('nl-overlay');
-  const trigger = document.getElementById('nl-trigger');
-  const tabs    = document.querySelectorAll('.nl-tab');
-  const panels  = document.querySelectorAll('.nl-panel');
-
-  function openModal(tab) { overlay.classList.add('open'); document.body.style.overflow='hidden'; switchTab(tab); setTimeout(()=>{ const f=overlay.querySelector('.nl-panel.active input'); if(f)f.focus();},300); }
-  function closeModal()   { overlay.classList.remove('open'); document.body.style.overflow=''; }
-
-  trigger.addEventListener('click', () => openModal('subscribe'));
-  trigger.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openModal('subscribe'); } });
-  document.getElementById('nl-close').addEventListener('click', closeModal);
-  overlay.addEventListener('click', e => { if(e.target===overlay) closeModal(); });
-  document.addEventListener('keydown', e => {
-    if(e.key==='Escape') {
-      if(overlay.classList.contains('open')) closeModal();
-      if(pvOverlay.classList.contains('open')) closePv();
-    }
-  });
-
-  // ── 미리보기 모달 ─────────────────────────────────────
-  // ── 미리보기 모달 ─────────────────────────────────────
-  const pvOverlay = document.getElementById('preview-overlay');
-
-  function openPv()  { pvOverlay.classList.add('open');    document.body.style.overflow='hidden'; }
-  function closePv() { pvOverlay.classList.remove('open'); document.body.style.overflow=''; }
-
-  document.getElementById('nl-preview-btn').addEventListener('click', openPv);
-  document.getElementById('preview-close').addEventListener('click', closePv);
-  pvOverlay.addEventListener('click', e => { if(e.target===pvOverlay) closePv(); });
-  document.getElementById('preview-subscribe-btn').addEventListener('click', () => { closePv(); openModal('subscribe'); });
-
-  function switchTab(name) {
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab===name));
-    panels.forEach(p => p.classList.toggle('active', p.id==='panel-'+name));
-    document.querySelectorAll('.nl-result').forEach(r=>{ r.className='nl-result'; r.textContent=''; });
-  }
-  tabs.forEach(t => t.addEventListener('click', () => switchTab(t.dataset.tab)));
-
-  function isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
-  function showRes(id, type, msg) { const e=document.getElementById(id); e.className='nl-result '+type; e.textContent=msg; }
-
-  async function callApi(btn, payload, rid) {
-    btn.classList.add('loading'); btn.disabled=true;
-    try {
-      const r = await fetch(APPS_SCRIPT_URL, { method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(payload) });
-      const d = await r.json();
-      showRes(rid, d.success?'success':'error', d.message);
-    } catch { showRes(rid,'error','서버 연결에 실패했습니다. 잠시 후 다시 시도해 주세요.'); }
-    finally { btn.classList.remove('loading'); btn.disabled=false; }
-  }
-
-  document.getElementById('btn-subscribe').addEventListener('click', function() {
-    const name=document.getElementById('sub-name').value.trim();
-    const email=document.getElementById('sub-email').value.trim();
-    const affiliation=document.getElementById('sub-affiliation').value.trim();
-    const industry=document.getElementById('sub-industry').value;
-    if(!name)           return showRes('sub-result','error','이름을 입력해 주세요.');
-    if(!document.getElementById('sub-agree').checked) return showRes('sub-result','error','개인정보 수집 및 이용에 동의해 주세요.');
-    if(!email)          return showRes('sub-result','error','이메일을 입력해 주세요.');
-    if(!isEmail(email)) return showRes('sub-result','error','이메일 형식이 올바르지 않습니다.');
-    callApi(this, {action:'subscribe',name,email,affiliation,industry}, 'sub-result');
-  });
-
-  document.getElementById('btn-unsubscribe').addEventListener('click', function() {
-    const name=document.getElementById('unsub-name').value.trim();
-    const email=document.getElementById('unsub-email').value.trim();
-    if(!name)           return showRes('unsub-result','error','이름을 입력해 주세요.');
-    if(!email)          return showRes('unsub-result','error','이메일을 입력해 주세요.');
-    if(!isEmail(email)) return showRes('unsub-result','error','이메일 형식이 올바르지 않습니다.');
-    if(!confirm(email+' 구독을 취소하시겠습니까?')) return;
-    callApi(this, {action:'unsubscribe',name,email}, 'unsub-result');
-  });
-
-  // 개인정보 수집 항목 상세보기 토글
-  document.getElementById('agree-toggle-btn').addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    const tbl  = document.getElementById('agree-table');
-    const open = tbl.classList.toggle('open');
-    this.textContent = open ? '수집 항목 닫기 ▲' : '수집 항목 상세보기 ▼';
-  });
-})();
-</script>
 
 <!-- 5. 구독 현황 -->
-<script>
-(function() {
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbykCxcVBZki0-wrNpd5a63D_wttCJUs14_-OyvrEGcozwueS3BMnlRxNALz_KijeyTO/exec';
-  const THRESHOLD = 10;
 
-  async function loadStats() {
-    try {
-      const res  = await fetch(APPS_SCRIPT_URL + '?action=getStats', { signal: AbortSignal.timeout(6000) });
-      const data = await res.json();
-      if (!data.success || !data.stats) { showError(); return; }
-      renderStats(data.stats);
-      const now = new Date();
-      document.getElementById('stats-update-time').textContent =
-        now.getHours() + ':' + String(now.getMinutes()).padStart(2,'0') + ' 기준';
-    } catch { showError(); }
-  }
-
-  function renderStats(stats) {
-    const container = document.getElementById('stats-container');
-    if (!stats.length) { container.innerHTML = '<p style="text-align:center;color:var(--gray-400);font-size:13px;padding:24px 0">아직 구독자가 없습니다.</p>'; return; }
-
-    // CFG에서 업종별 status 매핑
-    const statusMap = {};
-    if (window._CFG_INDUSTRIES) {
-      window._CFG_INDUSTRIES.forEach(ind => {
-        const name = ind.name || ind;
-        statusMap[name] = ind.status || '신청중';
-      });
-    }
-
-    const max = Math.max(...stats.map(s => s.count), THRESHOLD);
-    const sorted = [...stats].sort((a, b) => b.count - a.count);
-    const markerPct = Math.round((THRESHOLD / max) * 100);
-
-    container.innerHTML = '<div class="stats-grid">' + sorted.map(s => {
-      const pct    = Math.round((s.count / max) * 100);
-      const status = statusMap[s.industry] || (s.count >= THRESHOLD ? '발송준비' : '신청중');
-      const need   = THRESHOLD - s.count;
-
-      let barClass, tag;
-      if (status === '발송중') {
-        barClass = 'sending';
-        tag = `<span class="stat-tag sending"><span class="stat-tag sending-dot"></span>발송중</span>`;
-      } else if (status === '발송준비') {
-        barClass = 'ready';
-        tag = `<span class="stat-tag ready">발송 준비</span>`;
-      } else {
-        barClass = 'pending';
-        tag = s.count > 0
-          ? `<span class="stat-tag soon">${need}명 더</span>`
-          : `<span class="stat-tag soon">신청중</span>`;
-      }
-
-      return `<div class="stat-row">
-        <div class="stat-top">
-          <span class="stat-label">${s.industry}</span>
-          <span style="display:flex;align-items:center;gap:4px">
-            ${tag}
-            <span class="stat-count">${s.count}명</span>
-          </span>
-        </div>
-        <div class="stat-bar-wrap">
-          <div class="stat-bar ${barClass}" data-pct="${pct}" style="width:0%"></div>
-          <div class="stat-marker" style="left:${markerPct}%"></div>
-        </div>
-      </div>`;
-    }).join('') + '</div>';
-
-    const bars = container.querySelectorAll('.stat-bar');
-    const observer = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) {
-        bars.forEach((bar, i) => { setTimeout(() => { bar.style.width = bar.dataset.pct + '%'; }, i * 80); });
-        observer.disconnect();
-      }
-    }, { threshold: 0.2 });
-    observer.observe(container);
-  }
-
-  function showError() {
-    document.getElementById('stats-container').innerHTML =
-      '<p style="text-align:center;color:var(--gray-400);font-size:13px;padding:24px 0">현황을 불러올 수 없습니다.</p>';
-    document.getElementById('stats-update-time').textContent = '';
-  }
-
-  loadStats();
-})();
-</script>
 
 <!-- 3. 전광판 티커 -->
 <script>
@@ -1579,24 +1417,6 @@ if(window.wcs)wcs_do();
 
 </script>
 <!-- 보안: 우클릭/키보드 제한 (메인 JS 이후 실행) -->
-<script>
-(function(){
-  document.addEventListener('contextmenu', e => {
-    if(e.target.id === 'adm-dot') return; // EM 버튼 예외
-    e.preventDefault();
-  });
-  document.addEventListener('selectstart', e => {
-    if(e.target.id === 'adm-dot') return;
-    e.preventDefault();
-  });
-  document.addEventListener('copy', e => e.preventDefault());
-  document.addEventListener('cut',  e => e.preventDefault());
-  document.addEventListener('keydown', e => {
-    if(e.key === 'F12') { e.preventDefault(); return; }
-    if((e.ctrlKey||e.metaKey) && e.shiftKey && ['i','I','j','J','c','C','k','K'].includes(e.key)) { e.preventDefault(); return; }
-    if((e.ctrlKey||e.metaKey) && ['u','U','s','S'].includes(e.key)) e.preventDefault();
-  });
-})();
-</script>
+
 </body>
 </html>
