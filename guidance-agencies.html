@@ -89,10 +89,10 @@ a{color:inherit;text-decoration:none}
 /* ─ 결과 패널 ─ */
 .result-panel{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--g1)}
 .rp-head{padding:14px 20px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;flex-shrink:0}
-.rp-breadcrumb{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--g5);flex:1;flex-wrap:wrap}
-.rp-breadcrumb .bc-item{font-weight:600;color:var(--navy)}
+.rp-breadcrumb{display:flex;align-items:center;gap:6px;font-size:13.5px;color:var(--g5);flex:1;flex-wrap:wrap}
+.rp-breadcrumb .bc-item{font-weight:700;color:var(--navy);font-size:14px}
 .rp-breadcrumb .bc-sep{color:var(--g4)}
-.rp-count{font-size:13px;font-weight:800;color:var(--navy);white-space:nowrap}
+.rp-count{font-size:16px;font-weight:800;color:var(--navy);white-space:nowrap}
 .sort-sel{font-size:12px;border:1px solid var(--line);border-radius:7px;padding:5px 10px;color:var(--g6);cursor:pointer;font-family:inherit;outline:none;background:#fff}
 
 .rp-body{flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:8px}
@@ -117,11 +117,11 @@ a{color:inherit;text-decoration:none}
 .loading-spinner{width:28px;height:28px;border-radius:50%;border:3px solid var(--g2);border-top-color:var(--blue);animation:spin .8s linear infinite}
 
 /* ─ 지도 패널 ─ */
-.map-panel{width:420px;flex-shrink:0;border-left:1px solid var(--line)}
+.map-panel{width:520px;flex-shrink:0;border-left:1px solid var(--line)}
 #map{width:100%;height:100%}
 
 /* 반응형 */
-@media(max-width:1100px){.map-panel{width:340px}}
+@media(max-width:1200px){.map-panel{width:400px}}
 @media(max-width:900px){.map-panel{display:none}}
 @media(max-width:680px){
   .sidebar{width:220px}
@@ -247,14 +247,14 @@ a{color:inherit;text-decoration:none}
 const API_URL = 'https://script.google.com/macros/s/AKfycbykCxcVBZki0-wrNpd5a63D_wttCJUs14_-OyvrEGcozwueS3BMnlRxNALz_KijeyTO/exec';
 
 const TYPES = [
-  { key:'건설재해예방', label:'건설재해예방전문지도기관', icon:'🏗️', color:'#1E6BD8' },
-  { key:'안전관리',    label:'안전관리전문기관',          icon:'🛡️', color:'#0E7A6E' },
-  { key:'보건관리',    label:'보건관리전문기관',          icon:'🩺', color:'#7C3AED' },
-  { key:'특수건강진단', label:'특수건강진단실시기관',     icon:'🏥', color:'#D97706' },
-  { key:'자율안전검사', label:'자율안전검사기관',         icon:'🔍', color:'#DC2626' },
-  { key:'석면조사',    label:'석면조사기관',              icon:'🔬', color:'#475569' },
-  { key:'작업환경측정', label:'작업환경측정기관',         icon:'📊', color:'#0891B2' },
-  { key:'안전보건진단', label:'안전보건진단기관',         icon:'📋', color:'#6D28D9' },
+  { key:'건설재해예방', label:'건설재해예방전문지도기관', icon:'🏗️', color:'#1E6BD8', date:"2026년 3월 기준" },
+  { key:'안전관리',    label:'안전관리전문기관',          icon:'🛡️', color:'#0E7A6E', date:"2026년 3월 기준" },
+  { key:'보건관리',    label:'보건관리전문기관',          icon:'🩺', color:'#7C3AED', date:"2026년 4월 기준" },
+  { key:'특수건강진단', label:'특수건강진단실시기관',     icon:'🏥', color:'#D97706', date:"2026년 3월 기준" },
+  { key:'자율안전검사', label:'자율안전검사기관',         icon:'🔍', color:'#DC2626', date:"2025년 12월 기준" },
+  { key:'석면조사',    label:'석면조사기관',              icon:'🔬', color:'#475569', date:"2025년 11월 기준" },
+  { key:'작업환경측정', label:'작업환경측정기관',         icon:'📊', color:'#0891B2', date:"2025년 10월 기준" },
+  { key:'안전보건진단', label:'안전보건진단기관',         icon:'📋', color:'#6D28D9', date:"2026년 2월 기준" },
 ];
 const GRADE_COLOR = {S:'#0E7A6E',A:'#1E6BD8',B:'#7C3AED',C:'#D97706',D:'#DC2626','-':'#94A3B8'};
 
@@ -351,9 +351,10 @@ function renderAll() {
 function renderBreadcrumb() {
   const type = TYPES.find(t => t.key === currentType);
   const bc   = document.getElementById('breadcrumb');
-  let html   = `<span class="bc-item">${type?.icon||''} ${type?.label||''}</span>`;
-  if (currentRegion) html += `<span class="bc-sep">›</span><span class="bc-item">📍 ${currentRegion}</span>`;
-  bc.innerHTML = html;
+  let h = `<span class="bc-item">${type?.icon||''} ${type?.label||''}</span>`;
+  if (currentRegion) h += `<span class="bc-sep">›</span><span class="bc-item">📍 ${currentRegion}</span>`;
+  if (type?.date) h += `<span style="margin-left:auto;font-size:11px;color:var(--g4);font-weight:500">고용노동부 공표 기준 ${type.date}</span>`;
+  bc.innerHTML = h;
 }
 
 function renderList() {
