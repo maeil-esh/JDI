@@ -70,7 +70,11 @@
     .cred-l{font-size:12.5px;color:var(--gray-500);margin-top:8px;font-weight:500;letter-spacing:-.005em}
     .cred-divider{width:1px;background:var(--line);margin:4px 0;flex-shrink:0}
 
-    .services{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:60px;animation:fade-up .9s .35s ease-out both}
+    .services{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:60px;animation:fade-up .9s .35s ease-out both}
+    .svc-5{position:relative;overflow:hidden}
+    .svc-5 .svc-icon{background:linear-gradient(135deg,#D97706,var(--amber))}
+    .svc-5-map{position:absolute;right:-8px;bottom:-6px;width:180px;height:200px;opacity:.4;pointer-events:none;z-index:0;background:url('data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAGXAR0DASIAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAMEAgUGAQj/xAA7EAACAgIBAgQEAwcDAwQDAAABAgADBBESITEFE0FRIjJhcQYUoSNCgZGxwdFScvAVNOEkMzXxU2KS/8QAGQEBAQEBAQEAAAAAAAAAAAAAAAECAwQF/8QAIxEBAQACAgICAwADAAAAAAAAAAECEQMhEjFBURMiMkJhgf/aAAwDAQACEQMRAD8A+y4iICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiJBnZVeLQXdhvXwj3MJbqduczL2o8bsuT91/T1nUVOLK1dTsEbBnF2M1ljWOdsx2TOg/DmT5mMaGPxV9vtK8/Dn+1jbRESPSREQEREBERAREQEREBERAREQEREBERAREQEREBKeZ4ljYr8LCxbWxoblLxvxNqnbFo6MPmffb6TW02LkY7U2pyetGKNvr76+vrNTHbjny9+OLYjx+rf/bvr7iZJ49SX09DqvuDuaJarDU1gQlFPU+gmE14Rw/NnHQZXjlS6GOnmH1LdBIP+vW//gT/APozTRHjC82Vb+jxyso3noVcfLx6gzGvx5T/AO5QR/tbc0USeMX82Tob/HKRX+xrYv6cugmkysi3Jt8y1+R9PpIYjxjOXJll7ZS34Rf5GfWxOlY8W/jKUDoZdMS6u3cRKnhGQcjBR26svwn+Etzm+hLubIiIUiIgIiICIiAiIgIiICIiAiIgIiICIiAlDxjPbCrXggZ33rfYalnJyasasva4Ueg9TOX8Sy3zLy7dFHRV9pZHLlz8Zqe0N9r32ta+uTHZ1PKnatw6MVYHYMwiaePfe1xMkWlkyHKqwABVRpeu+0CnEcmqu1i4UkORpSR117ynJMezyrls4hteh7GaXy37RxLJoS/bYoI13rY9f4e8rkEHRGiPSVNWPIiJEIiICIiBtvw7lim5qLG0j9V36GdFOHHQ7nUeCZhycUB2BsToft6GYyny9XBn/jWwiImXoIiICIiAiIgIiICIiAiIgIiICJT8TyMikVpjUmx3P+kkASG/OyKsB73oCODxC8t6+8M3ORsp442Ne80vhXi7u/lZbLs/K+tfwMuZvimNSjAPysGxxA6gxpJyY2bc1khkyLK2YtwYrsnfaRzKxmssaxztmOyfczGbjw0iIliEREolxqWus4qQoA5MxPQCe5li3ZVli9mbpMlB/IMeXECzWt/N0/tr9ZXiNX1oiIhkiIgIiICS4uRZjXLbWeo7j3HtIohd69O0xrkvoS1DsMN/aSbnNeAZbVZQodtVv7+hnSTnZp7sM/KbexESNkREBERAREQEREBERAQYiBAr+bYwKWIazrr2b/M1FmNk8rMGzTJYfMFvt95vpBkrVer4xcgkbIU6OpdueeHk5FdcwG7b66mead5dpHYuSPtubxfCsIupRieJ+JS29/SazPtpryrBTSFYMQGJ3rXsPSa3t5suO4ztQ7d+8Sx1uosZ+r1gHl6kb1o/zleHIiIlgRESix5bXYyGtWZkPEgDffqDIrKrK242KVOt6MxVmX5SR9jJq7jwFdo8ysHfE9CPse8ba6QRLGRXV5S3U8lDEgqx2Rr6+srwlmiIiEIiICIiAm//AA/n2Wt+VtBYhdq309jNBJ8LIfFyFuT06Ee4ks26YZeNdjExqdbK1sU7VhsTKc3uIiICIiAiIgIiICIiAiIgJT8QsGPX5y0G2w/COI6joZcmFoY1sFOmI6GEvrpzdAzM3ktNSVry25UcRuZ+MUV49NFbMXu0dt2Gv+Gb7FR0x0WzjzA+IgaBM13jmKcgB0SwunbQ2G3/AEmtuOXHZj/tpsUFjYm9KyHkft1/qBK8tZLV0K2PQxbfSx9dyPQfSVZp5r10RERGSIiUIiIFiwc8Kuw6BRuH3HeV5nYCqoo3ojl195hKtIiJEIiICIiAiIhW+/D2dyAxLO6j4D/abqcVRbZTaLK24sOxnWeHZH5nDS065EfEB7zGUerhz3NVZiImXciIgIiICIiAiIgJXzspMSoWOrFd6OvSWJ467116DuNd4GNbh0DjYBG9GK2c7DoF0emjvc9I6fD0MLy18Wt/SBWSzKORZyqCUIND1LH3+0p4Wfb+ZvW4l6wxCMo6A+02x6yvlUeZjPWhCggg9JYxZdblc14jlJl2+YlS1j7dT95VkltZTuCAeq7GtiRzo8Ntt7IiIQiIgIHeJbx666FryLW+PqyIV+bXb9YWTbHxJSmSKz+6ijXt0EwqpD1eY11dY2QA2+v8h9ZLdkY97+bkV3G0j4uLDRkd91TUrXVWyAMW2zbP/Oksbut7YeRb5prCEsPYfrJRiggKbkW49QhPTX37SI5F7J5Zus4Aa1yOpH6RvTPUS5FFlBAsA69iCDIpZazHs0bBap1oBdcVmIxrCfhKMCdAhx1g19IImRVlOmBB+s80SQANn2kR5E9AYniFO/b1ki42QzcRRbv/AGGDW0Uv+C5LY+Yi9SjnRH9JUupspI8wAb7EEEfzEnxFFDVZVpGvmRQeraP6Qs3K60RManD1q47EbmU5PfCIiFIiICIiAiIgR3ErpxzOunFfXfr/AAmXEb5EdQNbmUHtA8mLMq/MwH3MMyrrkwXZ0NnvNXnY58RxVeuxOSuw2e2t/wDiWJbqdJs3xEYnlh1Dlj1KnoB/mWsbJoyE5U2Bh6+4nKi50xrcVgpUvv319pjjWinmQXDFSF4n+s34vP8An7bfx7BtsuW6lC2xpgP6zTW1vU/BxpvaWvD862m1UexmpY6ZSdjR+8teIeEMthtx2QVHr8Ta4/8AiN66c8p5/ti1ES7kjFArQ3uxRdEomxv11siYNfSgCV46OgHU2D4ifuJWLNfKrJcWlr7RWvQHu3oB7yw+NQ7vbTevkr8TLo8lH8e8gsuXyjVUhRCdkk7Jg8dXtmbMVGJqqdiPlLsCD9dakFjvY5exizH1MxiE2REQhERATKsM1ihN8iempjLVbpjUJYK+V1m+LE/KO2wP5xvSyJci6yipMfzC7Ak2bOx1/dkS3UKTbWtldvHSgHag+/uJV7doka8lkZlo+LhWbda8wg8v/uQ+bbojzH69/iPWYRKltqSq56+gAZSdkMNgzy2wud8VXQ0AOwEwiE26L8NWvZjOrtsIdL9JtpqPwuF/KWkE756P8hNvOVe3i/iEREOhERAREQEREBB7RI8lS+PYinRZSAYHN+MZPn5nJGPFRxHX7yIZ964f5VeKprWwOpk2Tgox1iLa1iDVoPQD+cp+WfI87YI5cdTceLK5S2oonp7zyacyWs/MbINYXmqKgUrvofrKsSWbWWyaemeREqM6bDW/IAEdiD2Ikl1S+V59RJTfEg91Pt9fvPcGpbLS1jAJWObD1IHpF2S1tbJxQKW30UCGutdq8REMERLCUItAvvYhGOkCaJPv9oWTZRjF6vNd1ROWup1v31JDkY1drW49LctAJy7L9fvILXBqSsMSFJ1013ke5GvXpZf8vdqzzBS5+dSDrfuNf0keS6MldaEtw2ORGtyGIS9giIlZIiICIiBuPwzkcb7Mcjo45A/Uf8/SdBOS8I5f9Rp4gnTdde062Yyj2cF3iRETLsREQEREBERAREQPNCc/TTXdnZOHaWr5PyVQvTp/4nQzReLWjD8YqyQu9rph9O0sc+TWpaq+K0jGoooZlNg2dAehPvNdN1+IzU60WqpYsPhYH0/4ZqGBUkMCCO4M3jenl5ZrLphE9PaeSuZERAs4DfFbWCAXrKjfqfaQOr1uUsQqw7gzGXL6Xux6rlJZgoVh3Pc6hrW4pxMrEatyjqVYdwZjDKfErSxyG2zAbVB+99Jlk3q9JTyijlgWA+XoNdBK3aTZmhkMB3GgT7nXWGpekMREMkREBERAREQECIgb78MInl3WaHLlrf01N1Oe/C5P5u0b6FO38Z0M55e3t4f4hERI6kREBERAREQEREBNf4xh0ZFfm3OycB3A30+0vWFgp4AFvTZ6TF61d1ZuW17AMQP5SxMpuaay9Ht8NoOGqXcAOLHuNewM0V5sNzm3fmcjy37zrctHbGdaX8ptbDa7Tj3LMxZiSSdkn1mo8vNNaeRETTgREQLGGtYS261A4QAKpPQk/wDDMHusLl1/ZbGtIdDUkp4vgXVjYdWD/cdv7yF0IrViOjdoau0tjK+IrsmrOXEMPUAev6SvLGTvycdR8or3/EkyvBl7Onr2lnPUfmSw7MoYe/b1+shpYLajMNhWBI95K6G2xytwtcknXUEj6b/pBPSAzyemeQyREQEREBERAREQN7+Gcd1D5LDSsOK/X3m7lXwn/wCOo/2CWpzvt9DDHxx0RESNEREBERAREQEx4/tA+zsDWt9JlEARPNT2IEGdatWLYWJBKkDQ3s6nHbncEA95pfHfDlKPlVAhlA2qjoR7zWNcObC2baGZIjudIrMfYDcVo9h4ojMfYDcsabHw7Uf4XsK6X10N/wAvSbeWRFdj21Dbpob0fofY+xkUkqtKHWgyHoy+8kT8mBt/NfZ7DQ0P7wTVYY1zUWcgAwI0ynsRJxmJyKNQrUEABCx2v2Mwe6kD9hQEPux5GYZO3dLAp+NAT9x0J/SF3r1WaZNpyAykhSQOA7a9pHmKqZViL0UMdD2+kxSuxlZ0RmC99DepYVGyqgfKIsVdBx2f6ffUpu2Kkzo359emKnkOo9OsLVYzlQh2O++mvvJsevyLVtyF4hSDxPzH7CQx9o8sscq3lrfM70NesinrEsxJJJJ2SZ5CW7pERCEQOp0JkyOvzIy/cahWMREIREQOm/D1l1mEfM1xU8U17TZbmo/DdVleO7t0VyCo3+svJl1tntijqyryJ/tOd9vdx39ZtZiIkdCIiAiIgIiICIiAiJ5s8tEHt3gYX2GupnVC5A2FHczVZ3il1dfG3AKBwQObd/0mz8+s5PkK23A2QPT7yLxDDrzEVbCw4nYK95WMpbP1rmzmOKytKLSWO2Kb6j2ldiWOySSe5J3LHiNC495qWuxQp7sd8h7ytNx47veqRESsEmryLEUINFevQjvvuPtIYgWPzCps46NUxIO+W9a9pFZa9j82Y7+nSYREW2pDdYy8Wscr7EyTLbktTt8xTR+uugMIldLcrmBdSD5YG9/c9hMjamUf/UFK39LNHr9CBJWpPtViWLKEA3TetxA2QqkEfzEgMrNmnkspjiysCvk1p0QvuJWHeW7qrLajlKrKAPiGtDXbp9PpBI8ssGM5rpRQ69DZ3O/XXoIpdrarq7HZzx2gPU7B9P4blbRljG1Sgym2SGIQe516/wA5Gt7VoiJWCIiBZx83Ioraup+Kt1M2f4aoLPZluSSfhG/X1JmjnVeBLx8Nq367P6zOXp24e8u/heiImHsIiICIiAiIgIiICeMAVIPYwSACSdAesI6uoZGDKexB3AwrVQNhdHt1HWUPHctsahVqs42sen2nnjmfbigVomi6nT77TnrbLLW52Ozk+rHc1J8uHJyydRPdn5d1fCy3YP0EqxE28ttvsiIhCIiAk9Nnk1m1UUvy4gsN6/hIJZzNKlNOhtU233PX+mo+Gp9oLXaxy7nbE7J1MYiE2yRmVgykgjsRJnUW0vcFCspHIDsd+o9pAJZruo/L+S9brs7ZlI2fbvCztXrVncKilj7D1kuXvzeYJCuNhfYdtfpJsd8ZWXymZLAOrWa4t7g+0WjFF5L5bWBT0AXl09tmXomN0jGK3DRdfNI2tfqRGXpaqauQ5oCGAOwOv9Z7n7tZclV+B1A6DsR01K7KVOmBH3Gpn2t6YxJ0oPl+dcWrrA6HXzfaZrVjuw4XMQASVKaY69vT9YTSKqh7EL8kRd62za2faZXYz1pzD12L6lGB1Mb7A4RVDBUGhs/Un+88psCBldeSOOo3oyk08pQ2Wog/eYCdlSi11KijQUAATm/B28/PStyvHuoI327Ae06eYyejgnVpERMvQREQEREBERAREQML6a7qzXavJT3G5kiKihUUKB2AnsE6BPtApeK34lCKclBYd/CvHZmkzvFDenlVUrXXogg9z/iY+KXpmOclWf4eK8GGtb3KM3I8fJyXeoRJ6P2dbXFUb91eQ31+32mVbfmGZHCciCUIAXr7TTlpWiXaaUTjVao52KSdj5AAf/uUjBZZ7IiIR6OhG5NlgMwvUkrZs9f3T7SCWSC2F8ZAKt8A3otvv0/l1hZ9K0T0955CEREBERAzrssr35bsu++jqS15mTWwIsLa9H+IfrK8SLus7bLLWL2MWY99zPFtRFdHGg41zA2y/aQxKS2JbqigDL8VbfK3v/gyKS47FWK+X5isPiX+49jJ3xGZEux13vqayeq/f3EbXVvpZ8Ix+HitemDLw5gkehE6ORY1SV1IFULpQND0+klnO3b28ePjNEREjZERAREQEREDG1WZGVWKkjQI9IqVlRQzciBon3mUQEo+M5QxsNgG1Y/Rdd/vL00Pj+Jd5jZZs5p246+URJtjktmPTW41oFjrcSUsGmPqD6GDXSgUvZzJO9Jo9JAe88nR4d/aS21nULpVUdlUdJHESiTHKrejM5RQdkiSlKTYz23IFLbArGz1/pK0SLtO9VDEeVkAe/mDXX6fSZFKscc1vrufXQAbA+vWVo1KWrSn82Urbglm9BgAAR7ECR5PEWBVLkqoB5LrUh9JNkFmK2NollHUfTp/aDfSGIiGSIiAiIgIiICZ01mywKNA+59B3JkuJjm0lnVhWASSPXXoIe2pQVx6uAI0WZuR1/aGta7rIPRTXY1Flhdl4jY0e+99JsfB8B7Hrzbn5A76evtNPXW1jqiKSxOgJ1+FT+Xxa6d74jW5nK6duGeV2miImHqIiICIiAiIgIiICa7xDNspzaMdAVDMOTEdCPabGR5CM9Z4FQ/7pZd6hMpddKHiPiLUB1FTaZSEsUgjepVwsl0xmt8QtsZHBVVZe/vLC46HHVLMcLdsOUDaHQ9x7SDxnOTyfIpA2e/JfQjexNTTjlbO7WltKGxjWCE38IPfUxnoBJ0BsmeTbykREIREQEREBJcdu9bEcH777A+hkU9Ahd6e2I1blXGiJjLbVWnDQMhLb2uhv4df5lmjwe6xK3Lqob5hrZEm2phb6axgVOmBBnknz0WvKsVWLBTrqJCFYqWAJA7nUrN6eTY+HeGjLo80XgaJBXj1E1+jsbBAM6DwnHGHStrWO3na0uvf6SVvjx8r21mBhtbmeTdXZxGwxA6AzPM8JyaNsgFiAElt60Jd8V8UamxselCGHdj9vSbDEK5Hh6acuHTW27n7ybrrOPG/r8tGnh+VZiIGUActhuXQKe/6yPwrA/OGwl+KqNDXqf8AE6TGpNWNXUSDxUA/WSKiooVVCgegk8q1+GblV/Dcc4+KlT8Sy76iWoiZdpNTRERCkREBERARPCQNbIGzobnsBERAwuZ1rY1ryYDoN63NLTkZeHlO2Y5Kt2Qne/8AbLn5u+65q6q1ThaFYs3Uj110kPjjUo1JYHzCfhJ6hdeuocs+5uX0vXGtq0vauwkaYBQd/YgTmc6vIS7lkKys/wAXX1nS+HW+bho5sFjdiwGt6+8pZJqzqXevb8X0VT5iNdvp1ljPJPKNJiv5eQjlQdGY5FflXPWTsqSNy1Z+Wr1zxranr7BuvM/XtKdjtY7Ox2zHZm5Xns1GMRErBER6wEyWuxui1sSe2hJTiZI+allHEtsjpqb78PIy4XNmYhmOhvYA/tJbp0wwuV00ORRZiXKLUBOg2j2MnZ8OliqVfmNn4iToAewm0/EOPS2M2QdLYugD/qG+00oxLilbeW3Gz5SIl3FyxuF1G18SvWjwyqmkNwtXYJPUDvMqXOP4On5MtYzMOTAbK779JL4tUr+EcaQXCAFePXtNNfj3Y+HUWc8bupUDWtTLplbjf+NzVRRn1P5uOa3VuJJHxnXqZNhVYi120UnmnIhgev8ACPA1dfD08zZJJI2d9JPZjU2ZCXupLp26ybdccepWr8U8PLVr5dgJrB416AOvYRmZeXXh0/sfLdj0+HfH2H3lrxXwxcseZVpbvc9jMcDzlyXxi6lKkUDY6g6Hb9ZZWLjrKydbaPOutvtDXrpwoB6anQeCb/IooQog+Xfc/Wa6rFDeN8L+V3Tkx49Cdf0m7xqa6EKVjS72B7S5fScON3bUoiImHoIiICIiAiIgR5Cu9TLW3FiNA+0kHaNRAq87XzzXxHlIoJJHdvpLU8AGyfeewkJi7ohAd1UnoNnW5lMXrRyCyKxB2CRvUKo+I4nm3VXC104HZ0CRJrb6TQzqVsITkFHfUsONgdSNHfSUKMNky0YdK6yzEnqWLf0EVi7l6+XuAHswrFSpsdmB4qRoDp6Tned+O1lXMod6bR76nQ+OZJow28t+Lkjses1VSY/iV7E2PVkMNgH5WOusscOWdyT2rvnWviHHc8xvu3U+kqyz4hiPh3+UzcgRsNrW5Wm45XfqkS74SvJsjoCBQ2/5SkBoSxNdbZpWzFSQwVm48tToR4fgYdAstTmV1tm+8eA0KfDkNiA7csux2+sj8Yx87Ku4VgChR/q1szFvenfHDWPlrald4lcpyaefmByVRt9AOvaQeFZpxLNOX8snZCn1kOTTZj2mq1dMP5GW/DK0etjkYytSvXnrR3v39pr4c5crk2XjFD5tVYosQ8Rz4k9T7Sd7Vp8NFllXRVG0+vt/OWKqqlVSijovEHv0+8iyGsx67bn/AGtethAO3vMV6fHW8kXgTmzB5FQo5nQHtLzVo2uShtdtiQeGnHOMGxgFRjvXsZZitYfzGKIiKFRVVR2AGhIL7UxdMUtYO/XiC2pZiRp4p5KCN9fcRoDZA6mexCaRVV1qzWLUEZj8R11MlERBJoiIhSIiAiIgIiICYo6uNqdjZHb2mUAagIiICIiAlDxBzh0X5Ne2diO57ekvypi5IyLbaXQqyMRrR0R7wzk5ayyy5t2MXYzb+BYNiXi+1AFC7X7mbOrAxarjctQ5n1PWWERUXio0Jq5OOPFq7rT/AIkoZkS/kgVBrR7kkzUYeLblOVrA0PmYnoJ0vjFC34Tgozso2oXvua/D8KuXDuSxwr2Aa0e2veWXpM+PeW2S4+P4bg2vZZ5hsHEcOhI9hK9fh2DZWLFzQA3y8iO/rJ/Cca6tLaLqiSr7QsPh3LiYfn6bNprLKdLwJ1qT0sx8pOmZS3HppTFUMoYBgT+7KuZh+IXX2cMjhVsFQT/iWWXKtI0xxgjdNabkPr7S4u9AHqfUybdfHahZg031VIx8xqSASe59wZavoSzHNXEBdDWgOkl0JijqxIDA66HXpDUkQeHHJNJGTWqEH4QNdpa9IiS9k6ivUoGVafL4dhy/1SxEQsIiICIiAiIgIiICIiAiIgIiICIHWICIiAiIgeBSPUnr6zxFYb5Ny69OnYe0yiAiIgYuyqCzEADuTKNOYxe226pq6QQqMeu9nvLWXQuTQ1L7CtrtK9vhtLY601k1hWDbHUmWMZeXwtc9WBeJ0R39JC+dSucuId8yO/oJaAmDVVNYLGrUuvZiOoka7ZxEQqKlbgX85lO22uvQSRVCjQAAnuxEJoiIhSIiAiIgIiICIiAiIgIiICIiAiIgB0EREBERAREQEREBMVdWJCsDo6Oj2mUjrqSvlwGuTFj9TAkEQIgJha5RCwRnI9F7mZwRAREQIWo3keb5jgcdFQeh+smiITRERCkREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEbkGbkLi47XMCQvoPWc7leLZV6sgYIhP7o66+8sm3PPkmPt0d2Vj0j9rci79zKd/jOJUdLysP/AOo6TmtmeS+LhefL4bz/AK+eX/bdN9+XpNri5VOSpNNgbQ6gek46bT8Oc/zx4sAvE7HvFxXj5crlqukiImXqIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICCdAmIMDkvEcq7IyHFrHirEBR2EqTpfEPCKbg9lW0tPXv0Jni+C4g475nQ69e83MpHkvDla5uegE9gZ0LeBYpYkWWqPbY/wAS5g4FGGrCvbFu5bvHlCcGW+3L0YuReSKqmb3PtOn8Mw0xMcKAOZ+Zvcyzr6T3rJctu2HFMe3sREy6kREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQERED//2Q==') center/contain no-repeat}
+    .svc-5 .svc-icon,.svc-5 .svc-body,.svc-5 .svc-status{position:relative;z-index:1}
     .svc-item{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:28px 20px 24px;text-align:left;transition:all .3s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;gap:16px}
     .svc-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--navy-900)}
     .svc-icon{width:44px;height:44px;border-radius:11px;display:grid;place-items:center;color:var(--white);transition:transform .3s}
@@ -109,7 +113,15 @@
     .contact-note{font-size:13px;color:var(--gray-400);margin-top:20px;line-height:1.6}
 
     footer{padding:44px 0 32px;border-top:1px solid var(--line);background:var(--gray-50);position:relative;z-index:1}
-    .foot-inner{display:flex;flex-direction:column;gap:16px}
+    .foot-inner{display:flex;flex-direction:row;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .foot-left{display:flex;flex-direction:column;gap:12px}
+    .foot-agencies{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+    .foot-agencies-label{font-size:10px;color:var(--gray-400);letter-spacing:.06em;font-weight:600;text-align:right}
+    .foot-agency-links{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .foot-agency{display:flex;align-items:center;gap:5px;padding:5px 10px;background:var(--white);border:1px solid var(--gray-200);border-radius:8px;font-size:11px;font-weight:600;color:var(--gray-600);text-decoration:none;transition:all .2s;white-space:nowrap}
+    .foot-agency:hover{border-color:var(--blue-600);color:var(--blue-600);box-shadow:0 2px 8px rgba(30,107,216,.1);transform:translateY(-1px)}
+    .foot-agency img{border-radius:3px;flex-shrink:0}
+    @media(max-width:640px){.foot-inner{flex-direction:column}.foot-agencies{align-items:flex-start}.foot-agency-links{justify-content:flex-start}}
     .foot-brand{display:inline-flex;align-items:center;gap:10px;align-self:flex-start}
     .foot-brand-mark{width:32px;height:32px;background:var(--navy-900);color:var(--white);display:grid;place-items:center;border-radius:8px;font-weight:800;font-size:11px;letter-spacing:-.02em;position:relative}
     .foot-brand-mark::after{content:'';position:absolute;bottom:4px;right:4px;width:4px;height:4px;background:var(--mint-500);border-radius:50%}
@@ -119,7 +131,7 @@
     .foot-copy{font-size:12.5px;color:var(--gray-500);line-height:1.7}
     .foot-copy strong{color:var(--gray-700);font-weight:600}
 
-    @media(max-width:900px){.services{grid-template-columns:repeat(2,1fr)}.credentials{max-width:540px;padding:20px 4px}.cred-item{min-width:120px;padding:8px 10px}.cred-n{font-size:24px}}
+    @media(max-width:1100px){.services{grid-template-columns:repeat(3,1fr)}}@media(max-width:900px){.services{grid-template-columns:repeat(2,1fr)}.credentials{max-width:540px;padding:20px 4px}.cred-item{min-width:120px;padding:8px 10px}.cred-n{font-size:24px}}
     /* 구독 현황 섹션 */
     .stats-section{margin-bottom:56px;animation:fade-up .9s .45s ease-out both;position:relative}
     .stats-section::before{content:'';position:absolute;top:-28px;left:50%;transform:translateX(-50%);width:26%;height:28px;border-left:1px dashed rgba(20,184,166,.25);border-right:1px dashed rgba(20,184,166,.25);pointer-events:none}
@@ -390,6 +402,15 @@
           <div class="svc-body"><div class="eng en">04 · RESOURCES</div><h3 data-svc-title="3">안전보건정보</h3><p data-svc-desc="3">업종별 특성을 반영한<br>법령·사례·서식 자료실</p></div>
           <div class="svc-status"><span class="dot"></span>준비중</div>
         </div>
+
+        <!-- 05 안전보건전문기관 -->
+        <a class="svc-item svc-5" href="guidance-agencies.html" target="_blank" rel="noopener" style="text-decoration:none">
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="svc-body"><div class="eng en">05 · DIRECTORY</div><h3>고용노동부 지정 안전보건전문기관 찾기</h3><p>안전·보건·건설재해예방<br>고용노동부 지정기관 검색 · 지도</p></div>
+          <div class="svc-status"><span class="dot"></span>공개 서비스</div>
+          <!-- 한국 지도 배경 이미지 -->
+          <div class="svc-5-map"></div>
+        </a>
       </div>
 
       <!-- 구독 현황 -->
@@ -428,14 +449,47 @@
 <!-- FOOTER -->
 <footer>
   <div class="container foot-inner">
-    <div class="foot-brand">
-      <span class="foot-brand-mark" id="adm-dot">EM</span>
-      <span class="foot-brand-text">
-        <span class="t1">ESH-MASTER</span>
-        <span class="t2 en">ENVIRONMENT · SAFETY · HEALTH</span>
-      </span>
+    <div class="foot-left">
+      <div class="foot-brand">
+        <span class="foot-brand-mark" id="adm-dot">EM</span>
+        <span class="foot-brand-text">
+          <span class="t1">ESH-MASTER</span>
+          <span class="t2 en">ENVIRONMENT · SAFETY · HEALTH</span>
+        </span>
+      </div>
+      <div class="foot-copy">© 2026 <strong>ESH-MASTER</strong> 산업안전기획 · 안전보건전산화</div>
     </div>
-    <div class="foot-copy">© 2026 <strong>ESH-MASTER</strong> 산업안전기획 · 안전보건전산화</div>
+
+    <!-- 관공서 신뢰 링크 -->
+    <div class="foot-agencies">
+      <div class="foot-agencies-label">OFFICIAL LINKS</div>
+      <div class="foot-agency-links" id="foot-agency-links">
+        <a class="foot-agency" href="https://www.moel.go.kr" target="_blank" rel="noopener" title="고용노동부">
+          <img src="https://www.google.com/s2/favicons?domain=moel.go.kr&sz=24" width="16" height="16" alt="고용노동부" onerror="this.style.display='none'">
+          고용노동부
+        </a>
+        <a class="foot-agency" href="https://www.kosha.or.kr" target="_blank" rel="noopener" title="안전보건공단">
+          <img src="https://www.google.com/s2/favicons?domain=kosha.or.kr&sz=24" width="16" height="16" alt="안전보건공단" onerror="this.style.display='none'">
+          안전보건공단
+        </a>
+        <a class="foot-agency" href="https://www.me.go.kr" target="_blank" rel="noopener" title="환경부">
+          <img src="https://www.google.com/s2/favicons?domain=me.go.kr&sz=24" width="16" height="16" alt="환경부" onerror="this.style.display='none'">
+          환경부
+        </a>
+        <a class="foot-agency" href="https://www.nfa.go.kr" target="_blank" rel="noopener" title="소방청">
+          <img src="https://www.google.com/s2/favicons?domain=nfa.go.kr&sz=24" width="16" height="16" alt="소방청" onerror="this.style.display='none'">
+          소방청
+        </a>
+        <a class="foot-agency" href="https://www.law.go.kr" target="_blank" rel="noopener" title="국가법령정보센터">
+          <img src="https://www.google.com/s2/favicons?domain=law.go.kr&sz=24" width="16" height="16" alt="법령" onerror="this.style.display='none'">
+          국가법령정보센터
+        </a>
+        <a class="foot-agency" href="https://www.meis.go.kr" target="_blank" rel="noopener" title="산업안전보건법령정보">
+          <img src="https://www.google.com/s2/favicons?domain=meis.go.kr&sz=24" width="16" height="16" alt="법령정보" onerror="this.style.display='none'">
+          안전보건법령정보
+        </a>
+      </div>
+    </div>
   </div>
 </footer>
 
@@ -621,6 +675,7 @@
       <div class="adm-nav-item" data-section="creds"><span class="ni">📊</span> 신뢰 지표</div>
       <div class="adm-nav-item" data-section="services"><span class="ni">🗂️</span> 서비스 카드</div>
       <div class="adm-nav-item" data-section="industry"><span class="ni">🏭</span> 업종 목록</div>
+      <div class="adm-nav-item" data-section="agencies"><span class="ni">🏛️</span> 관공서 링크</div>
       <div class="adm-nav-item" data-section="contact"><span class="ni">📧</span> 연락처</div>
       <div class="adm-nav-item" data-section="setting"><span class="ni">⚙️</span> 설정</div>
     </nav>
@@ -663,6 +718,14 @@
         <div class="adm-section-sub">구독 신청 폼의 업종 선택 항목을 관리합니다. 드래그로 순서 변경, ✕로 삭제합니다.</div>
         <ul class="adm-industry-list" id="adm-industry-list"></ul>
         <button class="adm-add-btn" id="adm-add-industry">＋ 업종 추가</button>
+      </div>
+
+      <!-- 관공서 링크 -->
+      <div class="adm-section" id="adm-sec-agencies">
+        <div class="adm-section-title">관공서 링크</div>
+        <div class="adm-section-sub">푸터 우측 관공서 링크를 관리합니다. 기관명과 URL을 수정하세요.</div>
+        <ul class="adm-industry-list" id="adm-agency-list"></ul>
+        <button class="adm-add-btn" id="adm-add-agency">＋ 기관 추가</button>
       </div>
 
       <!-- 연락처 -->
@@ -730,6 +793,14 @@
       { name: '통신·IT업',        status: '신청중' },
       { name: '기타',             status: '신청중' },
     ],
+    agencies: [
+      { name: '고용노동부',       url: 'https://www.moel.go.kr',   favicon: 'moel.go.kr' },
+      { name: '안전보건공단',     url: 'https://www.kosha.or.kr',  favicon: 'kosha.or.kr' },
+      { name: '환경부',           url: 'https://www.me.go.kr',     favicon: 'me.go.kr' },
+      { name: '소방청',           url: 'https://www.nfa.go.kr',    favicon: 'nfa.go.kr' },
+      { name: '국가법령정보센터', url: 'https://www.law.go.kr',    favicon: 'law.go.kr' },
+      { name: '안전보건법령정보', url: 'https://www.meis.go.kr',   favicon: 'meis.go.kr' },
+    ],
   };
 
   let CFG = JSON.parse(JSON.stringify(DEFAULTS));
@@ -744,6 +815,7 @@
         if (data.config.creds)      CFG.creds      = data.config.creds;
         if (data.config.services)   CFG.services   = data.config.services;
         if (data.config.industries) CFG.industries = data.config.industries;
+        if (data.config.agencies)   CFG.agencies   = data.config.agencies;
       }
     } catch (e) { /* 기본값 사용 */ }
     applyConfig();
@@ -780,7 +852,20 @@
     if (ntEl) ntEl.textContent   = CFG.contact_note;
 
     rebuildSelect();
-    window._CFG_INDUSTRIES = CFG.industries; // stats 렌더링에서 참조
+    rebuildAgencies();
+    window._CFG_INDUSTRIES = CFG.industries;
+  }
+
+  function rebuildAgencies() {
+    const wrap = document.getElementById('foot-agency-links');
+    if (!wrap || !CFG.agencies) return;
+    wrap.innerHTML = CFG.agencies.map(a => {
+      const domain = a.favicon || new URL(a.url).hostname.replace('www.','');
+      return `<a class="foot-agency" href="${a.url}" target="_blank" rel="noopener" title="${a.name}">
+        <img src="https://www.google.com/s2/favicons?domain=${domain}&sz=24" width="16" height="16" alt="${a.name}" onerror="this.style.display='none'">
+        ${a.name}
+      </a>`;
+    }).join('');
   }
 
   function rebuildSelect() {
@@ -963,6 +1048,30 @@
     });
 
     renderIndustryList();
+    renderAgencyList();
+  }
+
+  function renderAgencyList() {
+    const ul = document.getElementById('adm-agency-list');
+    ul.innerHTML = '';
+    (CFG.agencies || []).forEach((ag, i) => {
+      const li = document.createElement('li');
+      li.className = 'adm-industry-item';
+      li.style.cssText = 'display:flex;align-items:center;gap:8px';
+      const domain = ag.favicon || (ag.url ? ag.url.replace(/https?:\/\/www\./, '').split('/')[0] : '');
+      li.innerHTML = `
+        <img src="https://www.google.com/s2/favicons?domain=${domain}&sz=24" width="16" height="16" style="border-radius:3px;flex-shrink:0" onerror="this.style.display='none'">
+        <input type="text" value="${esc(ag.name)}" data-ag-name="${i}" style="flex:1;min-width:80px" placeholder="기관명">
+        <input type="text" value="${esc(ag.url)}" data-ag-url="${i}" style="flex:2" placeholder="https://...">
+        <button class="del-btn" data-del-ag="${i}" title="삭제">✕</button>`;
+      ul.appendChild(li);
+    });
+    ul.querySelectorAll('[data-del-ag]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        CFG.agencies.splice(+btn.dataset.delAg, 1);
+        renderAgencyList();
+      });
+    });
   }
 
   function esc(s) { return (s || '').replace(/"/g, '&quot;'); }
@@ -1000,6 +1109,15 @@
       });
     });
   }
+
+  document.getElementById('adm-add-agency').addEventListener('click', () => {
+    if (!CFG.agencies) CFG.agencies = [];
+    CFG.agencies.push({ name: '새 기관', url: 'https://', favicon: '' });
+    renderAgencyList();
+    const inputs = document.querySelectorAll('#adm-agency-list [data-ag-name]');
+    const last = inputs[inputs.length - 1];
+    if (last) { last.focus(); last.select(); }
+  });
 
   document.getElementById('adm-add-industry').addEventListener('click', () => {
     CFG.industries.push({ name: '새 업종', status: '신청중' });
@@ -1054,6 +1172,13 @@
       name:   (li.querySelector('[data-ind-name]')?.value   || '').trim(),
       status: li.querySelector('[data-ind-status]')?.value || '신청중',
     })).filter(i => i.name);
+
+    CFG.agencies = Array.from(document.querySelectorAll('#adm-agency-list li')).map(li => {
+      const name = (li.querySelector('[data-ag-name]')?.value || '').trim();
+      const url  = (li.querySelector('[data-ag-url]')?.value  || '').trim();
+      const domain = url.replace(/https?:\/\/www\./, '').split('/')[0];
+      return { name, url, favicon: domain };
+    }).filter(a => a.name && a.url);
   }
 
   /* ── 비밀번호 변경 (GAS 처리) ────────────────────────── */
@@ -1280,15 +1405,31 @@
 const TK={
   inner:document.getElementById('tk-inner'),timeEl:document.getElementById('tk-time'),refreshBtn:document.getElementById('tk-refresh-btn'),
   feeds:[
-    {url:'https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent('https://www.moel.go.kr/news/enews/report/rss.do'),cat:'노동부',cls:'bd-moel'},
-    {url:'https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent('https://www.kosha.or.kr/kosha/data/rssCenter.do?gubun=A'),cat:'KOSHA',cls:'bd-kosha'},
-    {url:'https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent('http://www.anjunj.com/rss/allArticle.xml'),cat:'안전저널',cls:'bd-news'},
-    {url:'https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent('https://www.me.go.kr/home/web/rss/rss.do?menuId=10257'),cat:'환경부',cls:'bd-env'},
+    {url:'https://api.rss2json.com/v1/api.json?count=10&rss_url='+encodeURIComponent('https://www.moel.go.kr/news/enews/report/rss.do'),cat:'노동부',cls:'bd-moel'},
+    {url:'https://api.rss2json.com/v1/api.json?count=10&rss_url='+encodeURIComponent('https://www.kosha.or.kr/kosha/data/rssCenter.do?gubun=A'),cat:'KOSHA',cls:'bd-kosha'},
+    {url:'https://api.rss2json.com/v1/api.json?count=10&rss_url='+encodeURIComponent('http://www.anjunj.com/rss/allArticle.xml'),cat:'안전저널',cls:'bd-news'},
+    {url:'https://api.rss2json.com/v1/api.json?count=10&rss_url='+encodeURIComponent('https://www.me.go.kr/home/web/rss/rss.do?menuId=10257'),cat:'환경부',cls:'bd-env'},
+    {url:'https://api.rss2json.com/v1/api.json?count=10&rss_url='+encodeURIComponent('https://www.kosha.or.kr/kosha/data/rssCenter.do?gubun=B'),cat:'KOSHA',cls:'bd-kosha'},
   ],
   updateTime(){const n=new Date();this.timeEl.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+' 기준'},
   buildItem(cat,cls,text,link){const inner=link?`<a href="${link}" target="_blank" rel="noopener">${text}</a>`:text;return`<span class="tk-item"><span class="tk-badge ${cls}">${cat}</span>${inner}</span><span class="tk-dot"></span>`},
   render(items){if(!items.length)return;const dur=Math.min(240,Math.max(90,items.length*10));this.inner.innerHTML=items.map(i=>this.buildItem(i.cat,i.cls,i.text,i.link)).join('')+items.map(i=>this.buildItem(i.cat,i.cls,i.text,i.link)).join('');this.inner.style.setProperty('--tk-dur',dur+'s');this.inner.classList.remove('running');void this.inner.offsetWidth;this.inner.classList.add('running');this.updateTime()},
-  async fetchFeed(f){try{const r=await fetch(f.url,{signal:AbortSignal.timeout(5000)});if(!r.ok)return[];const d=await r.json();if(d.status!=='ok'||!Array.isArray(d.items))return[];return d.items.slice(0,5).map(i=>({cat:f.cat,cls:f.cls,text:(i.title||'').replace(/<[^>]+>/g,'').trim().slice(0,60),link:i.link||null})).filter(i=>i.text.length>4)}catch{return[]}},
+  async fetchFeed(f){
+    try{
+      // 캐시 버스팅: 5분 단위 타임스탬프로 rss2json 캐시 우회
+      const ts=Math.floor(Date.now()/(5*60*1000));
+      const r=await fetch(f.url+'&_t='+ts,{signal:AbortSignal.timeout(6000),cache:'no-store'});
+      if(!r.ok)return[];
+      const d=await r.json();
+      if(d.status!=='ok'||!Array.isArray(d.items))return[];
+      return d.items.slice(0,6).map(i=>({
+        cat:f.cat,cls:f.cls,
+        text:(i.title||'').replace(/<[^>]+>/g,'').trim().slice(0,60),
+        link:i.link||null,
+        date:i.pubDate?new Date(i.pubDate):null,
+      })).filter(i=>i.text.length>4);
+    }catch{return[]}
+  },
   fallback:[
     {cat:'노동부',  cls:'bd-moel',  text:'고용노동부 산업안전보건 정책 · 보도자료',          link:'https://www.moel.go.kr/news/enews/report/enewsView.do'},
     {cat:'KOSHA',  cls:'bd-kosha', text:'안전보건공단 공지사항 · 안전보건 자료실',          link:'https://www.kosha.or.kr/kosha/data/notice.do'},
@@ -1296,9 +1437,20 @@ const TK={
     {cat:'환경부',  cls:'bd-env',   text:'환경부 화학물질 · 환경안전 최신 공지',            link:'https://www.me.go.kr/home/web/main.do'},
     {cat:'법령',    cls:'bd-rule',  text:'국가법령정보센터 산업안전보건법 · 중대재해처벌법', link:'https://www.law.go.kr'},
   ],
-  async fetchAll(){const r=await Promise.allSettled(this.feeds.map(f=>this.fetchFeed(f)));const items=r.filter(x=>x.status==='fulfilled').flatMap(x=>x.value);this.render(items.length?items:this.fallback)},
+  async fetchAll(){
+    const r=await Promise.allSettled(this.feeds.map(f=>this.fetchFeed(f)));
+    const items=r.filter(x=>x.status==='fulfilled').flatMap(x=>x.value);
+    // 최신순 정렬
+    items.sort((a,b)=>{
+      if(!a.date&&!b.date)return 0;
+      if(!a.date)return 1;
+      if(!b.date)return -1;
+      return b.date-a.date;
+    });
+    this.render(items.length?items:this.fallback);
+  },
   refresh(){this.inner.innerHTML='<div class="tk-load"><div class="tk-spin"></div>새로고침 중...</div>';this.inner.classList.remove('running');this.fetchAll()},
-  init(){this.fetchAll();setInterval(()=>this.fetchAll(),10*60*1000);setInterval(()=>this.updateTime(),60*1000);this.refreshBtn.addEventListener('click',()=>this.refresh())}
+  init(){this.fetchAll();setInterval(()=>this.fetchAll(),5*60*1000);setInterval(()=>this.updateTime(),60*1000);this.refreshBtn.addEventListener('click',()=>this.refresh())}
 };
 TK.init();
 
