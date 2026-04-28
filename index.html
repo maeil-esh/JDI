@@ -812,7 +812,7 @@
       { name: '환경부',           url: 'https://www.me.go.kr',     favicon: 'me.go.kr' },
       { name: '소방청',           url: 'https://www.nfa.go.kr',    favicon: 'nfa.go.kr' },
       { name: '국가법령정보센터', url: 'https://www.law.go.kr',    favicon: 'law.go.kr' },
-      { name: '화학물질안전원',   url: 'https://www.nics.go.kr',   favicon: 'nics.go.kr' },
+      { name: '화학물질안전원',   url: 'https://nics.me.go.kr',   favicon: 'nics.me.go.kr' },
       { name: '안전보건법령정보', url: 'https://www.meis.go.kr',   favicon: 'meis.go.kr' },
     ],
   };
@@ -1091,14 +1091,14 @@
       </li>`).join('');
   }
 
-  function moveAgencyOrder(idx, dir) {
+  window.moveAgencyOrder = function(idx, dir) {
     const order = CFG.agencyOrder || ['건설재해예방','안전관리','보건관리','특수건강진단','자율안전검사','석면조사','작업환경측정','안전보건진단'];
     const newIdx = idx + dir;
     if (newIdx < 0 || newIdx >= order.length) return;
     [order[idx], order[newIdx]] = [order[newIdx], order[idx]];
     CFG.agencyOrder = order;
     renderAgencyOrderList();
-  }
+  };
 
   function renderAgencyList() {
     const ul = document.getElementById('adm-agency-list');
@@ -1127,7 +1127,7 @@
     });
   }
 
-  function moveAgency(idx, dir) {
+  window.moveAgency = function(idx, dir) {
     const arr = CFG.agencies || [];
     const newIdx = idx + dir;
     if (newIdx < 0 || newIdx >= arr.length) return;
@@ -1135,7 +1135,7 @@
     CFG.agencies = arr;
     renderAgencyList();
     rebuildAgencies();
-  }
+  };
 
   function esc(s) { return (s || '').replace(/"/g, '&quot;'); }
 
