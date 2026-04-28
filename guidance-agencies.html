@@ -358,6 +358,7 @@ async function doSearch() {
     clearTimeout(tid);
     if (!d.success) throw new Error(d.message);
     allData = d.data || [];
+    window._totalCount = d.total ?? allData.length; // GAS가 반환하는 실제 전체 건수
 
     const full = allData;
     allData = full.slice(0, 50);
@@ -402,9 +403,11 @@ function renderList() {
   });
   window._sorted = s;
 
-  // 서버 limit에 걸렸을 가능성(300·500·1000 경계)이면 "N개 이상" 표시
-  const LIMIT_BOUNDARIES = [300, 500, 1000];
-  const countLabel = LIMIT_BOUNDARIES.includes(s.length) ? s.length + '개 이상' : s.length + '개';
+  // GAS total(전체 건수) vs 수신 건수 비교
+  const totalCount = window._totalCount ?? s.length;
+  const countLabel = totalCount > s.length
+    ? `${s.length}개 / 전체 ${totalCount}개`
+    : `${totalCount}개`;
   document.getElementById('rp-count').textContent = countLabel;
 
   if (!s.length) {
