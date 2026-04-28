@@ -821,6 +821,10 @@
         if (data.config.services)   CFG.services   = data.config.services;
         if (data.config.industries) CFG.industries = data.config.industries;
         if (data.config.agencies)   CFG.agencies   = data.config.agencies;
+        // 구버전 GAS 저장 필드 무력화 (footer 영역 보호)
+        delete CFG.footer_brand_name;
+        delete CFG.footer_brand_sub;
+        delete CFG.footer_copy;
       }
     } catch (e) { /* 기본값 사용 */ }
     applyConfig();
