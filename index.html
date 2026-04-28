@@ -929,8 +929,12 @@
   function setH(id, v) { const e = document.getElementById(id); if (e) e.innerHTML   = v; }
 
   /* ── 관리자 패널 진입 (?_admin) ──────────────────────── */
-  const admOverlay = document.getElementById('adm-overlay');
-  const admLogin   = document.getElementById('adm-login');
+  const admOverlay  = document.getElementById('adm-overlay');
+  const admLogin    = document.getElementById('adm-login');
+  const LOCK_KEY    = '_adm_lock';
+  const ATTEMPT_KEY = '_adm_try';
+  const MAX_TRY     = 2;
+  const LOCK_MS     = 30 * 60 * 1000;
 
   // ── 관리자 패널 열기: EM 5회 클릭 또는 URL ?adm 파라미터 ──
   (function() {
@@ -958,10 +962,6 @@
   })();
 
   // ── 잠금 유틸 ────────────────────────────────────────
-  const LOCK_KEY    = '_adm_lock';
-  const ATTEMPT_KEY = '_adm_try';
-  const MAX_TRY     = 2;
-  const LOCK_MS     = 30 * 60 * 1000;
 
   function getLockRemain() {
     const t = parseInt(localStorage.getItem(LOCK_KEY) || '0');
