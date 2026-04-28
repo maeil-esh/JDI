@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ESH-MASTER</title>
+  <title>ESH-MASTER · 서비스 준비중</title>
   <meta name="description" content="안전·보건·환경 디지털 플랫폼 ESH-MASTER가 곧 찾아옵니다. Safety Do It, JSA 위험성평가, AI 안전보건 뉴스레터, 안전보건정보">
   <meta property="og:title" content="ESH-MASTER · 안전보건환경 디지털 플랫폼">
   <meta property="og:description" content="Safety Do It · JSA 위험성평가 · AI 안전보건 뉴스레터 · 안전보건정보 — 곧 만나보실 수 있습니다.">
@@ -680,6 +680,7 @@
       <div class="adm-nav-item" data-section="services"><span class="ni">🗂️</span> 서비스 카드</div>
       <div class="adm-nav-item" data-section="industry"><span class="ni">🏭</span> 업종 목록</div>
       <div class="adm-nav-item" data-section="agencies"><span class="ni">🏛️</span> 관공서 링크</div>
+      <div class="adm-nav-item" data-section="agency-order"><span class="ni">🔢</span> 기관분야 순번</div>
       <div class="adm-nav-item" data-section="contact"><span class="ni">📧</span> 연락처</div>
       <div class="adm-nav-item" data-section="setting"><span class="ni">⚙️</span> 설정</div>
     </nav>
@@ -730,6 +731,13 @@
         <div class="adm-section-sub">푸터 우측 관공서 링크를 관리합니다. 기관명과 URL을 수정하세요.</div>
         <ul class="adm-industry-list" id="adm-agency-list"></ul>
         <button class="adm-add-btn" id="adm-add-agency">＋ 기관 추가</button>
+      </div>
+
+      <!-- 기관분야 순번 -->
+      <div class="adm-section" id="adm-sec-agency-order">
+        <div class="adm-section-title">기관분야 순번</div>
+        <div class="adm-section-sub">안전보건전문기관 찾기 페이지의 분야 표시 순서를 드래그로 변경합니다.</div>
+        <ul class="adm-industry-list" id="adm-agency-order-list"></ul>
       </div>
 
       <!-- 연락처 -->
@@ -797,6 +805,7 @@
       { name: '통신·IT업',        status: '신청중' },
       { name: '기타',             status: '신청중' },
     ],
+    agencyOrder: ['건설재해예방','안전관리','보건관리','특수건강진단','자율안전검사','석면조사','작업환경측정','안전보건진단'],
     agencies: [
       { name: '고용노동부',       url: 'https://www.moel.go.kr',   favicon: 'moel.go.kr' },
       { name: '안전보건공단',     url: 'https://www.kosha.or.kr',  favicon: 'kosha.or.kr' },
@@ -1053,6 +1062,47 @@
 
     renderIndustryList();
     renderAgencyList();
+    renderAgencyOrderList();
+  }
+
+  const AGENCY_LABELS = {
+    '건설재해예방': '🏗️ 건설재해예방전문지도기관',
+    '안전관리':     '🛡️ 안전관리전문기관',
+    '보건관리':     '🩺 보건관리전문기관',
+    '특수건강진단': '🏥 특수건강진단실시기관',
+    '자율안전검사': '🔍 자율안전검사기관',
+    '석면조사':     '🔬 석면조사기관',
+    '작업환경측정': '📊 작업환경측정기관',
+    '안전보건진단': '📋 안전보건진단기관',
+  };
+
+  function renderAgencyOrderList() {
+    const ul = document.getElementById('adm-agency-order-list');
+    const order = CFG.agencyOrder || ['건설재해예방','안전관리','보건관리','특수건강진단','자율안전검사','석면조사','작업환경측정','안전보건진단'];
+    ul.innerHTML = order.map((key, i) => `
+      <li class="adm-industry-item" data-key="${key}" style="cursor:grab;display:flex;align-items:center;gap:8px">
+        <span style="color:var(--gray-400);font-size:14px">⠿</span>
+        <span style="flex:1;font-size:13px">${AGENCY_LABELS[key] || key}</span>
+        <span style="font-size:11px;color:var(--gray-400);font-family:'Inter',sans-serif">${i+1}</span>
+      </li>`).join('');
+
+    // 드래그 정렬
+    let dragging = null;
+    ul.querySelectorAll('li').forEach(li => {
+      li.draggable = true;
+      li.addEventListener('dragstart', () => { dragging = li; li.style.opacity='.4'; });
+      li.addEventListener('dragend',   () => { dragging = null; li.style.opacity='1'; });
+      li.addEventListener('dragover',  e => { e.preventDefault(); const after = getDragAfter(ul, e.clientY); if(after) ul.insertBefore(dragging, after); else ul.appendChild(dragging); });
+    });
+  }
+
+  function getDragAfter(ul, y) {
+    const items = [...ul.querySelectorAll('li:not([style*="opacity: 0.4"])')];
+    return items.reduce((closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      return offset < 0 && offset > closest.offset ? { offset, element: child } : closest;
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
   }
 
   function renderAgencyList() {
@@ -1176,6 +1226,8 @@
       name:   (li.querySelector('[data-ind-name]')?.value   || '').trim(),
       status: li.querySelector('[data-ind-status]')?.value || '신청중',
     })).filter(i => i.name);
+
+    CFG.agencyOrder = Array.from(document.querySelectorAll('#adm-agency-order-list li')).map(li => li.dataset.key).filter(Boolean);
 
     CFG.agencies = Array.from(document.querySelectorAll('#adm-agency-list li')).map(li => {
       const name = (li.querySelector('[data-ag-name]')?.value || '').trim();
