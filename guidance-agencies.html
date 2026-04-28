@@ -374,7 +374,7 @@ function renderBreadcrumb() {
   const bc   = document.getElementById('breadcrumb');
   let h = `<span class="bc-item">${type?.icon||''} ${type?.label||''}</span>`;
   if (currentRegion) h += `<span class="bc-sep">›</span><span class="bc-item">📍 ${currentRegion}</span>`;
-  if (type?.date) h += `<span style="margin-left:auto;font-size:11px;color:var(--g4);font-weight:500">고용노동부 공표 기준 ${type.date}</span>`;
+  if (type?.date) h += `<span style="margin-left:auto;font-size:11px;color:var(--g4);font-weight:500">고용노동부 공표, ${type.date}</span>`;
   bc.innerHTML = h;
 }
 
