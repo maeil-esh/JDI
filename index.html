@@ -939,22 +939,29 @@
   const admOverlay = document.getElementById('adm-overlay');
   const admLogin   = document.getElementById('adm-login');
 
-  // ── 푸터 EM 뱃지 7회 클릭으로 관리자 패널 열기 ──────────
+  // ── 관리자 패널 열기: EM 5회 클릭 또는 URL ?adm 파라미터 ──
   (function() {
-    let clickCount = 0;
-    let clickTimer = null;
-    document.getElementById('adm-dot').addEventListener('click', e => {
-      clickCount++;
-      clearTimeout(clickTimer);
-      if (clickCount >= 7) {
-        clickCount = 0;
-        admOverlay.classList.add('open');
-        checkLockOnOpen();
-      } else {
-        // 3초 내에 5번 누르지 않으면 초기화
-        clickTimer = setTimeout(() => { clickCount = 0; }, 3000);
-      }
-    });
+    // URL 파라미터로 열기 (?adm)
+    if (location.search.includes('adm')) {
+      admOverlay.classList.add('open');
+      checkLockOnOpen();
+    }
+    // EM 버튼 5회 클릭
+    let n = 0, t = null;
+    const dot = document.getElementById('adm-dot');
+    if (dot) {
+      dot.addEventListener('click', function() {
+        n++;
+        clearTimeout(t);
+        if (n >= 5) {
+          n = 0;
+          admOverlay.classList.add('open');
+          checkLockOnOpen();
+        } else {
+          t = setTimeout(function() { n = 0; }, 3000);
+        }
+      });
+    }
   })();
 
   // ── 잠금 유틸 ────────────────────────────────────────
