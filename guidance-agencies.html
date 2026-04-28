@@ -5,9 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고용노동부 지정 안전보건전문기관 찾기 · ESH-MASTER</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://dapi.kakao.com">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-
+<!-- Leaflet (카카오 폴백) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
 <!-- 카카오 지도 API -->
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=80bd082931c7cbc0b1972198728cda79&libraries=clusterer&autoload=false"></script>
 
@@ -45,23 +52,23 @@ a{color:inherit;text-decoration:none}
 /* ─ 사이드바 (트리 필터) ─ */
 .sidebar{width:280px;flex-shrink:0;background:var(--white);border-right:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden}
 .sb-head{padding:18px 20px 14px;border-bottom:1px solid var(--g2)}
-.sb-head h2{font-size:15.5px;font-weight:800;color:var(--navy);margin-bottom:4px}
-.sb-head p{font-size:13px;color:var(--g5)}
+.sb-head h2{font-size:14px;font-weight:800;color:var(--navy);margin-bottom:4px}
+.sb-head p{font-size:11.5px;color:var(--g5)}
 .sb-body{flex:1;overflow-y:auto;padding:12px 0}
 .sb-body::-webkit-scrollbar{width:4px}
 .sb-body::-webkit-scrollbar-thumb{background:var(--g3);border-radius:4px}
 
 /* 트리 아이템 */
 .tree-section{margin-bottom:4px}
-.tree-label{display:flex;align-items:center;gap:8px;padding:8px 20px;font-size:12px;font-weight:800;color:var(--g4);letter-spacing:.06em;text-transform:uppercase}
+.tree-label{display:flex;align-items:center;gap:8px;padding:8px 20px;font-size:10.5px;font-weight:800;color:var(--g4);letter-spacing:.06em;text-transform:uppercase}
 .tree-label svg{flex-shrink:0}
 
-.tree-item{display:flex;align-items:center;gap:9px;padding:9px 20px 9px 32px;font-size:14.5px;color:var(--g7);cursor:pointer;transition:all .15s;border-left:3px solid transparent;position:relative}
+.tree-item{display:flex;align-items:center;gap:9px;padding:9px 20px 9px 32px;font-size:13px;color:var(--g7);cursor:pointer;transition:all .15s;border-left:3px solid transparent;position:relative}
 .tree-item:hover{background:var(--g1);color:var(--navy)}
 .tree-item.active{background:var(--blue-lt);color:var(--blue);border-left-color:var(--blue);font-weight:700}
 .tree-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;border:1.5px solid currentColor;transition:all .15s}
 .tree-item.active .tree-dot{background:var(--blue);border-color:var(--blue)}
-.tree-count{margin-left:auto;font-size:10.5px;font-weight:700;color:var(--g4);font-family:'Inter',sans-serif;background:var(--g1);padding:1px 6px;border-radius:10px}
+.tree-count{margin-left:auto;font-size:10px;font-weight:700;color:var(--g4);font-family:'Inter',sans-serif;background:var(--g1);padding:1px 6px;border-radius:10px}
 .tree-item.active .tree-count{background:var(--blue-lt);color:var(--blue)}
 
 /* 지역 토글 */
@@ -71,7 +78,7 @@ a{color:inherit;text-decoration:none}
 .region-toggle.open svg{transform:rotate(90deg)}
 .region-sub{display:none;padding:4px 0}
 .region-sub.open{display:block}
-.region-sub-item{display:flex;align-items:center;gap:8px;padding:7px 20px 7px 48px;font-size:14px;color:var(--g6);cursor:pointer;transition:all .15s;border-left:3px solid transparent}
+.region-sub-item{display:flex;align-items:center;gap:8px;padding:7px 20px 7px 48px;font-size:12.5px;color:var(--g6);cursor:pointer;transition:all .15s;border-left:3px solid transparent}
 .region-sub-item:hover{background:var(--g1);color:var(--navy)}
 .region-sub-item.active{background:var(--blue-lt);color:var(--blue);border-left-color:var(--blue);font-weight:700}
 
@@ -92,7 +99,7 @@ a{color:inherit;text-decoration:none}
 .rp-breadcrumb{display:flex;align-items:center;gap:6px;font-size:13.5px;color:var(--g5);flex:1;flex-wrap:wrap}
 .rp-breadcrumb .bc-item{font-weight:700;color:var(--navy);font-size:14px}
 .rp-breadcrumb .bc-sep{color:var(--g4)}
-.rp-count{font-size:16px;font-weight:800;color:var(--navy);white-space:nowrap}
+.rp-count{font-size:18px;font-weight:900;color:var(--navy);white-space:nowrap}
 .sort-sel{font-size:12px;border:1px solid var(--line);border-radius:7px;padding:5px 10px;color:var(--g6);cursor:pointer;font-family:inherit;outline:none;background:#fff}
 
 .rp-body{flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:8px}
@@ -104,12 +111,12 @@ a{color:inherit;text-decoration:none}
 .agency-card:hover{border-color:var(--blue);box-shadow:var(--sh-md);transform:translateX(2px)}
 .agency-card.active{border-color:var(--blue);background:var(--blue-lt);box-shadow:var(--sh-md)}
 .ac-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px}
-.ac-name{font-size:15px;font-weight:900;color:var(--navy);line-height:1.3}
+.ac-name{font-size:16.5px;font-weight:900;color:var(--navy);line-height:1.3}
 .ac-grade{width:24px;height:24px;border-radius:6px;display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0}
 .ac-meta{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:5px}
 .ac-tag{font-size:10.5px;padding:2px 7px;border-radius:20px;font-weight:600;background:var(--g1);color:var(--g7)}
-.ac-addr{font-size:12.5px;font-weight:500;color:var(--g5);line-height:1.5}
-.ac-tel{font-size:13px;color:var(--blue);font-weight:700;margin-top:3px;font-family:'Inter',sans-serif;display:block;text-decoration:none}.ac-tel:hover{text-decoration:underline}
+.ac-addr{font-size:13.5px;font-weight:600;color:var(--g5);line-height:1.5}
+.ac-tel{font-size:14.5px;color:var(--blue);font-weight:800;margin-top:3px;font-family:'Inter',sans-serif;display:block;text-decoration:none}.ac-tel:hover{text-decoration:underline}
 
 .empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;color:var(--g4)}
 .empty-icon{font-size:40px;opacity:.4}
@@ -258,19 +265,36 @@ const TYPES = [
 ];
 const GRADE_COLOR = {S:'#0E7A6E',A:'#1E6BD8',B:'#7C3AED',C:'#D97706',D:'#DC2626','-':'#94A3B8'};
 
-let currentType = '', currentRegion = '', allData = [], naverMap = null, markers = [];
+let currentType = '', currentRegion = '', allData = [], naverMap = null, markers = [], mapEngine = 'none', leafletMap = null, leafletCluster = null;
 
 // ── 초기화
 window.addEventListener('DOMContentLoaded', () => {
-  buildTypeList();
+  loadAgencyOrder().then(() => buildTypeList());
   document.getElementById('search-btn').addEventListener('click', doSearch);
   document.getElementById('kw-input').addEventListener('keydown', e => { if(e.key==='Enter') doSearch(); });
   document.getElementById('sort-select').addEventListener('change', renderList);
-  // 카카오 SDK 로드 완료 후 지도 초기화
-  kakao.maps.load(() => { initNaverMap(); });
+  // 카카오 우선 시도 → 실패시 Leaflet 폴백
+  try {
+    kakao.maps.load(() => {
+      try { initNaverMap(); } catch(e) { initLeaflet(); }
+    });
+  } catch(e) { initLeaflet(); }
 });
 
 // ── 분야 목록 생성
+async function loadAgencyOrder() {
+  try {
+    const d = await (await fetch(API_URL + '?action=getConfig', {cache:'force-cache', signal:AbortSignal.timeout(5000)})).json();
+    if (d.success && d.config?.agencyOrder) {
+      const order = d.config.agencyOrder;
+      TYPES.sort((a, b) => {
+        const ai = order.indexOf(a.key), bi = order.indexOf(b.key);
+        return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+      });
+    }
+  } catch {}
+}
+
 function buildTypeList() {
   const list = document.getElementById('type-list');
   list.innerHTML = TYPES.map(t => `
@@ -285,7 +309,7 @@ function buildTypeList() {
 
 async function loadCounts() {
   try {
-    const d = await (await fetch(API_URL + '?action=types', {signal:AbortSignal.timeout(8000)})).json();
+    const d = await (await fetch(API_URL + '?action=types', {signal:AbortSignal.timeout(8000), cache:'force-cache'})).json();
     if (!d.success) return;
     d.types.forEach(t => {
       const el = document.getElementById('cnt-'+t.key);
@@ -330,7 +354,7 @@ async function doSearch() {
       action:'search', type:currentType,
       region:currentRegion, keyword, limit:'300',
     });
-    const d = await (await fetch(API_URL+'?'+qs, {signal:AbortSignal.timeout(12000)})).json();
+    const d = await (await fetch(API_URL+'?'+qs, {signal:AbortSignal.timeout(12000), cache:'no-store'})).json();
     if (!d.success) throw new Error(d.message);
     allData = d.data || [];
     renderAll();
@@ -399,78 +423,109 @@ function showLoading() {
   document.getElementById('rp-count').style.display = 'none';
 }
 
-// ── 카카오 지도
+// ── 카카오 지도 초기화
 function initNaverMap() {
-  if (typeof kakao === 'undefined' || typeof kakao.maps === 'undefined') {
-    document.getElementById('map-panel').innerHTML =
-      '<div style="display:grid;place-items:center;height:100%;color:#94A3B8;font-size:13px;text-align:center;padding:20px">카카오 지도 API 키를<br>입력하면 지도가 표시됩니다.</div>';
-    return;
-  }
   naverMap = new kakao.maps.Map(document.getElementById('map'), {
-    center: new kakao.maps.LatLng(36.5, 127.8),
-    level: 8,
+    center: new kakao.maps.LatLng(36.5, 127.8), level: 8,
   });
-  // 확대/축소 컨트롤
   naverMap.addControl(new kakao.maps.ZoomControl(), kakao.maps.ControlPosition.RIGHT);
+  mapEngine = 'kakao';
 }
 
-function renderMarkers(agencies) {
-  if (!naverMap) return;
-  markers.forEach(m => { m.marker.setMap(null); m.info && m.info.close(); });
-  markers = [];
+// ── Leaflet 폴백 초기화
+function initLeaflet() {
+  leafletMap = L.map('map', { preferCanvas: true }).setView([36.5, 127.8], 7);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap', maxZoom: 18,
+  }).addTo(leafletMap);
+  leafletCluster = L.markerClusterGroup({ chunkedLoading: true, maxClusterRadius: 50 });
+  leafletMap.addLayer(leafletCluster);
+  mapEngine = 'leaflet';
+}
 
+// ── 마커 렌더링 (카카오/Leaflet 공통)
+function renderMarkers(agencies) {
+  if (mapEngine === 'kakao') renderKakaoMarkers(agencies);
+  else if (mapEngine === 'leaflet') renderLeafletMarkers(agencies);
+}
+
+function renderKakaoMarkers(agencies) {
+  markers.forEach(m => { m.marker.setMap(null); m.info?.close(); });
+  markers = [];
   const bounds = new kakao.maps.LatLngBounds();
   let hasCoords = false;
-
   agencies.forEach((a, i) => {
     if (!a.lat || !a.lng) return;
     const gc  = GRADE_COLOR[a.등급] || GRADE_COLOR['-'];
     const pos = new kakao.maps.LatLng(a.lat, a.lng);
-    bounds.extend(pos);
-    hasCoords = true;
-
+    bounds.extend(pos); hasCoords = true;
     const markerImg = new kakao.maps.MarkerImage(
       'data:image/svg+xml;utf8,' + encodeURIComponent(
-        `<svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg"><circle cx="13" cy="13" r="13" fill="${gc}"/><circle cx="13" cy="13" r="10.5" fill="none" stroke="white" stroke-width="2"/><text x="13" y="17" text-anchor="middle" fill="white" font-size="9" font-weight="800" font-family="sans-serif">${a.등급||'?'}</text></svg>`
-      ),
-      new kakao.maps.Size(26, 26),
-      { offset: new kakao.maps.Point(13, 13) }
+        `<svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg"><circle cx="13" cy="13" r="13" fill="${gc}"/><text x="13" y="17" text-anchor="middle" fill="white" font-size="9" font-weight="800" font-family="sans-serif">${a.등급||'?'}</text></svg>`
+      ), new kakao.maps.Size(26, 26), { offset: new kakao.maps.Point(13, 13) }
     );
-
     const m = new kakao.maps.Marker({ position: pos, map: naverMap, image: markerImg });
-
-    const infoContent = `<div style="padding:12px 14px;font-family:Pretendard,sans-serif;min-width:190px;max-width:240px">
-      <b style="font-size:13px;color:#0A2540;display:block;margin-bottom:3px">${a.기관명}</b>
-      <div style="font-size:11px;color:#64748B;margin-bottom:5px;line-height:1.5">${a.주소||''}</div>
-      ${a.전화번호?`<div style="font-size:12px;color:#1E6BD8;font-weight:600;margin-bottom:5px">${a.전화번호}</div>`:''}
-      <span style="background:${gc};color:#fff;padding:2px 7px;border-radius:20px;font-size:10px;font-weight:700">${a.등급||'-'}등급</span>
-      ${a.지역?`<span style="background:#F1F5F9;color:#475569;padding:2px 7px;border-radius:20px;font-size:10px;margin-left:4px">${a.지역}</span>`:''}
-    </div>`;
-
-    const info = new kakao.maps.InfoWindow({ content: infoContent, removable: true });
-
+    const info = new kakao.maps.InfoWindow({ content: popupHtml(a, gc), removable: true });
     kakao.maps.event.addListener(m, 'click', () => {
-      markers.forEach(({info:inf}) => inf && inf.close());
+      markers.forEach(({info:inf}) => inf?.close());
       info.open(naverMap, m);
-      const el = document.getElementById('card-'+i);
-      if (el) { el.scrollIntoView({behavior:'smooth',block:'nearest'}); highlightCard(i); }
+      scrollToCard(i);
     });
-
-    markers.push({ marker:m, info });
+    markers.push({ marker: m, info });
   });
-
   if (hasCoords && agencies.length > 1) naverMap.setBounds(bounds);
   else if (hasCoords) { naverMap.setCenter(new kakao.maps.LatLng(agencies[0].lat, agencies[0].lng)); naverMap.setLevel(5); }
 }
 
+function renderLeafletMarkers(agencies) {
+  leafletCluster.clearLayers(); markers = [];
+  const latlngs = [];
+  agencies.forEach((a, i) => {
+    if (!a.lat || !a.lng) return;
+    const gc = GRADE_COLOR[a.등급] || GRADE_COLOR['-'];
+    const icon = L.divIcon({
+      className: '',
+      html: `<div style="width:26px;height:26px;background:${gc};border-radius:50%;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.25);display:grid;place-items:center;font-size:9px;font-weight:800;color:#fff">${a.등급||'?'}</div>`,
+      iconSize: [26, 26], iconAnchor: [13, 13],
+    });
+    const m = L.marker([a.lat, a.lng], { icon })
+      .bindPopup(popupHtml(a, gc), { maxWidth: 240 })
+      .on('click', () => scrollToCard(i));
+    leafletCluster.addLayer(m);
+    markers.push(m);
+    latlngs.push([a.lat, a.lng]);
+  });
+  if (latlngs.length > 1) leafletMap.fitBounds(latlngs, { padding: [40, 40] });
+  else if (latlngs.length === 1) leafletMap.setView(latlngs[0], 13);
+}
+
+function popupHtml(a, gc) {
+  return `<div style="padding:10px 12px;font-family:Pretendard,sans-serif;min-width:180px">
+    <b style="font-size:13px;color:#0A2540;display:block;margin-bottom:3px">${a.기관명}</b>
+    <div style="font-size:11px;color:#64748B;margin-bottom:5px;line-height:1.5">${a.주소||''}</div>
+    ${a.전화번호?`<a href="tel:${a.전화번호.replace(/[^0-9]/g,'')}" style="font-size:12px;color:#1E6BD8;font-weight:600;display:block;margin-bottom:5px;text-decoration:none">${a.전화번호}</a>`:''}
+    <span style="background:${gc};color:#fff;padding:2px 7px;border-radius:20px;font-size:10px;font-weight:700">${a.등급||'-'}등급</span>
+    ${a.지역?`<span style="background:#F1F5F9;color:#475569;padding:2px 7px;border-radius:20px;font-size:10px;margin-left:4px">${a.지역}</span>`:''}
+  </div>`;
+}
+
+function scrollToCard(i) {
+  const el = document.getElementById('card-'+i);
+  if (el) { el.scrollIntoView({behavior:'smooth',block:'nearest'}); highlightCard(i); }
+}
+
 function onCard(idx) {
   const a = (window._sorted||[])[idx];
-  if (!a?.lat || !a?.lng || !naverMap) return;
+  if (!a?.lat || !a?.lng) return;
   highlightCard(idx);
-  naverMap.setCenter(new kakao.maps.LatLng(a.lat, a.lng));
-  naverMap.setLevel(5);
-  markers.forEach(({info}) => info && info.close());
-  if (markers[idx]) markers[idx].info.open(naverMap, markers[idx].marker);
+  if (mapEngine === 'kakao' && naverMap) {
+    naverMap.setCenter(new kakao.maps.LatLng(a.lat, a.lng)); naverMap.setLevel(5);
+    markers.forEach(({info}) => info?.close());
+    markers[idx]?.info?.open(naverMap, markers[idx]?.marker);
+  } else if (mapEngine === 'leaflet' && leafletMap) {
+    leafletMap.setView([a.lat, a.lng], 13);
+    markers[idx]?.openPopup?.();
+  }
 }
 
 function highlightCard(idx) {
