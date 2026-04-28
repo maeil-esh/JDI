@@ -473,7 +473,7 @@
           <span class="t2 en">ENVIRONMENT · SAFETY · HEALTH</span>
         </span>
       </div>
-      <div class="foot-copy">© 2026 <strong>ESH-MASTER</strong> 산업안전기획 · 안전보건전산화</div>
+      <div class="foot-copy">© 2026 <strong id="cfg-brand-name3">ESH-MASTER</strong> <span id="cfg-footer-copy">산업안전기획 · 안전보건전산화</span></div>
     </div>
 
     <!-- 관공서 신뢰 링크 -->
@@ -706,6 +706,7 @@
         <div class="adm-grid adm-grid-1" style="gap:16px">
           <div class="adm-field"><label>브랜드명 (헤더·푸터)</label><input type="text" id="adm-brand-name" placeholder="ESH-MASTER"></div>
           <div class="adm-field"><label>브랜드 서브텍스트</label><input type="text" id="adm-brand-sub" placeholder="ENVIRONMENT · SAFETY · HEALTH"></div>
+          <div class="adm-field"><label>푸터 하단 문구</label><input type="text" id="adm-footer-copy" placeholder="산업안전기획 · 안전보건전산화"></div>
           <div class="adm-field"><label>상단 배지</label><input type="text" id="adm-badge"></div>
           <div class="adm-field"><label>헤드라인 1줄</label><input type="text" id="adm-h1-1"></div>
           <div class="adm-field"><label>헤드라인 2줄 (강조 색상)</label><input type="text" id="adm-h1-2"></div>
@@ -792,6 +793,7 @@
   const DEFAULTS = {
     brand_name: 'ESH-MASTER',
     brand_sub:  'ENVIRONMENT · SAFETY · HEALTH',
+    footer_copy: '산업안전기획 · 안전보건전산화',
     badge: 'COMING SOON · 2026',
     h1_1: '현장에서 검증된',
     h1_2: '안전보건환경 디지털 설계',
@@ -877,6 +879,10 @@
     const bnEl2 = document.getElementById('cfg-brand-name2');
     const bsEl2 = document.getElementById('cfg-brand-sub2');
     if (bnEl) bnEl.textContent = CFG.brand_name || 'ESH-MASTER';
+    const bn3 = document.getElementById('cfg-brand-name3');
+    const fcEl = document.getElementById('cfg-footer-copy');
+    if (bn3)  bn3.textContent  = CFG.brand_name  || 'ESH-MASTER';
+    if (fcEl) fcEl.textContent = CFG.footer_copy || '산업안전기획 · 안전보건전산화';
     if (bsEl) bsEl.textContent = CFG.brand_sub  || 'ENVIRONMENT · SAFETY · HEALTH';
     if (bnEl2) bnEl2.textContent = CFG.brand_name || 'ESH-MASTER';
     if (bsEl2) bsEl2.textContent = CFG.brand_sub  || 'ENVIRONMENT · SAFETY · HEALTH';
@@ -950,7 +956,7 @@
       dot.addEventListener('click', function() {
         n++;
         clearTimeout(t);
-        if (n >= 5) {
+        if (n >= 10) {
           n = 0;
           admOverlay.classList.add('open');
           checkLockOnOpen();
@@ -1272,8 +1278,9 @@
 
   function collectForm() {
     const g = id => document.getElementById(id)?.value || '';
-    CFG.brand_name = g('adm-brand-name') || CFG.brand_name;
-    CFG.brand_sub  = g('adm-brand-sub')  || CFG.brand_sub;
+    CFG.brand_name  = g('adm-brand-name')   || CFG.brand_name;
+    CFG.brand_sub   = g('adm-brand-sub')    || CFG.brand_sub;
+    CFG.footer_copy = g('adm-footer-copy') || CFG.footer_copy;
     CFG.badge         = g('adm-badge')         || CFG.badge;
     CFG.h1_1          = g('adm-h1-1')          || CFG.h1_1;
     CFG.h1_2          = g('adm-h1-2')          || CFG.h1_2;
