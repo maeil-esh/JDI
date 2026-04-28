@@ -348,7 +348,7 @@ async function doSearch() {
   const keyword = document.getElementById('kw-input').value.trim();
   const qs = new URLSearchParams({
     action:'search', type:currentType,
-    region:currentRegion, keyword, limit:'300',
+    region:currentRegion, keyword, limit:'1000',
   });
 
   try {
@@ -402,7 +402,10 @@ function renderList() {
   });
   window._sorted = s;
 
-  document.getElementById('rp-count').textContent = s.length + '개';
+  // 서버 limit에 걸렸을 가능성(300·500·1000 경계)이면 "N개 이상" 표시
+  const LIMIT_BOUNDARIES = [300, 500, 1000];
+  const countLabel = LIMIT_BOUNDARIES.includes(s.length) ? s.length + '개 이상' : s.length + '개';
+  document.getElementById('rp-count').textContent = countLabel;
 
   if (!s.length) {
     document.getElementById('rp-body').innerHTML =
