@@ -36,7 +36,7 @@ a{color:inherit;text-decoration:none}
 .hd-mark::after{content:'';position:absolute;bottom:3px;right:3px;width:4px;height:4px;background:var(--mint);border-radius:50%}
 .hd-name{font-size:15px;font-weight:800;letter-spacing:-.02em}
 .hd-sub{font-size:9.5px;color:rgba(255,255,255,.4);letter-spacing:.08em;margin-top:1px}
-.hd-title{font-size:13px;color:rgba(255,255,255,.6);font-weight:500}
+.hd-title{font-size:15.5px;color:rgba(255,255,255,.85);font-weight:800;letter-spacing:-.02em}
 .hd-back{display:flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,.45);transition:color .2s}
 .hd-back:hover{color:#fff}
 
@@ -88,7 +88,11 @@ a{color:inherit;text-decoration:none}
 .go-btn:hover{background:#2E7CE4}
 
 /* ─ 결과 패널 ─ */
-.result-panel{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--g1)}
+.result-panel{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--g1);min-width:300px}
+.resizer{width:6px;background:var(--line);cursor:col-resize;flex-shrink:0;position:relative;transition:background .2s;z-index:10}
+.resizer:hover,.resizer.dragging{background:var(--blue)}
+.resizer::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:2px;height:40px;background:var(--g3);border-radius:2px;transition:background .2s}
+.resizer:hover::after,.resizer.dragging::after{background:#fff}
 .rp-head{padding:14px 20px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;flex-shrink:0}
 .rp-breadcrumb{display:flex;align-items:center;gap:6px;font-size:13.5px;color:var(--g5);flex:1;flex-wrap:wrap}
 .rp-breadcrumb .bc-item{font-weight:700;color:var(--navy);font-size:14px}
@@ -118,7 +122,7 @@ a{color:inherit;text-decoration:none}
 .loading-spinner{width:28px;height:28px;border-radius:50%;border:3px solid var(--g2);border-top-color:var(--blue);animation:spin .8s linear infinite}
 
 /* ─ 지도 패널 ─ */
-.map-panel{width:620px;flex-shrink:0;border-left:1px solid var(--line)}
+.map-panel{width:620px;flex-shrink:0;border-left:none;min-width:280px}
 #map{width:100%;height:100%}
 
 /* 반응형 */
@@ -357,7 +361,7 @@ async function doSearch() {
 function renderAll() {
   renderBreadcrumb();
   renderList();
-  renderMarkers(allData);
+  renderMarkers(window._sorted || allData);
   document.getElementById('sort-select').style.display = '';
   document.getElementById('rp-count').style.display = '';
 }
@@ -492,6 +496,56 @@ function highlightCard(idx) {
   document.querySelectorAll('.agency-card').forEach(c => c.classList.remove('active'));
   document.getElementById('card-'+idx)?.classList.add('active');
 }
+
+
+  // ── 패널 리사이저
+  (function() {
+    const resizer = document.getElementById('resizer');
+    const resultPanel = document.querySelector('.result-panel');
+    const mapPanel = document.getElementById('map-panel');
+    const layout = document.querySelector('.layout');
+    let isResizing = false, startX = 0, startMapW = 0;
+
+    resizer.addEventListener('mousedown', e => {
+      isResizing = true;
+      startX = e.clientX;
+      startMapW = mapPanel.offsetWidth;
+      resizer.classList.add('dragging');
+      document.body.style.cursor = 'col-resize';
+      document.body.style.userSelect = 'none';
+    });
+
+    document.addEventListener('mousemove', e => {
+      if (!isResizing) return;
+      const diff = startX - e.clientX;
+      const newW = Math.max(280, Math.min(startMapW + diff, layout.offsetWidth - 500));
+      mapPanel.style.width = newW + 'px';
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (!isResizing) return;
+      isResizing = false;
+      resizer.classList.remove('dragging');
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+      // 카카오 지도 리사이즈
+      if (window.kakaoMap) kakao.maps.event.trigger(kakaoMap, 'resize');
+    });
+
+    // 터치 지원
+    resizer.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+      startMapW = mapPanel.offsetWidth;
+      isResizing = true;
+    }, { passive: true });
+    document.addEventListener('touchmove', e => {
+      if (!isResizing) return;
+      const diff = startX - e.touches[0].clientX;
+      const newW = Math.max(280, Math.min(startMapW + diff, layout.offsetWidth - 500));
+      mapPanel.style.width = newW + 'px';
+    }, { passive: true });
+    document.addEventListener('touchend', () => { isResizing = false; });
+  })();
 
   // ── 보안: 우클릭 / 개발자도구 제한
   document.addEventListener('contextmenu', e => e.preventDefault());
