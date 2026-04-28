@@ -931,7 +931,7 @@
   (function() {
     let clickCount = 0;
     let clickTimer = null;
-    document.getElementById('adm-dot').addEventListener('click', e => {
+    document.getElementById('adm-dot').addEventListener('click', e => { e.stopPropagation(); e.stopImmediatePropagation();
       e.stopPropagation();
       clickCount++;
       clearTimeout(clickTimer);
@@ -1566,20 +1566,7 @@ TK.init();
 
 </script>
 
-<!-- 4. 우클릭/키보드 보호 -->
-<script>
-(function(){
-  document.addEventListener('contextmenu',e=>e.preventDefault());
-  document.addEventListener('selectstart',e=>{ if(e.target.id==='adm-dot') return; e.preventDefault(); });
-  document.addEventListener('copy',e=>e.preventDefault());
-  document.addEventListener('cut',e=>e.preventDefault());
-  document.addEventListener('keydown',e=>{
-    if(e.key==='F12'){e.preventDefault();return}
-    if((e.ctrlKey||e.metaKey)&&e.shiftKey&&['i','I','j','J','c','C','k','K'].includes(e.key)){e.preventDefault();return}
-    if((e.ctrlKey||e.metaKey)&&['u','U','s','S','a','A','p','P'].includes(e.key))e.preventDefault()
-  });
-})();
-</script>
+
 
 <!-- 네이버 애널리틱스 -->
 <script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
@@ -1590,6 +1577,26 @@ if(window.wcs)wcs_do();
 
 
 
+</script>
+<!-- 보안: 우클릭/키보드 제한 (메인 JS 이후 실행) -->
+<script>
+(function(){
+  document.addEventListener('contextmenu', e => {
+    if(e.target.id === 'adm-dot') return; // EM 버튼 예외
+    e.preventDefault();
+  });
+  document.addEventListener('selectstart', e => {
+    if(e.target.id === 'adm-dot') return;
+    e.preventDefault();
+  });
+  document.addEventListener('copy', e => e.preventDefault());
+  document.addEventListener('cut',  e => e.preventDefault());
+  document.addEventListener('keydown', e => {
+    if(e.key === 'F12') { e.preventDefault(); return; }
+    if((e.ctrlKey||e.metaKey) && e.shiftKey && ['i','I','j','J','c','C','k','K'].includes(e.key)) { e.preventDefault(); return; }
+    if((e.ctrlKey||e.metaKey) && ['u','U','s','S'].includes(e.key)) e.preventDefault();
+  });
+})();
 </script>
 </body>
 </html>
