@@ -934,13 +934,13 @@
     document.getElementById('adm-dot').addEventListener('click', () => {
       clickCount++;
       clearTimeout(clickTimer);
-      if (clickCount >= 10) {
+      if (clickCount >= 5) {
         clickCount = 0;
         admOverlay.classList.add('open');
         checkLockOnOpen();
       } else {
-        // 2초 내에 7번 누르지 않으면 초기화
-        clickTimer = setTimeout(() => { clickCount = 0; }, 2000);
+        // 3초 내에 5번 누르지 않으면 초기화
+        clickTimer = setTimeout(() => { clickCount = 0; }, 3000);
       }
     });
   })();
@@ -1595,13 +1595,7 @@ if(window.wcs)wcs_do();
     if (e.ctrlKey && e.key.toUpperCase() === 'U') { e.preventDefault(); return false; }
     if (e.ctrlKey && e.key.toUpperCase() === 'S') { e.preventDefault(); return false; }
   });
-  (function devDetect() {
-    const t = new Image();
-    Object.defineProperty(t, 'id', { get: function() {
-      document.body.innerHTML = '<div style="display:grid;place-items:center;height:100vh;font-family:sans-serif;color:#64748B"><div style="text-align:center"><div style="font-size:48px;margin-bottom:16px">🔒</div><div style="font-size:18px;font-weight:700;color:#0A2540">접근이 제한되었습니다</div></div></div>';
-    }});
-    setInterval(() => { console.log('%c', t); console.clear(); }, 1000);
-  })();
+
 </script>
 </body>
 </html>
