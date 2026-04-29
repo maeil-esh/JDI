@@ -626,7 +626,7 @@
         <div class="nl-field">
           <label>업종 분야</label>
           <div class="select-wrap">
-            <select id="sub-industry">
+            <select id="sub-industry" onchange="toggleEtcField(this.value)">
               <option value="">-- 선택해주세요 --</option>
               <option>식품·음료 제조업</option><option>일반 제조업</option>
               <option>화학·석유·고무업</option><option>건설업</option>
@@ -634,6 +634,11 @@
               <option>통신·IT업</option><option>기타</option>
             </select>
           </div>
+        </div>
+        <!-- 기타 선택 시 노출 -->
+        <div class="nl-field" id="sub-etc-field" style="display:none;margin-top:-8px">
+          <label>업종 직접 입력 <span class="req">*</span></label>
+          <input type="text" id="sub-industry-etc" placeholder="예) 의약품 제조업, 에너지업 등" maxlength="60">
         </div>
         <label class="nl-agree" for="sub-agree">
           <input type="checkbox" id="sub-agree">
@@ -1005,6 +1010,7 @@
     const sel = document.getElementById('sub-industry');
     if (!sel) return;
     sel.innerHTML = '<option value="">-- 선택해주세요 --</option>';
+    sel.onchange = () => window.toggleEtcField(sel.value);
     CFG.industries.forEach(ind => {
       const opt = document.createElement('option');
       opt.value = opt.textContent = ind.name || ind;
@@ -1490,6 +1496,20 @@
     updateOgPreview((document.getElementById('adm-og-image')?.value || '').trim());
   };
 
+  /* ── 업종 기타 토글 ─────────────────────────────────────── */
+  window.toggleEtcField = function(val) {
+    const field = document.getElementById('sub-etc-field');
+    const input = document.getElementById('sub-industry-etc');
+    if (!field) return;
+    if (val === '기타') {
+      field.style.display = 'block';
+      if (input) input.focus();
+    } else {
+      field.style.display = 'none';
+      if (input) input.value = '';
+    }
+  };
+
   /* ── 서비스 카드 상태 토글 ────────────────────────────── */
   window.setSvcStatus = function(idx, status) {
     CFG.services[idx].status = status;
@@ -1574,6 +1594,10 @@
     const email       = (document.getElementById('sub-email')?.value       || '').trim();
     const affiliation = (document.getElementById('sub-affiliation')?.value || '').trim();
     const industry    = document.getElementById('sub-industry')?.value     || '';
+    const industryEtc = (document.getElementById('sub-industry-etc')?.value || '').trim();
+
+    // 기타 선택 시 직접 입력값 검증
+    if (industry === '기타' && !industryEtc) return showResult(subResult, 'error', '업종을 직접 입력해 주세요.');
     const agree       = document.getElementById('sub-agree')?.checked;
     const subResult   = document.getElementById('sub-result');
     const subBtn      = document.getElementById('btn-subscribe');
@@ -1589,13 +1613,15 @@
       const res  = await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ action: 'subscribe', name, email, affiliation, industry }),
+        body: JSON.stringify({ action: 'subscribe', name, email, affiliation, industry, industryEtc }),
       });
       const data = await res.json();
       if (data.success) {
         showResult(subResult, 'success', '✓ 구독 신청이 완료되었습니다. 매주 월요일 받아보실 수 있습니다.');
         ['sub-name','sub-email','sub-affiliation'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
         const selEl = document.getElementById('sub-industry'); if (selEl) selEl.value = '';
+        const etcEl = document.getElementById('sub-industry-etc'); if (etcEl) etcEl.value = '';
+        const etcFd = document.getElementById('sub-etc-field'); if (etcFd) etcFd.style.display = 'none';
         const chkEl = document.getElementById('sub-agree');    if (chkEl) chkEl.checked = false;
         loadStats();
       } else {
