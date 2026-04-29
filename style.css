@@ -177,7 +177,7 @@ a { color: inherit; text-decoration: none; }
   gap: 16px;
   flex-wrap: wrap;
 }
-.foot-left { display: flex; flex-direction: column; gap: 12px; }
+.foot-left { display: flex; flex-direction: column; gap: 10px; }
 .foot-brand {
   display: inline-flex;
   align-items: center;
@@ -220,14 +220,23 @@ a { color: inherit; text-decoration: none; }
 }
 .foot-copy { font-size: 12.5px; color: var(--gray-500); line-height: 1.7; }
 .foot-copy strong { color: var(--gray-700); font-weight: 600; }
+.foot-legal {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.foot-legal-divider {
+  width: 1px; height: 10px;
+  background: var(--gray-300);
+  flex-shrink: 0;
+}
 .foot-about-link {
   font-size: 11px;
   color: var(--gray-400);
   text-decoration: none;
-  border-bottom: 1px solid var(--gray-300);
-  padding-bottom: 1px;
-  width: fit-content;
   transition: color .2s;
+  white-space: nowrap;
 }
 .foot-about-link:hover { color: var(--brand-navy); }
 
