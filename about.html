@@ -5,13 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — UK2 Solutions | ESH-MASTER</title>
 <meta name="description" content="UK2 Solutions는 제조·통신업 현장 16년의 경험을 바탕으로 2026년 안전 AI 전문기업으로 전환했습니다.">
-
+<meta id="og-image" property="og:image" content="https://esh-master.kr/og-image.svg">
+<meta id="twitter-image" name="twitter:image" content="https://esh-master.kr/og-image.svg">
+<link id="site-favicon" rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230A2540'/><text x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' font-size='13' fill='white'>EM</text><circle cx='25' cy='25' r='4.5' fill='%2314B8A6'/></svg>" type="image/svg+xml">
+<link id="site-favicon-apple" rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230A2540'/><text x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' font-size='13' fill='white'>EM</text><circle cx='25' cy='25' r='4.5' fill='%2314B8A6'/></svg>">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+<!-- ① 공통 디자인 토큰 · CI -->
+<link rel="stylesheet" href="style.css">
+
+<!-- ② 페이지 전용 스타일 -->
 <style>
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --font:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,sans-serif;
@@ -33,13 +42,15 @@
 html{scroll-behavior:smooth;}
 body{background:var(--bg-page);color:var(--text);font-family:var(--font);font-weight:400;line-height:1.7;-webkit-font-smoothing:antialiased;}
 
-/* NAV */
+/* NAV — index.html 완전 동일 */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(255,255,255,0.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;}
-.nav-em{width:28px;height:28px;background:var(--navy);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;letter-spacing:.04em;}
-.nav-b1{font-size:12px;font-weight:700;color:var(--navy);letter-spacing:.04em;line-height:1.2;}
-.nav-b2{font-size:9px;color:var(--text4);letter-spacing:.1em;}
-.nav-back{font-size:12px;color:var(--text3);text-decoration:none;display:flex;align-items:center;gap:6px;font-weight:500;transition:color .2s;}
+.nav-logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:inherit;}
+.nav-logo-mark{width:38px;height:38px;background:var(--navy);color:#fff;display:grid;place-items:center;border-radius:9px;font-weight:800;font-size:13px;letter-spacing:-.02em;position:relative;flex-shrink:0;}
+.nav-logo-mark::after{content:'';position:absolute;bottom:5px;right:5px;width:5px;height:5px;background:#14B8A6;border-radius:50%;}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1.1;}
+.nav-logo-text .t1{font-weight:800;font-size:19px;color:var(--navy);letter-spacing:-.03em;}
+.nav-logo-text .t2{font-size:10.5px;color:#64748B;font-weight:500;letter-spacing:.1em;margin-top:3px;}
+.nav-back{font-size:12px;color:#64748B;text-decoration:none;display:flex;align-items:center;gap:6px;font-weight:500;transition:color .2s;}
 .nav-back:hover{color:var(--navy);}
 .nav-back::before{content:'←';}
 
@@ -105,7 +116,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;display:flex;ali
 .cta-btn:hover{opacity:.9;transform:translateY(-1px);}
 
 /* FOOTER — index.html 동일 */
-footer{background:#F8FAFC;border-top:1px solid var(--border);padding:44px 40px 32px;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+footer{background:#F8FAFC;border-top:1px solid var(--border);padding:44px 40px 32px;display:flex;align-items:flex-start;flex-wrap:wrap;gap:16px;}
 .ft-left{display:flex;flex-direction:column;gap:12px;}
 .ft-logo{display:inline-flex;align-items:center;gap:10px;}
 .ft-em{width:32px;height:32px;background:var(--navy);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;position:relative;}
@@ -132,19 +143,22 @@ footer{background:#F8FAFC;border-top:1px solid var(--border);padding:44px 40px 3
   .tl::before{display:none;}
   .t-row{grid-template-columns:1fr;gap:4px;}
   .t-row::after{display:none;}
-  footer{padding:22px 20px;flex-direction:column;align-items:flex-start;}
+  footer{padding:32px 20px;flex-direction:column;align-items:flex-start;}
+  .ft-agencies{align-items:flex-start;}
+  .ft-agency-links{justify-content:flex-start;}
 }
+
 </style>
 </head>
 <body>
 
 <nav>
   <a href="index.html" class="nav-logo">
-    <div class="nav-em">EM</div>
-    <div>
-      <div class="nav-b1">ESH-MASTER.KR | SDI</div>
-      <div class="nav-b2">ENVIRONMENT · SAFETY · HEALTH</div>
-    </div>
+    <span class="nav-logo-mark">EM</span>
+    <span class="nav-logo-text">
+      <span class="t1">ESH-MASTER.KR  l  SDI</span>
+      <span class="t2">ENVIRONMENT · SAFETY · HEALTH</span>
+    </span>
   </a>
   <a href="index.html" class="nav-back">홈으로</a>
 </nav>
@@ -242,33 +256,34 @@ footer{background:#F8FAFC;border-top:1px solid var(--border);padding:44px 40px 3
 </div>
 
 <footer>
-  <div class="ft-logo">
-    <div class="nav-em" style="background:#1a2030;">EM</div>
-    <div>
-      <div class="ft-b1">ESH-MASTER.KR | SDI</div>
-      <div class="ft-b2">ENVIRONMENT · SAFETY · HEALTH</div>
+  <div class="ft-left">
+    <div class="ft-logo">
+      <div class="ft-em">EM</div>
+      <div>
+        <div class="ft-b1">ESH-MASTER.KR | SDI</div>
+        <div class="ft-b2">ENVIRONMENT · SAFETY · HEALTH</div>
+      </div>
     </div>
+    <div class="ft-copy">© 2026 <strong>ESH-MASTER.KR</strong>&nbsp; 산업안전기획 · 안전보건전산화</div>
   </div>
-  <div class="ft-links">
-    <a href="https://www.moel.go.kr" target="_blank">고용노동부</a>
-    <a href="https://www.kosha.or.kr" target="_blank">안전보건공단</a>
-    <a href="https://www.me.go.kr" target="_blank">환경부</a>
-    <a href="https://www.nfa.go.kr" target="_blank">소방청</a>
-    <a href="https://www.law.go.kr" target="_blank">국가법령정보센터</a>
-  </div>
-  <div class="ft-copy">© 2026 <strong style="color:#8b949e;">ESH-MASTER.KR</strong> &nbsp;산업안전기획 · 안전보건전산화</div>
 </footer>
 
+
+
+<!-- ③ 공통 로직 -->
+<script src="shared.js"></script>
 <script>
-const io = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('on'), i * 55);
-      io.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+ESH.init([
+  () => ESH.Reveal.init('.reveal', 'on'),
+]);
+</script>
+
+<!-- 네이버 애널리틱스 -->
+<script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
+<script type="text/javascript">
+if(!wcs_add) var wcs_add={};
+wcs_add["wa"]="13a68914808cdb";
+if(window.wcs)wcs_do();
 </script>
 </body>
 </html>

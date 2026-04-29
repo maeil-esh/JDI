@@ -17,17 +17,21 @@
   <meta name="twitter:title" content="ESH-MASTER · 안전보건환경 디지털 플랫폼">
   <meta name="twitter:description" content="Safety Do It · JSA 위험성평가 · AI 안전보건 뉴스레터 · 안전보건정보">
   <meta id="twitter-image" name="twitter:image" content="https://esh-master.kr/og-image.svg">
-
-  <!-- Favicon — 관리자 패널에서 변경 가능 -->
   <link id="site-favicon" rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230A2540'/><text x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' font-size='13' fill='white'>EM</text><circle cx='25' cy='25' r='4.5' fill='%2314B8A6'/></svg>" type="image/svg+xml">
   <link id="site-favicon-apple" rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230A2540'/><text x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' font-size='13' fill='white'>EM</text><circle cx='25' cy='25' r='4.5' fill='%2314B8A6'/></svg>">
 
+  <!-- 공통 폰트 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
+  <!-- ① 공통 디자인 토큰 · CI -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ② 페이지 전용 스타일 -->
   <style>
+
     :root {
       --navy-900:#0A2540; --navy-800:#102B4C; --navy-700:#1A3A66;
       --blue-600:#1E6BD8; --blue-500:#2E7CE4; --blue-100:#E8F0FC; --blue-50:#F4F8FD;
@@ -271,76 +275,11 @@
     #adm-overlay{position:fixed;inset:0;z-index:99000;background:#0A0F1A;display:none;flex-direction:column;overflow:hidden}
     #adm-overlay.open{display:flex}
 
-    .adm-topbar{height:52px;background:#0D1829;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;padding:0 24px;flex-shrink:0}
-    .adm-topbar-left{display:flex;align-items:center;gap:12px}
-    .adm-logo{font-size:13px;font-weight:800;color:#fff;letter-spacing:-.02em;font-family:'Inter',sans-serif}
-    .adm-badge-pill{font-size:10px;padding:3px 8px;background:rgba(245,158,11,.2);color:#F59E0B;border:1px solid rgba(245,158,11,.3);border-radius:4px;font-weight:700;font-family:'Inter',sans-serif;letter-spacing:.06em}
-    .adm-topbar-right{display:flex;align-items:center;gap:10px}
-    .adm-btn-save{padding:8px 18px;background:#1E6BD8;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;transition:background .2s;display:flex;align-items:center;gap:6px}
-    .adm-btn-save:hover{background:#2E7CE4}
-    .adm-btn-save:disabled{opacity:.5;cursor:not-allowed}
-    .adm-btn-close{padding:8px 14px;background:rgba(255,255,255,.06);color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.1);border-radius:8px;font-size:13px;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;transition:all .2s}
-    .adm-btn-close:hover{background:rgba(255,255,255,.1);color:#fff}
-    .adm-save-msg{font-size:12px;color:#4ADE80;opacity:0;transition:opacity .3s;font-family:'Inter',sans-serif}
-    .adm-save-msg.show{opacity:1}
-
-    .adm-layout{display:flex;flex:1;overflow:hidden}
-    .adm-sidebar{width:196px;background:#0D1829;border-right:1px solid rgba(255,255,255,.07);padding:20px 0;flex-shrink:0;overflow-y:auto}
-    .adm-nav-item{display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:13px;font-weight:600;color:rgba(255,255,255,.4);cursor:pointer;transition:all .15s;border-left:3px solid transparent;font-family:'Pretendard Variable',Pretendard,sans-serif}
-    .adm-nav-item:hover{color:rgba(255,255,255,.75);background:rgba(255,255,255,.04)}
-    .adm-nav-item.active{color:#60A5FA;border-left-color:#1E6BD8;background:rgba(30,107,216,.1)}
-    .adm-nav-item .ni{font-size:15px;width:20px;text-align:center;flex-shrink:0}
-    .adm-content{flex:1;overflow-y:auto;padding:32px}
-
-    .adm-section{display:none}.adm-section.active{display:block}
-    .adm-section-title{font-size:18px;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:6px}
-    .adm-section-sub{font-size:13px;color:rgba(255,255,255,.35);margin-bottom:28px}
-    .adm-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .adm-grid-1{grid-template-columns:1fr}
-    .adm-field{display:flex;flex-direction:column;gap:7px}
-    .adm-field label{font-size:11px;font-weight:700;color:rgba(255,255,255,.45);letter-spacing:.04em;text-transform:uppercase;font-family:'Inter',sans-serif}
-    .adm-field input,.adm-field textarea{background:#131F30;border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 13px;font-size:13.5px;color:#E2E8F0;font-family:'Pretendard Variable',Pretendard,sans-serif;outline:none;transition:border-color .2s;width:100%}
-    .adm-field textarea{resize:vertical;min-height:80px;line-height:1.6}
-    .adm-field input:focus,.adm-field textarea:focus{border-color:#1E6BD8;background:#0F1A2E}
-    .adm-field input::placeholder,.adm-field textarea::placeholder{color:rgba(255,255,255,.18)}
-    .adm-hint{font-size:11px;color:rgba(255,255,255,.25);line-height:1.5}
-    .adm-divider{height:1px;background:rgba(255,255,255,.07);margin:28px 0}
-    .adm-card{background:#0D1829;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:20px;margin-bottom:14px}
-    .adm-card-label{font-size:11px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:14px}
-
-    .adm-industry-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
-    .adm-industry-item{display:flex;align-items:center;gap:8px;background:#0D1829;border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px 12px}
-    .adm-industry-item input{flex:1;background:transparent;border:none;color:#E2E8F0;font-size:13.5px;font-family:'Pretendard Variable',Pretendard,sans-serif;outline:none;padding:0}
-    .adm-industry-item .drag-handle{color:rgba(255,255,255,.2);font-size:14px;flex-shrink:0;user-select:none}
-    .adm-industry-item .del-btn{width:24px;height:24px;background:rgba(239,68,68,.15);border:none;border-radius:6px;color:#FCA5A5;cursor:pointer;font-size:13px;display:grid;place-items:center;flex-shrink:0;transition:background .2s}
-    .adm-industry-item .del-btn:hover{background:rgba(239,68,68,.3)}
-    .adm-add-btn{display:flex;align-items:center;gap:7px;padding:9px 14px;background:rgba(30,107,216,.15);border:1px dashed rgba(30,107,216,.4);border-radius:8px;color:#60A5FA;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Pretendard Variable',Pretendard,sans-serif;width:100%}
-    .adm-add-btn:hover{background:rgba(30,107,216,.25);border-color:#60A5FA}
-
-    #adm-login{position:absolute;inset:0;background:#0A0F1A;display:flex;align-items:center;justify-content:center;z-index:10}
-    .adm-login-card{background:#0D1829;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:40px 36px;width:100%;max-width:360px;text-align:center}
-    .adm-login-icon{width:52px;height:52px;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);border-radius:14px;display:grid;place-items:center;margin:0 auto 20px;font-size:24px}
-    .adm-login-title{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:6px}
-    .adm-login-sub{font-size:13px;color:rgba(255,255,255,.35);margin-bottom:28px}
-    .adm-login-input{width:100%;background:#131F30;border:1.5px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 14px;font-size:14px;color:#E2E8F0;font-family:'Pretendard Variable',Pretendard,sans-serif;outline:none;text-align:center;letter-spacing:.1em;margin-bottom:14px;transition:border-color .2s}
-    .adm-login-input:focus{border-color:#1E6BD8}
-    .adm-login-btn{width:100%;padding:13px;background:#1E6BD8;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:800;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;transition:background .2s}
-    .adm-login-btn:hover{background:#2E7CE4}
-    .adm-login-err{font-size:12.5px;color:#FCA5A5;margin-top:10px;min-height:18px}
-    .adm-success-msg{font-size:12.5px;color:#4ADE80;margin-top:10px;min-height:18px}
+    
   </style>
-<script>
-(function(){
-  document.addEventListener('contextmenu', e => e.preventDefault());
-  document.addEventListener('keydown', e => {
-    if(e.key === 'F12') { e.preventDefault(); return; }
-    if((e.ctrlKey||e.metaKey) && e.shiftKey && ['i','I','j','J','c','C','k','K'].includes(e.key)) { e.preventDefault(); return; }
-    if((e.ctrlKey||e.metaKey) && ['u','U','s','S'].includes(e.key)) e.preventDefault();
-  });
-})();
-</script>
 </head>
 <body>
+
 
 <!-- 전광판 -->
 <div id="news-ticker">
@@ -362,9 +301,9 @@
 <!-- HEADER -->
 <header>
   <div class="container">
-    <a href="#" class="logo">
-      <span class="logo-mark">EM</span>
-      <span class="logo-text">
+    <a href="#" class="nav-logo">
+      <span class="nav-logo-mark">EM</span>
+      <span class="nav-logo-text">
         <span class="t1" id="cfg-brand-name">ESH-MASTER.KR  l  SDI</span>
         <span class="t2 en" id="cfg-brand-sub">ENVIRONMENT · SAFETY · HEALTH</span>
       </span>
@@ -497,7 +436,7 @@
         </span>
       </div>
       <div class="foot-copy">© 2026 <strong>ESH-MASTER.KR</strong>&nbsp; 산업안전기획 · 안전보건전산화</div>
-      <a href="about.html" style="font-size:11px;color:var(--gray-400);text-decoration:none;border-bottom:1px solid var(--gray-300);padding-bottom:1px;width:fit-content;transition:color .2s;" onmouseover="this.style.color='var(--navy-900)'" onmouseout="this.style.color='var(--gray-400)'">About Us — UK2 Solutions</a>
+      <a href="about.html" class="foot-about-link">About Us — UK2 Solutions</a>
     </div>
 
     <!-- 관공서 신뢰 링크 -->
@@ -672,1132 +611,94 @@
 </div>
 
 <!-- ============ 관리자 패널 ============ -->
-<div id="adm-overlay">
-  <div id="adm-login">
-    <div class="adm-login-card">
-      <div class="adm-login-icon">🔐</div>
-      <div class="adm-login-title">관리자 페이지</div>
-      <div class="adm-login-sub">ESH-MASTER 사이트 설정 관리</div>
-      <input type="password" class="adm-login-input" id="adm-pw-input" placeholder="비밀번호 입력" autocomplete="off">
-      <button class="adm-login-btn" id="adm-pw-btn">로그인</button>
-      <div class="adm-login-err" id="adm-login-err"></div>
-    </div>
-  </div>
-  <div class="adm-topbar">
-    <div class="adm-topbar-left">
-      <span class="adm-logo">ESH-MASTER</span>
-      <span class="adm-badge-pill">ADMIN</span>
-    </div>
-    <div class="adm-topbar-right">
-      <span class="adm-save-msg" id="adm-save-msg">✓ 저장 완료</span>
-      <button class="adm-btn-save" id="adm-save-btn">💾 저장</button>
-      <button class="adm-btn-close" id="adm-close-btn">✕ 닫기</button>
-    </div>
-  </div>
-  <div class="adm-layout">
-    <nav class="adm-sidebar">
-      <div class="adm-nav-item active" data-section="text"><span class="ni">📝</span> 메인 텍스트</div>
-      <div class="adm-nav-item" data-section="creds"><span class="ni">📊</span> 신뢰 지표</div>
-      <div class="adm-nav-item" data-section="services"><span class="ni">🗂️</span> 서비스 카드</div>
-      <div class="adm-nav-item" data-section="industry"><span class="ni">🏭</span> 업종 목록</div>
-      <div class="adm-nav-item" data-section="agencies"><span class="ni">🏛️</span> 관공서 링크</div>
-      <div class="adm-nav-item" data-section="agency-order"><span class="ni">🔢</span> 기관분야 순번</div>
-      <div class="adm-nav-item" data-section="contact"><span class="ni">📧</span> 연락처</div>
-      <div class="adm-nav-item" data-section="setting"><span class="ni">⚙️</span> 설정</div>
-    </nav>
-    <div class="adm-content">
 
-      <!-- 메인 텍스트 -->
-      <div class="adm-section active" id="adm-sec-text">
-        <div class="adm-section-title">메인 텍스트</div>
-        <div class="adm-section-sub">히어로 영역의 배지, 헤드라인, 소개 문구를 수정합니다.</div>
-        <div class="adm-grid adm-grid-1" style="gap:16px">
-          <div class="adm-card-label" style="margin-bottom:8px">헤더 로고</div>
-          <div class="adm-field"><label>브랜드명</label><input type="text" id="adm-brand-name" placeholder="ESH-MASTER"></div>
-          <div class="adm-field"><label>서브텍스트</label><input type="text" id="adm-brand-sub" placeholder="ENVIRONMENT · SAFETY · HEALTH"></div>
-          <div class="adm-field"><label>상단 배지</label><input type="text" id="adm-badge"></div>
-          <div class="adm-field"><label>헤드라인 1줄</label><input type="text" id="adm-h1-1"></div>
-          <div class="adm-field"><label>헤드라인 2줄 (강조 색상)</label><input type="text" id="adm-h1-2"></div>
-          <div class="adm-field">
-            <label>소개 문구 (HTML 가능)</label>
-            <textarea id="adm-lead" rows="5"></textarea>
-            <span class="adm-hint">※ &lt;strong&gt;굵게&lt;/strong&gt;, &lt;br&gt; 줄바꿈 사용 가능</span>
-          </div>
-        </div>
-      </div>
 
-      <!-- 신뢰 지표 -->
-      <div class="adm-section" id="adm-sec-creds">
-        <div class="adm-section-title">신뢰 지표</div>
-        <div class="adm-section-sub">하단 수치 스트립 4개 항목을 수정합니다.</div>
-        <div id="adm-creds-list"></div>
-      </div>
+<!-- ③ 공통 로직 (config 로드 · 보안 · 티커 · 뉴스레터) -->
+<script src="shared.js"></script>
 
-      <!-- 서비스 카드 -->
-      <div class="adm-section" id="adm-sec-services">
-        <div class="adm-section-title">서비스 카드</div>
-        <div class="adm-section-sub">서비스 카드의 제목·설명·운영 상태를 수정합니다. <span style="color:#4ADE80;font-weight:700">운영중</span>은 녹색, <span style="color:#F59E0B;font-weight:700">준비중</span>은 황색으로 표시됩니다.</div>
-        <div id="adm-services-list"></div>
-      </div>
-
-      <!-- 업종 목록 -->
-      <div class="adm-section" id="adm-sec-industry">
-        <div class="adm-section-title">업종 목록</div>
-        <div class="adm-section-sub">구독 신청 폼의 업종 선택 항목을 관리합니다. 드래그로 순서 변경, ✕로 삭제합니다.</div>
-        <ul class="adm-industry-list" id="adm-industry-list"></ul>
-        <button class="adm-add-btn" id="adm-add-industry">＋ 업종 추가</button>
-      </div>
-
-      <!-- 관공서 링크 -->
-      <div class="adm-section" id="adm-sec-agencies">
-        <div class="adm-section-title">관공서 링크</div>
-        <div class="adm-section-sub">푸터 우측 관공서 링크를 관리합니다. 기관명과 URL을 수정하세요.</div>
-        <ul class="adm-industry-list" id="adm-agency-list"></ul>
-        <button class="adm-add-btn" id="adm-add-agency">＋ 기관 추가</button>
-      </div>
-
-      <!-- 기관분야 순번 -->
-      <div class="adm-section" id="adm-sec-agency-order">
-        <div class="adm-section-title">기관분야 순번</div>
-        <div class="adm-section-sub">안전보건전문기관 찾기 페이지의 분야 표시 순서를 드래그로 변경합니다.</div>
-        <ul class="adm-industry-list" id="adm-agency-order-list"></ul>
-      </div>
-
-      <!-- 연락처 -->
-      <div class="adm-section" id="adm-sec-contact">
-        <div class="adm-section-title">연락처</div>
-        <div class="adm-section-sub">Contact 섹션의 문구와 이메일 주소를 수정합니다.</div>
-        <div class="adm-grid adm-grid-1" style="gap:16px">
-          <div class="adm-field"><label>헤드라인 (\n으로 줄바꿈)</label><input type="text" id="adm-contact-h2"></div>
-          <div class="adm-field"><label>이메일 주소</label><input type="email" id="adm-contact-email"></div>
-          <div class="adm-field"><label>하단 안내 문구</label><input type="text" id="adm-contact-note"></div>
-        </div>
-      </div>
-
-      <!-- 설정 -->
-      <div class="adm-section" id="adm-sec-setting">
-        <div class="adm-section-title">설정</div>
-        <div class="adm-section-sub">파비콘(브라우저 탭 아이콘) 및 관리자 비밀번호를 관리합니다.</div>
-
-        <!-- 링크 미리보기 이미지 -->
-        <div class="adm-card" style="margin-bottom:24px">
-          <div class="adm-card-label">🖼️ 링크 공유 미리보기 이미지 (OG Image)</div>
-          <div class="adm-grid adm-grid-1" style="gap:12px">
-            <div class="adm-field">
-              <label>이미지 URL</label>
-              <input type="text" id="adm-og-image" placeholder="https://esh-master.kr/og-image.svg">
-              <span class="adm-hint">※ 카카오톡·슬랙·SNS 링크 공유 시 표시되는 미리보기 이미지입니다. 권장 크기: 1200×630px PNG/JPG.<br>※ GitHub Pages에 이미지 파일을 올리고 해당 URL을 입력하세요.</span>
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap">
-              <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-                <div style="font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.04em;font-family:'Inter',sans-serif">미리보기</div>
-                <div style="width:120px;height:63px;background:#1a2740;border-radius:6px;border:1px solid rgba(255,255,255,.1);overflow:hidden;display:flex;align-items:center;justify-content:center">
-                  <img id="adm-og-preview" src="" width="120" height="63" style="object-fit:cover;display:none;border-radius:6px" alt="og preview">
-                  <span id="adm-og-placeholder" style="font-size:9px;color:rgba(255,255,255,.2);text-align:center;padding:4px">1200×630<br>이미지</span>
-                </div>
-              </div>
-              <button onclick="previewOgImage()" style="padding:7px 14px;background:rgba(30,107,216,.2);border:1px solid rgba(30,107,216,.4);border-radius:7px;color:#60A5FA;font-size:12px;font-weight:700;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;align-self:flex-end">미리보기 확인</button>
-            </div>
-          </div>
-        </div>
-          <div class="adm-card-label">🌐 브라우저 탭 아이콘 (Favicon)</div>
-          <div class="adm-grid adm-grid-1" style="gap:12px">
-            <div class="adm-field">
-              <label>파비콘 URL</label>
-              <input type="text" id="adm-favicon" placeholder="https://example.com/favicon.ico 또는 /favicon.svg">
-              <span class="adm-hint">※ PNG/ICO/SVG URL, 또는 data:image/... Base64 URL. 비워두면 기본 EM 로고 사용.</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-              <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
-                <div style="font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.04em;font-family:'Inter',sans-serif">현재 미리보기</div>
-                <div style="width:32px;height:32px;background:#1a2740;border-radius:6px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.1)">
-                  <img id="adm-favicon-preview" src="" width="20" height="20" style="border-radius:3px;display:none" alt="favicon">
-                  <span id="adm-favicon-placeholder" style="font-size:10px;color:rgba(255,255,255,.3)">EM</span>
-                </div>
-              </div>
-              <div style="display:flex;flex-direction:column;gap:6px">
-                <button onclick="previewFavicon()" style="padding:7px 14px;background:rgba(30,107,216,.2);border:1px solid rgba(30,107,216,.4);border-radius:7px;color:#60A5FA;font-size:12px;font-weight:700;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif">미리보기 적용</button>
-                <button onclick="resetFavicon()" style="padding:7px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:7px;color:rgba(255,255,255,.5);font-size:12px;font-weight:600;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif">기본값으로 리셋</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 비밀번호 변경 -->
-        <div class="adm-card">
-          <div class="adm-card-label">🔐 관리자 비밀번호 변경</div>
-          <div class="adm-grid adm-grid-1" style="gap:14px;max-width:340px">
-            <div class="adm-field"><label>현재 비밀번호</label><input type="password" id="adm-pw-cur" autocomplete="off"></div>
-            <div class="adm-field"><label>새 비밀번호</label><input type="password" id="adm-pw-new" autocomplete="off"></div>
-            <div class="adm-field"><label>새 비밀번호 확인</label><input type="password" id="adm-pw-new2" autocomplete="off"></div>
-            <button class="adm-btn-save" id="adm-pw-change-btn" style="width:auto">비밀번호 변경</button>
-            <div id="adm-pw-msg" style="font-size:12.5px;min-height:18px"></div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- ============ SCRIPTS ============ -->
-
-<!-- 1. 설정 + 관리자 -->
+<!-- ④ 페이지 초기화 -->
 <script>
 (function () {
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbykCxcVBZki0-wrNpd5a63D_wttCJUs14_-OyvrEGcozwueS3BMnlRxNALz_KijeyTO/exec';
+  // index.html 전용 config 적용
+  function applyIndexConfig() {
+    const cfg = window._ESH_CFG || {};
+    function set(id, v)  { const e = document.getElementById(id); if (e) e.textContent = v; }
+    function setH(id, v) { const e = document.getElementById(id); if (e) e.innerHTML = v; }
 
-  const DEFAULTS = {
-    brand_name: 'ESH-MASTER',
-    brand_sub:  'ENVIRONMENT · SAFETY · HEALTH',
-    favicon: '',
-    og_image: 'https://esh-master.kr/og-image.svg',
-    badge: 'COMING SOON · 2026',
-    h1_1: '현장에서 검증된',
-    h1_2: '안전보건환경 디지털 설계',
-    lead: 'ESH-MASTER는 <strong>제조·통신업 현장</strong>의 안전보건을 수행해온 산업안전기획·안전보건전산화 전문가가 직접 설계합니다. <strong>산안법·중처법</strong> 의무 이행과 현장 언어를 결합한<br>4가지 서비스를 준비하고 있습니다.',
-    creds: [
-      { n: '16<sub>년+</sub>', l: '제조·통신업 안전관리' },
-      { n: '산안법', l: '법정 의무 완전 준수' },
-      { n: '중처법', l: '경영책임자 이행 증거' },
-      { n: '다수 사업장', l: '통합 안전보건 체계' },
-    ],
-    services: [
-      { title: 'Safety Do It',       desc: '계층별 누구나 쉽게 따라하고\n안전을 즐겁게 만드는 통합 솔루션',         status: '준비중' },
-      { title: 'JSA 위험성평가',      desc: '업종별 작업표준화를 통해\nAI를 활용한 JSA 위험성평가',              status: '준비중' },
-      { title: 'AI 안전보건 뉴스레터', desc: '업종별 특성을 반영한\nAI 안전보건 주간 큐레이션',                  status: '운영중' },
-      { title: '안전보건정보',         desc: '업종별 특성을 반영한\n법령·사례·서식 자료실',                      status: '준비중' },
-      { title: '고용노동부 지정 안전보건전문기관 찾기', desc: '안전·보건·건설재해예방\n고용노동부 지정기관 검색 · 지도', status: '운영중' },
-    ],
-    contact_h2:    '서비스 출시 · 파트너십 · 문의는\n아래 이메일로 연락 주세요.',
-    contact_email: 'ehsmaster.kr@gmail.com',
-    contact_note:  '문의 전 간단한 소속·용건을 메일에 적어주시면 빠르게 회신드립니다.',
-    industries: [
-      { name: '식품·음료 제조업', status: '신청중' },
-      { name: '일반 제조업',      status: '신청중' },
-      { name: '화학·석유·고무업', status: '신청중' },
-      { name: '건설업',           status: '신청중' },
-      { name: '물류·운수업',      status: '신청중' },
-      { name: '서비스업',         status: '신청중' },
-      { name: '통신·IT업',        status: '신청중' },
-      { name: '기타',             status: '신청중' },
-    ],
-    agencyOrder: ['건설재해예방','안전관리','보건관리','특수건강진단','자율안전검사','석면조사','작업환경측정','안전보건진단'],
-    agencies: [
-      { name: '고용노동부',       url: 'https://www.moel.go.kr',   favicon: 'moel.go.kr' },
-      { name: '안전보건공단',     url: 'https://www.kosha.or.kr',  favicon: 'kosha.or.kr' },
-      { name: '환경부',           url: 'https://www.me.go.kr',     favicon: 'me.go.kr' },
-      { name: '소방청',           url: 'https://www.nfa.go.kr',    favicon: 'nfa.go.kr' },
-      { name: '국가법령정보센터', url: 'https://www.law.go.kr',    favicon: 'law.go.kr' },
-      { name: '화학물질안전원',   url: 'https://nics.me.go.kr',   favicon: 'me.go.kr' },
-      { name: '안전보건법령정보', url: 'https://www.meis.go.kr',   favicon: 'meis.go.kr' },
-    ],
-  };
+    set('cfg-badge',  cfg.badge);
+    set('cfg-h1-1',   cfg.h1_1);
+    set('cfg-h1-2',   cfg.h1_2);
+    setH('cfg-lead',  cfg.lead);
+    set('cfg-brand-name', cfg.brand_name);
+    set('cfg-brand-sub',  cfg.brand_sub);
 
-  let CFG = JSON.parse(JSON.stringify(DEFAULTS));
-
-  async function loadConfig() {
-    try {
-      const res  = await fetch(APPS_SCRIPT_URL + '?action=getConfig', { signal: AbortSignal.timeout(5000) });
-      const data = await res.json();
-      if (data.success && data.config) {
-        CFG = Object.assign({}, DEFAULTS, data.config);
-        if (data.config.creds)      CFG.creds      = data.config.creds;
-        // services: 저장된 항목 수가 DEFAULTS보다 적을 경우 기본값으로 채움
-        if (data.config.services) {
-          CFG.services = DEFAULTS.services.map((def, i) =>
-            Object.assign({}, def, data.config.services[i] || {})
-          );
-        }
-        if (data.config.industries) CFG.industries = data.config.industries;
-        if (data.config.agencies)   CFG.agencies   = data.config.agencies;
-        delete CFG.footer_brand_name;
-        delete CFG.footer_brand_sub;
-        delete CFG.footer_copy;
-      }
-    } catch (e) { }
-    applyConfig();
-  }
-
-  function applyConfig() {
-    set('cfg-badge', CFG.badge);
-    set('cfg-h1-1',  CFG.h1_1);
-    set('cfg-h1-2',  CFG.h1_2);
-    setH('cfg-lead', CFG.lead);
-
-    CFG.creds.forEach((c, i) => {
+    (cfg.creds || []).forEach((c, i) => {
       const el = document.querySelector('[data-cred="' + i + '"]');
       if (!el) return;
       el.querySelector('.cred-n').innerHTML   = c.n;
       el.querySelector('.cred-l').textContent = c.l;
     });
 
-    CFG.services.forEach((s, i) => {
+    (cfg.services || []).forEach((s, i) => {
       const t = document.querySelector('[data-svc-title="' + i + '"]');
       const d = document.querySelector('[data-svc-desc="'  + i + '"]');
       if (t) t.textContent = s.title;
       if (d) d.innerHTML   = s.desc.replace(/\n/g, '<br>');
-      // 상태 뱃지 동적 업데이트
       const badge = document.querySelector('[data-svc-status="' + i + '"]');
       if (badge && s.status) {
         const isLive = s.status === '운영중';
-        badge.className = 'svc-status' + (isLive ? ' live' : '') + (badge.style.marginTop ? '' : '');
+        badge.className = 'svc-status' + (isLive ? ' live' : '');
         badge.style.cssText = 'position:relative;z-index:1' + (i === 2 ? ';margin-top:8px' : '');
         badge.innerHTML = '<span class="dot"></span>' + s.status;
-        // 카드 03 operating-card 클래스 토글
         if (i === 2) {
-          const card3 = badge.closest('.svc-item');
-          if (card3) {
-            card3.classList.toggle('operating-card', isLive);
-          }
+          const card = badge.closest('.svc-item');
+          if (card) card.classList.toggle('operating-card', isLive);
         }
       }
     });
 
-    const bnEl = document.getElementById('cfg-brand-name');
-    const bsEl = document.getElementById('cfg-brand-sub');
-    if (bnEl) bnEl.textContent = CFG.brand_name || 'ESH-MASTER.KR l SDI';
-    if (bsEl) bsEl.textContent = CFG.brand_sub  || 'ENVIRONMENT · SAFETY · HEALTH';
+    const h2El = document.getElementById('cfg-contact-h2');
+    const emEl = document.getElementById('cfg-contact-email');
+    const lnEl = document.getElementById('cfg-contact-link');
+    const ntEl = document.getElementById('cfg-contact-note');
+    if (h2El) h2El.innerHTML   = (cfg.contact_h2 || '').replace(/\n/g, '<br>');
+    if (emEl) emEl.textContent = cfg.contact_email || '';
+    if (lnEl) lnEl.href        = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + (cfg.contact_email || '') + '&su=ESH-MASTER%20%EB%AC%B8%EC%9D%98';
+    if (ntEl) ntEl.textContent = cfg.contact_note || '';
 
-    const h2El   = document.getElementById('cfg-contact-h2');
-    const emEl   = document.getElementById('cfg-contact-email');
-    const lnEl   = document.getElementById('cfg-contact-link');
-    const ntEl   = document.getElementById('cfg-contact-note');
-    if (h2El) h2El.innerHTML     = CFG.contact_h2.replace(/\n/g, '<br>');
-    if (emEl) emEl.textContent   = CFG.contact_email;
-    if (lnEl) lnEl.href          = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + CFG.contact_email + '&su=ESH-MASTER%20%EB%AC%B8%EC%9D%98';
-    if (ntEl) ntEl.textContent   = CFG.contact_note;
-
-    rebuildSelect();
-    rebuildAgencies();
-    window._CFG_INDUSTRIES = CFG.industries;
-
-    const fcEl = document.querySelector('.foot-copy');
-    if (fcEl) fcEl.innerHTML = '© 2026 <strong>ESH-MASTER.KR</strong>&nbsp; 산업안전기획 · 안전보건전산화';
-
-    // og:image 적용
-    if (CFG.og_image) {
-      const ogImg = document.getElementById('og-image');
-      const twImg = document.getElementById('twitter-image');
-      if (ogImg) ogImg.content = CFG.og_image;
-      if (twImg) twImg.content = CFG.og_image;
-    }
-
-    // 파비콘 적용
-    if (CFG.favicon) {
-      const fv = document.getElementById('site-favicon');
-      const fa = document.getElementById('site-favicon-apple');
-      if (fv) { fv.href = CFG.favicon; fv.type = CFG.favicon.startsWith('data:image/svg') ? 'image/svg+xml' : 'image/x-icon'; }
-      if (fa) fa.href = CFG.favicon;
-    }
-  }
-
-  function rebuildAgencies() {
-    const wrap = document.getElementById('foot-agency-links');
-    if (!wrap || !CFG.agencies) return;
-    const CUSTOM_ICONS = {
-      'nics.me.go.kr': '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0891B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M9 3v6l-4 9h14L15 9V3"/><path d="M9 12h6"/></svg>',
-    };
-    wrap.innerHTML = CFG.agencies.map(a => {
-      const domain = a.favicon || new URL(a.url).hostname.replace('www.','');
-      const icon = CUSTOM_ICONS[domain]
-        ? CUSTOM_ICONS[domain]
-        : `<img src="https://www.google.com/s2/favicons?domain=${domain}&sz=24" width="16" height="16" alt="${a.name}" onerror="this.style.display='none'">`;
-      return `<a class="foot-agency" href="${a.url}" target="_blank" rel="noopener" title="${a.name}">${icon}${a.name}</a>`;
-    }).join('');
-  }
-
-  function rebuildSelect() {
+    // 업종 select 재구성
     const sel = document.getElementById('sub-industry');
-    if (!sel) return;
-    sel.innerHTML = '<option value="">-- 선택해주세요 --</option>';
-    sel.onchange = () => window.toggleEtcField(sel.value);
-    CFG.industries.forEach(ind => {
-      const opt = document.createElement('option');
-      opt.value = opt.textContent = ind.name || ind;
-      sel.appendChild(opt);
-    });
+    if (sel && window._ESH_INDUSTRIES) {
+      sel.innerHTML = '<option value="">-- 선택해주세요 --</option>';
+      window._ESH_INDUSTRIES.forEach(ind => {
+        const opt = document.createElement('option');
+        opt.value = opt.textContent = ind.name || ind;
+        sel.appendChild(opt);
+      });
+      sel.onchange = () => window.toggleEtcField(sel.value);
+    }
   }
 
-  function set(id, v)  { const e = document.getElementById(id); if (e) e.textContent = v; }
-  function setH(id, v) { const e = document.getElementById(id); if (e) e.innerHTML   = v; }
-
-  /* ── 관리자 패널 진입 ──────────────────────────────── */
-  const admOverlay  = document.getElementById('adm-overlay');
-  const admLogin    = document.getElementById('adm-login');
-  const LOCK_KEY    = '_adm_lock';
-  const ATTEMPT_KEY = '_adm_try';
-  const MAX_TRY     = 2;
-  const LOCK_MS     = 30 * 60 * 1000;
-
+  // 관리자 진입 (로고 10회 클릭)
   (function() {
-    if (location.search.includes('adm')) {
-      admOverlay.classList.add('open');
-      checkLockOnOpen();
-    }
     let n = 0, t = null;
     const dot = document.getElementById('adm-dot');
-    if (dot) {
-      dot.addEventListener('click', function() {
-        n++;
-        clearTimeout(t);
-        if (n >= 10) {
-          n = 0;
-          admOverlay.classList.add('open');
-          checkLockOnOpen();
-        } else {
-          t = setTimeout(function() { n = 0; }, 3000);
-        }
-      });
-    }
+    if (!dot) return;
+    dot.addEventListener('click', function() {
+      n++;
+      clearTimeout(t);
+      if (n >= 10) { n = 0; window.location.href = 'admin.html'; }
+      else t = setTimeout(() => n = 0, 3000);
+    });
   })();
 
-  function getLockRemain() {
-    const t = parseInt(localStorage.getItem(LOCK_KEY) || '0');
-    return Math.max(0, t - Date.now());
-  }
-  function setLocked()    { localStorage.setItem(LOCK_KEY, Date.now() + LOCK_MS); localStorage.setItem(ATTEMPT_KEY, '0'); }
-  function getAttempts()  { return parseInt(localStorage.getItem(ATTEMPT_KEY) || '0'); }
-  function addAttempt()   { const n = getAttempts() + 1; localStorage.setItem(ATTEMPT_KEY, String(n)); return n; }
-  function resetAttempts(){ localStorage.removeItem(LOCK_KEY); localStorage.removeItem(ATTEMPT_KEY); }
-  function fmtRemain(ms)  { return Math.ceil(ms / 60000) + '분 후 다시 시도하세요.'; }
-
-  function checkLockOnOpen() {
-    const errEl = document.getElementById('adm-login-err');
-    const btn   = document.getElementById('adm-pw-btn');
-    const input = document.getElementById('adm-pw-input');
-    const remain = getLockRemain();
-    if (remain > 0) {
-      errEl.textContent = '⛔ 잠금 중 — ' + fmtRemain(remain);
-      btn.disabled = input.disabled = true;
-      const timer = setInterval(() => {
-        const r = getLockRemain();
-        if (r <= 0) { clearInterval(timer); errEl.textContent = ''; btn.disabled = input.disabled = false; }
-        else errEl.textContent = '⛔ 잠금 중 — ' + fmtRemain(r);
-      }, 15000);
-    } else {
-      errEl.textContent = '';
-      btn.disabled = input.disabled = false;
-    }
-  }
-
-  async function doLogin() {
-    if (getLockRemain() > 0) return;
-    const pw    = document.getElementById('adm-pw-input').value;
-    const errEl = document.getElementById('adm-login-err');
-    const btn   = document.getElementById('adm-pw-btn');
-    if (!pw) return;
-    btn.disabled = true;
-    btn.textContent = '확인 중...';
-    errEl.textContent = '';
-    try {
-      const res  = await fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ action: 'adminLogin', pw }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        resetAttempts();
-        admLogin.style.display = 'none';
-        fillAdminForm();
-      } else {
-        const tries = addAttempt();
-        const left  = MAX_TRY - tries;
-        document.getElementById('adm-pw-input').value = '';
-        if (tries >= MAX_TRY) {
-          setLocked();
-          errEl.textContent = '⛔ ' + MAX_TRY + '회 실패 — 30분간 접근이 제한됩니다.';
-          document.getElementById('adm-pw-input').disabled = true;
-        } else {
-          errEl.textContent = '비밀번호가 올바르지 않습니다. (남은 시도: ' + left + '회)';
-          document.getElementById('adm-pw-input').focus();
-        }
-      }
-    } catch {
-      errEl.textContent = '서버 연결 오류. 잠시 후 다시 시도해 주세요.';
-    } finally {
-      if (!document.getElementById('adm-pw-input').disabled) {
-        btn.disabled = false;
-        btn.textContent = '로그인';
-      }
-    }
-  }
-  document.getElementById('adm-pw-btn').addEventListener('click', doLogin);
-  document.getElementById('adm-pw-input').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
-
-  document.getElementById('adm-close-btn').addEventListener('click', () => {
-    admOverlay.classList.remove('open');
-    admLogin.style.display = 'flex';
-    document.getElementById('adm-pw-input').value = '';
-    document.getElementById('adm-login-err').textContent = '';
-    history.replaceState({}, '', location.pathname);
-  });
-
-  document.querySelectorAll('.adm-nav-item').forEach(item => {
-    item.addEventListener('click', () => {
-      document.querySelectorAll('.adm-nav-item').forEach(n => n.classList.remove('active'));
-      document.querySelectorAll('.adm-section').forEach(s => s.classList.remove('active'));
-      item.classList.add('active');
-      document.getElementById('adm-sec-' + item.dataset.section).classList.add('active');
-    });
-  });
-
-  function fillAdminForm() {
-    document.getElementById('adm-badge').value        = CFG.badge;
-    if (document.getElementById('adm-brand-name')) document.getElementById('adm-brand-name').value = CFG.brand_name || 'ESH-MASTER';
-    if (document.getElementById('adm-brand-sub'))  document.getElementById('adm-brand-sub').value  = CFG.brand_sub  || 'ENVIRONMENT · SAFETY · HEALTH';
-    // 파비콘 필드
-    const faviconInput = document.getElementById('adm-favicon');
-    if (faviconInput) faviconInput.value = CFG.favicon || '';
-    updateFaviconPreview(CFG.favicon || '');
-    // og:image 필드
-    const ogInput = document.getElementById('adm-og-image');
-    if (ogInput) { ogInput.value = CFG.og_image || ''; updateOgPreview(CFG.og_image || ''); }
-    document.getElementById('adm-h1-1').value         = CFG.h1_1;
-    document.getElementById('adm-h1-2').value         = CFG.h1_2;
-    document.getElementById('adm-lead').value         = CFG.lead;
-    document.getElementById('adm-contact-h2').value   = CFG.contact_h2;
-    document.getElementById('adm-contact-email').value= CFG.contact_email;
-    document.getElementById('adm-contact-note').value = CFG.contact_note;
-
-    const credLabels = ['① 첫 번째 항목','② 두 번째 항목','③ 세 번째 항목','④ 네 번째 항목'];
-    const credsList  = document.getElementById('adm-creds-list');
-    credsList.innerHTML = '';
-    CFG.creds.forEach((c, i) => {
-      const card = document.createElement('div');
-      card.className = 'adm-card';
-      card.innerHTML = `<div class="adm-card-label">${credLabels[i]}</div>
-        <div class="adm-grid">
-          <div class="adm-field"><label>수치 (HTML 가능)</label><input type="text" data-cred-n="${i}" value="${esc(c.n)}"></div>
-          <div class="adm-field"><label>레이블</label><input type="text" data-cred-l="${i}" value="${esc(c.l)}"></div>
-        </div>`;
-      credsList.appendChild(card);
-    });
-
-
-    const svcLabels = ['01 · Safety Do It','02 · JSA 위험성평가','03 · AI 뉴스레터','04 · 안전보건정보','05 · 전문기관 찾기'];
-    const svcList   = document.getElementById('adm-services-list');
-    svcList.innerHTML = '';
-    CFG.services.forEach((s, i) => {
-      const isLive = (s.status || '준비중') === '운영중';
-      const card = document.createElement('div');
-      card.className = 'adm-card';
-      card.innerHTML = `<div class="adm-card-label">${svcLabels[i]}</div>
-        <div class="adm-grid adm-grid-1" style="gap:10px">
-          <div class="adm-field"><label>제목</label><input type="text" data-svc-t="${i}" value="${esc(s.title)}"></div>
-          <div class="adm-field"><label>설명 (\\n으로 줄바꿈)</label><input type="text" data-svc-d="${i}" value="${esc(s.desc)}"></div>
-          <div class="adm-field">
-            <label>운영 상태</label>
-            <div style="display:flex;gap:8px;margin-top:2px">
-              <button type="button" id="svc-sts-ready-${i}" onclick="setSvcStatus(${i},'준비중')"
-                style="flex:1;padding:8px 0;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;transition:all .2s;border:1.5px solid ${!isLive?'#F59E0B':'rgba(255,255,255,.1)'};background:${!isLive?'rgba(245,158,11,.2)':'rgba(255,255,255,.04)'};color:${!isLive?'#F59E0B':'rgba(255,255,255,.3)'}">
-                준비중
-              </button>
-              <button type="button" id="svc-sts-live-${i}" onclick="setSvcStatus(${i},'운영중')"
-                style="flex:1;padding:8px 0;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;transition:all .2s;border:1.5px solid ${isLive?'#16A34A':'rgba(255,255,255,.1)'};background:${isLive?'rgba(22,163,74,.2)':'rgba(255,255,255,.04)'};color:${isLive?'#4ADE80':'rgba(255,255,255,.3)'}">
-                운영중
-              </button>
-            </div>
-            <input type="hidden" data-svc-s="${i}" value="${esc(s.status||'준비중')}">
-          </div>
-        </div>`;
-      svcList.appendChild(card);
-    });
-
-    renderIndustryList();
-    renderAgencyList();
-    renderAgencyOrderList();
-  }
-
-  const AGENCY_LABELS = {
-    '건설재해예방': '🏗️ 건설재해예방전문지도기관',
-    '안전관리':     '🛡️ 안전관리전문기관',
-    '보건관리':     '🩺 보건관리전문기관',
-    '특수건강진단': '🏥 특수건강진단실시기관',
-    '자율안전검사': '🔍 자율안전검사기관',
-    '석면조사':     '🔬 석면조사기관',
-    '작업환경측정': '📊 작업환경측정기관',
-    '안전보건진단': '📋 안전보건진단기관',
-  };
-
-  function renderAgencyOrderList() {
-    const ul = document.getElementById('adm-agency-order-list');
-    const order = CFG.agencyOrder || ['건설재해예방','안전관리','보건관리','특수건강진단','자율안전검사','석면조사','작업환경측정','안전보건진단'];
-    ul.innerHTML = order.map((key, i) => `
-      <li class="adm-industry-item" data-key="${key}" style="display:flex;align-items:center;gap:8px;padding:8px 12px">
-        <span style="width:20px;text-align:center;font-size:12px;font-weight:700;color:var(--gray-400);font-family:'Inter',sans-serif">${i+1}</span>
-        <span style="flex:1;font-size:13px;font-weight:600;color:#fff">${AGENCY_LABELS[key] || key}</span>
-        <div style="display:flex;flex-direction:column;gap:2px">
-          <button onclick="moveAgencyOrder(${i},-1)" style="background:rgba(255,255,255,.1);border:none;border-radius:4px;width:24px;height:20px;cursor:pointer;color:#fff;font-size:11px;line-height:1" ${i===0?'disabled style="opacity:.3;cursor:not-allowed;background:rgba(255,255,255,.05)"':''}>▲</button>
-          <button onclick="moveAgencyOrder(${i},1)"  style="background:rgba(255,255,255,.1);border:none;border-radius:4px;width:24px;height:20px;cursor:pointer;color:#fff;font-size:11px;line-height:1" ${i===order.length-1?'disabled style="opacity:.3;cursor:not-allowed;background:rgba(255,255,255,.05)"':''}>▼</button>
-        </div>
-      </li>`).join('');
-  }
-
-  window.moveAgencyOrder = function(idx, dir) {
-    const order = CFG.agencyOrder || ['건설재해예방','안전관리','보건관리','특수건강진단','자율안전검사','석면조사','작업환경측정','안전보건진단'];
-    const newIdx = idx + dir;
-    if (newIdx < 0 || newIdx >= order.length) return;
-    [order[idx], order[newIdx]] = [order[newIdx], order[idx]];
-    CFG.agencyOrder = order;
-    renderAgencyOrderList();
-  };
-
-  function renderAgencyList() {
-    const ul = document.getElementById('adm-agency-list');
-    ul.innerHTML = '';
-    (CFG.agencies || []).forEach((ag, i) => {
-      const li = document.createElement('li');
-      li.className = 'adm-industry-item';
-      li.style.cssText = 'display:flex;align-items:center;gap:6px;padding:6px 8px';
-      const domain = ag.favicon || (ag.url ? ag.url.replace(/https?:\/\/www\./, '').split('/')[0] : '');
-      li.innerHTML = `
-        <img src="https://www.google.com/s2/favicons?domain=${domain}&sz=24" width="16" height="16" style="border-radius:3px;flex-shrink:0" onerror="this.style.display='none'">
-        <input type="text" value="${esc(ag.name)}" data-ag-name="${i}" style="flex:1;min-width:70px" placeholder="기관명">
-        <input type="text" value="${esc(ag.url)}" data-ag-url="${i}" style="flex:2" placeholder="https://...">
-        <div style="display:flex;flex-direction:column;gap:2px">
-          <button onclick="moveAgency(${i},-1)" style="background:rgba(255,255,255,.1);border:none;border-radius:3px;width:22px;height:18px;cursor:pointer;color:#fff;font-size:10px" ${i===0?'disabled':''}>▲</button>
-          <button onclick="moveAgency(${i},1)"  style="background:rgba(255,255,255,.1);border:none;border-radius:3px;width:22px;height:18px;cursor:pointer;color:#fff;font-size:10px" ${i===(CFG.agencies||[]).length-1?'disabled':''}>▼</button>
-        </div>
-        <button class="del-btn" data-del-ag="${i}" title="삭제">✕</button>`;
-      ul.appendChild(li);
-    });
-    ul.querySelectorAll('[data-del-ag]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        CFG.agencies.splice(+btn.dataset.delAg, 1);
-        renderAgencyList();
-      });
-    });
-  }
-
-  window.moveAgency = function(idx, dir) {
-    const arr = CFG.agencies || [];
-    const newIdx = idx + dir;
-    if (newIdx < 0 || newIdx >= arr.length) return;
-    [arr[idx], arr[newIdx]] = [arr[newIdx], arr[idx]];
-    CFG.agencies = arr;
-    renderAgencyList();
-    rebuildAgencies();
-  };
-
-  function esc(s) { return (s || '').replace(/"/g, '&quot;'); }
-
-  const STATUS_OPTIONS = ['신청중', '발송준비', '발송중'];
-  const STATUS_COLORS  = { '신청중': '#94A3B8', '발송준비': '#14B8A6', '발송중': '#1E6BD8' };
-
-  function renderIndustryList() {
-    const ul = document.getElementById('adm-industry-list');
-    ul.innerHTML = '';
-    CFG.industries.forEach((ind, i) => {
-      const name   = ind.name   || ind;
-      const status = ind.status || '신청중';
-      const li = document.createElement('li');
-      li.className = 'adm-industry-item';
-      li.style.cssText = 'display:flex;align-items:center;gap:8px';
-      li.innerHTML = `<span class="drag-handle">⠿</span>
-        <input type="text" value="${esc(name)}" data-ind-name="${i}" style="flex:1">
-        <select data-ind-status="${i}" style="background:#131F30;border:1.5px solid rgba(255,255,255,.15);border-radius:7px;padding:6px 10px;font-size:12px;font-weight:700;color:${STATUS_COLORS[status]};cursor:pointer;outline:none">
-          ${STATUS_OPTIONS.map(s => `<option value="${s}" ${s===status?'selected':''}>${s}</option>`).join('')}
-        </select>
-        <button class="del-btn" data-del="${i}" title="삭제">✕</button>`;
-      ul.appendChild(li);
-    });
-    ul.querySelectorAll('.del-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        CFG.industries.splice(+btn.dataset.del, 1);
-        renderIndustryList();
-      });
-    });
-    ul.querySelectorAll('[data-ind-status]').forEach(sel => {
-      sel.addEventListener('change', () => {
-        sel.style.color = STATUS_COLORS[sel.value] || '#94A3B8';
-      });
-    });
-  }
-
-  document.getElementById('adm-sec-services').addEventListener('input', e => {
-    const el = e.target;
-    if (!el.dataset.svcOp) return;
-    const idx = +el.dataset.svcOp;
-    const val = parseFloat(el.value);
-    const bg = document.getElementById('svc-bg-' + idx);
-    if (bg) bg.style.opacity = val;
-    const span = document.querySelector('[data-svc-op-val="' + idx + '"]');
-    if (span) span.textContent = val.toFixed(2);
-  });
-
-  document.getElementById('adm-add-agency').addEventListener('click', () => {
-    if (!CFG.agencies) CFG.agencies = [];
-    CFG.agencies.push({ name: '새 기관', url: 'https://', favicon: '' });
-    renderAgencyList();
-    const inputs = document.querySelectorAll('#adm-agency-list [data-ag-name]');
-    const last = inputs[inputs.length - 1];
-    if (last) { last.focus(); last.select(); }
-  });
-
-  document.getElementById('adm-add-industry').addEventListener('click', () => {
-    CFG.industries.push({ name: '새 업종', status: '신청중' });
-    renderIndustryList();
-    const inputs = document.querySelectorAll('#adm-industry-list input');
-    const last = inputs[inputs.length - 1];
-    if (last) { last.focus(); last.select(); }
-  });
-
-  document.getElementById('adm-save-btn').addEventListener('click', async () => {
-    collectForm();
-    applyConfig();
-    const btn = document.getElementById('adm-save-btn');
-    btn.disabled = true; btn.textContent = '⏳ 저장 중...';
-    try {
-      const res  = await fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ action: 'saveConfig', config: CFG }),
-      });
-      const data = await res.json();
-      showSaveMsg(data.success ? '✓ 저장 완료' : '⚠ 저장 실패');
-    } catch { showSaveMsg('⚠ 연결 오류'); }
-    finally { btn.disabled = false; btn.textContent = '💾 저장'; }
-  });
-
-  function showSaveMsg(txt) {
-    const el = document.getElementById('adm-save-msg');
-    el.textContent = txt;
-    el.classList.add('show');
-    setTimeout(() => el.classList.remove('show'), 3000);
-  }
-
-  function collectForm() {
-    const g = id => document.getElementById(id)?.value || '';
-    CFG.brand_name  = g('adm-brand-name')   || CFG.brand_name;
-    CFG.brand_sub   = g('adm-brand-sub')    || CFG.brand_sub;
-    CFG.favicon   = g('adm-favicon');
-    CFG.og_image  = g('adm-og-image') || CFG.og_image;
-    CFG.badge         = g('adm-badge')         || CFG.badge;
-    CFG.h1_1          = g('adm-h1-1')          || CFG.h1_1;
-    CFG.h1_2          = g('adm-h1-2')          || CFG.h1_2;
-    CFG.lead          = g('adm-lead')          || CFG.lead;
-    CFG.contact_h2    = g('adm-contact-h2')    || CFG.contact_h2;
-    CFG.contact_email = g('adm-contact-email') || CFG.contact_email;
-    CFG.contact_note  = g('adm-contact-note')  || CFG.contact_note;
-
-    document.querySelectorAll('[data-cred-n]').forEach(el => { CFG.creds[+el.dataset.credN].n = el.value; });
-    document.querySelectorAll('[data-cred-l]').forEach(el => { CFG.creds[+el.dataset.credL].l = el.value; });
-    document.querySelectorAll('[data-svc-t]').forEach(el => { CFG.services[+el.dataset.svcT].title = el.value; });
-    document.querySelectorAll('[data-svc-d]').forEach(el => { CFG.services[+el.dataset.svcD].desc  = el.value; });
-    document.querySelectorAll('[data-svc-s]').forEach(el => { CFG.services[+el.dataset.svcS].status = el.value; });
-
-    CFG.industries = Array.from(document.querySelectorAll('#adm-industry-list li')).map(li => ({
-      name:   (li.querySelector('[data-ind-name]')?.value   || '').trim(),
-      status: li.querySelector('[data-ind-status]')?.value || '신청중',
-    })).filter(i => i.name);
-
-    CFG.agencyOrder = Array.from(document.querySelectorAll('#adm-agency-order-list li')).map(li => li.dataset.key).filter(Boolean);
-
-    CFG.agencies = Array.from(document.querySelectorAll('#adm-agency-list li')).map(li => {
-      const name = (li.querySelector('[data-ag-name]')?.value || '').trim();
-      const url  = (li.querySelector('[data-ag-url]')?.value  || '').trim();
-      const domain = url.replace(/https?:\/\/www\./, '').split('/')[0];
-      return { name, url, favicon: domain };
-    }).filter(a => a.name && a.url);
-  }
-
-  document.getElementById('adm-pw-change-btn').addEventListener('click', async () => {
-    const cur  = document.getElementById('adm-pw-cur').value;
-    const nw   = document.getElementById('adm-pw-new').value;
-    const nw2  = document.getElementById('adm-pw-new2').value;
-    const msg  = document.getElementById('adm-pw-msg');
-    const btn  = document.getElementById('adm-pw-change-btn');
-    if (!cur || !nw || !nw2)  { msg.style.color='#FCA5A5'; msg.textContent='모든 항목을 입력해 주세요.'; return; }
-    if (nw.length < 6)        { msg.style.color='#FCA5A5'; msg.textContent='새 비밀번호는 6자 이상이어야 합니다.'; return; }
-    if (nw !== nw2)           { msg.style.color='#FCA5A5'; msg.textContent='새 비밀번호가 일치하지 않습니다.'; return; }
-    btn.disabled = true; btn.textContent = '변경 중...'; msg.textContent = '';
-    try {
-      const res  = await fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ action: 'changePassword', currentPw: cur, newPw: nw }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        msg.style.color = '#4ADE80';
-        msg.textContent = '✓ 비밀번호가 변경됐습니다.';
-        ['adm-pw-cur','adm-pw-new','adm-pw-new2'].forEach(id => { document.getElementById(id).value = ''; });
-      } else {
-        msg.style.color = '#FCA5A5';
-        msg.textContent = data.message || '변경에 실패했습니다.';
-      }
-    } catch {
-      msg.style.color = '#FCA5A5'; msg.textContent = '서버 연결 오류.';
-    } finally {
-      btn.disabled = false; btn.textContent = '비밀번호 변경';
-    }
-  });
-
-  /* ── 파비콘 헬퍼 ─────────────────────────────────────── */
-  const DEFAULT_FAVICON = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230A2540'/><text x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' font-size='13' fill='white'>EM</text><circle cx='25' cy='25' r='4.5' fill='%2314B8A6'/></svg>";
-
-  function updateFaviconPreview(url) {
-    const img = document.getElementById('adm-favicon-preview');
-    const ph  = document.getElementById('adm-favicon-placeholder');
-    if (!img || !ph) return;
-    if (url) {
-      img.src = url;
-      img.style.display = 'block';
-      ph.style.display  = 'none';
-      img.onerror = () => { img.style.display = 'none'; ph.style.display = 'block'; };
-    } else {
-      img.src = DEFAULT_FAVICON;
-      img.style.display = 'block';
-      ph.style.display  = 'none';
-    }
-  }
-
-  window.previewFavicon = function() {
-    const url = (document.getElementById('adm-favicon')?.value || '').trim();
-    updateFaviconPreview(url);
-    const fv = document.getElementById('site-favicon');
-    const fa = document.getElementById('site-favicon-apple');
-    const target = url || DEFAULT_FAVICON;
-    if (fv) { fv.href = target; fv.type = target.startsWith('data:image/svg') ? 'image/svg+xml' : 'image/x-icon'; }
-    if (fa) fa.href = target;
-  };
-
-  window.resetFavicon = function() {
-    const inp = document.getElementById('adm-favicon');
-    if (inp) inp.value = '';
-    updateFaviconPreview('');
-    const fv = document.getElementById('site-favicon');
-    const fa = document.getElementById('site-favicon-apple');
-    if (fv) { fv.href = DEFAULT_FAVICON; fv.type = 'image/svg+xml'; }
-    if (fa) fa.href = DEFAULT_FAVICON;
-  };
-
-
-  // URL 입력 시 실시간 미리보기
-  document.addEventListener('input', e => {
-    if (e.target.id === 'adm-favicon')  updateFaviconPreview(e.target.value.trim());
-    if (e.target.id === 'adm-og-image') updateOgPreview(e.target.value.trim());
-  });
-
-  /* ── OG 이미지 헬퍼 ──────────────────────────────────────── */
-  function updateOgPreview(url) {
-    const img = document.getElementById('adm-og-preview');
-    const ph  = document.getElementById('adm-og-placeholder');
-    if (!img || !ph) return;
-    if (url) {
-      img.src = url; img.style.display = 'block'; ph.style.display = 'none';
-      img.onerror = () => { img.style.display = 'none'; ph.style.display = 'block'; };
-    } else {
-      img.style.display = 'none'; ph.style.display = 'block';
-    }
-  }
-  window.previewOgImage = function() {
-    updateOgPreview((document.getElementById('adm-og-image')?.value || '').trim());
-  };
-
-  /* ── 업종 기타 토글 ─────────────────────────────────────── */
-  window.toggleEtcField = function(val) {
-    const field = document.getElementById('sub-etc-field');
-    const input = document.getElementById('sub-industry-etc');
-    if (!field) return;
-    if (val === '기타') {
-      field.style.display = 'block';
-      if (input) input.focus();
-    } else {
-      field.style.display = 'none';
-      if (input) input.value = '';
-    }
-  };
-
-  /* ── 서비스 카드 상태 토글 ────────────────────────────── */
-  window.setSvcStatus = function(idx, status) {
-    CFG.services[idx].status = status;
-    const hiddenInput = document.querySelector('[data-svc-s="' + idx + '"]');
-    if (hiddenInput) hiddenInput.value = status;
-    const isLive = status === '운영중';
-    const rBtn = document.getElementById('svc-sts-ready-' + idx);
-    const lBtn = document.getElementById('svc-sts-live-'  + idx);
-    if (rBtn) { rBtn.style.border = '1.5px solid ' + (!isLive?'#F59E0B':'rgba(255,255,255,.1)'); rBtn.style.background = !isLive?'rgba(245,158,11,.2)':'rgba(255,255,255,.04)'; rBtn.style.color = !isLive?'#F59E0B':'rgba(255,255,255,.3)'; }
-    if (lBtn) { lBtn.style.border = '1.5px solid ' + (isLive?'#16A34A':'rgba(255,255,255,.1)');  lBtn.style.background = isLive?'rgba(22,163,74,.2)':'rgba(255,255,255,.04)';  lBtn.style.color = isLive?'#4ADE80':'rgba(255,255,255,.3)'; }
-    // 즉시 메인 카드에도 반영
-    const badge = document.querySelector('[data-svc-status="' + idx + '"]');
-    if (badge) {
-      badge.className = 'svc-status' + (isLive ? ' live' : '');
-      badge.style.cssText = 'position:relative;z-index:1' + (idx === 2 ? ';margin-top:8px' : '');
-      badge.innerHTML = '<span class="dot"></span>' + status;
-      if (idx === 2) {
-        const card3 = badge.closest('.svc-item');
-        if (card3) card3.classList.toggle('operating-card', isLive);
-      }
-    }
-  };
-
-  loadConfig();
+  // ESH 초기화
+  ESH.init([
+    () => { ESH.Newsletter.init(); },
+    () => { ESH.Stats.init(); },
+    applyIndexConfig,
+  ]);
 })();
-</script>
-
-<!-- Script 2: 모달 제어 + 구독 + 현황 -->
-<script>
-(function () {
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbykCxcVBZki0-wrNpd5a63D_wttCJUs14_-OyvrEGcozwueS3BMnlRxNALz_KijeyTO/exec';
-  const STATS_THRESHOLD = 10;
-
-  function openModal(el)  { if (!el) return; el.classList.add('open');    document.body.style.overflow = 'hidden'; }
-  function closeModal(el) { if (!el) return; el.classList.remove('open'); document.body.style.overflow = '';       }
-
-  const nlOverlay      = document.getElementById('nl-overlay');
-  const previewOverlay = document.getElementById('preview-overlay');
-
-  document.getElementById('nl-trigger')?.addEventListener('click', () => openModal(nlOverlay));
-  document.getElementById('nl-close')?.addEventListener('click',   () => closeModal(nlOverlay));
-
-  document.getElementById('nl-preview-btn')?.addEventListener('click', () => openModal(previewOverlay));
-  document.getElementById('preview-close')?.addEventListener('click',  () => closeModal(previewOverlay));
-  document.getElementById('preview-subscribe-btn')?.addEventListener('click', () => {
-    closeModal(previewOverlay);
-    setTimeout(() => openModal(nlOverlay), 200);
-  });
-
-  [nlOverlay, previewOverlay].forEach(ov => {
-    ov?.addEventListener('click', e => { if (e.target === ov) closeModal(ov); });
-  });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeModal(nlOverlay); closeModal(previewOverlay); }
-  });
-
-  document.querySelectorAll('.nl-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.nl-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.nl-panel').forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById('panel-' + tab.dataset.tab)?.classList.add('active');
-    });
-  });
-
-  document.getElementById('agree-toggle-btn')?.addEventListener('click', () => {
-    const tbl = document.getElementById('agree-table');
-    const btn = document.getElementById('agree-toggle-btn');
-    if (!tbl || !btn) return;
-    tbl.classList.toggle('open');
-    btn.textContent = tbl.classList.contains('open') ? '수집 항목 접기 ▲' : '수집 항목 상세보기 ▼';
-  });
-
-  function showResult(el, type, msg) {
-    if (!el) return;
-    el.className   = 'nl-result ' + type;
-    el.textContent = msg;
-  }
-
-  document.getElementById('btn-subscribe')?.addEventListener('click', async () => {
-    const name        = (document.getElementById('sub-name')?.value        || '').trim();
-    const email       = (document.getElementById('sub-email')?.value       || '').trim();
-    const affiliation = (document.getElementById('sub-affiliation')?.value || '').trim();
-    const industry    = document.getElementById('sub-industry')?.value     || '';
-    const industryEtc = (document.getElementById('sub-industry-etc')?.value || '').trim();
-
-    // 기타 선택 시 직접 입력값 검증
-    if (industry === '기타' && !industryEtc) return showResult(subResult, 'error', '업종을 직접 입력해 주세요.');
-    const agree       = document.getElementById('sub-agree')?.checked;
-    const subResult   = document.getElementById('sub-result');
-    const subBtn      = document.getElementById('btn-subscribe');
-
-    showResult(subResult, '', '');
-    if (!name)  return showResult(subResult, 'error', '이름을 입력해 주세요.');
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showResult(subResult, 'error', '올바른 이메일을 입력해 주세요.');
-    if (!agree) return showResult(subResult, 'error', '개인정보 수집 동의가 필요합니다.');
-
-    subBtn.classList.add('loading');
-    subBtn.disabled = true;
-    try {
-      const res  = await fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ action: 'subscribe', name, email, affiliation, industry, industryEtc }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        showResult(subResult, 'success', '✓ 구독 신청이 완료되었습니다. 매주 월요일 받아보실 수 있습니다.');
-        ['sub-name','sub-email','sub-affiliation'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
-        const selEl = document.getElementById('sub-industry'); if (selEl) selEl.value = '';
-        const etcEl = document.getElementById('sub-industry-etc'); if (etcEl) etcEl.value = '';
-        const etcFd = document.getElementById('sub-etc-field'); if (etcFd) etcFd.style.display = 'none';
-        const chkEl = document.getElementById('sub-agree');    if (chkEl) chkEl.checked = false;
-        loadStats();
-      } else {
-        showResult(subResult, 'error', data.message || '신청 처리 중 오류가 발생했습니다.');
-      }
-    } catch {
-      showResult(subResult, 'error', '서버 연결 오류. 잠시 후 다시 시도해 주세요.');
-    } finally {
-      subBtn.classList.remove('loading');
-      subBtn.disabled = false;
-    }
-  });
-
-  document.getElementById('btn-unsubscribe')?.addEventListener('click', async () => {
-    const name      = (document.getElementById('unsub-name')?.value  || '').trim();
-    const email     = (document.getElementById('unsub-email')?.value || '').trim();
-    const unsubResult = document.getElementById('unsub-result');
-    const unsubBtn    = document.getElementById('btn-unsubscribe');
-
-    showResult(unsubResult, '', '');
-    if (!name)  return showResult(unsubResult, 'error', '이름을 입력해 주세요.');
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showResult(unsubResult, 'error', '올바른 이메일을 입력해 주세요.');
-
-    unsubBtn.classList.add('loading');
-    unsubBtn.disabled = true;
-    try {
-      const res  = await fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ action: 'unsubscribe', name, email }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        showResult(unsubResult, 'success', '✓ 구독이 취소되었습니다.');
-        const nEl = document.getElementById('unsub-name');  if (nEl) nEl.value = '';
-        const eEl = document.getElementById('unsub-email'); if (eEl) eEl.value = '';
-        loadStats();
-      } else {
-        showResult(unsubResult, 'error', data.message || '취소 처리 중 오류가 발생했습니다.');
-      }
-    } catch {
-      showResult(unsubResult, 'error', '서버 연결 오류. 잠시 후 다시 시도해 주세요.');
-    } finally {
-      unsubBtn.classList.remove('loading');
-      unsubBtn.disabled = false;
-    }
-  });
-
-  async function loadStats() {
-    const container    = document.getElementById('stats-container');
-    const updateTimeEl = document.getElementById('stats-update-time');
-    if (!container) return;
-
-    try {
-      const res  = await fetch(APPS_SCRIPT_URL + '?action=getStats', { signal: AbortSignal.timeout(8000) });
-      const data = await res.json();
-      const inds  = window._CFG_INDUSTRIES || [];
-      const stats = (data.success && Array.isArray(data.stats)) ? data.stats : [];
-
-      const merged = inds.map(ind => {
-        const name   = ind.name || ind;
-        const found  = stats.find(s => s.industry === name || s.name === name);
-        const count  = found ? (found.count || 0) : 0;
-        const status = ind.status || (count >= STATS_THRESHOLD ? '발송준비' : '신청중');
-        return { name, count, status };
-      });
-
-      renderStats(merged);
-
-      const now = new Date();
-      const hh  = String(now.getHours()).padStart(2,'0');
-      const mm  = String(now.getMinutes()).padStart(2,'0');
-      if (updateTimeEl) updateTimeEl.textContent = hh + ':' + mm + ' 업데이트';
-
-    } catch {
-      const inds = window._CFG_INDUSTRIES || [];
-      renderStats(inds.map(ind => ({
-        name: ind.name || ind, count: 0, status: ind.status || '신청중'
-      })));
-      if (updateTimeEl) updateTimeEl.textContent = '업데이트 대기 중';
-    }
-  }
-
-  function renderStats(industries) {
-    const container = document.getElementById('stats-container');
-    if (!container) return;
-    if (!industries || !industries.length) {
-      container.innerHTML = '<div class="stats-loading">표시할 업종이 없습니다.</div>';
-      return;
-    }
-    container.innerHTML = '<div class="stats-grid">' + industries.map(ind => {
-      const pct       = Math.min(100, (ind.count / STATS_THRESHOLD) * 100);
-      const isSending = ind.status === '발송중';
-      const isReady   = ind.status === '발송준비' || (!isSending && ind.count >= STATS_THRESHOLD);
-
-      let barClass = 'pending', tagClass = 'soon', tagText = '준비중';
-      if (isSending)    { barClass = 'sending';       tagClass = 'sending'; tagText = '<span class="sending-dot"></span>발송중'; }
-      else if (isReady) { barClass = 'ready animate'; tagClass = 'ready';   tagText = '발송준비'; }
-
-      const barWidth = isSending ? 100 : pct;
-
-      return `<div class="stat-row">
-        <div class="stat-top">
-          <span class="stat-label">${escHtml(ind.name)}</span>
-          <span class="stat-count">${ind.count}명<span class="stat-tag ${tagClass}">${tagText}</span></span>
-        </div>
-        <div class="stat-bar-wrap">
-          <div class="stat-bar ${barClass}" style="width:${barWidth}%"></div>
-          ${!isSending ? '<div class="stat-marker" style="left:100%"></div>' : ''}
-        </div>
-      </div>`;
-    }).join('') + '</div>';
-  }
-
-  function escHtml(s) {
-    return String(s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  }
-
-  setTimeout(loadStats, 900);
-  setInterval(loadStats, 5 * 60 * 1000);
-
-})();
-</script>
-
-<!-- 3. 전광판 티커 -->
-<script>
-const TK={
-  inner:document.getElementById('tk-inner'),timeEl:document.getElementById('tk-time'),refreshBtn:document.getElementById('tk-refresh-btn'),
-  feeds:[
-    {url:'https://api.rss2json.com/v1/api.json?count=10&rss_url='+encodeURIComponent('https://www.moel.go.kr/news/enews/report/rss.do'),cat:'노동부',cls:'bd-moel'},
-    {url:'https://api.rss2json.com/v1/api.json?count=10&rss_url='+encodeURIComponent('https://www.kosha.or.kr/kosha/data/rssCenter.do?gubun=A'),cat:'KOSHA',cls:'bd-kosha'},
-    {url:'https://api.rss2json.com/v1/api.json?count=10&rss_url='+encodeURIComponent('http://www.anjunj.com/rss/allArticle.xml'),cat:'안전저널',cls:'bd-news'},
-    {url:'https://api.rss2json.com/v1/api.json?count=10&rss_url='+encodeURIComponent('https://www.me.go.kr/home/web/rss/rss.do?menuId=10257'),cat:'환경부',cls:'bd-env'},
-    {url:'https://api.rss2json.com/v1/api.json?count=10&rss_url='+encodeURIComponent('https://www.kosha.or.kr/kosha/data/rssCenter.do?gubun=B'),cat:'KOSHA',cls:'bd-kosha'},
-  ],
-  updateTime(){const n=new Date();this.timeEl.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+' 기준'},
-  buildItem(cat,cls,text,link){const inner=link?`<a href="${link}" target="_blank" rel="noopener">${text}</a>`:text;return`<span class="tk-item"><span class="tk-badge ${cls}">${cat}</span>${inner}</span><span class="tk-dot"></span>`},
-  render(items){if(!items.length)return;const dur=Math.min(240,Math.max(90,items.length*10));this.inner.innerHTML=items.map(i=>this.buildItem(i.cat,i.cls,i.text,i.link)).join('')+items.map(i=>this.buildItem(i.cat,i.cls,i.text,i.link)).join('');this.inner.style.setProperty('--tk-dur',dur+'s');this.inner.classList.remove('running');void this.inner.offsetWidth;this.inner.classList.add('running');this.updateTime()},
-  async fetchFeed(f){
-    try{
-      const ts=Math.floor(Date.now()/(5*60*1000));
-      const r=await fetch(f.url+'&_t='+ts,{signal:AbortSignal.timeout(6000),cache:'no-store'});
-      if(!r.ok)return[];
-      const d=await r.json();
-      if(d.status!=='ok'||!Array.isArray(d.items))return[];
-      return d.items.slice(0,6).map(i=>({
-        cat:f.cat,cls:f.cls,
-        text:(i.title||'').replace(/<[^>]+>/g,'').trim().slice(0,60),
-        link:i.link||null,
-        date:i.pubDate?new Date(i.pubDate):null,
-      })).filter(i=>i.text.length>4);
-    }catch{return[]}
-  },
-  fallback:[
-    {cat:'노동부',  cls:'bd-moel',  text:'고용노동부 산업안전보건 정책 · 보도자료',          link:'https://www.moel.go.kr/news/enews/report/enewsView.do'},
-    {cat:'KOSHA',  cls:'bd-kosha', text:'안전보건공단 공지사항 · 안전보건 자료실',          link:'https://www.kosha.or.kr/kosha/data/notice.do'},
-    {cat:'안전저널',cls:'bd-news',  text:'안전저널 최신 산업재해 · 안전보건 뉴스',          link:'http://www.anjunj.com'},
-    {cat:'환경부',  cls:'bd-env',   text:'환경부 화학물질 · 환경안전 최신 공지',            link:'https://www.me.go.kr/home/web/main.do'},
-    {cat:'법령',    cls:'bd-rule',  text:'국가법령정보센터 산업안전보건법 · 중대재해처벌법', link:'https://www.law.go.kr'},
-  ],
-  async fetchAll(){
-    const r=await Promise.allSettled(this.feeds.map(f=>this.fetchFeed(f)));
-    const items=r.filter(x=>x.status==='fulfilled').flatMap(x=>x.value);
-    items.sort((a,b)=>{
-      if(!a.date&&!b.date)return 0;
-      if(!a.date)return 1;
-      if(!b.date)return -1;
-      return b.date-a.date;
-    });
-    this.render(items.length?items:this.fallback);
-  },
-  refresh(){this.inner.innerHTML='<div class="tk-load"><div class="tk-spin"></div>새로고침 중...</div>';this.inner.classList.remove('running');this.fetchAll()},
-  init(){this.fetchAll();setInterval(()=>this.fetchAll(),5*60*1000);setInterval(()=>this.updateTime(),60*1000);this.refreshBtn.addEventListener('click',()=>this.refresh())}
-};
-TK.init();
 </script>
 
 <!-- 네이버 애널리틱스 -->
@@ -1807,6 +708,5 @@ if(!wcs_add) var wcs_add={};
 wcs_add["wa"]="13a68914808cdb";
 if(window.wcs)wcs_do();
 </script>
-
 </body>
 </html>

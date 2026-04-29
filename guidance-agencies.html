@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고용노동부 지정 안전보건전문기관 찾기 · ESH-MASTER</title>
+<!-- ① 공통 디자인 토큰 -->
+<link rel="stylesheet" href="style.css">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://dapi.kakao.com">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -494,6 +497,22 @@ document.addEventListener('keydown',e=>{
   Object.defineProperty(t,'id',{get:function(){document.body.innerHTML='<div style="display:grid;place-items:center;height:100vh;font-family:sans-serif;color:#64748B"><div style="text-align:center"><div style="font-size:48px;margin-bottom:16px">🔒</div><div style="font-size:18px;font-weight:700;color:#0A2540">접근이 제한되었습니다</div></div></div>';}});
   setInterval(()=>{console.log('%c',t);console.clear();},1000);
 })();
+</script>
+
+<!-- ② 공통 로직 -->
+<script src="shared.js"></script>
+<script>
+// guidance-agencies는 독립 앱 구조, config만 로드
+ESH.Config.load();
+ESH.Security.blockDevTools();
+</script>
+
+<!-- 네이버 애널리틱스 -->
+<script type="text/javascript" src="//wcs.pstatic.net/wcslog.js"></script>
+<script type="text/javascript">
+if(!wcs_add) var wcs_add={};
+wcs_add["wa"]="13a68914808cdb";
+if(window.wcs)wcs_do();
 </script>
 </body>
 </html>
