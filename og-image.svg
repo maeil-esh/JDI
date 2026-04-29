@@ -1,0 +1,51 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- background -->
+  <rect width="1200" height="630" fill="#F4F8FD"/>
+  <!-- left accent bar -->
+  <rect x="0" y="0" width="14" height="630" fill="#1E6BD8"/>
+  <!-- white card -->
+  <rect x="60" y="55" width="1080" height="520" rx="22" fill="white"/>
+  <!-- subtle blue circle deco right -->
+  <circle cx="1085" cy="128" r="72" fill="#EBF2FF"/>
+  <circle cx="1085" cy="128" r="48" fill="#DBEAFE"/>
+  <circle cx="1085" cy="128" r="24" fill="#93C5FD" opacity="0.4"/>
+
+  <!-- logo mark -->
+  <rect x="100" y="98" width="68" height="68" rx="14" fill="#0A2540"/>
+  <text x="134" y="141" text-anchor="middle" font-family="Arial Black, Arial" font-weight="900" font-size="23" fill="white">EM</text>
+  <circle cx="160" cy="158" r="7" fill="#14B8A6"/>
+
+  <!-- brand name -->
+  <text x="188" y="130" font-family="Arial Black, Arial" font-weight="900" font-size="27" fill="#0A2540" letter-spacing="-0.5">ESH-MASTER.KR</text>
+  <text x="189" y="157" font-family="Arial, sans-serif" font-weight="400" font-size="13" fill="#64748B" letter-spacing="3">ENVIRONMENT · SAFETY · HEALTH</text>
+
+  <!-- divider -->
+  <line x1="100" y1="198" x2="1100" y2="198" stroke="#E2E8F0" stroke-width="1.5"/>
+
+  <!-- main headline line 1 -->
+  <text x="100" y="302" font-family="Arial Black, Arial" font-weight="900" font-size="70" fill="#0A2540" letter-spacing="-2">현장에서 검증된</text>
+  <!-- main headline line 2 -->
+  <text x="100" y="386" font-family="Arial Black, Arial" font-weight="900" font-size="70" fill="#1E6BD8" letter-spacing="-2">안전보건환경 디지털 설계</text>
+
+  <!-- sub -->
+  <text x="100" y="434" font-family="Arial, sans-serif" font-size="20" fill="#64748B">산업안전기획 · 안전보건전산화 전문가가 직접 설계하는 ESH 플랫폼</text>
+
+  <!-- service chips -->
+  <rect x="100" y="468" width="192" height="40" rx="8" fill="#EFF4FF" stroke="#BFDBFE" stroke-width="1.2"/>
+  <text x="196" y="492" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#1E6BD8">Safety Do It</text>
+
+  <rect x="306" y="468" width="192" height="40" rx="8" fill="#EFF4FF" stroke="#BFDBFE" stroke-width="1.2"/>
+  <text x="402" y="492" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#1E6BD8">JSA 위험성평가</text>
+
+  <rect x="512" y="468" width="234" height="40" rx="8" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.2"/>
+  <text x="629" y="492" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#15803D">AI 안전보건 뉴스레터</text>
+
+  <rect x="760" y="468" width="192" height="40" rx="8" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.2"/>
+  <text x="856" y="492" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#15803D">안전보건정보</text>
+
+  <!-- domain bottom right -->
+  <text x="1100" y="545" text-anchor="end" font-family="Arial Black, Arial" font-weight="900" font-size="18" fill="#CBD5E1" letter-spacing="1">esh-master.kr</text>
+
+  <!-- bottom accent bar -->
+  <rect x="0" y="614" width="1200" height="16" fill="#1E6BD8" opacity="0.12"/>
+</svg>
