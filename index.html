@@ -95,9 +95,9 @@
     .svc-status .dot{width:5px;height:5px;border-radius:50%;background:currentColor}
     .svc-status.beta{background:var(--mint-100);color:#0E7A6E}
     .svc-status.beta .dot{animation:beta-pulse 1.5s ease-in-out infinite}
-    /* ── 운영중 상태 뱃지 ── */
-    .svc-status.operating{background:var(--blue-100);color:var(--blue-600)}
-    .svc-status.operating .dot{animation:beta-pulse 1.5s ease-in-out infinite}
+    /* 운영중 — 녹색 */
+    .svc-status.live{background:#DCFCE7;color:#15803D}
+    .svc-status.live .dot{background:#16A34A;animation:beta-pulse 1.5s ease-in-out infinite}
     @keyframes beta-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
     .svc-action-btn{flex:1;padding:8px 0;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;transition:all .2s;letter-spacing:-.01em}
     .svc-btn-preview{background:var(--gray-100);color:var(--gray-700)}.svc-btn-preview:hover{background:var(--gray-200)}
@@ -106,10 +106,10 @@
     .svc-item.beta-card::before{content:'NEW';position:absolute;top:14px;right:14px;padding:3px 8px;background:var(--mint-500);color:var(--white);font-family:'Inter',sans-serif;font-size:9px;font-weight:800;letter-spacing:.08em;border-radius:4px;box-shadow:0 2px 8px rgba(20,184,166,.35)}
     .svc-item.beta-card:hover{border-color:var(--mint-500);box-shadow:0 12px 32px rgba(20,184,166,.15)}
 
-    /* ── 운영중 카드 (03번) 스타일 ── */
-    .svc-item.operating-card{background:linear-gradient(160deg,#EFF6FF 0%,var(--white) 60%);border-color:var(--blue-100);position:relative;cursor:pointer}
-    .svc-item.operating-card::before{content:'LIVE';position:absolute;top:14px;right:14px;padding:3px 8px;background:var(--blue-600);color:var(--white);font-family:'Inter',sans-serif;font-size:9px;font-weight:800;letter-spacing:.08em;border-radius:4px;box-shadow:0 2px 8px rgba(30,107,216,.35)}
-    .svc-item.operating-card:hover{border-color:var(--blue-600);box-shadow:0 12px 32px rgba(30,107,216,.12)}
+    /* 운영중 카드 — 녹색 */
+    .svc-item.operating-card{background:linear-gradient(160deg,#F0FDF4 0%,var(--white) 60%);border-color:#BBF7D0;position:relative;cursor:pointer}
+    .svc-item.operating-card::before{content:'LIVE';position:absolute;top:14px;right:14px;padding:3px 8px;background:#16A34A;color:var(--white);font-family:'Inter',sans-serif;font-size:9px;font-weight:800;letter-spacing:.08em;border-radius:4px;box-shadow:0 2px 8px rgba(22,163,74,.35)}
+    .svc-item.operating-card:hover{border-color:#16A34A;box-shadow:0 12px 32px rgba(22,163,74,.12)}
 
     .contact-card{background:linear-gradient(135deg,var(--navy-900) 0%,var(--navy-700) 100%);color:var(--white);border-radius:20px;padding:48px 40px;max-width:100%;margin:0 auto;position:relative;overflow:hidden;animation:fade-up .9s .5s ease-out both}
     .contact-card::before{content:'';position:absolute;top:-100px;right:-100px;width:280px;height:280px;background:radial-gradient(circle,rgba(30,107,216,.3),transparent 60%);border-radius:50%}
@@ -338,7 +338,7 @@
 <div id="news-ticker">
   <div class="tk-label">
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-    ESH NEWS
+    안전보건 NEWS
   </div>
   <div class="tk-track">
     <div class="tk-inner" id="tk-inner">
@@ -404,7 +404,7 @@
           <svg id="svc-bg-0" style="position:absolute;right:-20px;bottom:-16px;width:130px;height:130px;opacity:.06;color:var(--navy-900);pointer-events:none;z-index:0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l8 4v6c0 5-3.5 9.4-8 10-4.5-.6-8-5-8-10V6l8-4z"/></svg>
           <div class="svc-icon" style="position:relative;z-index:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9.4-8 10-4.5-.6-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
           <div class="svc-body" style="position:relative;z-index:1"><div class="eng en">01 · FLAGSHIP</div><h3 data-svc-title="0">Safety Do It</h3><p data-svc-desc="0">계층별 누구나 쉽게 따라하고<br>안전을 즐겁게 만드는 통합 솔루션</p></div>
-          <div class="svc-status" style="position:relative;z-index:1"><span class="dot"></span>준비중</div>
+          <div class="svc-status" data-svc-status="0" style="position:relative;z-index:1"><span class="dot"></span>준비중</div>
         </div>
 
         <!-- 02 JSA 위험성평가 -->
@@ -412,20 +412,19 @@
           <svg id="svc-bg-1" style="position:absolute;right:-20px;bottom:-16px;width:130px;height:130px;opacity:.06;color:var(--navy-900);pointer-events:none;z-index:0" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h6M9 17h3" stroke="white" stroke-width="1.5" fill="none"/></svg>
           <div class="svc-icon" style="position:relative;z-index:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></div>
           <div class="svc-body" style="position:relative;z-index:1"><div class="eng en">02 · ASSESSMENT</div><h3 data-svc-title="1">JSA 위험성평가</h3><p data-svc-desc="1">업종별 작업표준화를 통해<br>AI를 활용한 JSA 위험성평가</p></div>
-          <div class="svc-status" style="position:relative;z-index:1"><span class="dot"></span>준비중</div>
+          <div class="svc-status" data-svc-status="1" style="position:relative;z-index:1"><span class="dot"></span>준비중</div>
         </div>
 
-        <!-- 03 AI 안전보건 뉴스레터 — 운영중으로 변경 -->
+        <!-- 03 AI 안전보건 뉴스레터 -->
         <div class="svc-item svc-3 operating-card" style="cursor:default;position:relative;overflow:hidden">
-          <svg id="svc-bg-2" style="position:absolute;right:-20px;bottom:-16px;width:130px;height:130px;opacity:.07;color:var(--blue-600);pointer-events:none;z-index:0" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>
-          <div class="svc-icon" style="position:relative;z-index:1;background:linear-gradient(135deg,var(--blue-600),var(--blue-500))"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
+          <svg id="svc-bg-2" style="position:absolute;right:-20px;bottom:-16px;width:130px;height:130px;opacity:.07;color:#16A34A;pointer-events:none;z-index:0" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>
+          <div class="svc-icon" style="position:relative;z-index:1;background:linear-gradient(135deg,var(--amber),#D97706)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></div>
           <div class="svc-body" style="position:relative;z-index:1"><div class="eng en">03 · WEEKLY</div><h3 data-svc-title="2">AI 안전보건 뉴스레터</h3><p data-svc-desc="2">업종별 특성을 반영한<br>AI 안전보건 주간 큐레이션</p></div>
           <div style="display:flex;gap:8px;margin-top:auto;position:relative;z-index:1">
             <button class="svc-action-btn svc-btn-preview" id="nl-preview-btn">예시 보기</button>
             <button class="svc-action-btn svc-btn-sub" id="nl-trigger">구독 신청</button>
           </div>
-          <!-- ★ BETA 오픈 → 운영중 -->
-          <div class="svc-status operating" style="position:relative;z-index:1;margin-top:8px"><span class="dot"></span>운영중</div>
+          <div class="svc-status live" data-svc-status="2" style="position:relative;z-index:1;margin-top:8px"><span class="dot"></span>운영중</div>
         </div>
 
         <!-- 04 안전보건정보 -->
@@ -433,15 +432,14 @@
           <svg id="svc-bg-3" style="position:absolute;right:-20px;bottom:-16px;width:130px;height:130px;opacity:.06;color:var(--mint-500);pointer-events:none;z-index:0" viewBox="0 0 24 24" fill="currentColor"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
           <div class="svc-icon" style="position:relative;z-index:1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
           <div class="svc-body" style="position:relative;z-index:1"><div class="eng en">04 · RESOURCES</div><h3 data-svc-title="3">안전보건정보</h3><p data-svc-desc="3">업종별 특성을 반영한<br>법령·사례·서식 자료실</p></div>
-          <div class="svc-status" style="position:relative;z-index:1"><span class="dot"></span>준비중</div>
+          <div class="svc-status" data-svc-status="3" style="position:relative;z-index:1"><span class="dot"></span>준비중</div>
         </div>
 
-        <!-- 05 안전보건전문기관 — 나침반 SVG로 변경 -->
+        <!-- 05 안전보건전문기관 -->
         <a class="svc-item svc-5" href="guidance-agencies.html" target="_blank" rel="noopener" style="text-decoration:none">
           <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
           <div class="svc-body" style="position:relative;z-index:1"><div class="eng en">05 · DIRECTORY</div><h3 data-svc-title="4">고용노동부 지정 안전보건전문기관 찾기</h3><p data-svc-desc="4">안전·보건·건설재해예방<br>고용노동부 지정기관 검색 · 지도</p></div>
-          <div class="svc-status beta" style="position:relative;z-index:1"><span class="dot"></span>운영중</div>
-          <!-- ★ svc-5-map → 나침반 SVG (다른 카드와 동일 스타일) -->
+          <div class="svc-status live" data-svc-status="4" style="position:relative;z-index:1"><span class="dot"></span>운영중</div>
           <svg id="svc-bg-4" style="position:absolute;right:-20px;bottom:-16px;width:130px;height:130px;opacity:.06;color:var(--amber);pointer-events:none;z-index:0" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
         </a>
       </div>
@@ -724,7 +722,7 @@
       <!-- 서비스 카드 -->
       <div class="adm-section" id="adm-sec-services">
         <div class="adm-section-title">서비스 카드</div>
-        <div class="adm-section-sub">서비스 카드의 제목과 설명을 수정합니다. 03번은 현재 <strong style="color:#60A5FA">운영중</strong>, 05번은 <strong style="color:#4ADE80">가동중</strong>입니다.</div>
+        <div class="adm-section-sub">서비스 카드의 제목·설명·운영 상태를 수정합니다. <span style="color:#4ADE80;font-weight:700">운영중</span>은 녹색, <span style="color:#F59E0B;font-weight:700">준비중</span>은 황색으로 표시됩니다.</div>
         <div id="adm-services-list"></div>
       </div>
 
@@ -831,10 +829,11 @@
       { n: '다수 사업장', l: '통합 안전보건 체계' },
     ],
     services: [
-      { title: 'Safety Do It',       desc: '계층별 누구나 쉽게 따라하고\n안전을 즐겁게 만드는 통합 솔루션' },
-      { title: 'JSA 위험성평가',      desc: '업종별 작업표준화를 통해\nAI를 활용한 JSA 위험성평가' },
-      { title: 'AI 안전보건 뉴스레터', desc: '업종별 특성을 반영한\nAI 안전보건 주간 큐레이션' },
-      { title: '안전보건정보',         desc: '업종별 특성을 반영한\n법령·사례·서식 자료실' },
+      { title: 'Safety Do It',       desc: '계층별 누구나 쉽게 따라하고\n안전을 즐겁게 만드는 통합 솔루션',         status: '준비중' },
+      { title: 'JSA 위험성평가',      desc: '업종별 작업표준화를 통해\nAI를 활용한 JSA 위험성평가',              status: '준비중' },
+      { title: 'AI 안전보건 뉴스레터', desc: '업종별 특성을 반영한\nAI 안전보건 주간 큐레이션',                  status: '운영중' },
+      { title: '안전보건정보',         desc: '업종별 특성을 반영한\n법령·사례·서식 자료실',                      status: '준비중' },
+      { title: '고용노동부 지정 안전보건전문기관 찾기', desc: '안전·보건·건설재해예방\n고용노동부 지정기관 검색 · 지도', status: '운영중' },
     ],
     contact_h2:    '서비스 출시 · 파트너십 · 문의는\n아래 이메일로 연락 주세요.',
     contact_email: 'esh-master@gmail.com',
@@ -899,6 +898,21 @@
       const d = document.querySelector('[data-svc-desc="'  + i + '"]');
       if (t) t.textContent = s.title;
       if (d) d.innerHTML   = s.desc.replace(/\n/g, '<br>');
+      // 상태 뱃지 동적 업데이트
+      const badge = document.querySelector('[data-svc-status="' + i + '"]');
+      if (badge && s.status) {
+        const isLive = s.status === '운영중';
+        badge.className = 'svc-status' + (isLive ? ' live' : '') + (badge.style.marginTop ? '' : '');
+        badge.style.cssText = 'position:relative;z-index:1' + (i === 2 ? ';margin-top:8px' : '');
+        badge.innerHTML = '<span class="dot"></span>' + s.status;
+        // 카드 03 operating-card 클래스 토글
+        if (i === 2) {
+          const card3 = badge.closest('.svc-item');
+          if (card3) {
+            card3.classList.toggle('operating-card', isLive);
+          }
+        }
+      }
     });
 
     const bnEl = document.getElementById('cfg-brand-name');
@@ -1110,23 +1124,32 @@
       credsList.appendChild(card);
     });
 
-    /* ★ 관리자 서비스 카드 레이블 — 운영중/가동중 상태 표시 */
-    const svcLabels = [
-      '01 · Safety Do It — 준비중',
-      '02 · JSA 위험성평가 — 준비중',
-      '03 · AI 뉴스레터 🔵 운영중',
-      '04 · 안전보건정보 — 준비중',
-      '05 · 전문기관 찾기 🟢 가동중',
-    ];
+
+    const svcLabels = ['01 · Safety Do It','02 · JSA 위험성평가','03 · AI 뉴스레터','04 · 안전보건정보','05 · 전문기관 찾기'];
     const svcList   = document.getElementById('adm-services-list');
     svcList.innerHTML = '';
     CFG.services.forEach((s, i) => {
+      const isLive = (s.status || '준비중') === '운영중';
       const card = document.createElement('div');
       card.className = 'adm-card';
       card.innerHTML = `<div class="adm-card-label">${svcLabels[i]}</div>
         <div class="adm-grid adm-grid-1" style="gap:10px">
           <div class="adm-field"><label>제목</label><input type="text" data-svc-t="${i}" value="${esc(s.title)}"></div>
-          <div class="adm-field"><label>설명 (\n으로 줄바꿈)</label><input type="text" data-svc-d="${i}" value="${esc(s.desc)}"></div>
+          <div class="adm-field"><label>설명 (\\n으로 줄바꿈)</label><input type="text" data-svc-d="${i}" value="${esc(s.desc)}"></div>
+          <div class="adm-field">
+            <label>운영 상태</label>
+            <div style="display:flex;gap:8px;margin-top:2px">
+              <button type="button" id="svc-sts-ready-${i}" onclick="setSvcStatus(${i},'준비중')"
+                style="flex:1;padding:8px 0;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;transition:all .2s;border:1.5px solid ${!isLive?'#F59E0B':'rgba(255,255,255,.1)'};background:${!isLive?'rgba(245,158,11,.2)':'rgba(255,255,255,.04)'};color:${!isLive?'#F59E0B':'rgba(255,255,255,.3)'}">
+                준비중
+              </button>
+              <button type="button" id="svc-sts-live-${i}" onclick="setSvcStatus(${i},'운영중')"
+                style="flex:1;padding:8px 0;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;transition:all .2s;border:1.5px solid ${isLive?'#16A34A':'rgba(255,255,255,.1)'};background:${isLive?'rgba(22,163,74,.2)':'rgba(255,255,255,.04)'};color:${isLive?'#4ADE80':'rgba(255,255,255,.3)'}">
+                운영중
+              </button>
+            </div>
+            <input type="hidden" data-svc-s="${i}" value="${esc(s.status||'준비중')}">
+          </div>
         </div>`;
       svcList.appendChild(card);
     });
@@ -1311,6 +1334,7 @@
     document.querySelectorAll('[data-cred-l]').forEach(el => { CFG.creds[+el.dataset.credL].l = el.value; });
     document.querySelectorAll('[data-svc-t]').forEach(el => { CFG.services[+el.dataset.svcT].title = el.value; });
     document.querySelectorAll('[data-svc-d]').forEach(el => { CFG.services[+el.dataset.svcD].desc  = el.value; });
+    document.querySelectorAll('[data-svc-s]').forEach(el => { CFG.services[+el.dataset.svcS].status = el.value; });
 
     CFG.industries = Array.from(document.querySelectorAll('#adm-industry-list li')).map(li => ({
       name:   (li.querySelector('[data-ind-name]')?.value   || '').trim(),
@@ -1402,6 +1426,29 @@
   document.addEventListener('input', e => {
     if (e.target.id === 'adm-favicon') updateFaviconPreview(e.target.value.trim());
   });
+
+  /* ── 서비스 카드 상태 토글 ────────────────────────────── */
+  window.setSvcStatus = function(idx, status) {
+    CFG.services[idx].status = status;
+    const hiddenInput = document.querySelector('[data-svc-s="' + idx + '"]');
+    if (hiddenInput) hiddenInput.value = status;
+    const isLive = status === '운영중';
+    const rBtn = document.getElementById('svc-sts-ready-' + idx);
+    const lBtn = document.getElementById('svc-sts-live-'  + idx);
+    if (rBtn) { rBtn.style.border = '1.5px solid ' + (!isLive?'#F59E0B':'rgba(255,255,255,.1)'); rBtn.style.background = !isLive?'rgba(245,158,11,.2)':'rgba(255,255,255,.04)'; rBtn.style.color = !isLive?'#F59E0B':'rgba(255,255,255,.3)'; }
+    if (lBtn) { lBtn.style.border = '1.5px solid ' + (isLive?'#16A34A':'rgba(255,255,255,.1)');  lBtn.style.background = isLive?'rgba(22,163,74,.2)':'rgba(255,255,255,.04)';  lBtn.style.color = isLive?'#4ADE80':'rgba(255,255,255,.3)'; }
+    // 즉시 메인 카드에도 반영
+    const badge = document.querySelector('[data-svc-status="' + idx + '"]');
+    if (badge) {
+      badge.className = 'svc-status' + (isLive ? ' live' : '');
+      badge.style.cssText = 'position:relative;z-index:1' + (idx === 2 ? ';margin-top:8px' : '');
+      badge.innerHTML = '<span class="dot"></span>' + status;
+      if (idx === 2) {
+        const card3 = badge.closest('.svc-item');
+        if (card3) card3.classList.toggle('operating-card', isLive);
+      }
+    }
+  };
 
   loadConfig();
 })();
