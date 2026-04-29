@@ -108,7 +108,6 @@
 
     /* 운영중 카드 — 녹색 */
     .svc-item.operating-card{background:linear-gradient(160deg,#F0FDF4 0%,var(--white) 60%);border-color:#BBF7D0;position:relative;cursor:pointer}
-    .svc-item.operating-card::before{content:'LIVE';position:absolute;top:14px;right:14px;padding:3px 8px;background:#16A34A;color:var(--white);font-family:'Inter',sans-serif;font-size:9px;font-weight:800;letter-spacing:.08em;border-radius:4px;box-shadow:0 2px 8px rgba(22,163,74,.35)}
     .svc-item.operating-card:hover{border-color:#16A34A;box-shadow:0 12px 32px rgba(22,163,74,.12)}
 
     .contact-card{background:linear-gradient(135deg,var(--navy-900) 0%,var(--navy-700) 100%);color:var(--white);border-radius:20px;padding:48px 40px;max-width:100%;margin:0 auto;position:relative;overflow:hidden;animation:fade-up .9s .5s ease-out both}
@@ -146,34 +145,34 @@
     @media(max-width:1200px){.services{grid-template-columns:repeat(3,1fr)}}@media(max-width:900px){.services{grid-template-columns:repeat(2,1fr)}.credentials{max-width:540px;padding:20px 4px}.cred-item{min-width:120px;padding:8px 10px}.cred-n{font-size:24px}}
 
     /* 구독 현황 섹션 */
-    .stats-section{margin-bottom:56px;animation:fade-up .9s .45s ease-out both;position:relative}
-    .stats-section::before{content:'';position:absolute;top:-28px;left:50%;transform:translateX(-50%);width:22%;height:28px;border-left:1px dashed rgba(20,184,166,.25);border-right:1px dashed rgba(20,184,166,.25);pointer-events:none}
-    .stats-wrap{border:1px solid rgba(20,184,166,.22);border-radius:20px;padding:24px 28px;background:linear-gradient(160deg,rgba(240,253,248,.45) 0%,rgba(255,255,255,.3) 100%)}
-    .stats-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
-    .stats-title{font-size:15px;font-weight:800;color:var(--navy-900);letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
-    .stats-title-dot{width:8px;height:8px;background:var(--mint-500);border-radius:50%;animation:beta-pulse 1.5s ease-in-out infinite}
-    .stats-badge{font-size:12px;color:var(--gray-500);background:rgba(255,255,255,.8);padding:4px 12px;border-radius:20px;font-weight:500;border:1px solid var(--mint-100)}
-    .stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
-    .stat-row{background:rgba(255,255,255,.85);border:1px solid rgba(20,184,166,.15);border-radius:12px;padding:14px 16px}
-    .stat-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-    .stat-label{font-size:13px;color:var(--gray-700);font-weight:500}
-    .stat-count{font-size:13px;font-weight:700;color:var(--navy-900)}
-    .stat-bar-wrap{position:relative;height:7px;background:var(--gray-100);border-radius:4px;overflow:visible}
+    .stats-section{margin-bottom:32px;animation:fade-up .9s .45s ease-out both;position:relative}
+    .stats-section::before{content:'';position:absolute;top:-16px;left:50%;transform:translateX(-50%);width:22%;height:16px;border-left:1px dashed rgba(20,184,166,.25);border-right:1px dashed rgba(20,184,166,.25);pointer-events:none}
+    .stats-wrap{border:1px solid rgba(20,184,166,.22);border-radius:14px;padding:14px 18px;background:linear-gradient(160deg,rgba(240,253,248,.45) 0%,rgba(255,255,255,.3) 100%)}
+    .stats-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:6px}
+    .stats-title{font-size:10.5px;font-weight:800;color:var(--navy-900);letter-spacing:-.02em;display:flex;align-items:center;gap:6px}
+    .stats-title-dot{width:6px;height:6px;background:var(--mint-500);border-radius:50%;animation:beta-pulse 1.5s ease-in-out infinite}
+    .stats-badge{font-size:9px;color:var(--gray-500);background:rgba(255,255,255,.8);padding:3px 10px;border-radius:20px;font-weight:500;border:1px solid var(--mint-100)}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px}
+    .stat-row{background:rgba(255,255,255,.85);border:1px solid rgba(20,184,166,.15);border-radius:8px;padding:8px 12px}
+    .stat-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+    .stat-label{font-size:9.5px;color:var(--gray-700);font-weight:500}
+    .stat-count{font-size:9.5px;font-weight:700;color:var(--navy-900)}
+    .stat-bar-wrap{position:relative;height:4px;background:var(--gray-100);border-radius:4px;overflow:visible}
     .stat-bar{height:100%;border-radius:4px;width:0;transition:width 1s cubic-bezier(.2,.8,.2,1)}
     .stat-bar.sending{background:linear-gradient(90deg,#1A3A66,var(--blue-600));box-shadow:0 0 6px rgba(30,107,216,.35)}
     .stat-bar.ready{background:linear-gradient(90deg,#0E9488,var(--mint-500))}
     .stat-bar.pending{background:var(--gray-200)}
     .stat-tag.sending{background:var(--blue-100);color:var(--blue-600)}
-    .stat-tag.sending-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--blue-600);animation:beta-pulse 1.2s ease-in-out infinite;margin-right:3px;vertical-align:middle}
+    .stat-tag.sending-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--blue-600);animation:beta-pulse 1.2s ease-in-out infinite;margin-right:3px;vertical-align:middle}
     .stat-bar.ready.animate{box-shadow:0 0 8px rgba(20,184,166,.4)}
-    .stat-marker{position:absolute;top:-4px;height:15px;width:1.5px;background:rgba(100,116,139,.4)}
-    .stat-tag{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:20px;margin-left:6px}
+    .stat-marker{position:absolute;top:-3px;height:10px;width:1.5px;background:rgba(100,116,139,.4)}
+    .stat-tag{font-size:8px;font-weight:700;padding:1px 6px;border-radius:20px;margin-left:4px}
     .stat-tag.ready{background:var(--mint-100);color:#0E7A6E}
     .stat-tag.soon{color:var(--gray-400)}
-    .stats-loading{text-align:center;padding:32px 0;color:var(--gray-400);font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px}
-    .stats-spin{width:14px;height:14px;border-radius:50%;border:2px solid var(--gray-200);border-top-color:var(--mint-500);animation:nl-spin .8s linear infinite;flex-shrink:0}
+    .stats-loading{text-align:center;padding:16px 0;color:var(--gray-400);font-size:12px;display:flex;align-items:center;justify-content:center;gap:8px}
+    .stats-spin{width:12px;height:12px;border-radius:50%;border:2px solid var(--gray-200);border-top-color:var(--mint-500);animation:nl-spin .8s linear infinite;flex-shrink:0}
     @keyframes bar-fill{from{width:0}to{width:var(--bar-w)}}
-    @media(max-width:640px){.stats-grid{grid-template-columns:1fr}.stats-section::before{width:90%}.stats-wrap{padding:18px 16px}}
+    @media(max-width:640px){.stats-grid{grid-template-columns:1fr}.stats-section::before{width:90%}.stats-wrap{padding:10px 12px}}
 
     @media(max-width:640px){.container{padding:0 20px}main{padding:20px 0 60px}header{padding:20px 0}.logo-text .t2{display:none}h1{font-size:clamp(32px,9vw,44px)}.lead{margin-bottom:40px}.credentials{padding:16px 8px;margin-bottom:40px}.cred-item{flex:1 1 50%;min-width:0;padding:12px 8px}.cred-n{font-size:22px}.cred-l{font-size:11.5px}.cred-divider{display:none}.services{grid-template-columns:1fr;gap:12px;margin-bottom:40px}.svc-item{flex-direction:row;align-items:center;padding:20px}.svc-icon{flex-shrink:0}.svc-body{flex:1}.svc-status{display:none}.contact-card{padding:36px 28px;border-radius:16px}.mail-button{width:100%;justify-content:center;font-size:15px}footer{padding:36px 0 28px}.foot-inner{gap:14px}}
 
@@ -454,7 +453,7 @@
           <div id="stats-container">
             <div class="stats-loading"><div class="stats-spin"></div>현황을 불러오는 중...</div>
           </div>
-          <p style="font-size:12px;color:var(--gray-500);margin-top:14px;text-align:center">업종별 10명 이상 구독 시 해당 업종 뉴스레터 발송을 시작합니다</p>
+          <p style="font-size:9px;color:var(--gray-500);margin-top:8px;text-align:center">업종별 10명 이상 구독 시 해당 업종 뉴스레터 발송을 시작합니다</p>
         </div>
       </div>
 
@@ -869,7 +868,12 @@
       if (data.success && data.config) {
         CFG = Object.assign({}, DEFAULTS, data.config);
         if (data.config.creds)      CFG.creds      = data.config.creds;
-        if (data.config.services)   CFG.services   = data.config.services;
+        // services: 저장된 항목 수가 DEFAULTS보다 적을 경우 기본값으로 채움
+        if (data.config.services) {
+          CFG.services = DEFAULTS.services.map((def, i) =>
+            Object.assign({}, def, data.config.services[i] || {})
+          );
+        }
         if (data.config.industries) CFG.industries = data.config.industries;
         if (data.config.agencies)   CFG.agencies   = data.config.agencies;
         delete CFG.footer_brand_name;
