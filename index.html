@@ -8,6 +8,15 @@
   <meta property="og:title" content="ESH-MASTER · 안전보건환경 디지털 플랫폼">
   <meta property="og:description" content="Safety Do It · JSA 위험성평가 · AI 안전보건 뉴스레터 · 안전보건정보 — 곧 만나보실 수 있습니다.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://esh-master.kr">
+  <meta property="og:site_name" content="ESH-MASTER.KR">
+  <meta id="og-image" property="og:image" content="https://esh-master.kr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ESH-MASTER · 안전보건환경 디지털 플랫폼">
+  <meta name="twitter:description" content="Safety Do It · JSA 위험성평가 · AI 안전보건 뉴스레터 · 안전보건정보">
+  <meta id="twitter-image" name="twitter:image" content="https://esh-master.kr/og-image.svg">
 
   <!-- Favicon — 관리자 패널에서 변경 가능 -->
   <link id="site-favicon" rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230A2540'/><text x='50%25' y='52%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' font-size='13' fill='white'>EM</text><circle cx='25' cy='25' r='4.5' fill='%2314B8A6'/></svg>" type="image/svg+xml">
@@ -764,8 +773,27 @@
         <div class="adm-section-title">설정</div>
         <div class="adm-section-sub">파비콘(브라우저 탭 아이콘) 및 관리자 비밀번호를 관리합니다.</div>
 
-        <!-- 파비콘 -->
+        <!-- 링크 미리보기 이미지 -->
         <div class="adm-card" style="margin-bottom:24px">
+          <div class="adm-card-label">🖼️ 링크 공유 미리보기 이미지 (OG Image)</div>
+          <div class="adm-grid adm-grid-1" style="gap:12px">
+            <div class="adm-field">
+              <label>이미지 URL</label>
+              <input type="text" id="adm-og-image" placeholder="https://esh-master.kr/og-image.svg">
+              <span class="adm-hint">※ 카카오톡·슬랙·SNS 링크 공유 시 표시되는 미리보기 이미지입니다. 권장 크기: 1200×630px PNG/JPG.<br>※ GitHub Pages에 이미지 파일을 올리고 해당 URL을 입력하세요.</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+                <div style="font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.04em;font-family:'Inter',sans-serif">미리보기</div>
+                <div style="width:120px;height:63px;background:#1a2740;border-radius:6px;border:1px solid rgba(255,255,255,.1);overflow:hidden;display:flex;align-items:center;justify-content:center">
+                  <img id="adm-og-preview" src="" width="120" height="63" style="object-fit:cover;display:none;border-radius:6px" alt="og preview">
+                  <span id="adm-og-placeholder" style="font-size:9px;color:rgba(255,255,255,.2);text-align:center;padding:4px">1200×630<br>이미지</span>
+                </div>
+              </div>
+              <button onclick="previewOgImage()" style="padding:7px 14px;background:rgba(30,107,216,.2);border:1px solid rgba(30,107,216,.4);border-radius:7px;color:#60A5FA;font-size:12px;font-weight:700;cursor:pointer;font-family:'Pretendard Variable',Pretendard,sans-serif;align-self:flex-end">미리보기 확인</button>
+            </div>
+          </div>
+        </div>
           <div class="adm-card-label">🌐 브라우저 탭 아이콘 (Favicon)</div>
           <div class="adm-grid adm-grid-1" style="gap:12px">
             <div class="adm-field">
@@ -817,6 +845,7 @@
     brand_name: 'ESH-MASTER',
     brand_sub:  'ENVIRONMENT · SAFETY · HEALTH',
     favicon: '',
+    og_image: 'https://esh-master.kr/og-image.svg',
     badge: 'COMING SOON · 2026',
     h1_1: '현장에서 검증된',
     h1_2: '안전보건환경 디지털 설계',
@@ -939,6 +968,14 @@
 
     const fcEl = document.querySelector('.foot-copy');
     if (fcEl) fcEl.innerHTML = '© 2026 <strong>ESH-MASTER.KR</strong>&nbsp; 산업안전기획 · 안전보건전산화';
+
+    // og:image 적용
+    if (CFG.og_image) {
+      const ogImg = document.getElementById('og-image');
+      const twImg = document.getElementById('twitter-image');
+      if (ogImg) ogImg.content = CFG.og_image;
+      if (twImg) twImg.content = CFG.og_image;
+    }
 
     // 파비콘 적용
     if (CFG.favicon) {
@@ -1107,6 +1144,9 @@
     const faviconInput = document.getElementById('adm-favicon');
     if (faviconInput) faviconInput.value = CFG.favicon || '';
     updateFaviconPreview(CFG.favicon || '');
+    // og:image 필드
+    const ogInput = document.getElementById('adm-og-image');
+    if (ogInput) { ogInput.value = CFG.og_image || ''; updateOgPreview(CFG.og_image || ''); }
     document.getElementById('adm-h1-1').value         = CFG.h1_1;
     document.getElementById('adm-h1-2').value         = CFG.h1_2;
     document.getElementById('adm-lead').value         = CFG.lead;
@@ -1325,7 +1365,8 @@
     const g = id => document.getElementById(id)?.value || '';
     CFG.brand_name  = g('adm-brand-name')   || CFG.brand_name;
     CFG.brand_sub   = g('adm-brand-sub')    || CFG.brand_sub;
-    CFG.favicon     = g('adm-favicon');  // 빈 문자열도 저장 허용 (기본값 복원용)
+    CFG.favicon   = g('adm-favicon');
+    CFG.og_image  = g('adm-og-image') || CFG.og_image;
     CFG.badge         = g('adm-badge')         || CFG.badge;
     CFG.h1_1          = g('adm-h1-1')          || CFG.h1_1;
     CFG.h1_2          = g('adm-h1-2')          || CFG.h1_2;
@@ -1426,10 +1467,28 @@
     if (fa) fa.href = DEFAULT_FAVICON;
   };
 
+
   // URL 입력 시 실시간 미리보기
   document.addEventListener('input', e => {
-    if (e.target.id === 'adm-favicon') updateFaviconPreview(e.target.value.trim());
+    if (e.target.id === 'adm-favicon')  updateFaviconPreview(e.target.value.trim());
+    if (e.target.id === 'adm-og-image') updateOgPreview(e.target.value.trim());
   });
+
+  /* ── OG 이미지 헬퍼 ──────────────────────────────────────── */
+  function updateOgPreview(url) {
+    const img = document.getElementById('adm-og-preview');
+    const ph  = document.getElementById('adm-og-placeholder');
+    if (!img || !ph) return;
+    if (url) {
+      img.src = url; img.style.display = 'block'; ph.style.display = 'none';
+      img.onerror = () => { img.style.display = 'none'; ph.style.display = 'block'; };
+    } else {
+      img.style.display = 'none'; ph.style.display = 'block';
+    }
+  }
+  window.previewOgImage = function() {
+    updateOgPreview((document.getElementById('adm-og-image')?.value || '').trim());
+  };
 
   /* ── 서비스 카드 상태 토글 ────────────────────────────── */
   window.setSvcStatus = function(idx, status) {
