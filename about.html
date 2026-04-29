@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — UK2 Solutions | ESH-MASTER</title>
+<meta name="description" content="UK2 Solutions는 제조·통신업 현장 16년의 경험을 바탕으로 2026년 안전 AI 전문기업으로 전환했습니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --font:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --bg-page:#f8f9fb;
+  --bg-white:#ffffff;
+  --border:#e8eaed;
+  --border2:#d0d5dd;
+  --navy:#0f1f3d;
+  --navy2:#1a2f52;
+  --green:#10b981;
+  --green-dim:rgba(16,185,129,0.10);
+  --orange:#f0883e;
+  --text:#111827;
+  --text2:#374151;
+  --text3:#6b7280;
+  --text4:#9ca3af;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg-page);color:var(--text);font-family:var(--font);font-weight:400;line-height:1.7;-webkit-font-smoothing:antialiased;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(255,255,255,0.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;}
+.nav-em{width:28px;height:28px;background:var(--navy);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;letter-spacing:.04em;}
+.nav-b1{font-size:12px;font-weight:700;color:var(--navy);letter-spacing:.04em;line-height:1.2;}
+.nav-b2{font-size:9px;color:var(--text4);letter-spacing:.1em;}
+.nav-back{font-size:12px;color:var(--text3);text-decoration:none;display:flex;align-items:center;gap:6px;font-weight:500;transition:color .2s;}
+.nav-back:hover{color:var(--navy);}
+.nav-back::before{content:'←';}
+
+/* HERO */
+.hero{padding:130px 40px 100px;background:linear-gradient(155deg,#0a1628 0%,#112244 50%,#1a3a6b 100%);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(16,185,129,.07) 0%,transparent 65%);pointer-events:none;}
+.hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:56px;background:var(--bg-page);clip-path:ellipse(52% 100% at 50% 100%);}
+.hero-inner{max-width:860px;margin:0 auto;}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);padding:5px 14px;border-radius:20px;margin-bottom:28px;opacity:0;animation:fadeUp .6s ease forwards .1s;}
+.hero-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--green);}
+.hero-title{font-size:clamp(28px,4.5vw,52px);font-weight:700;line-height:1.2;color:#fff;letter-spacing:-.02em;margin-bottom:22px;opacity:0;animation:fadeUp .7s ease forwards .25s;}
+.hero-title em{color:var(--green);font-style:normal;}
+.hero-desc{font-size:15px;color:rgba(255,255,255,.6);line-height:1.85;max-width:540px;font-weight:300;opacity:0;animation:fadeUp .7s ease forwards .4s;}
+
+/* SECTION */
+.section{padding:80px 40px;}
+.section-inner{max-width:860px;margin:0 auto;}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green);margin-bottom:10px;}
+.sec-title{font-size:clamp(18px,2.5vw,26px);font-weight:700;color:var(--navy);line-height:1.35;margin-bottom:14px;letter-spacing:-.01em;}
+.sec-desc{font-size:14px;color:var(--text3);line-height:1.9;max-width:600px;}
+
+/* MISSION */
+.mission{background:var(--bg-white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.m-quote{font-size:clamp(16px,2vw,21px);font-weight:700;color:var(--navy);line-height:1.55;border-left:3px solid var(--green);padding-left:22px;margin-bottom:18px;letter-spacing:-.01em;}
+.m-quote em{color:var(--green);font-style:normal;}
+.m-body{font-size:14px;color:var(--text3);line-height:1.9;padding-left:25px;max-width:600px;}
+
+/* VALUE CARDS */
+.v-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;}
+.v-card{background:var(--bg-white);border:1px solid var(--border);border-radius:14px;padding:28px 22px;transition:box-shadow .2s,transform .2s;}
+.v-card:hover{box-shadow:0 6px 24px rgba(15,31,61,.07);transform:translateY(-2px);}
+.v-num{font-size:10px;font-weight:700;color:var(--green);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;}
+.v-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:9px;line-height:1.4;}
+.v-desc{font-size:13px;color:var(--text3);line-height:1.75;}
+
+/* TIMELINE */
+.history{background:var(--bg-page);border-top:1px solid var(--border);}
+.tl{position:relative;margin-top:36px;}
+.tl::before{content:'';position:absolute;left:108px;top:12px;bottom:12px;width:1px;background:var(--border2);}
+.t-row{display:grid;grid-template-columns:108px 1fr;gap:0 44px;padding:26px 0;border-bottom:1px solid var(--border);align-items:start;position:relative;}
+.t-row:last-child{border-bottom:none;}
+.t-row::after{content:'';position:absolute;left:104px;top:32px;width:10px;height:10px;border-radius:50%;background:var(--bg-page);border:2px solid var(--border2);}
+.t-row.active::after{background:var(--green);border-color:var(--green);box-shadow:0 0 0 4px var(--green-dim);}
+.t-row.ongoing::after{background:var(--green);border-color:var(--green);animation:tpulse 2s infinite;}
+.t-row.pivot::after{background:var(--orange);border-color:var(--orange);box-shadow:0 0 0 4px rgba(240,136,62,.1);}
+@keyframes tpulse{0%,100%{box-shadow:0 0 0 4px rgba(16,185,129,.1);}50%{box-shadow:0 0 0 8px rgba(16,185,129,.04);}}
+.t-yr{font-size:11px;font-weight:700;color:var(--green);letter-spacing:.05em;padding-top:3px;line-height:1.5;}
+.t-row.pivot .t-yr{color:var(--orange);}
+.t-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:3px;margin-top:3px;}
+.t-tag.g{color:var(--green);background:var(--green-dim);}
+.t-tag.o{color:var(--orange);background:rgba(240,136,62,.1);}
+.t-ct strong{display:block;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:5px;line-height:1.4;}
+.t-ct p{font-size:13px;color:var(--text3);line-height:1.8;}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,#0a1628 0%,#112244 100%);padding:90px 40px;text-align:center;}
+.cta-inner{max-width:580px;margin:0 auto;}
+.cta-eye{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green);margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.cta-eye::before{content:'⊙';font-size:12px;}
+.cta-title{font-size:clamp(19px,2.8vw,28px);font-weight:700;color:#fff;line-height:1.4;margin-bottom:10px;letter-spacing:-.01em;}
+.cta-desc{font-size:13px;color:rgba(255,255,255,.5);margin-bottom:30px;}
+.cta-btn{display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--navy);font-size:14px;font-weight:700;padding:14px 26px;border-radius:8px;text-decoration:none;transition:opacity .2s,transform .2s;}
+.cta-btn:hover{opacity:.9;transform:translateY(-1px);}
+
+/* FOOTER */
+footer{background:#0b111c;border-top:1px solid rgba(255,255,255,.05);padding:28px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.ft-logo{display:flex;align-items:center;gap:10px;}
+.ft-b1{font-size:12px;font-weight:700;color:#e6edf3;letter-spacing:.04em;line-height:1.2;}
+.ft-b2{font-size:9px;color:#484f58;letter-spacing:.1em;}
+.ft-links{display:flex;gap:18px;flex-wrap:wrap;}
+.ft-links a{font-size:11px;color:#484f58;text-decoration:none;transition:color .2s;}
+.ft-links a:hover{color:#8b949e;}
+.ft-copy{font-size:11px;color:#484f58;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.on{opacity:1;transform:none;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+
+@media(max-width:720px){
+  nav{padding:0 20px;}
+  .hero,.section,.cta{padding-left:20px;padding-right:20px;}
+  .v-grid{grid-template-columns:1fr;}
+  .tl::before{display:none;}
+  .t-row{grid-template-columns:1fr;gap:4px;}
+  .t-row::after{display:none;}
+  footer{padding:22px 20px;flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-em">EM</div>
+    <div>
+      <div class="nav-b1">ESH-MASTER.KR | SDI</div>
+      <div class="nav-b2">ENVIRONMENT · SAFETY · HEALTH</div>
+    </div>
+  </a>
+  <a href="index.html" class="nav-back">홈으로</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">About UK2 Solutions</div>
+    <h1 class="hero-title">현장이 바쁠수록,<br><em>안전보건은 저희가 대신 챙깁니다.</em></h1>
+    <p class="hero-desc">산업안전보건법·중대재해처벌법 의무 이행부터 ESH 디지털 전환까지— UK2 Solutions는 제조·통신업 현장 16년의 실무를 바탕으로 2026년 안전 AI 전문기업으로 새롭게 출발했습니다.</p>
+  </div>
+</section>
+
+<section class="section mission">
+  <div class="section-inner">
+    <p class="eyebrow reveal">Mission</p>
+    <blockquote class="m-quote reveal">귀사가 본업에 집중하는 동안,<br><em>안전보건은 저희가 구조적으로 책임집니다.</em></blockquote>
+    <p class="m-body reveal">안전보건은 단순한 법령 준수가 아닙니다. 경영책임자의 이행 증거, 현장의 리스크 관리, 디지털 전환까지 — 복잡하고 끊임없이 변하는 ESH 환경에서 UK2 Solutions는 귀사 곁에서 실질적인 해법을 제시합니다.</p>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg-page);border-top:1px solid var(--border);">
+  <div class="section-inner">
+    <p class="eyebrow reveal">What We Do</p>
+    <h2 class="sec-title reveal">3가지 축으로 귀사의 ESH를 지원합니다</h2>
+    <div class="v-grid">
+      <div class="v-card reveal">
+        <div class="v-num">01 · COMPLIANCE</div>
+        <div class="v-title">법령 의무,<br>놓치지 않습니다</div>
+        <div class="v-desc">산안법·중처법 경영책임자 이행 증거를 체계적으로 구축합니다. 감독기관 점검에도 흔들리지 않는 문서 체계를 설계합니다.</div>
+      </div>
+      <div class="v-card reveal">
+        <div class="v-num">02 · INTELLIGENCE</div>
+        <div class="v-title">정보는 저희가<br>먼저 읽습니다</div>
+        <div class="v-desc">고용노동부·환경부·소방청의 정책 변화를 AI로 모니터링하고, 현장에 실질적인 실무 포인트로 번역해 전달합니다.</div>
+      </div>
+      <div class="v-card reveal">
+        <div class="v-num">03 · DIGITALIZATION</div>
+        <div class="v-title">전산화,<br>직접 설계합니다</div>
+        <div class="v-desc">현장 언어를 아는 전문가가 직접 ESH 전산화 시스템을 설계합니다. 공급업체 시스템의 한계를 현장 맞춤형으로 극복합니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section history">
+  <div class="section-inner">
+    <p class="eyebrow reveal">Company History</p>
+    <h2 class="sec-title reveal">UK2의 발자취</h2>
+    <div class="tl">
+      <div class="t-row active reveal">
+        <div class="t-yr">2015 · 10</div>
+        <div class="t-ct"><strong>UK2 Investment 설립</strong></div>
+      </div>
+      <div class="t-row ongoing reveal">
+        <div class="t-yr">2015 — 현재<br><span class="t-tag g">진행 중</span></div>
+        <div class="t-ct">
+          <strong>다양한 업종별 안전보건관리체계 구축</strong>
+          <p>제조·통신업 현장을 직접 누비며 산업안전보건법 기반 안전보건관리체계를 수립. 현장 언어로 설계한 실질적 운영 체계를 업종별로 지속 축적 중</p>
+        </div>
+      </div>
+      <div class="t-row reveal">
+        <div class="t-yr">2021</div>
+        <div class="t-ct">
+          <strong>중대재해처벌법 대응 체계 구축</strong>
+          <p>법 시행(2022.01) 전 경영책임자 의무 이행 체계를 직접 수립. 안전보건 관리체계·이행 증거 문서화를 자체적으로 구축 완료</p>
+        </div>
+      </div>
+      <div class="t-row ongoing reveal">
+        <div class="t-yr">2025 — 현재<br><span class="t-tag g">진행 중</span></div>
+        <div class="t-ct">
+          <strong>안전 AI 서비스 개발 착수</strong>
+          <p>대규모 사업장을 기반으로 AI 기반 안전보건 서비스의 설계·실행·실증 활동을 직접 수행. 현장 검증 데이터를 ESH-MASTER 플랫폼 설계에 지속 반영 중</p>
+        </div>
+      </div>
+      <div class="t-row pivot reveal">
+        <div class="t-yr">2026 · 05<br><span class="t-tag o">사명 변경</span></div>
+        <div class="t-ct">
+          <strong>UK2 Investment → UK2 Solutions</strong>
+          <p>안전 AI 전문기업으로 전환. AI 기반 안전보건 정보 서비스·위험성평가·ESH 전산화를 통합 제공하는 ESH-MASTER 플랫폼 런칭 준비</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="cta-inner">
+    <p class="cta-eye reveal">CONTACT</p>
+    <h2 class="cta-title reveal">서비스 출시 · 파트너십 · 문의는<br>아래 이메일로 연락 주세요.</h2>
+    <p class="cta-desc reveal">문의 전 간단한 소속·용건을 메일에 적어주시면 빠르게 회신드립니다.</p>
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ehsmaster.kr@gmail.com&su=ESH-MASTER%20문의" class="cta-btn reveal" target="_blank">
+      ✉ &nbsp;ehsmaster.kr@gmail.com
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-logo">
+    <div class="nav-em" style="background:#1a2030;">EM</div>
+    <div>
+      <div class="ft-b1">ESH-MASTER.KR | SDI</div>
+      <div class="ft-b2">ENVIRONMENT · SAFETY · HEALTH</div>
+    </div>
+  </div>
+  <div class="ft-links">
+    <a href="https://www.moel.go.kr" target="_blank">고용노동부</a>
+    <a href="https://www.kosha.or.kr" target="_blank">안전보건공단</a>
+    <a href="https://www.me.go.kr" target="_blank">환경부</a>
+    <a href="https://www.nfa.go.kr" target="_blank">소방청</a>
+    <a href="https://www.law.go.kr" target="_blank">국가법령정보센터</a>
+  </div>
+  <div class="ft-copy">© 2026 <strong style="color:#8b949e;">ESH-MASTER.KR</strong> &nbsp;산업안전기획 · 안전보건전산화</div>
+</footer>
+
+<script>
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('on'), i * 55);
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
